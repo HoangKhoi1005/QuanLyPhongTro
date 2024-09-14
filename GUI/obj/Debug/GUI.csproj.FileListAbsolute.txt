@@ -22,3 +22,5 @@ D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmTrangChu.resources
 D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmPhong.resources
 D:\QuanLyPhongTro\GUI\bin\Debug\Guna.UI2.dll
 D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmHopDong.resources
+D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmKhachTro.resources
+D:\QuanLyPhongTro\GUI\bin\Debug\MetroFramework.dll

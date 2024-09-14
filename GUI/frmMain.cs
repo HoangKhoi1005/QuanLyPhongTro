@@ -51,23 +51,6 @@ namespace GUI
             }
         }
 
-        private struct RGBColors
-        {
-            public static Color color1 = Color.FromArgb(172, 126, 241);
-            public static Color color2 = Color.FromArgb(249, 118, 176);
-            public static Color color3 = Color.FromArgb(253, 138, 114);
-            public static Color color4 = Color.FromArgb(95, 77, 221);
-            public static Color color5 = Color.FromArgb(249, 88, 155);
-            public static Color color6 = Color.FromArgb(24, 161, 251);
-            public static Color color7 = Color.FromArgb(220, 212, 203);
-            public static Color color8 = Color.FromArgb(220, 21, 103);
-            public static Color color9 = Color.FromArgb(20, 212, 203);
-            public static Color color10 = Color.FromArgb(123, 212, 203);
-            public static Color color11 = Color.FromArgb(220, 91, 203);
-            public static Color color12 = Color.FromArgb(220, 212, 20);
-            public static Color color13 = Color.FromArgb(220, 33, 20);
-        }
-
         private void ActivateButton(object senderBtn, Color color)
         {
             if (senderBtn != null)
@@ -133,78 +116,85 @@ namespace GUI
 
         private void btnTrangChu_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color1);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmTrangChu());
             CollapseMenuWithButton();
         }
 
         private void btnPhong_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color2);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmPhong());
             CollapseMenuWithButton();
         }
 
         private void btnDichVu_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color3);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmDichVu());
             CollapseMenuWithButton();
         }
 
         private void btnChiSoDien_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color4);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmChiSoDien());
             CollapseMenuWithButton();
         }
 
         private void btnChiSoNuoc_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color5);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmChiSoNuoc());
             CollapseMenuWithButton();
         }
 
         private void btnTienPhatSinh_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color6);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmTienPhatSinh());
             CollapseMenuWithButton();
         }
 
         private void btnTienPhong_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color7);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmTinhTienPhong());
             CollapseMenuWithButton();
         }
 
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color8);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmNhanVien());
             CollapseMenuWithButton();
         }
 
         private void btnTaiSan_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color9);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmTaiSan());
             CollapseMenuWithButton();
         }
 
         private void btnCocGiuPhong_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color10);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmCocGiuPhong());
             CollapseMenuWithButton();
         }
 
         private void btnHopDong_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color13);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             OpenChildForm(new frmHopDong());
+            CollapseMenuWithButton();
+        }
+
+        private void btnKhachTro_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
+            OpenChildForm(new frmKhachTro());
             CollapseMenuWithButton();
         }
 
@@ -213,7 +203,7 @@ namespace GUI
         private void btnQuanLyDichVu_Click(object sender, EventArgs e)
         {
             menuTransition.Start();
-            ActivateButton(sender, RGBColors.color12);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
             CollapseMenuWithButton();
             lblTitleChildForm.Text = "Quản lý dịch vụ";
             lblTitleChildForm.ForeColor = currentBtn.IconColor;
@@ -231,7 +221,7 @@ namespace GUI
 
         private void btnDangXuat_Click(object sender, EventArgs e)
         {
-            ActivateButton(sender, RGBColors.color11);
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -350,7 +340,5 @@ namespace GUI
                 }
             }
         }
-
-
     }
 }

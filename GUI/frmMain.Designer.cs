@@ -40,6 +40,7 @@
             this.btnTienPhatSinh = new FontAwesome.Sharp.IconButton();
             this.btnTienPhong = new FontAwesome.Sharp.IconButton();
             this.btnHopDong = new FontAwesome.Sharp.IconButton();
+            this.btnKhachTro = new FontAwesome.Sharp.IconButton();
             this.btnNhanVien = new FontAwesome.Sharp.IconButton();
             this.btnCocGiuPhong = new FontAwesome.Sharp.IconButton();
             this.btnPhong = new FontAwesome.Sharp.IconButton();
@@ -78,6 +79,7 @@
             this.panelMenu.Controls.Add(this.btnTienPhatSinh);
             this.panelMenu.Controls.Add(this.btnTienPhong);
             this.panelMenu.Controls.Add(this.btnHopDong);
+            this.panelMenu.Controls.Add(this.btnKhachTro);
             this.panelMenu.Controls.Add(this.btnNhanVien);
             this.panelMenu.Controls.Add(this.btnCocGiuPhong);
             this.panelMenu.Controls.Add(this.btnPhong);
@@ -101,7 +103,7 @@
             this.btnDangXuat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDangXuat.IconSize = 32;
             this.btnDangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDangXuat.Location = new System.Drawing.Point(0, 640);
+            this.btnDangXuat.Location = new System.Drawing.Point(0, 700);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnDangXuat.Size = new System.Drawing.Size(230, 60);
@@ -118,7 +120,7 @@
             this.groupAdmin.Controls.Add(this.btnChiSoNuoc);
             this.groupAdmin.Controls.Add(this.btnChiSoDien);
             this.groupAdmin.Dock = System.Windows.Forms.DockStyle.Top;
-            this.groupAdmin.Location = new System.Drawing.Point(0, 580);
+            this.groupAdmin.Location = new System.Drawing.Point(0, 640);
             this.groupAdmin.Name = "groupAdmin";
             this.groupAdmin.Size = new System.Drawing.Size(230, 60);
             this.groupAdmin.TabIndex = 14;
@@ -218,7 +220,7 @@
             this.btnTaiSan.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTaiSan.IconSize = 32;
             this.btnTaiSan.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaiSan.Location = new System.Drawing.Point(0, 520);
+            this.btnTaiSan.Location = new System.Drawing.Point(0, 580);
             this.btnTaiSan.Name = "btnTaiSan";
             this.btnTaiSan.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnTaiSan.Size = new System.Drawing.Size(230, 60);
@@ -240,7 +242,7 @@
             this.btnTienPhatSinh.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTienPhatSinh.IconSize = 32;
             this.btnTienPhatSinh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTienPhatSinh.Location = new System.Drawing.Point(0, 460);
+            this.btnTienPhatSinh.Location = new System.Drawing.Point(0, 520);
             this.btnTienPhatSinh.Name = "btnTienPhatSinh";
             this.btnTienPhatSinh.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnTienPhatSinh.Size = new System.Drawing.Size(230, 60);
@@ -262,7 +264,7 @@
             this.btnTienPhong.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnTienPhong.IconSize = 32;
             this.btnTienPhong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTienPhong.Location = new System.Drawing.Point(0, 400);
+            this.btnTienPhong.Location = new System.Drawing.Point(0, 460);
             this.btnTienPhong.Name = "btnTienPhong";
             this.btnTienPhong.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnTienPhong.Size = new System.Drawing.Size(230, 60);
@@ -284,7 +286,7 @@
             this.btnHopDong.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnHopDong.IconSize = 32;
             this.btnHopDong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHopDong.Location = new System.Drawing.Point(0, 340);
+            this.btnHopDong.Location = new System.Drawing.Point(0, 400);
             this.btnHopDong.Name = "btnHopDong";
             this.btnHopDong.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnHopDong.Size = new System.Drawing.Size(230, 60);
@@ -294,6 +296,28 @@
             this.btnHopDong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHopDong.UseVisualStyleBackColor = true;
             this.btnHopDong.Click += new System.EventHandler(this.btnHopDong_Click);
+            // 
+            // btnKhachTro
+            // 
+            this.btnKhachTro.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnKhachTro.FlatAppearance.BorderSize = 0;
+            this.btnKhachTro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKhachTro.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKhachTro.IconChar = FontAwesome.Sharp.IconChar.PersonShelter;
+            this.btnKhachTro.IconColor = System.Drawing.Color.Gainsboro;
+            this.btnKhachTro.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnKhachTro.IconSize = 32;
+            this.btnKhachTro.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKhachTro.Location = new System.Drawing.Point(0, 340);
+            this.btnKhachTro.Name = "btnKhachTro";
+            this.btnKhachTro.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnKhachTro.Size = new System.Drawing.Size(230, 60);
+            this.btnKhachTro.TabIndex = 15;
+            this.btnKhachTro.Tag = "Khách trọ";
+            this.btnKhachTro.Text = "Khách trọ";
+            this.btnKhachTro.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnKhachTro.UseVisualStyleBackColor = true;
+            this.btnKhachTro.Click += new System.EventHandler(this.btnKhachTro_Click);
             // 
             // btnNhanVien
             // 
@@ -590,6 +614,7 @@
         private System.Windows.Forms.Timer menuTransition;
         private System.Windows.Forms.Timer sidebarTransition;
         private FontAwesome.Sharp.IconButton btnQuanLyDichVu;
+        private FontAwesome.Sharp.IconButton btnKhachTro;
     }
 }
 
