@@ -39,6 +39,9 @@
     <Reference Include="Guna.UI2">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.5\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="MetroFramework">
+      <HintPath>..\packages\MetroModernUI.1.4.0.0\lib\net\MetroFramework.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -89,6 +92,12 @@
     </Compile>
     <Compile Include="frmHopDong.Designer.cs">
       <DependentUpon>frmHopDong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKhachTro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKhachTro.Designer.cs">
+      <DependentUpon>frmKhachTro.cs</DependentUpon>
     </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
@@ -149,6 +158,9 @@
     <EmbeddedResource Include="frmHopDong.resx">
       <DependentUpon>frmHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmKhachTro.resx">
+      <DependentUpon>frmKhachTro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,6 +208,24 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Search.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Home.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Edit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Room.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\AddUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
