@@ -59,6 +59,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.menuTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
+            this.btnKyLuat = new FontAwesome.Sharp.IconButton();
             this.panelMenu.SuspendLayout();
             this.groupAdmin.SuspendLayout();
             this.panelLogo.SuspendLayout();
@@ -73,9 +74,11 @@
             // 
             this.panelMenu.AutoScroll = true;
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(63)))), ((int)(((byte)(84)))));
+            
             this.panelMenu.Controls.Add(this.btnDangXuat);
             this.panelMenu.Controls.Add(this.groupAdmin);
             this.panelMenu.Controls.Add(this.btnTaiSan);
+            this.panelMenu.Controls.Add(this.btnKyLuat);
             this.panelMenu.Controls.Add(this.btnTienPhatSinh);
             this.panelMenu.Controls.Add(this.btnTienPhong);
             this.panelMenu.Controls.Add(this.btnHopDong);
@@ -558,6 +561,27 @@
             // 
             this.sidebarTransition.Interval = 1;
             // 
+            // btnKyLuat
+            // 
+            this.btnKyLuat.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnKyLuat.FlatAppearance.BorderSize = 0;
+            this.btnKyLuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnKyLuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnKyLuat.IconChar = FontAwesome.Sharp.IconChar.HandHoldingUsd;
+            this.btnKyLuat.IconColor = System.Drawing.Color.Gainsboro;
+            this.btnKyLuat.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnKyLuat.IconSize = 32;
+            this.btnKyLuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKyLuat.Location = new System.Drawing.Point(0, 760);
+            this.btnKyLuat.Name = "btnKyLuat";
+            this.btnKyLuat.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnKyLuat.Size = new System.Drawing.Size(230, 60);
+            this.btnKyLuat.TabIndex = 16;
+            this.btnKyLuat.Tag = "Kỷ luật";
+            this.btnKyLuat.Text = "Kỷ luật";
+            this.btnKyLuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnKyLuat.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -615,6 +639,7 @@
         private System.Windows.Forms.Timer sidebarTransition;
         private FontAwesome.Sharp.IconButton btnQuanLyDichVu;
         private FontAwesome.Sharp.IconButton btnKhachTro;
+        private FontAwesome.Sharp.IconButton btnKyLuat;
     }
 }
 

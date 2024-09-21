@@ -227,5 +227,27 @@
   <ItemGroup>
     <None Include="Resources\AddUser.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EditUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Eye.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\ChangeRoom.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Door.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BUL\BUL.csproj">
+      <Project>{cbc0a6d9-351c-4971-864b-359f1045954f}</Project>
+      <Name>BUL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DTO\DTO.csproj">
+      <Project>{3ecb5ca0-d22e-4f56-8edc-2f5f36768adf}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,0 +1,11 @@
+D:\QuanLyPhongTro\DAL\bin\Debug\DAL.dll
+D:\QuanLyPhongTro\DAL\bin\Debug\DAL.pdb
+D:\QuanLyPhongTro\DAL\bin\Debug\DTO.dll
+D:\QuanLyPhongTro\DAL\bin\Debug\SQLServerProvider.dll
+D:\QuanLyPhongTro\DAL\bin\Debug\DTO.pdb
+D:\QuanLyPhongTro\DAL\bin\Debug\SQLServerProvider.pdb
+D:\QuanLyPhongTro\DAL\obj\Debug\DAL.csproj.AssemblyReference.cache
+D:\QuanLyPhongTro\DAL\obj\Debug\DAL.csproj.CoreCompileInputs.cache
+D:\QuanLyPhongTro\DAL\obj\Debug\DAL.csproj.CopyComplete
+D:\QuanLyPhongTro\DAL\obj\Debug\DAL.dll
+D:\QuanLyPhongTro\DAL\obj\Debug\DAL.pdb

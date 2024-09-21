@@ -1,0 +1,6 @@
+D:\QuanLyPhongTro\SQLServerProvider\bin\Debug\SQLServerProvider.dll
+D:\QuanLyPhongTro\SQLServerProvider\bin\Debug\SQLServerProvider.pdb
+D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.csproj.AssemblyReference.cache
+D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.csproj.CoreCompileInputs.cache
+D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.dll
+D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.pdb
