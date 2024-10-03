@@ -10,16 +10,16 @@ using System.Windows.Forms;
 
 namespace GUI
 {
-    public partial class frmDangNhap : Form
+    public partial class frmQuenMatKhau : Form
     {
-        public frmDangNhap()
+        public frmQuenMatKhau()
         {
             InitializeComponent();
         }
 
-        private void label4_Click(object sender, EventArgs e)
+        private void label5_Click(object sender, EventArgs e)
         {
-            frmQuenMatKhau frm = new frmQuenMatKhau();
+            frmDangNhap frm = new frmDangNhap();
             frm.Show();
             this.Hide();
         }

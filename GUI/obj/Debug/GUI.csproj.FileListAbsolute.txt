@@ -67,3 +67,4 @@ D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\GUI\obj\Debug\GUI.csproj.CopyComplete
 D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\GUI\obj\Debug\GUI.exe
 D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\GUI\obj\Debug\GUI.pdb
 D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\GUI\obj\Debug\GUI.frmDangNhap.resources
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\GUI\obj\Debug\GUI.frmQuenMatKhau.resources

@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
             this.guna2ControlBox3 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox2 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
@@ -40,16 +39,8 @@
             this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
             this.guna2Button1 = new Guna.UI2.WinForms.Guna2Button();
             this.label4 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackgroundImage = global::GUI.Properties.Resources.bgr;
-            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(320, 465);
-            this.panel1.TabIndex = 0;
             // 
             // guna2ControlBox3
             // 
@@ -207,6 +198,16 @@
             this.label4.Size = new System.Drawing.Size(116, 20);
             this.label4.TabIndex = 21;
             this.label4.Text = "Quên mật khẩu?";
+            this.label4.Click += new System.EventHandler(this.label4_Click);
+            // 
+            // panel1
+            // 
+            this.panel1.BackgroundImage = global::GUI.Properties.Resources.bgr;
+            this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(320, 465);
+            this.panel1.TabIndex = 0;
             // 
             // frmDangNhap
             // 

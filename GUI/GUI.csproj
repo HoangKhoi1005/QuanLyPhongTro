@@ -117,6 +117,12 @@
     <Compile Include="frmNhanVien.Designer.cs">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmQuenMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuenMatKhau.Designer.cs">
+      <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTaiSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -175,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuenMatKhau.resx">
+      <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTaiSan.resx">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
@@ -260,6 +269,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bgr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgrqmk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMK.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgrqmkk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nenqmk.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
