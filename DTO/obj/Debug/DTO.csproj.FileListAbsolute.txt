@@ -4,3 +4,9 @@ D:\QuanLyPhongTro\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
 D:\QuanLyPhongTro\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
 D:\QuanLyPhongTro\DTO\obj\Debug\DTO.dll
 D:\QuanLyPhongTro\DTO\obj\Debug\DTO.pdb
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\DTO\bin\Debug\DTO.dll
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\DTO\bin\Debug\DTO.pdb
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\DTO\obj\Debug\DTO.csproj.AssemblyReference.cache
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\DTO\obj\Debug\DTO.csproj.CoreCompileInputs.cache
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\DTO\obj\Debug\DTO.dll
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\DTO\obj\Debug\DTO.pdb

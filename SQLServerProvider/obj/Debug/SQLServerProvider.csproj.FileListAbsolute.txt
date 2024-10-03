@@ -4,3 +4,9 @@ D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.csproj.AssemblyR
 D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.csproj.CoreCompileInputs.cache
 D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.dll
 D:\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.pdb
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\SQLServerProvider\bin\Debug\SQLServerProvider.dll
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\SQLServerProvider\bin\Debug\SQLServerProvider.pdb
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.csproj.AssemblyReference.cache
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.csproj.CoreCompileInputs.cache
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.dll
+D:\PhatTrienPhamMemUDTM\QuanLyPhongTro\SQLServerProvider\obj\Debug\SQLServerProvider.pdb
