@@ -68,7 +68,6 @@ namespace DAL
         public bool KiemTraPhongDaCoHopDong(string maPT)
         {
             int kq;
-
             try
             {
                 string sql = "SELECT count(*) FROM HOPDONG WHERE MAPT = '" + maPT + "'";
