@@ -81,6 +81,12 @@
     <Compile Include="frmCocGiuPhong.Designer.cs">
       <DependentUpon>frmCocGiuPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDangNhap.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDangNhap.Designer.cs">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmDichVu.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +116,12 @@
     </Compile>
     <Compile Include="frmNhanVien.Designer.cs">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQuenMatKhau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQuenMatKhau.Designer.cs">
+      <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTaiSan.cs">
       <SubType>Form</SubType>
@@ -152,6 +164,9 @@
     <EmbeddedResource Include="frmCocGiuPhong.resx">
       <DependentUpon>frmCocGiuPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDangNhap.resx">
+      <DependentUpon>frmDangNhap.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmDichVu.resx">
       <DependentUpon>frmDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -166,6 +181,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQuenMatKhau.resx">
+      <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTaiSan.resx">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
@@ -248,6 +266,21 @@
       <Project>{3ecb5ca0-d22e-4f56-8edc-2f5f36768adf}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgr.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgrqmk.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\QMK.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bgrqmkk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\nenqmk.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
