@@ -9,7 +9,7 @@ namespace SQLServerProvider
 {
     public class DBConnect
     {
-        string strConn = "Data Source=LAPTOP-85VQT4K5\\SQLEXPRESS05;Initial Catalog=QL_NhaTro;User ID=sa;Password=123";
+        string strConn = "Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa;Password=123";
         SqlConnection conn;
 
         public SqlConnection Conn
