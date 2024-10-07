@@ -6,3 +6,11 @@
 .vs/
 bin/
 obj/
+/BUL/bin/
+/BUL/obj/
+/DAL/bin/
+/DAL/obj/
+/GUI/bin/
+/GUI/obj/
+/SQLServerProvider/bin/
+/SQLServerProvider/obj/
