@@ -23,8 +23,6 @@ namespace SQLServerProvider
             Conn = new SqlConnection(strConn);
         }
 
-
-
         public void open()
         {
             if (Conn.State == System.Data.ConnectionState.Closed)
@@ -41,22 +39,29 @@ namespace SQLServerProvider
         {
             open();
             SqlCommand cmd = new SqlCommand(query, Conn);
-            return cmd.ExecuteReader();
+            return cmd.ExecuteReader(System.Data.CommandBehavior.CloseConnection); 
         }
+
 
         public int ExecuteNonQuery(string query)
         {
             open();
             SqlCommand cmd = new SqlCommand(query, Conn);
-            return cmd.ExecuteNonQuery();
+            int result = cmd.ExecuteNonQuery();
+            close();
+            return result;
         }
+
 
         public object ExecuteScalar(string query)
         {
             open();
             SqlCommand cmd = new SqlCommand(query, Conn);
-            return cmd.ExecuteScalar();
+            object result = cmd.ExecuteScalar();
+            close();
+            return result;
         }
+
 
 
     }

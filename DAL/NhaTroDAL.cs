@@ -2,6 +2,7 @@
 using SQLServerProvider;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,21 +20,115 @@ namespace DAL
 
         public List<NhaTroDTO> LayDanhSachNhaTro()
         {
-            string query = "SELECT * FROM NhaTro";
-            var reader = db.ExecuteQuery(query);
             List<NhaTroDTO> lstNhaTro = new List<NhaTroDTO>();
-            while (reader.Read())
+            string query = "SELECT * FROM NhaTro WHERE TRANGTHAI = 1";
+            try
             {
-                NhaTroDTO nhaTro = new NhaTroDTO();
-                nhaTro.MaNT = reader["MaNT"].ToString();
-                nhaTro.TenNT = reader["TenNT"].ToString();
-                nhaTro.DiaChiNT = reader["DiaChiNT"].ToString();
-                nhaTro.SoDT = reader["SoDT"].ToString();
-                nhaTro.ChuNhaTro = reader["ChuNhaTro"].ToString();
-                lstNhaTro.Add(nhaTro);
+                using (SqlDataReader reader = db.ExecuteQuery(query))
+                {
+                    while (reader.Read())
+                    {
+                        NhaTroDTO nhaTro = new NhaTroDTO
+                        {
+                            MaNT = reader["MaNT"].ToString(),
+                            TenNT = reader["TenNT"].ToString(),
+                            DiaChiNT = reader["DiaChiNT"].ToString(),
+                            SoDT = reader["SoDT"].ToString(),
+                            ChuNhaTro = reader["TenChu"].ToString()
+                        };
+                        lstNhaTro.Add(nhaTro);
+                    }
+                }
             }
-            reader.Close();
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách nhà trọ: " + ex.Message);
+            }
             return lstNhaTro;
         }
+
+
+        //Thêm nhà trọ
+        public bool ThemNhaTro(NhaTroDTO nhaTro)
+        {
+            string query = "INSERT INTO NhaTro VALUES('" + nhaTro.MaNT + "', N'" + nhaTro.TenNT + "', N'" + nhaTro.DiaChiNT + "', '" + nhaTro.SoDT + "', N'" + nhaTro.ChuNhaTro + "')";
+            int kq = db.ExecuteNonQuery(query);
+            return kq > 0;
+        }
+
+        //Kiểm tra xem nhà trọ có phòng nào không
+        public bool KiemTraPhongTheoNhaTro(string maNT)
+        {
+            string query = "SELECT COUNT(*) FROM PHONGTRO WHERE MaNT = '" + maNT + "'";
+            int count = (int)db.ExecuteScalar(query);
+            return count > 0;
+            
+        }
+
+        //Xóa nhà trọ
+        public bool XoaNhaTro(string maNT)
+        {
+            if (KiemTraPhongTheoNhaTro(maNT))
+            {
+                return false;
+            }
+
+            string query = "UPDATE NHATRO SET TRANGTHAI = 0 WHERE MaNT = '" + maNT + "'";
+            int kq = db.ExecuteNonQuery(query);
+            return kq > 0;
+        }
+
+        //Sửa nhà trọ
+        public bool SuaNhaTro(NhaTroDTO nhaTro)
+        {
+            string query = "UPDATE NhaTro SET TenNT = N'" + nhaTro.TenNT + "', DiaChiNT = N'" + nhaTro.DiaChiNT + "', SoDT = '" + nhaTro.SoDT + "', TenChu = N'" + nhaTro.ChuNhaTro + "' WHERE MaNT = '" + nhaTro.MaNT + "'";
+            int kq = db.ExecuteNonQuery(query);
+            return kq > 0;
+        }
+
+        //Phát sinh mã nhà trọ
+        public string PhatSinhMaNT()
+        {
+            string query = "SELECT TOP 1 MaNT FROM NhaTro ORDER BY MaNT DESC";
+            var reader = db.ExecuteQuery(query);
+            string maNT = "";
+            if (reader.Read())
+            {
+                maNT = reader["MaNT"].ToString();
+            }
+            reader.Close();
+            if (maNT == "")
+            {
+                return "NT001";
+            }
+            int so = int.Parse(maNT.Substring(2)) + 1;
+            if (so < 10)
+            {
+                return "NT00" + so;
+            }
+            else if (so < 100)
+            {
+                return "NT0" + so;
+            }
+            else
+            {
+                return "NT" + so;
+            }
+        }
+
+        //Lấy địa chỉ nhà trọ theo mã nhà trọ
+        public string LayDiaChiNTTheoMaNT(string maNT)
+        {
+            string query = "SELECT DiaChiNT FROM NhaTro WHERE MaNT = '" + maNT + "'";
+            var reader = db.ExecuteQuery(query);
+            string diaChi = "";
+            if (reader.Read())
+            {
+                diaChi = reader["DiaChiNT"].ToString();
+            }
+            reader.Close();
+            return diaChi;
+        }
+
     }
 }

@@ -35,3 +35,6 @@ D:\QuanLyPhongTro\GUI\obj\Debug\GUI.csproj.CoreCompileInputs.cache
 D:\QuanLyPhongTro\GUI\obj\Debug\GUI.csproj.CopyComplete
 D:\QuanLyPhongTro\GUI\obj\Debug\GUI.exe
 D:\QuanLyPhongTro\GUI\obj\Debug\GUI.pdb
+D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmThemNhaTro.resources
+D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmXoaNT.resources
+D:\QuanLyPhongTro\GUI\obj\Debug\GUI.frmSuaNT.resources

@@ -1,4 +1,6 @@
-﻿using Guna.UI2.WinForms;
+﻿using BUL;
+using DTO;
+using Guna.UI2.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -13,121 +15,115 @@ namespace GUI
 {
     public partial class UCPhong : UserControl
     {
-        private bool trangThai;
+        private string trangThai;
+        TrangThaiPhongBUL trangThaiPhongBUL = new TrangThaiPhongBUL();
         ToolTip toolTip1 = new ToolTip();
-        public bool TrangThai
+
+        public string TrangThai
         {
             get { return trangThai; }
             set
             {
                 trangThai = value;
-                LoadPhongTro();
             }
         }
+
         public UCPhong()
         {
             InitializeComponent();
-
-            TrangThai = false;
         }
 
-        private void LoadPhongTro()
+        public void LoadPhongTro(PhongDTO phong)
         {
-            // Xóa các controls cũ trước khi cập nhật giao diện
+            string tenTrangThai = trangThaiPhongBUL.LayTenTrangThaiTheoMa(phong.MaTT);
+            this.TrangThai = tenTrangThai;
 
-            if (TrangThai)
+            ToolTip toolTip = new ToolTip();
+            toolTip.SetToolTip(btnSuaPhong, "Sửa phòng");
+            toolTip.SetToolTip(btnXoaPhong, "Xóa phòng");
+            toolTip.SetToolTip(btnThemKT, "Thêm khách");
+
+            lblMaPhong.Text = phong.MaPT;
+            lblSoLuong.Text = phong.SoLuongNguoiTD.ToString();
+            lblGiaPhong.Text = phong.DonGia.ToString("N0") + " VNĐ";
+
+            switch (TrangThai)
+            {
+                case "Trống":
+                    toolTip.SetToolTip(guna2Panel2, "Phòng trống");
+                    break;
+                case "Có người":
+                    guna2Panel2.BackColor = Color.FromArgb(133, 193, 233);
+                    toolTip.SetToolTip(guna2Panel2, "Phòng có người");
+                    break;
+                case "Đang sửa chữa":
+                    guna2Panel2.BackColor = Color.FromArgb(241, 196, 15);
+                    toolTip.SetToolTip(guna2Panel2, "Phòng đang sửa chữa");
+                    break;
+                case "Đã đặt":
+                    guna2Panel2.BackColor = Color.FromArgb(40, 167, 69);
+                    toolTip.SetToolTip(guna2Panel2, "Phòng đã đặt");
+                    break;
+                default:
+                    guna2Panel2.BackColor = Color.Gray;
+                    break;
+            }
+
+            if (TrangThai == "Có người" || TrangThai == "Đã đặt")
             {
                 Guna.UI2.WinForms.Guna2Button btnSuaKhach = new Guna.UI2.WinForms.Guna2Button();
                 Guna.UI2.WinForms.Guna2Button btnXemThongTin = new Guna.UI2.WinForms.Guna2Button();
                 Guna.UI2.WinForms.Guna2Button btnTraPhong = new Guna.UI2.WinForms.Guna2Button();
                 Guna.UI2.WinForms.Guna2Button btnDoiPhong = new Guna.UI2.WinForms.Guna2Button();
 
-                guna2Panel2.BackColor = System.Drawing.Color.FromArgb(133, 193, 233);
+                iconPictureBox20.ForeColor = Color.White;
+                iconPictureBox4.ForeColor = Color.White;
+                iconPictureBox5.ForeColor = Color.White;
+                iconPictureBox6.ForeColor = Color.White;
+                lblMaPhong.ForeColor = Color.White;
+                lblSoLuong.ForeColor = Color.White;
 
-
-                btnSuaKhach.BorderColor = System.Drawing.Color.FromArgb(70, 184, 218);
+                btnSuaKhach.BorderColor = Color.FromArgb(70, 184, 218);
                 btnSuaKhach.BorderRadius = 4;
-                btnSuaKhach.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-                btnSuaKhach.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-                btnSuaKhach.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
-                btnSuaKhach.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
-                btnSuaKhach.FillColor = System.Drawing.Color.Purple;
-                btnSuaKhach.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
-                btnSuaKhach.ForeColor = System.Drawing.Color.White;
+                btnSuaKhach.FillColor = Color.Purple;
+                btnSuaKhach.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnSuaKhach.ForeColor = Color.White;
                 btnSuaKhach.Image = global::GUI.Properties.Resources.EditUser;
-                btnSuaKhach.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-                btnSuaKhach.Location = new System.Drawing.Point(151, 90);
-                btnSuaKhach.Name = "btnSuaKhach";
-                btnSuaKhach.Size = new System.Drawing.Size(41, 37);
-                btnSuaKhach.TabIndex = 40;
-                btnSuaKhach.Tag = "";
-                btnSuaKhach.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                btnSuaKhach.Location = new Point(151, 90);
+                btnSuaKhach.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnSuaKhach, "Sửa khách");
                 guna2Panel2.Controls.Add(btnSuaKhach);
-                // 
-                // btnXemThongTin
-                // 
-                btnXemThongTin.BorderColor = System.Drawing.Color.FromArgb(70, 184, 218);
+
+                btnXemThongTin.BorderColor = Color.FromArgb(70, 184, 218);
                 btnXemThongTin.BorderRadius = 4;
-                btnXemThongTin.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-                btnXemThongTin.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-                btnXemThongTin.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
-                btnXemThongTin.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
-                btnXemThongTin.FillColor = System.Drawing.Color.DodgerBlue;
-                btnXemThongTin.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
-                btnXemThongTin.ForeColor = System.Drawing.Color.White;
+                btnXemThongTin.FillColor = Color.DodgerBlue;
+                btnXemThongTin.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnXemThongTin.ForeColor = Color.White;
                 btnXemThongTin.Image = global::GUI.Properties.Resources.Eye;
-                btnXemThongTin.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-                btnXemThongTin.Location = new System.Drawing.Point(104, 90);
-                btnXemThongTin.Name = "btnXemThongTin";
-                btnXemThongTin.Size = new System.Drawing.Size(41, 37);
-                btnXemThongTin.TabIndex = 39;
-                btnXemThongTin.Tag = "";
-                btnXemThongTin.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                btnXemThongTin.Location = new Point(104, 90);
+                btnXemThongTin.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnXemThongTin, "Xem thông tin");
                 guna2Panel2.Controls.Add(btnXemThongTin);
-                // 
-                // btnTraPhong
-                // 
-                btnTraPhong.BorderColor = System.Drawing.Color.FromArgb(70, 184, 218);
+
+                btnTraPhong.BorderColor = Color.FromArgb(70, 184, 218);
                 btnTraPhong.BorderRadius = 4;
-                btnTraPhong.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-                btnTraPhong.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-                btnTraPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
-                btnTraPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
-                btnTraPhong.FillColor = System.Drawing.Color.OrangeRed;
-                btnTraPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
-                btnTraPhong.ForeColor = System.Drawing.Color.White;
+                btnTraPhong.FillColor = Color.OrangeRed;
+                btnTraPhong.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnTraPhong.ForeColor = Color.White;
                 btnTraPhong.Image = global::GUI.Properties.Resources.Door;
-                btnTraPhong.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-                btnTraPhong.Location = new System.Drawing.Point(10, 90);
-                btnTraPhong.Name = "btnTraPhong";
-                btnTraPhong.Size = new System.Drawing.Size(41, 37);
-                btnTraPhong.TabIndex = 38;
-                btnTraPhong.Tag = "";
-                btnTraPhong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                btnTraPhong.Location = new Point(10, 90);
+                btnTraPhong.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnTraPhong, "Trả phòng");
                 guna2Panel2.Controls.Add(btnTraPhong);
-                // 
-                // btnDoiPhong
-                // 
-                btnDoiPhong.BorderColor = System.Drawing.Color.FromArgb(70, 184, 218);
+
+                btnDoiPhong.BorderColor = Color.FromArgb(70, 184, 218);
                 btnDoiPhong.BorderRadius = 4;
-                btnDoiPhong.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-                btnDoiPhong.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-                btnDoiPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(169, 169, 169);
-                btnDoiPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(141, 141, 141);
-                btnDoiPhong.FillColor = System.Drawing.Color.Orange;
-                btnDoiPhong.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
-                btnDoiPhong.ForeColor = System.Drawing.Color.White;
+                btnDoiPhong.FillColor = Color.Orange;
+                btnDoiPhong.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnDoiPhong.ForeColor = Color.White;
                 btnDoiPhong.Image = global::GUI.Properties.Resources.ChangeRoom;
-                btnDoiPhong.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-                btnDoiPhong.Location = new System.Drawing.Point(57, 90);
-                btnDoiPhong.Name = "btnDoiPhong";
-                btnDoiPhong.Size = new System.Drawing.Size(41, 37);
-                btnDoiPhong.TabIndex = 37;
-                btnDoiPhong.Tag = "";
-                btnDoiPhong.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+                btnDoiPhong.Location = new Point(57, 90);
+                btnDoiPhong.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnDoiPhong, "Đổi phòng");
                 guna2Panel2.Controls.Add(btnDoiPhong);
             }
