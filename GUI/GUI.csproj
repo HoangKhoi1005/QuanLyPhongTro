@@ -123,11 +123,23 @@
     <Compile Include="frmQuenMatKhau.Designer.cs">
       <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSuaNT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaNT.Designer.cs">
+      <DependentUpon>frmSuaNT.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTaiSan.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmTaiSan.Designer.cs">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemNhaTro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemNhaTro.Designer.cs">
+      <DependentUpon>frmThemNhaTro.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTienPhatSinh.cs">
       <SubType>Form</SubType>
@@ -152,6 +164,12 @@
     </Compile>
     <Compile Include="frmPhong.Designer.cs">
       <DependentUpon>frmPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmXoaNT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXoaNT.Designer.cs">
+      <DependentUpon>frmXoaNT.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -191,8 +209,14 @@
     <EmbeddedResource Include="frmQuenMatKhau.resx">
       <DependentUpon>frmQuenMatKhau.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaNT.resx">
+      <DependentUpon>frmSuaNT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTaiSan.resx">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemNhaTro.resx">
+      <DependentUpon>frmThemNhaTro.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTienPhatSinh.resx">
       <DependentUpon>frmTienPhatSinh.cs</DependentUpon>
@@ -205,6 +229,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmPhong.resx">
       <DependentUpon>frmPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXoaNT.resx">
+      <DependentUpon>frmXoaNT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

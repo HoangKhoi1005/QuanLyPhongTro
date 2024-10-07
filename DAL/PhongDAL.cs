@@ -31,24 +31,20 @@ namespace DAL
 
                 while (reader.Read())
                 {
-                    // Tạo đối tượng PhongDTO mới cho mỗi lần đọc
                     PhongDTO phong = new PhongDTO();
 
                     phong.MaPT = reader["MAPT"].ToString();
                     phong.MaNT = reader["MANT"].ToString();
+                    phong.MaTT = reader["MATT"].ToString();
                     phong.TenPhong = reader["TENPHONG"].ToString();
                     phong.DonGia = Convert.ToDecimal(reader["DONGIA"]);
                     phong.ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]);
                     phong.ChieuRong = Convert.ToDouble(reader["CHIEURONG"]);
                     phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
-                    phong.GioiTinhNam = Convert.ToBoolean(reader["GIOITINH_NAM"]);
-                    phong.GioiTinhNu = Convert.ToBoolean(reader["GIOITINH_NU"]);
                     phong.MoTa = reader["MOTA"].ToString();
                     phong.Anh = reader["ANH"].ToString();
                     phong.ThuTu = Convert.ToInt32(reader["THUTU"]);
-                    phong.TrangThai = reader["TRANGTHAI"].ToString();
 
-                    // Thêm đối tượng phong mới vào danh sách
                     danhSachPhong.Add(phong);
                 }
 
@@ -84,6 +80,47 @@ namespace DAL
             }
 
             return true;
+        }
+
+        //Danh sách phòng theo trạng thái
+        public List<PhongDTO> LayPhongTheoTrangThai(string maTT, string maNT)
+        {
+            List<PhongDTO> danhSachPhong = new List<PhongDTO>();
+
+            try
+            {
+                string sql = "SELECT * FROM PHONGTRO WHERE MATT = '" + maTT + "' AND MANT = '" + maNT + "'";
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                while (reader.Read())
+                {
+                    PhongDTO phong = new PhongDTO();
+
+                    phong.MaPT = reader["MAPT"].ToString();
+                    phong.MaNT = reader["MANT"].ToString();
+                    phong.MaTT = reader["MATT"].ToString();
+                    phong.TenPhong = reader["TENPHONG"].ToString();
+                    phong.DonGia = Convert.ToDecimal(reader["DONGIA"]);
+                    phong.ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]);
+                    phong.ChieuRong = Convert.ToDouble(reader["CHIEURONG"]);
+                    phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
+                    phong.MoTa = reader["MOTA"].ToString();
+                    phong.Anh = reader["ANH"].ToString();
+                    phong.ThuTu = Convert.ToInt32(reader["THUTU"]);
+
+                    danhSachPhong.Add(phong);
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách phòng theo trạng thái: " + ex.Message);
+            }
+
+            return danhSachPhong;
         }
     }
 }

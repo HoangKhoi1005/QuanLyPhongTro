@@ -21,5 +21,30 @@ namespace BUL
         {
             return nhaTroDAL.LayDanhSachNhaTro();
         }
+
+        public bool ThemNhaTro(NhaTroDTO nhaTro)
+        {
+            return nhaTroDAL.ThemNhaTro(nhaTro);
+        }
+
+        public string PhatSinhMaNT()
+        {
+            return nhaTroDAL.PhatSinhMaNT();
+        }
+
+        public string LayDiaChiNTTheoMaNT(string maNT)
+        {
+            return nhaTroDAL.LayDiaChiNTTheoMaNT(maNT);
+        }
+
+        public bool XoaNhaTro(string maNT)
+        {
+            return nhaTroDAL.XoaNhaTro(maNT);
+        }
+
+        public bool SuaNhaTro(NhaTroDTO nhaTro)
+        {
+            return nhaTroDAL.SuaNhaTro(nhaTro);
+        }
     }
 }
