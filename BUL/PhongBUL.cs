@@ -31,5 +31,25 @@ namespace BUL
         {
             return phongDAL.LayPhongTheoTrangThai(maTT, maNT);
         }
+
+        public bool ThemPhong(PhongDTO phong)
+        {
+            return phongDAL.ThemPhong(phong);
+        }
+
+        public string PhatSinhMaPhong(string MaNT)
+        {
+            return phongDAL.PhatSinhMaPhong(MaNT);
+        }
+
+        public int PhatSinhThuTuPhong(string MaNT)
+        {
+            return phongDAL.PhatSinhThuTuPhong(MaNT);
+        }
+
+        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string maNT)
+        {
+            return phongDAL.TimKiemPhongTheoMaPhong(maPhong, maNT);
+        }
     }
 }

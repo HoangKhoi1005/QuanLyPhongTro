@@ -181,7 +181,40 @@ namespace GUI
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
+            //Tìm theo Mã phòng txtMaPhong trong nhà trọ hiện tại
+            string maPhong = txtMaPhong.Text;
+            if (string.IsNullOrEmpty(maPhong))
+            {
+                LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+            }
+            else
+            {
+                List<PhongDTO> lstPhong = phongBUL.TimKiemPhongTheoMaPhong(maPhong, nhaTroDangChon.MaNT);
+                groupDSPhong.Controls.Clear();
 
+                int ucXPosition = 19;
+                int ucYPosition = 19;
+                int kt = 0;
+
+                foreach (var phong in lstPhong)
+                {
+                    UCPhong uCPhong = new UCPhong();
+                    if (kt == 6)
+                    {
+                        ucXPosition = 19;
+                        ucYPosition += 19 + uCPhong.Width;
+                        kt = 0;
+                    }
+
+                    uCPhong.LoadPhongTro(phong);
+                    uCPhong.Left = ucXPosition;
+                    uCPhong.Top = ucYPosition;
+
+                    ucXPosition += uCPhong.Width + 19;
+                    kt++;
+                    groupDSPhong.Controls.Add(uCPhong);
+                }
+            }
         }
 
         public void LoadTrangThai()
@@ -238,6 +271,21 @@ namespace GUI
                     groupDSPhong.Controls.Add(uCPhong);
                 }
             }
+        }
+
+        private void btnThemPhong_Click(object sender, EventArgs e)
+        {
+            ShowOverlay();
+            frmThemPhong frmThemPhong = new frmThemPhong(nhaTroDangChon);
+            frmThemPhong.FormClosed += (s, args) =>
+            {
+                if (frmThemPhong.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmThemPhong.ShowDialog();
+            HideOverlay();
         }
     }
 }
