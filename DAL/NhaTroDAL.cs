@@ -51,7 +51,7 @@ namespace DAL
         //Thêm nhà trọ
         public bool ThemNhaTro(NhaTroDTO nhaTro)
         {
-            string query = "INSERT INTO NhaTro VALUES('" + nhaTro.MaNT + "', N'" + nhaTro.TenNT + "', N'" + nhaTro.DiaChiNT + "', '" + nhaTro.SoDT + "', N'" + nhaTro.ChuNhaTro + "')";
+            string query = "INSERT INTO NhaTro VALUES('" + nhaTro.MaNT + "', N'" + nhaTro.TenNT + "', N'" + nhaTro.DiaChiNT + "', '" + nhaTro.SoDT + "', N'" + nhaTro.ChuNhaTro + "', 'True')";
             int kq = db.ExecuteNonQuery(query);
             return kq > 0;
         }
