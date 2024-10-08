@@ -8,6 +8,7 @@ namespace GUI
 {
     internal static class Program
     {
+        public static frmMain frmMain;
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -16,7 +17,8 @@ namespace GUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmMain());
+            frmMain = new frmMain();
+            Application.Run(new frmDangNhap());
         }
     }
 }
