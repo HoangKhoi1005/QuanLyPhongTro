@@ -312,6 +312,10 @@
       <Project>{3ecb5ca0-d22e-4f56-8edc-2f5f36768adf}</Project>
       <Name>DTO</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SQLServerProvider\SQLServerProvider.csproj">
+      <Project>{d9c59ead-38b2-45cc-a69d-ebcfeab5dd1b}</Project>
+      <Name>SQLServerProvider</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\bgr.jpg" />
