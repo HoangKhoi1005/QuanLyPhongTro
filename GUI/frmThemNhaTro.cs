@@ -38,6 +38,7 @@ namespace GUI
             nhaTro.DiaChiNT = txtDiaChi.Text;
             nhaTro.SoDT = "0123456789";
             nhaTro.ChuNhaTro = "Nguyen Van A";
+            nhaTro.TrangThai = 1;
 
             if (nhaTroBUL.ThemNhaTro(nhaTro))
             {
@@ -60,41 +61,6 @@ namespace GUI
                 kiemTraThanhCong = false;
                 this.Close();
             }
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtMaNT_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtTenNT_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void txtDiaChi_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-
         }
     }
 }

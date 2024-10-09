@@ -25,7 +25,7 @@ namespace DAL
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MANT = '" + maNT + "'";
+                string sql = "SELECT * FROM PHONGTRO WHERE MANT = '" + maNT + "' AND TRANGTHAI = 1";
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -43,7 +43,6 @@ namespace DAL
                     phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
                     phong.MoTa = reader["MOTA"].ToString();
                     phong.Anh = reader["ANH"].ToString();
-                    phong.ThuTu = Convert.ToInt32(reader["THUTU"]);
 
                     danhSachPhong.Add(phong);
                 }
@@ -89,7 +88,7 @@ namespace DAL
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MATT = '" + maTT + "' AND MANT = '" + maNT + "'";
+                string sql = "SELECT * FROM PHONGTRO WHERE MATT = '" + maTT + "' AND MANT = '" + maNT + "' AND TRANGTHAI = 1";
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -107,7 +106,6 @@ namespace DAL
                     phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
                     phong.MoTa = reader["MOTA"].ToString();
                     phong.Anh = reader["ANH"].ToString();
-                    phong.ThuTu = Convert.ToInt32(reader["THUTU"]);
 
                     danhSachPhong.Add(phong);
                 }
@@ -126,7 +124,7 @@ namespace DAL
         //Thêm phòng theo nhà trọ
         public bool ThemPhong(PhongDTO phong)
         {
-            string sql = "INSERT INTO PHONGTRO VALUES('" + phong.MaPT + "', '" + phong.MaNT + "', '" + phong.MaTT + "', N'" + phong.TenPhong + "', " + phong.DonGia + ", " + phong.ChieuDai + ", " + phong.ChieuRong + ", " + phong.SoLuongNguoiTD + ", N'" + phong.MoTa + "', '" + phong.Anh + "', " + phong.ThuTu + ")";
+            string sql = "INSERT INTO PHONGTRO VALUES('" + phong.MaPT + "', '" + phong.MaNT + "', '" + phong.MaTT + "', N'" + phong.TenPhong + "', " + phong.DonGia + ", " + phong.ChieuDai + ", " + phong.ChieuRong + ", " + phong.SoLuongNguoiTD + ", N'" + phong.MoTa + "', '" + phong.Anh + "', 1)";
 
             int kq = conn.ExecuteNonQuery(sql);
 
@@ -166,33 +164,13 @@ namespace DAL
             return maNT + "-P" + so;
         }
 
-        //Phát sinh thứ tự phòng
-        public int PhatSinhThuTuPhong(string maNT)
-        {
-            string sql = "SELECT TOP 1 THUTU FROM PHONGTRO WHERE MANT = '" + maNT + "' ORDER BY THUTU DESC";
-
-            SqlDataReader reader = conn.ExecuteQuery(sql);
-
-            int thuTu = 0;
-
-            if (reader.Read())
-            {
-                thuTu = Convert.ToInt32(reader["THUTU"]);
-            }
-
-            reader.Close();
-            conn.close();
-
-            return thuTu + 1;
-        }
-
         public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string maNT)
         {
             List<PhongDTO> danhSachPhong = new List<PhongDTO>();
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MAPT LIKE '%" + maPhong + "%' AND MANT = '" + maNT + "'";
+                string sql = "SELECT * FROM PHONGTRO WHERE MAPT LIKE '%" + maPhong + "%' AND MANT = '" + maNT + "' AND TRANGTHAI = 1";
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -210,7 +188,6 @@ namespace DAL
                     phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
                     phong.MoTa = reader["MOTA"].ToString();
                     phong.Anh = reader["ANH"].ToString();
-                    phong.ThuTu = Convert.ToInt32(reader["THUTU"]);
 
                     danhSachPhong.Add(phong);
                 }

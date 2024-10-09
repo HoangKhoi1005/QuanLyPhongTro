@@ -42,11 +42,6 @@ namespace BUL
             return phongDAL.PhatSinhMaPhong(MaNT);
         }
 
-        public int PhatSinhThuTuPhong(string MaNT)
-        {
-            return phongDAL.PhatSinhThuTuPhong(MaNT);
-        }
-
         public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string maNT)
         {
             return phongDAL.TimKiemPhongTheoMaPhong(maPhong, maNT);

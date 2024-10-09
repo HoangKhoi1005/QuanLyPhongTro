@@ -48,7 +48,6 @@
             this.label2.Size = new System.Drawing.Size(219, 38);
             this.label2.TabIndex = 37;
             this.label2.Text = "THÊM NHÀ TRỌ";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -59,7 +58,6 @@
             this.label1.Size = new System.Drawing.Size(104, 23);
             this.label1.TabIndex = 38;
             this.label1.Text = "Mã Nhà Trọ:";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // label3
             // 
@@ -70,18 +68,16 @@
             this.label3.Size = new System.Drawing.Size(106, 23);
             this.label3.TabIndex = 39;
             this.label3.Text = "Tên Nhà Trọ:";
-            this.label3.Click += new System.EventHandler(this.label3_Click);
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label6.Location = new System.Drawing.Point(52, 198);
+            this.label6.Location = new System.Drawing.Point(23, 198);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(69, 23);
             this.label6.TabIndex = 41;
             this.label6.Text = "Địa Chỉ:";
-            this.label6.Click += new System.EventHandler(this.label6_Click);
             // 
             // txtMaNT
             // 
@@ -92,7 +88,6 @@
             this.txtMaNT.ReadOnly = true;
             this.txtMaNT.Size = new System.Drawing.Size(181, 30);
             this.txtMaNT.TabIndex = 43;
-            this.txtMaNT.TextChanged += new System.EventHandler(this.txtMaNT_TextChanged);
             // 
             // txtTenNT
             // 
@@ -101,7 +96,6 @@
             this.txtTenNT.Name = "txtTenNT";
             this.txtTenNT.Size = new System.Drawing.Size(209, 30);
             this.txtTenNT.TabIndex = 44;
-            this.txtTenNT.TextChanged += new System.EventHandler(this.txtTenNT_TextChanged);
             // 
             // txtDiaChi
             // 
@@ -110,7 +104,6 @@
             this.txtDiaChi.Name = "txtDiaChi";
             this.txtDiaChi.Size = new System.Drawing.Size(572, 30);
             this.txtDiaChi.TabIndex = 48;
-            this.txtDiaChi.TextChanged += new System.EventHandler(this.txtDiaChi_TextChanged);
             // 
             // btnThem
             // 
