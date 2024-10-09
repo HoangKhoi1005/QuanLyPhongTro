@@ -103,7 +103,6 @@ namespace GUI
                 return;
             }
 
-            int ThuTu = phongBUL.PhatSinhThuTuPhong(NhaTro.MaNT);
 
             PhongDTO phong = new PhongDTO();
             phong.MaPT = txtMaPT.Text;
@@ -116,7 +115,6 @@ namespace GUI
             phong.SoLuongNguoiTD = Convert.ToInt32(txtSoLuong.Text);
             phong.MoTa = txtMoTa.Text;
             phong.Anh = tenAnh;
-            phong.ThuTu = ThuTu;
 
             if (phongBUL.ThemPhong(phong))
             {
