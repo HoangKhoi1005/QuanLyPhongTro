@@ -36,7 +36,7 @@
             this.txtTaiKhoan = new Guna.UI2.WinForms.Guna2TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtMatKhau = new Guna.UI2.WinForms.Guna2TextBox();
-            this.guna2CheckBox1 = new Guna.UI2.WinForms.Guna2CheckBox();
+            this.chkHienThiMatKhau = new Guna.UI2.WinForms.Guna2CheckBox();
             this.btnDangNhap = new Guna.UI2.WinForms.Guna2Button();
             this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -151,25 +151,26 @@
             this.txtMatKhau.Size = new System.Drawing.Size(351, 34);
             this.txtMatKhau.TabIndex = 17;
             // 
-            // guna2CheckBox1
+            // chkHienThiMatKhau
             // 
-            this.guna2CheckBox1.AutoSize = true;
-            this.guna2CheckBox1.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.CheckedState.BorderRadius = 0;
-            this.guna2CheckBox1.CheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.guna2CheckBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2CheckBox1.ForeColor = System.Drawing.Color.White;
-            this.guna2CheckBox1.Location = new System.Drawing.Point(604, 299);
-            this.guna2CheckBox1.Name = "guna2CheckBox1";
-            this.guna2CheckBox1.Size = new System.Drawing.Size(148, 24);
-            this.guna2CheckBox1.TabIndex = 19;
-            this.guna2CheckBox1.Text = "Hiển thị mật khẩu";
-            this.guna2CheckBox1.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UncheckedState.BorderRadius = 0;
-            this.guna2CheckBox1.UncheckedState.BorderThickness = 0;
-            this.guna2CheckBox1.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            this.guna2CheckBox1.UseVisualStyleBackColor = false;
+            this.chkHienThiMatKhau.AutoSize = true;
+            this.chkHienThiMatKhau.CheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkHienThiMatKhau.CheckedState.BorderRadius = 0;
+            this.chkHienThiMatKhau.CheckedState.BorderThickness = 0;
+            this.chkHienThiMatKhau.CheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.chkHienThiMatKhau.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkHienThiMatKhau.ForeColor = System.Drawing.Color.White;
+            this.chkHienThiMatKhau.Location = new System.Drawing.Point(604, 299);
+            this.chkHienThiMatKhau.Name = "chkHienThiMatKhau";
+            this.chkHienThiMatKhau.Size = new System.Drawing.Size(148, 24);
+            this.chkHienThiMatKhau.TabIndex = 19;
+            this.chkHienThiMatKhau.Text = "Hiển thị mật khẩu";
+            this.chkHienThiMatKhau.UncheckedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkHienThiMatKhau.UncheckedState.BorderRadius = 0;
+            this.chkHienThiMatKhau.UncheckedState.BorderThickness = 0;
+            this.chkHienThiMatKhau.UncheckedState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            this.chkHienThiMatKhau.UseVisualStyleBackColor = false;
+            this.chkHienThiMatKhau.CheckedChanged += new System.EventHandler(this.chkHienThiMatKhau_CheckedChanged);
             // 
             // btnDangNhap
             // 
@@ -218,7 +219,7 @@
             this.ClientSize = new System.Drawing.Size(806, 465);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.btnDangNhap);
-            this.Controls.Add(this.guna2CheckBox1);
+            this.Controls.Add(this.chkHienThiMatKhau);
             this.Controls.Add(this.txtMatKhau);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtTaiKhoan);
@@ -248,7 +249,7 @@
         private Guna.UI2.WinForms.Guna2TextBox txtTaiKhoan;
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtMatKhau;
-        private Guna.UI2.WinForms.Guna2CheckBox guna2CheckBox1;
+        private Guna.UI2.WinForms.Guna2CheckBox chkHienThiMatKhau;
         private Guna.UI2.WinForms.Guna2Button btnDangNhap;
         private System.Windows.Forms.Label label4;
     }

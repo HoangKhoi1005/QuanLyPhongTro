@@ -1,4 +1,5 @@
-﻿using SQLServerProvider;
+﻿using BUL;
+using SQLServerProvider;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +16,7 @@ namespace GUI
     public partial class frmDangNhap : Form
     {
         DBConnect db;
+        QuanLyBUL qlbul = new QuanLyBUL();
         public frmDangNhap()
         {
             InitializeComponent();
@@ -37,21 +39,27 @@ namespace GUI
                 return;
             }
 
-            string query = "SELECT * FROM QUANLY WHERE MAQL = '" + txtTaiKhoan.Text + "' AND MATKHAU = '" + txtMatKhau.Text + "'";
-            using (SqlDataReader reader = db.ExecuteQuery(query))
+            if(qlbul.dangNhap(txtTaiKhoan.Text, txtMatKhau.Text))
             {
-                if (reader.Read())
-                {
-                    MessageBox.Show("Đăng nhập thành công");
-                    frmMain frm = new frmMain();
-                    frm.Show();
-                    this.Hide();
-                }
-                else
-                {
-                    MessageBox.Show("Đăng nhập thất bại");
-                }
+                frmMain frm = new frmMain();
+                frm.Show();
+                this.Hide();
+            }    
+            else
+            {
+                MessageBox.Show("Tài khoản hoặc mật khẩu không chính xác");
+                return;
+            }    
+        }
+
+        private void chkHienThiMatKhau_CheckedChanged(object sender, EventArgs e)
+        {
+            if(chkHienThiMatKhau.Checked)
+            {
+                txtMatKhau.PasswordChar = (char)0;
             }
+            else
+                txtMatKhau.PasswordChar = '*';
         }
     }
 }

@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="QLPT">
+  <DataContextMoniker Name="/QLPTDataContext" />
+  <nestedChildShapes>
+    <classShape Id="8282d626-86e0-4dbc-bdc1-cf15581f9e59" absoluteBounds="2, 1.625, 2, 2.3478011067708335">
+      <DataClassMoniker Name="/QLPTDataContext/QUANLY" />
+      <nestedChildShapes>
+        <elementListCompartment Id="bea9929e-b7a1-4acd-8c82-8a83f2339275" absoluteBounds="2.015, 2.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+  </nestedChildShapes>
+</ordesignerObjectsDiagram>
