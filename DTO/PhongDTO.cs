@@ -4,7 +4,7 @@ namespace DTO
 {
     public class PhongDTO
     {
-        public string MaPT { get; set; }           
+        public string MaPT { get; set; }
         public string MaNT { get; set; }
         public string MaTT { get; set; }
         public string TenPhong { get; set; }
@@ -14,16 +14,16 @@ namespace DTO
         public int SoLuongNguoiTD { get; set; }
         public string MoTa { get; set; }
         public string Anh { get; set; }
-        public int ThuTu { get; set; }
+        public int TrangThai { get; set; }
 
         public PhongDTO()
         {
-            ThuTu = 0;          
+            TrangThai = 1;
         }
 
-        public PhongDTO(string maPT, string maNT, string maTT, string tenPhong, decimal donGia, double chieuDai, double chieuRong, int soLuongNguoiTD, string moTa, string anh, int thuTu = 0)
+        public PhongDTO(string maPT, string maNT, string maTT, string tenPhong, decimal donGia, double chieuDai, double chieuRong, int soLuongNguoiTD, string moTa, string anh, int trangThai = 1)
         {
-            MaPT = maPT; 
+            MaPT = maPT;
             MaNT = maNT;
             MaTT = maTT;
             TenPhong = tenPhong;
@@ -33,7 +33,7 @@ namespace DTO
             SoLuongNguoiTD = soLuongNguoiTD;
             MoTa = moTa;
             Anh = anh;
-            ThuTu = thuTu;
+            TrangThai = trangThai;
         }
     }
 }

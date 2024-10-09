@@ -51,7 +51,7 @@ namespace DAL
         //Thêm nhà trọ
         public bool ThemNhaTro(NhaTroDTO nhaTro)
         {
-            string query = "INSERT INTO NhaTro VALUES('" + nhaTro.MaNT + "', N'" + nhaTro.TenNT + "', N'" + nhaTro.DiaChiNT + "', '" + nhaTro.SoDT + "', N'" + nhaTro.ChuNhaTro + "', 'True')";
+            string query = "INSERT INTO NhaTro VALUES('" + nhaTro.MaNT + "', N'" + nhaTro.TenNT + "', N'" + nhaTro.DiaChiNT + "', '" + nhaTro.SoDT + "', N'" + nhaTro.ChuNhaTro + "', 1)";
             int kq = db.ExecuteNonQuery(query);
             return kq > 0;
         }
@@ -119,7 +119,7 @@ namespace DAL
         //Lấy địa chỉ nhà trọ theo mã nhà trọ
         public string LayDiaChiNTTheoMaNT(string maNT)
         {
-            string query = "SELECT DiaChiNT FROM NhaTro WHERE MaNT = '" + maNT + "'";
+            string query = "SELECT DiaChiNT FROM NhaTro WHERE MaNT = '" + maNT + "' AND TRANGTHAI = 1";
             var reader = db.ExecuteQuery(query);
             string diaChi = "";
             if (reader.Read())

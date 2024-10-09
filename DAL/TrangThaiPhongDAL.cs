@@ -22,7 +22,7 @@ namespace DAL
         public List<TrangThaiPhongDTO> LayTatCaTrangThaiPhong()
         {
             List<TrangThaiPhongDTO> lstTrangThai = new List<TrangThaiPhongDTO>();
-            string query = "SELECT MATT, TENTRANGTHAI, MOTA FROM TRANGTHAIPHONG";
+            string query = "SELECT MATT, TENTRANGTHAI, MOTA FROM TRANGTHAIPHONG WHERE TRANGTHAI = 1";
 
             try
             {
@@ -53,7 +53,7 @@ namespace DAL
         {
             string tenTrangThai = "";
 
-            string query = "SELECT TENTRANGTHAI FROM TRANGTHAIPHONG WHERE MATT = '" + maTT + "'";
+            string query = "SELECT TENTRANGTHAI FROM TRANGTHAIPHONG WHERE MATT = '" + maTT + "' AND TRANGTHAI = 1";
             using (SqlDataReader reader = conn.ExecuteQuery(query))
             {
                 while (reader.Read())
