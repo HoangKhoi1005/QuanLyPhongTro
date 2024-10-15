@@ -13,7 +13,7 @@ namespace DTO
         public string DiaChiNT { get; set; }
         public string SoDT { get; set; }
         public string ChuNhaTro { get; set; }
-        public int TrangThai { get; set; }
+        public int DaXoa { get; set; }
 
         // Constructor không tham số (mặc định)
         public NhaTroDTO()
@@ -21,14 +21,14 @@ namespace DTO
         }
 
         // Constructor có tham số
-        public NhaTroDTO(string maNT, string tenNT, string diaChiNT, string soDT, string chuNhaTro, int trangThai)
+        public NhaTroDTO(string maNT, string tenNT, string diaChiNT, string soDT, string chuNhaTro, int daXoa)
         {
             MaNT = maNT;
             TenNT = tenNT;
             DiaChiNT = diaChiNT;
             SoDT = soDT;
             ChuNhaTro = chuNhaTro;
-            TrangThai = trangThai;
+            DaXoa = daXoa;
         }
     }
 

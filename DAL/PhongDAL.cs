@@ -25,7 +25,7 @@ namespace DAL
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MANT = '" + maNT + "' AND TRANGTHAI = 1";
+                string sql = "SELECT * FROM PHONGTRO WHERE MANT = '" + maNT + "' AND DAXOA = 0";
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -88,7 +88,7 @@ namespace DAL
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MATT = '" + maTT + "' AND MANT = '" + maNT + "' AND TRANGTHAI = 1";
+                string sql = "SELECT * FROM PHONGTRO WHERE MATT = '" + maTT + "' AND MANT = '" + maNT + "' AND DAXOA = 0";
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -124,7 +124,7 @@ namespace DAL
         //Thêm phòng theo nhà trọ
         public bool ThemPhong(PhongDTO phong)
         {
-            string sql = "INSERT INTO PHONGTRO VALUES('" + phong.MaPT + "', '" + phong.MaNT + "', '" + phong.MaTT + "', N'" + phong.TenPhong + "', " + phong.DonGia + ", " + phong.ChieuDai + ", " + phong.ChieuRong + ", " + phong.SoLuongNguoiTD + ", N'" + phong.MoTa + "', '" + phong.Anh + "', 1)";
+            string sql = "INSERT INTO PHONGTRO VALUES('" + phong.MaPT + "', '" + phong.MaNT + "', '" + phong.MaTT + "', N'" + phong.TenPhong + "', " + phong.DonGia + ", " + phong.ChieuDai + ", " + phong.ChieuRong + ", " + phong.SoLuongNguoiTD + ", N'" + phong.MoTa + "', '" + phong.Anh + "', 0)";
 
             int kq = conn.ExecuteNonQuery(sql);
 
@@ -170,7 +170,7 @@ namespace DAL
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MAPT LIKE '%" + maPhong + "%' AND MANT = '" + maNT + "' AND TRANGTHAI = 1";
+                string sql = "SELECT * FROM PHONGTRO WHERE MAPT LIKE '%" + maPhong + "%' AND MANT = '" + maNT + "' AND DAXOA = 0";
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -201,6 +201,12 @@ namespace DAL
             }
 
             return danhSachPhong;
+        }
+
+        public bool CapNhatTrangThaiPhong(string maPT, string maTT)
+        {
+            string sql = "UPDATE PHONGTRO SET MATT = '" + maTT + "' WHERE MAPT = '" + maPT + "'";
+            return conn.ExecuteNonQuery(sql) > 0;
         }
     }
 }

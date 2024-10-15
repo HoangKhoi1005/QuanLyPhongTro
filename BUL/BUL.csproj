@@ -41,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="HopDongBUL.cs" />
+    <Compile Include="KhachTroBUL.cs" />
     <Compile Include="NhaTroBUL.cs" />
     <Compile Include="PhongBUL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
