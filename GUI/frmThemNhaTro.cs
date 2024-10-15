@@ -38,7 +38,7 @@ namespace GUI
             nhaTro.DiaChiNT = txtDiaChi.Text;
             nhaTro.SoDT = "0123456789";
             nhaTro.ChuNhaTro = "Nguyen Van A";
-            nhaTro.TrangThai = 1;
+            nhaTro.DaXoa = 0;
 
             if (nhaTroBUL.ThemNhaTro(nhaTro))
             {

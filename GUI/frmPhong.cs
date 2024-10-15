@@ -127,11 +127,32 @@ namespace GUI
                 uCPhong.LoadPhongTro(phong);
                 uCPhong.Left = ucXPosition;
                 uCPhong.Top = ucYPosition;
+                uCPhong.Tag = phong;
+                uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
                 groupDSPhong.Controls.Add(uCPhong);
             }
+        }
+
+        private void UCPhong_ThemKhachTroClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            ShowOverlay();
+            frmThemKhachTro frmThemKhachTro = new frmThemKhachTro(phong);
+            
+            frmThemKhachTro.FormClosed += (s, args) =>
+            {
+                if (frmThemKhachTro.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmThemKhachTro.ShowDialog();
+            HideOverlay();
         }
 
         private void btnThemNT_Click(object sender, EventArgs e)

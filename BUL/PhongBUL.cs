@@ -46,5 +46,10 @@ namespace BUL
         {
             return phongDAL.TimKiemPhongTheoMaPhong(maPhong, maNT);
         }
+
+        public bool CapNhatTrangThaiPhong(string MaPT, string MaTT)
+        {
+            return phongDAL.CapNhatTrangThaiPhong(MaPT, MaTT);
+        }
     }
 }

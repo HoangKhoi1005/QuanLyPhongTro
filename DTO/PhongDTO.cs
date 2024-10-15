@@ -14,14 +14,14 @@ namespace DTO
         public int SoLuongNguoiTD { get; set; }
         public string MoTa { get; set; }
         public string Anh { get; set; }
-        public int TrangThai { get; set; }
+        public int DaXoa { get; set; }
 
         public PhongDTO()
         {
-            TrangThai = 1;
+
         }
 
-        public PhongDTO(string maPT, string maNT, string maTT, string tenPhong, decimal donGia, double chieuDai, double chieuRong, int soLuongNguoiTD, string moTa, string anh, int trangThai = 1)
+        public PhongDTO(string maPT, string maNT, string maTT, string tenPhong, decimal donGia, double chieuDai, double chieuRong, int soLuongNguoiTD, string moTa, string anh, int daXoa)
         {
             MaPT = maPT;
             MaNT = maNT;
@@ -33,7 +33,7 @@ namespace DTO
             SoLuongNguoiTD = soLuongNguoiTD;
             MoTa = moTa;
             Anh = anh;
-            TrangThai = trangThai;
+            DaXoa = daXoa;
         }
     }
 }

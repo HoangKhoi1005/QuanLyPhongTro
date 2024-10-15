@@ -163,6 +163,7 @@
             this.btnSuaPhong.Size = new System.Drawing.Size(115, 35);
             this.btnSuaPhong.TabIndex = 30;
             this.btnSuaPhong.Text = "Chỉnh sửa";
+            this.btnSuaPhong.Click += new System.EventHandler(this.btnSuaPhong_Click);
             // 
             // btnXoaPhong
             // 
@@ -183,6 +184,7 @@
             this.btnXoaPhong.Size = new System.Drawing.Size(94, 35);
             this.btnXoaPhong.TabIndex = 29;
             this.btnXoaPhong.Text = "Xóa";
+            this.btnXoaPhong.Click += new System.EventHandler(this.btnXoaPhong_Click);
             // 
             // btnThemKT
             // 
@@ -203,6 +205,7 @@
             this.btnThemKT.TabIndex = 28;
             this.btnThemKT.Text = "Thêm";
             this.btnThemKT.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnThemKT.Click += new System.EventHandler(this.btnThemKT_Click);
             // 
             // lblMaPhong
             // 

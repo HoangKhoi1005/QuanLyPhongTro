@@ -16,6 +16,7 @@ namespace GUI
     public partial class UCPhong : UserControl
     {
         private string trangThai;
+        HopDongBUL HopDongBUL = new HopDongBUL();
         TrangThaiPhongBUL trangThaiPhongBUL = new TrangThaiPhongBUL();
         ToolTip toolTip1 = new ToolTip();
 
@@ -42,10 +43,17 @@ namespace GUI
             toolTip.SetToolTip(btnSuaPhong, "Sửa phòng");
             toolTip.SetToolTip(btnXoaPhong, "Xóa phòng");
             toolTip.SetToolTip(btnThemKT, "Thêm khách");
+            
+            int soLuongKhach = HopDongBUL.DemSoLuongKhachTroTrongHopDong(HopDongBUL.TimMaHopDongTheoMaPhong(phong.MaPT));
 
             lblMaPhong.Text = phong.MaPT;
-            lblSoLuong.Text = phong.SoLuongNguoiTD.ToString();
+            lblSoLuong.Text = soLuongKhach.ToString() + "/" + phong.SoLuongNguoiTD.ToString();
             lblGiaPhong.Text = phong.DonGia.ToString("N0") + " VNĐ";
+
+            if(soLuongKhach == phong.SoLuongNguoiTD)
+            {
+                btnThemKT.Visible = false;
+            }
 
             switch (TrangThai)
             {
@@ -126,6 +134,42 @@ namespace GUI
                 btnDoiPhong.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnDoiPhong, "Đổi phòng");
                 guna2Panel2.Controls.Add(btnDoiPhong);
+            }
+        }
+
+        public delegate void ThemKhachTroHandler(object sender, EventArgs e);
+
+        public event ThemKhachTroHandler ThemKhachTroClick;
+
+        private void btnThemKT_Click(object sender, EventArgs e)
+        {
+            if (ThemKhachTroClick != null)
+            {
+                ThemKhachTroClick(this, e);
+            }
+        }
+
+        public delegate void XoaPhongHandler(object sender, EventArgs e);
+
+        public event XoaPhongHandler XoaPhongClick;
+
+        private void btnXoaPhong_Click(object sender, EventArgs e)
+        {
+            if(XoaPhongClick != null)
+            {
+                XoaPhongClick(this, e);
+            }
+        }
+
+        public delegate void SuaPhongHandler(object sender, EventArgs e);
+
+        public event SuaPhongHandler SuaPhongClick;
+
+        private void btnSuaPhong_Click(object sender, EventArgs e)
+        {
+            if (SuaPhongClick != null)
+            {
+                SuaPhongClick(this, e);
             }
         }
     }
