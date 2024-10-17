@@ -33,5 +33,15 @@ namespace DAL.Properties {
                 return ((string)(this["QL_NhaTroConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa;Password=123")]
+        public string QL_NhaTroConnectionString1 {
+            get {
+                return ((string)(this["QL_NhaTroConnectionString1"]));
+            }
+        }
     }
 }

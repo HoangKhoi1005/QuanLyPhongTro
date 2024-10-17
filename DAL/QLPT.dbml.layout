@@ -8,5 +8,11 @@
         <elementListCompartment Id="bea9929e-b7a1-4acd-8c82-8a83f2339275" absoluteBounds="2.015, 2.085, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
+    <classShape Id="49c17b91-084d-4475-9c22-bfbadaebfb9d" absoluteBounds="4.875, 2.5, 2, 1.7708968098958331">
+      <DataClassMoniker Name="/QLPTDataContext/DICHVU" />
+      <nestedChildShapes>
+        <elementListCompartment Id="ddb19ae9-7ee2-4280-98b2-dca1089463df" absoluteBounds="4.8900000000000006, 2.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>
