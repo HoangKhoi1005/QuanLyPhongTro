@@ -19,6 +19,7 @@ namespace GUI
         HopDongBUL HopDongBUL = new HopDongBUL();
         TrangThaiPhongBUL trangThaiPhongBUL = new TrangThaiPhongBUL();
         ToolTip toolTip1 = new ToolTip();
+        KhachTroBUL KhachTroBUL = new KhachTroBUL();
 
         public string TrangThai
         {
@@ -49,6 +50,7 @@ namespace GUI
             lblMaPhong.Text = phong.MaPT;
             lblSoLuong.Text = soLuongKhach.ToString() + "/" + phong.SoLuongNguoiTD.ToString();
             lblGiaPhong.Text = phong.DonGia.ToString("N0") + " VNĐ";
+            lblTenKT.Text = KhachTroBUL.LayTenNguoiDaiDienTheoPhong(phong.MaPT);
 
             if(soLuongKhach == phong.SoLuongNguoiTD)
             {
@@ -67,10 +69,12 @@ namespace GUI
                 case "Đang sửa chữa":
                     guna2Panel2.BackColor = Color.FromArgb(241, 196, 15);
                     toolTip.SetToolTip(guna2Panel2, "Phòng đang sửa chữa");
+                    btnThemKT.Visible = false;
                     break;
                 case "Đã đặt":
                     guna2Panel2.BackColor = Color.FromArgb(40, 167, 69);
                     toolTip.SetToolTip(guna2Panel2, "Phòng đã đặt");
+                    btnThemKT.Visible = false;
                     break;
                 default:
                     guna2Panel2.BackColor = Color.Gray;
