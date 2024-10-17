@@ -91,8 +91,8 @@ namespace GUI
         {
             try
             {
-                string subject = "MẬT KHẨU CỦA BẠN";
-                string body = "Mật khẩu là: " + password;
+                string subject = "THÔNG BÁO TỪ PHÒNG TRỌ";
+                string body = "Mật khẩu của bạn là: " + password;
 
                 using (MailMessage mail = new MailMessage())
                 {
