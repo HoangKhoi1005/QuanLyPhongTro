@@ -290,9 +290,9 @@
             this.label11.Font = new System.Drawing.Font("Segoe UI", 10.2F);
             this.label11.Location = new System.Drawing.Point(45, 461);
             this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(62, 23);
+            this.label11.Size = new System.Drawing.Size(45, 23);
             this.label11.TabIndex = 105;
-            this.label11.Text = "Mô Tả:";
+            this.label11.Text = "Ảnh:";
             // 
             // ptbAnh
             // 

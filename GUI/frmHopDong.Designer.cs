@@ -36,14 +36,7 @@
             this.cboLocSach = new MetroFramework.Controls.MetroComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
-            this.MAPHIEUNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NGAYNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HOTENNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TENNCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.THANHTIEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvHopDong = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.btnThem = new FontAwesome.Sharp.IconButton();
-            this.btnXuatPhieuNhap = new FontAwesome.Sharp.IconButton();
             this.MAHOPDONG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MAPT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DIACHI = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +45,13 @@
             this.NGAYHETHAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TIENCOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MAPHIEUNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NGAYNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HOTENNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TENNCC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.THANHTIEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnThem = new FontAwesome.Sharp.IconButton();
+            this.btnXuatPhieuNhap = new FontAwesome.Sharp.IconButton();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHopDong)).BeginInit();
             this.SuspendLayout();
@@ -155,52 +155,6 @@
             this.guna2GroupBox2.Text = "Danh sách hợp đồng";
             this.guna2GroupBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // MAPHIEUNHAP
-            // 
-            this.MAPHIEUNHAP.DataPropertyName = "MAPHIEUNHAP";
-            this.MAPHIEUNHAP.HeaderText = "Mã phiếu nhập";
-            this.MAPHIEUNHAP.MinimumWidth = 6;
-            this.MAPHIEUNHAP.Name = "MAPHIEUNHAP";
-            this.MAPHIEUNHAP.ReadOnly = true;
-            this.MAPHIEUNHAP.Width = 125;
-            // 
-            // NGAYNHAP
-            // 
-            this.NGAYNHAP.DataPropertyName = "NGAYNHAP";
-            this.NGAYNHAP.HeaderText = "Ngày nhập";
-            this.NGAYNHAP.MinimumWidth = 6;
-            this.NGAYNHAP.Name = "NGAYNHAP";
-            this.NGAYNHAP.ReadOnly = true;
-            this.NGAYNHAP.Width = 125;
-            // 
-            // HOTENNV
-            // 
-            this.HOTENNV.DataPropertyName = "HOTENNV";
-            this.HOTENNV.HeaderText = "Nhân viên nhập";
-            this.HOTENNV.MinimumWidth = 6;
-            this.HOTENNV.Name = "HOTENNV";
-            this.HOTENNV.ReadOnly = true;
-            this.HOTENNV.Width = 125;
-            // 
-            // TENNCC
-            // 
-            this.TENNCC.DataPropertyName = "TENNCC";
-            this.TENNCC.HeaderText = "Nhà cung cấp";
-            this.TENNCC.MinimumWidth = 6;
-            this.TENNCC.Name = "TENNCC";
-            this.TENNCC.ReadOnly = true;
-            this.TENNCC.Width = 125;
-            // 
-            // THANHTIEN
-            // 
-            this.THANHTIEN.DataPropertyName = "THANHTIEN";
-            this.THANHTIEN.FillWeight = 60F;
-            this.THANHTIEN.HeaderText = "Thành tiền";
-            this.THANHTIEN.MinimumWidth = 6;
-            this.THANHTIEN.Name = "THANHTIEN";
-            this.THANHTIEN.ReadOnly = true;
-            this.THANHTIEN.Width = 125;
-            // 
             // dgvHopDong
             // 
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
@@ -263,54 +217,6 @@
             this.dgvHopDong.ThemeStyle.RowsStyle.Height = 50;
             this.dgvHopDong.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvHopDong.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // btnThem
-            // 
-            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
-            this.btnThem.FlatAppearance.BorderSize = 0;
-            this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThem.ForeColor = System.Drawing.Color.White;
-            this.btnThem.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnThem.IconColor = System.Drawing.Color.White;
-            this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.Location = new System.Drawing.Point(12, 877);
-            this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnThem.Size = new System.Drawing.Size(242, 60);
-            this.btnThem.TabIndex = 51;
-            this.btnThem.Tag = "Thêm";
-            this.btnThem.Text = "Thêm hợp đồng";
-            this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThem.UseVisualStyleBackColor = false;
-            // 
-            // btnXuatPhieuNhap
-            // 
-            this.btnXuatPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXuatPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnXuatPhieuNhap.FlatAppearance.BorderSize = 0;
-            this.btnXuatPhieuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXuatPhieuNhap.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatPhieuNhap.ForeColor = System.Drawing.Color.White;
-            this.btnXuatPhieuNhap.IconChar = FontAwesome.Sharp.IconChar.Receipt;
-            this.btnXuatPhieuNhap.IconColor = System.Drawing.Color.White;
-            this.btnXuatPhieuNhap.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXuatPhieuNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXuatPhieuNhap.Location = new System.Drawing.Point(1435, 877);
-            this.btnXuatPhieuNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnXuatPhieuNhap.Name = "btnXuatPhieuNhap";
-            this.btnXuatPhieuNhap.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnXuatPhieuNhap.Size = new System.Drawing.Size(225, 60);
-            this.btnXuatPhieuNhap.TabIndex = 52;
-            this.btnXuatPhieuNhap.Tag = "Sửa";
-            this.btnXuatPhieuNhap.Text = "In hợp đồng";
-            this.btnXuatPhieuNhap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXuatPhieuNhap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXuatPhieuNhap.UseVisualStyleBackColor = false;
             // 
             // MAHOPDONG
             // 
@@ -376,6 +282,100 @@
             this.MOTA.MinimumWidth = 6;
             this.MOTA.Name = "MOTA";
             // 
+            // MAPHIEUNHAP
+            // 
+            this.MAPHIEUNHAP.DataPropertyName = "MAPHIEUNHAP";
+            this.MAPHIEUNHAP.HeaderText = "Mã phiếu nhập";
+            this.MAPHIEUNHAP.MinimumWidth = 6;
+            this.MAPHIEUNHAP.Name = "MAPHIEUNHAP";
+            this.MAPHIEUNHAP.ReadOnly = true;
+            this.MAPHIEUNHAP.Width = 125;
+            // 
+            // NGAYNHAP
+            // 
+            this.NGAYNHAP.DataPropertyName = "NGAYNHAP";
+            this.NGAYNHAP.HeaderText = "Ngày nhập";
+            this.NGAYNHAP.MinimumWidth = 6;
+            this.NGAYNHAP.Name = "NGAYNHAP";
+            this.NGAYNHAP.ReadOnly = true;
+            this.NGAYNHAP.Width = 125;
+            // 
+            // HOTENNV
+            // 
+            this.HOTENNV.DataPropertyName = "HOTENNV";
+            this.HOTENNV.HeaderText = "Nhân viên nhập";
+            this.HOTENNV.MinimumWidth = 6;
+            this.HOTENNV.Name = "HOTENNV";
+            this.HOTENNV.ReadOnly = true;
+            this.HOTENNV.Width = 125;
+            // 
+            // TENNCC
+            // 
+            this.TENNCC.DataPropertyName = "TENNCC";
+            this.TENNCC.HeaderText = "Nhà cung cấp";
+            this.TENNCC.MinimumWidth = 6;
+            this.TENNCC.Name = "TENNCC";
+            this.TENNCC.ReadOnly = true;
+            this.TENNCC.Width = 125;
+            // 
+            // THANHTIEN
+            // 
+            this.THANHTIEN.DataPropertyName = "THANHTIEN";
+            this.THANHTIEN.FillWeight = 60F;
+            this.THANHTIEN.HeaderText = "Thành tiền";
+            this.THANHTIEN.MinimumWidth = 6;
+            this.THANHTIEN.Name = "THANHTIEN";
+            this.THANHTIEN.ReadOnly = true;
+            this.THANHTIEN.Width = 125;
+            // 
+            // btnThem
+            // 
+            this.btnThem.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnThem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(76)))), ((int)(((byte)(175)))), ((int)(((byte)(80)))));
+            this.btnThem.FlatAppearance.BorderSize = 0;
+            this.btnThem.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThem.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThem.ForeColor = System.Drawing.Color.White;
+            this.btnThem.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnThem.IconColor = System.Drawing.Color.White;
+            this.btnThem.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThem.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThem.Location = new System.Drawing.Point(12, 877);
+            this.btnThem.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnThem.Size = new System.Drawing.Size(242, 60);
+            this.btnThem.TabIndex = 51;
+            this.btnThem.Tag = "Thêm";
+            this.btnThem.Text = "Thêm hợp đồng";
+            this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThem.UseVisualStyleBackColor = false;
+            // 
+            // btnXuatPhieuNhap
+            // 
+            this.btnXuatPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnXuatPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnXuatPhieuNhap.FlatAppearance.BorderSize = 0;
+            this.btnXuatPhieuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXuatPhieuNhap.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXuatPhieuNhap.ForeColor = System.Drawing.Color.White;
+            this.btnXuatPhieuNhap.IconChar = FontAwesome.Sharp.IconChar.Receipt;
+            this.btnXuatPhieuNhap.IconColor = System.Drawing.Color.White;
+            this.btnXuatPhieuNhap.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnXuatPhieuNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatPhieuNhap.Location = new System.Drawing.Point(1435, 877);
+            this.btnXuatPhieuNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnXuatPhieuNhap.Name = "btnXuatPhieuNhap";
+            this.btnXuatPhieuNhap.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnXuatPhieuNhap.Size = new System.Drawing.Size(225, 60);
+            this.btnXuatPhieuNhap.TabIndex = 52;
+            this.btnXuatPhieuNhap.Tag = "Sửa";
+            this.btnXuatPhieuNhap.Text = "In hợp đồng";
+            this.btnXuatPhieuNhap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatPhieuNhap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXuatPhieuNhap.UseVisualStyleBackColor = false;
+            // 
             // frmHopDong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -390,6 +390,7 @@
             this.Controls.Add(this.txtTraCuu);
             this.Name = "frmHopDong";
             this.Text = "Hợp đồng";
+            this.Load += new System.EventHandler(this.frmHopDong_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHopDong)).EndInit();
             this.ResumeLayout(false);

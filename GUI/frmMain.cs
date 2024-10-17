@@ -30,7 +30,6 @@ namespace GUI
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
 
-            // Tạo Label cho mũi tên
             arrowLabel.BackColor = Color.Transparent;
             arrowLabel.Text = "▶";
             arrowLabel.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
