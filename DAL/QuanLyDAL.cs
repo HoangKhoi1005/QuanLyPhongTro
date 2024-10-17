@@ -25,5 +25,28 @@ namespace DAL
                 return false; 
             }
         }
+        public bool quenMatKhau(string email)
+        {
+            var sql = from quanLy in ql.QUANLies
+                      where quanLy.EMAILNV == email
+                      select quanLy;
+
+            if (sql.Any())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+        public string layMatKhau(string email)
+        {
+            var sql = from quanLy in ql.QUANLies
+                      where quanLy.EMAILNV == email
+                      select quanLy.MATKHAU;
+
+            return sql.FirstOrDefault();
+        }
     }
 }

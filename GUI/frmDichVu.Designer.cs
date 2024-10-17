@@ -35,19 +35,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtTim = new Guna.UI2.WinForms.Guna2TextBox();
             this.dgvDichVu = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.checkbox = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.xoasua = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MADV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TENDV = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GIATIEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column7 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.btnSuaDV = new Guna.UI2.WinForms.Guna2Button();
             this.btnXoaDV = new Guna.UI2.WinForms.Guna2Button();
             this.guna2ComboBox1 = new Guna.UI2.WinForms.Guna2ComboBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.gbtnThemDV = new Guna.UI2.WinForms.Guna2Button();
+            this.MADV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TENDV = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DONGIA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDichVu)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,13 +94,10 @@
             this.dgvDichVu.ColumnHeadersHeight = 50;
             this.dgvDichVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvDichVu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.checkbox,
-            this.xoasua,
             this.MADV,
             this.TENDV,
-            this.GIATIEN,
-            this.MOTA,
-            this.Column7});
+            this.DONGIA,
+            this.MOTA});
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI Semibold", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -149,56 +143,6 @@
             this.dgvDichVu.ThemeStyle.RowsStyle.Height = 24;
             this.dgvDichVu.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDichVu.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // checkbox
-            // 
-            this.checkbox.HeaderText = "";
-            this.checkbox.MinimumWidth = 6;
-            this.checkbox.Name = "checkbox";
-            this.checkbox.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.checkbox.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // xoasua
-            // 
-            this.xoasua.HeaderText = "";
-            this.xoasua.MinimumWidth = 6;
-            this.xoasua.Name = "xoasua";
-            // 
-            // MADV
-            // 
-            this.MADV.DataPropertyName = "MADV";
-            this.MADV.HeaderText = "Mã dịch vụ";
-            this.MADV.MinimumWidth = 6;
-            this.MADV.Name = "MADV";
-            // 
-            // TENDV
-            // 
-            this.TENDV.DataPropertyName = "TENDV";
-            this.TENDV.HeaderText = "Tên dịch vụ";
-            this.TENDV.MinimumWidth = 6;
-            this.TENDV.Name = "TENDV";
-            // 
-            // GIATIEN
-            // 
-            this.GIATIEN.DataPropertyName = "GIATIEN";
-            this.GIATIEN.HeaderText = "Giá tiền";
-            this.GIATIEN.MinimumWidth = 6;
-            this.GIATIEN.Name = "GIATIEN";
-            // 
-            // MOTA
-            // 
-            this.MOTA.DataPropertyName = "MOTA";
-            this.MOTA.HeaderText = "Mô tả";
-            this.MOTA.MinimumWidth = 6;
-            this.MOTA.Name = "MOTA";
-            // 
-            // Column7
-            // 
-            this.Column7.HeaderText = "Đang dùng";
-            this.Column7.MinimumWidth = 6;
-            this.Column7.Name = "Column7";
-            this.Column7.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column7.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // btnSuaDV
             // 
@@ -295,6 +239,34 @@
             this.gbtnThemDV.Text = "Thêm dịch vụ";
             this.gbtnThemDV.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // MADV
+            // 
+            this.MADV.DataPropertyName = "MaDV";
+            this.MADV.HeaderText = "Mã dịch vụ";
+            this.MADV.MinimumWidth = 6;
+            this.MADV.Name = "MADV";
+            // 
+            // TENDV
+            // 
+            this.TENDV.DataPropertyName = "TenDV";
+            this.TENDV.HeaderText = "Tên dịch vụ";
+            this.TENDV.MinimumWidth = 6;
+            this.TENDV.Name = "TENDV";
+            // 
+            // DONGIA
+            // 
+            this.DONGIA.DataPropertyName = "DonGia";
+            this.DONGIA.HeaderText = "Giá tiền";
+            this.DONGIA.MinimumWidth = 6;
+            this.DONGIA.Name = "DONGIA";
+            // 
+            // MOTA
+            // 
+            this.MOTA.DataPropertyName = "MOTA";
+            this.MOTA.HeaderText = "Mô tả";
+            this.MOTA.MinimumWidth = 6;
+            this.MOTA.Name = "MOTA";
+            // 
             // frmDichVu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -311,6 +283,7 @@
             this.Controls.Add(this.gbtnThemDV);
             this.Name = "frmDichVu";
             this.Text = "Dịch vụ";
+            this.Load += new System.EventHandler(this.frmDichVu_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvDichVu)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -322,18 +295,15 @@
         private System.Windows.Forms.Label label3;
         private Guna.UI2.WinForms.Guna2TextBox txtTim;
         private Guna.UI2.WinForms.Guna2DataGridView dgvDichVu;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn checkbox;
-        private System.Windows.Forms.DataGridViewTextBoxColumn xoasua;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MADV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TENDV;
-        private System.Windows.Forms.DataGridViewTextBoxColumn GIATIEN;
-        private System.Windows.Forms.DataGridViewTextBoxColumn MOTA;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Column7;
         private Guna.UI2.WinForms.Guna2Button btnSuaDV;
         private Guna.UI2.WinForms.Guna2Button btnXoaDV;
         private Guna.UI2.WinForms.Guna2ComboBox guna2ComboBox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2Button gbtnThemDV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MADV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TENDV;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DONGIA;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MOTA;
     }
 }

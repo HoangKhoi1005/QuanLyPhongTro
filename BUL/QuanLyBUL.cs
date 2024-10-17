@@ -14,5 +14,15 @@ namespace BUL
         {
             return ql.dangNhap(taiKhoan, matKhau);
         }
+
+        public bool quenMatKhau(string email)
+        {
+            return ql.quenMatKhau(email);
+        }
+
+        public string layMatKhau(string email)
+        {
+            return ql.layMatKhau(email);
+        }
     }
 }

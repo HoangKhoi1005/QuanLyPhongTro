@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BUL;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,19 @@ namespace GUI
 {
     public partial class frmDichVu : Form
     {
+        private DichVuBUL dichVuBUL = new DichVuBUL();
         public frmDichVu()
         {
             InitializeComponent();
+        }
+        
+        public void loadDichVu()
+        {
+
+        }
+        private void frmDichVu_Load(object sender, EventArgs e)
+        {
+            dgvDichVu.DataSource = dichVuBUL.loadDichVu();
         }
     }
 }
