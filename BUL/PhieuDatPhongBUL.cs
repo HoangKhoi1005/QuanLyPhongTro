@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace BUL
         public string PhatSinhMaPhieuDatPhong()
         {
             return PhieuDatPhongDAL.PhatSinhMaPhieuDatPhong();
+        }
+
+        public DataTable LayDSPhieuDatDataGirdView()
+        {
+            return PhieuDatPhongDAL.LayDSPhieuDatDataGirdView();
         }
     }
 }

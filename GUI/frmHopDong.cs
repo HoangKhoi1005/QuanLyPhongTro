@@ -25,5 +25,10 @@ namespace GUI
         {
             dgvHopDong.DataSource = hopDongBUL.LayDSHopDongDataGirdView();
         }
+
+        private void frmHopDong_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

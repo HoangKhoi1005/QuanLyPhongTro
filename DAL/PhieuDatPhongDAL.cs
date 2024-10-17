@@ -2,6 +2,7 @@
 using SQLServerProvider;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -39,6 +40,12 @@ namespace DAL
                 }
             }
             return maPhieuDatPhong;
+        }
+
+        public DataTable LayDSPhieuDatDataGirdView()
+        {
+            string sql = "SELECT PD.MAPDP, PD.MaPT, QL.HOTENNV, KT.HoTen, PD.NGAYLAPPHIEU, PD.NGAYDUKIENNHANPHONG, PD.TIENDATPHONG, PD.MoTa FROM PHIEUDATPHONG PD, PhongTro PT, QuanLy QL , KhachTro KT WHERE PD.MaPT = PT.MaPT AND PD.MaKT = KT.MaKT AND QL.MaQL = PD.MaQL";
+            return db.GetDataTable(sql);
         }
     }
 }

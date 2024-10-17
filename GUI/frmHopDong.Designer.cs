@@ -390,6 +390,7 @@
             this.Controls.Add(this.txtTraCuu);
             this.Name = "frmHopDong";
             this.Text = "Hợp đồng";
+            this.Load += new System.EventHandler(this.frmHopDong_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvHopDong)).EndInit();
             this.ResumeLayout(false);
