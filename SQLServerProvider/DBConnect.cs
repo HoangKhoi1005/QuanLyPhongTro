@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -62,7 +63,15 @@ namespace SQLServerProvider
             return result;
         }
 
-
+        public DataTable GetDataTable(string query)
+        {
+            open();
+            SqlDataAdapter da = new SqlDataAdapter(query, Conn);
+            DataTable dt = new DataTable();
+            da.Fill(dt);
+            close();
+            return dt;
+        }
 
     }
 }

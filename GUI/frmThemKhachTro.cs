@@ -242,7 +242,7 @@ namespace GUI
             {
                 CapNhatThongTinKhachTro();
                 ShowOverlay();
-                frmDatPhong frm = new frmDatPhong(phong, khachTro);
+                frmDatPhong frm = new frmDatPhong(phong, khachTro, this);
                 frm.ShowDialog();
                 HideOverlay();
             }

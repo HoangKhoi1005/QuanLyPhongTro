@@ -173,5 +173,12 @@ namespace DAL
             string query = "INSERT INTO KHACHTRO VALUES('" + khachTro.MaKT + "', N'" + khachTro.HoTen + "', '" + khachTro.CCCD + "', '" + khachTro.SoDT + "', N'" + khachTro.DiaChi + "', '" + khachTro.Email + "', '" + khachTro.NgaySinh + "', N'" + khachTro.GioiTinh + "', N'" + khachTro.Anh + "', N'" + khachTro.MoTa + "', 0)";
             return db.ExecuteNonQuery(query) > 0;
         }
+
+        public string LayTenNguoiDaiDienTheoPhong(string maPT)
+        {
+            string sql = "SELECT HOTEN FROM KHACHTRO, HOPDONG WHERE KHACHTRO.MAKT = HOPDONG.MAKTDAIDIEN AND HOPDONG.MAPT = '" + maPT + "'";
+            object ten = db.ExecuteScalar(sql);
+            return (string)ten;
+        }
     }
 }

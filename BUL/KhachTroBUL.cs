@@ -46,5 +46,10 @@ namespace BUL
         {
             return khachTroDAL.ThemKhachTro(khachTro);
         }
+
+        public string LayTenNguoiDaiDienTheoPhong(string maPT)
+        {
+            return khachTroDAL.LayTenNguoiDaiDienTheoPhong(maPT);
+        }
     }
 }

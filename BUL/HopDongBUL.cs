@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,6 +41,11 @@ namespace BUL
         public int DemSoLuongKhachTroTrongHopDong(string maHopDong)
         {
             return hopDongDAL.DemSoLuongKhachTroTrongHopDong(maHopDong);
+        }
+
+        public DataTable LayDSHopDongDataGirdView()
+        {
+            return hopDongDAL.LayDSHopDongDataGirdView();
         }
     }
 }

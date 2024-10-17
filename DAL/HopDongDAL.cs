@@ -2,6 +2,7 @@
 using SQLServerProvider;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,6 +73,12 @@ namespace DAL
                 }
             }
             return count;
+        }
+
+        public DataTable LayDSHopDongDataGirdView()
+        {
+            string sql = "SELECT HD.MaHopDong, HD.MaPT, QL.HOTENNV, KT.HoTen, HD.NgayLap, HD.NgayHetHan, HD.TienCoc, HD.MoTa FROM HopDong HD, PhongTro PT, QuanLy QL , KhachTro KT WHERE HD.MaPT = PT.MaPT AND HD.MAKTDAIDIEN = KT.MaKT AND QL.MaQL = HD.MaQL";
+            return db.GetDataTable(sql);
         }
     }
 }
