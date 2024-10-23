@@ -208,5 +208,87 @@ namespace DAL
             string sql = "UPDATE PHONGTRO SET MATT = '" + maTT + "' WHERE MAPT = '" + maPT + "'";
             return conn.ExecuteNonQuery(sql) > 0;
         }
+
+        //Lấy tất cả mã phòng
+        public List<string> LayTatCaMaPhong()
+        {
+            List<string> danhSachMaPhong = new List<string>();
+
+            try
+            {
+                string sql = "SELECT MAPT FROM PHONGTRO WHERE DAXOA = 0";
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                while (reader.Read())
+                {
+                    danhSachMaPhong.Add(reader["MAPT"].ToString());
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách mã phòng: " + ex.Message);
+            }
+
+            return danhSachMaPhong;
+        }
+
+        public List<PhongDTO> LocPhongTheoTaiSan(List<string> dsTenTaiSan, string maNT)
+        {
+            List<PhongDTO> danhSachPhong = new List<PhongDTO>();
+
+            if (dsTenTaiSan == null || dsTenTaiSan.Count == 0)
+            {
+                return LayPhongTheoNhaTro(maNT);
+            }
+
+            try
+            {
+                string sql = "SELECT PT.* FROM PHONGTRO PT JOIN TAISAN TS ON PT.MAPT = TS.MAPT WHERE MANT = '" + maNT + "' AND PT.DAXOA = 0 AND TS.TENTAISAN IN (";
+
+                for (int i = 0; i < dsTenTaiSan.Count; i++)
+                {
+                    sql += $"N'{dsTenTaiSan[i]}'";
+                    if (i < dsTenTaiSan.Count - 1)
+                    {
+                        sql += ", ";
+                    }
+                }
+                sql += ") GROUP BY PT.MAPT, PT.MANT, PT.MATT, PT.TENPHONG, PT.DONGIA, PT.CHIEUDAI, PT.CHIEURONG, PT.SOLUONGNGUOITD, PT.MOTA, PT.ANH, PT.DAXOA HAVING COUNT(DISTINCT TS.TENTAISAN) = " + dsTenTaiSan.Count;
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                while (reader.Read())
+                {
+                    PhongDTO phong = new PhongDTO
+                    {
+                        MaPT = reader["MAPT"].ToString(),
+                        MaNT = reader["MANT"].ToString(),
+                        MaTT = reader["MATT"].ToString(),
+                        TenPhong = reader["TENPHONG"].ToString(),
+                        DonGia = Convert.ToDecimal(reader["DONGIA"]),
+                        ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]),
+                        ChieuRong = Convert.ToDouble(reader["CHIEURONG"]),
+                        SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]),
+                        MoTa = reader["MOTA"].ToString(),
+                        Anh = reader["ANH"].ToString()
+                    };
+                    danhSachPhong.Add(phong);
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lọc phòng theo tài sản: " + ex.Message);
+            }
+
+            return danhSachPhong;
+        }
+
     }
 }

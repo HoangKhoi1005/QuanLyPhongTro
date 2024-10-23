@@ -25,8 +25,9 @@ namespace GUI
             LoadNhaTro();
             LoadTrangThai();
         }
-
+        internal List<string> dsTenTaiSan = new List<string>();
         Form overlayPanel;
+        
 
         private void ShowOverlay()
         {
@@ -202,7 +203,6 @@ namespace GUI
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            //Tìm theo Mã phòng txtMaPhong trong nhà trọ hiện tại
             string maPhong = txtMaPhong.Text;
             if (string.IsNullOrEmpty(maPhong))
             {
@@ -230,6 +230,8 @@ namespace GUI
                     uCPhong.LoadPhongTro(phong);
                     uCPhong.Left = ucXPosition;
                     uCPhong.Top = ucYPosition;
+                    uCPhong.Tag = phong;
+                    uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -286,6 +288,8 @@ namespace GUI
                     uCPhong.LoadPhongTro(phong);
                     uCPhong.Left = ucXPosition;
                     uCPhong.Top = ucYPosition;
+                    uCPhong.Tag = phong;
+                    uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -306,6 +310,43 @@ namespace GUI
                 }
             };
             frmThemPhong.ShowDialog();
+            HideOverlay();
+        }
+
+        private void btnLocChiTiet_Click(object sender, EventArgs e)
+        {
+            ShowOverlay();
+            frmLocChiTiet frmLocChiTiet = new frmLocChiTiet(this, nhaTroDangChon.MaNT, dsTenTaiSan);
+            frmLocChiTiet.ShowDialog();
+            PhongBUL phongBUL = new PhongBUL();
+            List<PhongDTO> dsPhong = phongBUL.LocPhongTheoTaiSan(dsTenTaiSan, nhaTroDangChon.MaNT);
+
+            groupDSPhong.Controls.Clear();
+            int ucXPosition = 19;
+            int ucYPosition = 19;
+            int kt = 0;
+
+            foreach (var phong in dsPhong)
+            {
+                UCPhong uCPhong = new UCPhong();
+                if (kt == 6)
+                {
+                    ucXPosition = 19;
+                    ucYPosition += 19 + uCPhong.Width;
+                    kt = 0;
+                }
+
+                uCPhong.LoadPhongTro(phong);
+                uCPhong.Left = ucXPosition;
+                uCPhong.Top = ucYPosition;
+                uCPhong.Tag = phong;
+                uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+
+                ucXPosition += uCPhong.Width + 19;
+                kt++;
+                groupDSPhong.Controls.Add(uCPhong);
+
+            }
             HideOverlay();
         }
     }
