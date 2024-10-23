@@ -51,5 +51,15 @@ namespace BUL
         {
             return phongDAL.CapNhatTrangThaiPhong(MaPT, MaTT);
         }
+
+        public List<string> LayTatCaMaPhong()
+        {
+            return phongDAL.LayTatCaMaPhong();
+        }
+
+        public List<PhongDTO> LocPhongTheoTaiSan(List<string> dsTaiSan, string maNT)
+        {
+            return phongDAL.LocPhongTheoTaiSan(dsTaiSan, maNT);
+        }
     }
 }

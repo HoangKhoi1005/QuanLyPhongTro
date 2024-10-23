@@ -31,10 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.groupMain = new Guna.UI2.WinForms.Guna2GroupBox();
             this.groupDSPhong = new System.Windows.Forms.GroupBox();
-            this.ucPhong4 = new GUI.UCPhong();
-            this.ucPhong3 = new GUI.UCPhong();
-            this.ucPhong2 = new GUI.UCPhong();
-            this.ucPhong1 = new GUI.UCPhong();
             this.guna2Panel2 = new Guna.UI2.WinForms.Guna2Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.iconPictureBox20 = new FontAwesome.Sharp.IconPictureBox();
@@ -67,6 +63,7 @@
             this.btnSuaNT = new Guna.UI2.WinForms.Guna2Button();
             this.btnXoaNT = new Guna.UI2.WinForms.Guna2Button();
             this.groupDSPhong2 = new System.Windows.Forms.GroupBox();
+            this.btnLocChiTiet = new Guna.UI2.WinForms.Guna2Button();
             this.btnTimKiem = new Guna.UI2.WinForms.Guna2Button();
             this.txtMaPhong = new Guna.UI2.WinForms.Guna2TextBox();
             this.cboTrangThai = new Guna.UI2.WinForms.Guna2ComboBox();
@@ -82,6 +79,10 @@
             this.guna2Button8 = new Guna.UI2.WinForms.Guna2Button();
             this.guna2Button7 = new Guna.UI2.WinForms.Guna2Button();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.ucPhong4 = new GUI.UCPhong();
+            this.ucPhong3 = new GUI.UCPhong();
+            this.ucPhong2 = new GUI.UCPhong();
+            this.ucPhong1 = new GUI.UCPhong();
             this.groupMain.SuspendLayout();
             this.groupDSPhong.SuspendLayout();
             this.guna2Panel2.SuspendLayout();
@@ -129,38 +130,6 @@
             this.groupDSPhong.Size = new System.Drawing.Size(1631, 668);
             this.groupDSPhong.TabIndex = 40;
             this.groupDSPhong.TabStop = false;
-            // 
-            // ucPhong4
-            // 
-            this.ucPhong4.Location = new System.Drawing.Point(1311, 26);
-            this.ucPhong4.Name = "ucPhong4";
-            this.ucPhong4.Size = new System.Drawing.Size(250, 250);
-            this.ucPhong4.TabIndex = 29;
-            this.ucPhong4.TrangThai = "Đang sửa chữa";
-            // 
-            // ucPhong3
-            // 
-            this.ucPhong3.Location = new System.Drawing.Point(1055, 26);
-            this.ucPhong3.Name = "ucPhong3";
-            this.ucPhong3.Size = new System.Drawing.Size(250, 250);
-            this.ucPhong3.TabIndex = 28;
-            this.ucPhong3.TrangThai = "Có người";
-            // 
-            // ucPhong2
-            // 
-            this.ucPhong2.Location = new System.Drawing.Point(799, 26);
-            this.ucPhong2.Name = "ucPhong2";
-            this.ucPhong2.Size = new System.Drawing.Size(250, 250);
-            this.ucPhong2.TabIndex = 27;
-            this.ucPhong2.TrangThai = "Trống";
-            // 
-            // ucPhong1
-            // 
-            this.ucPhong1.Location = new System.Drawing.Point(543, 26);
-            this.ucPhong1.Name = "ucPhong1";
-            this.ucPhong1.Size = new System.Drawing.Size(250, 250);
-            this.ucPhong1.TabIndex = 26;
-            this.ucPhong1.TrangThai = "Đã đặt";
             // 
             // guna2Panel2
             // 
@@ -673,6 +642,7 @@
             // 
             // groupDSPhong2
             // 
+            this.groupDSPhong2.Controls.Add(this.btnLocChiTiet);
             this.groupDSPhong2.Controls.Add(this.btnTimKiem);
             this.groupDSPhong2.Controls.Add(this.txtMaPhong);
             this.groupDSPhong2.Controls.Add(this.cboTrangThai);
@@ -685,6 +655,26 @@
             this.groupDSPhong2.TabIndex = 16;
             this.groupDSPhong2.TabStop = false;
             this.groupDSPhong2.Text = "Danh Sách Phòng";
+            // 
+            // btnLocChiTiet
+            // 
+            this.btnLocChiTiet.BorderRadius = 4;
+            this.btnLocChiTiet.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnLocChiTiet.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnLocChiTiet.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnLocChiTiet.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnLocChiTiet.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(184)))), ((int)(((byte)(218)))));
+            this.btnLocChiTiet.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold);
+            this.btnLocChiTiet.ForeColor = System.Drawing.Color.White;
+            this.btnLocChiTiet.Image = global::GUI.Properties.Resources.Filter;
+            this.btnLocChiTiet.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnLocChiTiet.Location = new System.Drawing.Point(521, 38);
+            this.btnLocChiTiet.Name = "btnLocChiTiet";
+            this.btnLocChiTiet.Size = new System.Drawing.Size(131, 36);
+            this.btnLocChiTiet.TabIndex = 41;
+            this.btnLocChiTiet.Text = "Lọc chi tiết";
+            this.btnLocChiTiet.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.btnLocChiTiet.Click += new System.EventHandler(this.btnLocChiTiet_Click);
             // 
             // btnTimKiem
             // 
@@ -965,6 +955,38 @@
             this.guna2Button7.TabIndex = 21;
             this.guna2Button7.Text = "guna2Button7";
             // 
+            // ucPhong4
+            // 
+            this.ucPhong4.Location = new System.Drawing.Point(1311, 26);
+            this.ucPhong4.Name = "ucPhong4";
+            this.ucPhong4.Size = new System.Drawing.Size(250, 250);
+            this.ucPhong4.TabIndex = 29;
+            this.ucPhong4.TrangThai = "Đang sửa chữa";
+            // 
+            // ucPhong3
+            // 
+            this.ucPhong3.Location = new System.Drawing.Point(1055, 26);
+            this.ucPhong3.Name = "ucPhong3";
+            this.ucPhong3.Size = new System.Drawing.Size(250, 250);
+            this.ucPhong3.TabIndex = 28;
+            this.ucPhong3.TrangThai = "Có người";
+            // 
+            // ucPhong2
+            // 
+            this.ucPhong2.Location = new System.Drawing.Point(799, 26);
+            this.ucPhong2.Name = "ucPhong2";
+            this.ucPhong2.Size = new System.Drawing.Size(250, 250);
+            this.ucPhong2.TabIndex = 27;
+            this.ucPhong2.TrangThai = "Trống";
+            // 
+            // ucPhong1
+            // 
+            this.ucPhong1.Location = new System.Drawing.Point(543, 26);
+            this.ucPhong1.Name = "ucPhong1";
+            this.ucPhong1.Size = new System.Drawing.Size(250, 250);
+            this.ucPhong1.TabIndex = 26;
+            this.ucPhong1.TrangThai = "Đã đặt";
+            // 
             // frmPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1016,7 +1038,6 @@
         private Guna.UI2.WinForms.Guna2Button guna2Button9;
         private Guna.UI2.WinForms.Guna2Button guna2Button8;
         private Guna.UI2.WinForms.Guna2Button guna2Button7;
-        private System.Windows.Forms.GroupBox groupDSPhong;
         private Guna.UI2.WinForms.Guna2Panel guna2Panel2;
         private System.Windows.Forms.Label label2;
         private FontAwesome.Sharp.IconPictureBox iconPictureBox20;
@@ -1049,5 +1070,7 @@
         private UCPhong ucPhong4;
         private UCPhong ucPhong3;
         private UCPhong ucPhong2;
+        private Guna.UI2.WinForms.Guna2Button btnLocChiTiet;
+        public System.Windows.Forms.GroupBox groupDSPhong;
     }
 }

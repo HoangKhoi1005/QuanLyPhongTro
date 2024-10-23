@@ -118,6 +118,12 @@
     <Compile Include="frmLapHopDong.Designer.cs">
       <DependentUpon>frmLapHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmLocChiTiet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLocChiTiet.Designer.cs">
+      <DependentUpon>frmLocChiTiet.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -148,6 +154,12 @@
     <Compile Include="frmSuaNT.Designer.cs">
       <DependentUpon>frmSuaNT.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSuaTaiSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaTaiSan.Designer.cs">
+      <DependentUpon>frmSuaTaiSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTaiSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +189,12 @@
     </Compile>
     <Compile Include="frmThemPhong.Designer.cs">
       <DependentUpon>frmThemPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemTaiSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemTaiSan.Designer.cs">
+      <DependentUpon>frmThemTaiSan.cs</DependentUpon>
     </Compile>
     <Compile Include="frmTienPhatSinh.cs">
       <SubType>Form</SubType>
@@ -249,6 +267,9 @@
     <EmbeddedResource Include="frmLapHopDong.resx">
       <DependentUpon>frmLapHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmLocChiTiet.resx">
+      <DependentUpon>frmLocChiTiet.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
@@ -264,6 +285,9 @@
     <EmbeddedResource Include="frmSuaNT.resx">
       <DependentUpon>frmSuaNT.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaTaiSan.resx">
+      <DependentUpon>frmSuaTaiSan.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTaiSan.resx">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
     </EmbeddedResource>
@@ -278,6 +302,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemPhong.resx">
       <DependentUpon>frmThemPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemTaiSan.resx">
+      <DependentUpon>frmThemTaiSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmTienPhatSinh.resx">
       <DependentUpon>frmTienPhatSinh.cs</DependentUpon>
@@ -387,6 +414,7 @@
     <None Include="Resources\nenqmk.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Filter.png" />
     <None Include="Resources\z5952240387613_efbdaf629b9afa1f2040590b686dca10.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

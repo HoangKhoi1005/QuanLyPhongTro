@@ -30,5 +30,10 @@ namespace GUI
         {
 
         }
+
+        private void btnTraCuu_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

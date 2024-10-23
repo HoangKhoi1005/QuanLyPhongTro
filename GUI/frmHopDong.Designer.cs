@@ -82,6 +82,7 @@
             this.btnTraCuu.Size = new System.Drawing.Size(109, 35);
             this.btnTraCuu.TabIndex = 47;
             this.btnTraCuu.Text = "Tra cứu";
+            this.btnTraCuu.Click += new System.EventHandler(this.btnTraCuu_Click);
             // 
             // txtTraCuu
             // 

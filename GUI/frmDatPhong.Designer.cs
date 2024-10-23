@@ -145,7 +145,7 @@
             this.dtpNgayNhanPhong.Name = "dtpNgayNhanPhong";
             this.dtpNgayNhanPhong.Size = new System.Drawing.Size(237, 33);
             this.dtpNgayNhanPhong.TabIndex = 123;
-            this.dtpNgayNhanPhong.Value = new System.DateTime(2023, 10, 10, 2, 35, 11, 282);
+            this.dtpNgayNhanPhong.Value = new System.DateTime(2024, 10, 23, 0, 0, 0, 0);
             // 
             // label5
             // 
