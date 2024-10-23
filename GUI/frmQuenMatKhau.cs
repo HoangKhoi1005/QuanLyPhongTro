@@ -62,24 +62,27 @@ namespace GUI
                 txtNhapCapcha.Clear();
                 return;
             }
-            if (txtEmail.Text == string.Empty)
+            if (txtMaQuanLy.Text == string.Empty)
             {
-                MessageBox.Show("Chưa nhập email");
+                MessageBox.Show("Chưa nhập mã quản lý");
                 return;
             }
             else
             {
-                if (qlbul.quenMatKhau(txtEmail.Text))
+                if (qlbul.quenMatKhau(txtMaQuanLy.Text))
                 {
-                    string email = txtEmail.Text;
-                    string password = qlbul.layMatKhau(email);
-                    SendPasswordByEmail(email, password);
-                    MessageBox.Show("Mật khẩu đã được gửi về email.");
+                    string maql = txtMaQuanLy.Text;
+                    bool resetSuccess = qlbul.datLaiMatKhau(maql);
+
+                    if (resetSuccess)
+                        MessageBox.Show("Mật khẩu của bạn là: " + maql);
+                    else
+                        MessageBox.Show("Đặt lại mật khẩu thất bại");
                 }
                 else
                 {
                     MessageBox.Show("Người dùng này chưa được đăng ký");
-                    txtEmail.Clear();
+                    txtMaQuanLy.Clear();
                     txtNhapCapcha.Clear();
                     GenerateCaptcha();
                     return;
@@ -87,36 +90,7 @@ namespace GUI
             }
         }
 
-        private void SendPasswordByEmail(string toEmail, string password)
-        {
-            try
-            {
-                string subject = "THÔNG BÁO TỪ PHÒNG TRỌ";
-                string body = "Mật khẩu của bạn là: " + password;
-
-                using (MailMessage mail = new MailMessage())
-                {
-                    mail.From = new MailAddress("vuhuyenvi2003@gmail.com");
-                    mail.To.Add(toEmail);
-                    mail.Subject = subject;
-                    mail.Body = body;
-                    mail.IsBodyHtml = false;
-
-                    using (SmtpClient smtp = new SmtpClient("smtp.gmail.com"))
-                    {
-                        smtp.Port = 587;
-                        smtp.Credentials = new NetworkCredential("vuhuyenvi2003@gmail.com", "kbjvbqynzuztrsji");
-                        smtp.EnableSsl = true;
-
-                        smtp.Send(mail);
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Đã xảy ra lỗi: " + ex.Message);
-            }
-        }
+        
 
         private void frmQuenMatKhau_Load(object sender, EventArgs e)
         {

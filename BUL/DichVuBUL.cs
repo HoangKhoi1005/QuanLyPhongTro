@@ -19,5 +19,30 @@ namespace BUL
         {
             return DichVuDAL.loadDichVu();
         }
+
+        public bool themDichVu(DichVuDTO dichVuDTO)
+        {
+            return DichVuDAL.themDichVu(dichVuDTO);
+        }
+
+        public string PhatSinhMaDichVu()
+        {
+            return DichVuDAL.PhatSinhMaDichVu();
+        }
+
+        public bool suaDichVu(DichVuDTO dichVuDTO)
+        {
+            return DichVuDAL.suaDichVu(dichVuDTO);
+        }
+
+        public bool xoaDichVu(DichVuDTO dichVuDTO)
+        {
+            return DichVuDAL.xoaDichVu(dichVuDTO);
+        }
+
+        public List<DichVuDTO> TimKiemDichVu(string tendv)
+        {
+            return DichVuDAL.TimKiemDichVu(tendv);
+        }
     }
 }
