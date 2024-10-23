@@ -148,6 +148,7 @@
             this.btnCapNhat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCapNhat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCapNhat.UseVisualStyleBackColor = false;
+            this.btnCapNhat.Click += new System.EventHandler(this.btnCapNhat_Click);
             // 
             // btnHuy
             // 

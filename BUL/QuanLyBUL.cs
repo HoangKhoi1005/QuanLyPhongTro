@@ -24,5 +24,10 @@ namespace BUL
         {
             return ql.layMatKhau(email);
         }
+
+        public bool datLaiMatKhau(string maql)
+        {
+            return ql.datLaiMatKhau(maql);
+        }
     }
 }

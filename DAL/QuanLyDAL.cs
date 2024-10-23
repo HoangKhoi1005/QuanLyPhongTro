@@ -25,10 +25,10 @@ namespace DAL
                 return false; 
             }
         }
-        public bool quenMatKhau(string email)
+        public bool quenMatKhau(string maql)
         {
             var sql = from quanLy in ql.QUANLies
-                      where quanLy.EMAILNV == email
+                      where quanLy.MAQL == maql
                       select quanLy;
 
             if (sql.Any())
@@ -40,13 +40,33 @@ namespace DAL
                 return false;
             }
         }
-        public string layMatKhau(string email)
+        public string layMatKhau(string maql)
         {
             var sql = from quanLy in ql.QUANLies
-                      where quanLy.EMAILNV == email
-                      select quanLy.MATKHAU;
+                      where quanLy.MAQL == maql
+                      select quanLy.MAQL;
 
             return sql.FirstOrDefault();
+        }
+
+        public bool datLaiMatKhau(string maql)
+        {
+            try
+            {
+                var quanLy = ql.QUANLies.FirstOrDefault(q => q.MAQL == maql);
+                if (quanLy != null)
+                {
+                    quanLy.MATKHAU = maql; 
+                    ql.SubmitChanges();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                return false;
+            }
         }
     }
 }

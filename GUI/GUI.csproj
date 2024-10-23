@@ -415,6 +415,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\Filter.png" />
+    <None Include="Resources\z5952240387613_efbdaf629b9afa1f2040590b686dca10.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -229,5 +229,15 @@ namespace GUI.Properties {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap z5952240387613_efbdaf629b9afa1f2040590b686dca10 {
+            get {
+                object obj = ResourceManager.GetObject("z5952240387613_efbdaf629b9afa1f2040590b686dca10", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }
