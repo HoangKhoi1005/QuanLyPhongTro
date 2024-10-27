@@ -61,6 +61,7 @@
       <DependentUpon>QLPT.dbml</DependentUpon>
     </Compile>
     <Compile Include="QuanLyDAL.cs" />
+    <Compile Include="SuDungDichVuDAL.cs" />
     <Compile Include="TaiSanDAL.cs" />
     <Compile Include="TrangThaiPhongDAL.cs" />
   </ItemGroup>

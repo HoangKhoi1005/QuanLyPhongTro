@@ -99,5 +99,32 @@ namespace GUI
             frm.ShowDialog();
             HideOverlay();
         }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            ShowOverlay();
+            TaiSanDTO taiSan = new TaiSanDTO();
+            taiSan.MaTS = dgvTaiSan.CurrentRow.Cells["MaTS"].Value.ToString();
+            taiSan.MaPT = dgvTaiSan.CurrentRow.Cells["MaPT"].Value.ToString();
+            taiSan.TenTaiSan = dgvTaiSan.CurrentRow.Cells["TenTaiSan"].Value.ToString();
+            taiSan.DonGia = decimal.Parse(dgvTaiSan.CurrentRow.Cells["DonGia"].Value.ToString());
+            taiSan.NgaySuDung = DateTime.Parse(dgvTaiSan.CurrentRow.Cells["NgaySuDung"].Value.ToString());
+            taiSan.NgayThanhLy = dgvTaiSan.CurrentRow.Cells["NgayThanhLy"].Value != null
+                ? (DateTime?)DateTime.Parse(dgvTaiSan.CurrentRow.Cells["NgayThanhLy"].Value.ToString())
+                : null;
+            taiSan.MoTa = dgvTaiSan.CurrentRow.Cells["MoTa"].Value.ToString();
+            taiSan.DaXoa = bool.Parse(dgvTaiSan.CurrentRow.Cells["DaXoa"].Value.ToString());
+            taiSan.DaHu = bool.Parse(dgvTaiSan.CurrentRow.Cells["DaHu"].Value.ToString());
+            frmXoaTaiSan frm = new frmXoaTaiSan(taiSan);
+            frm.FormClosed += (s, args) =>
+            {
+                if (frm.kiemTraThanhCong)
+                {
+                    dgvTaiSan.DataSource = taiSanBUL.LayDSTaiSan();
+                }
+            };
+            frm.ShowDialog();
+            HideOverlay();
+        }
     }
 }

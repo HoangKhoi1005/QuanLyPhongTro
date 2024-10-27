@@ -80,5 +80,36 @@ namespace DAL
             string sql = "SELECT HD.MaHopDong, HD.MaPT, QL.HOTENNV, KT.HoTen, HD.NgayLap, HD.NgayHetHan, HD.TienCoc, HD.MoTa FROM HopDong HD, PhongTro PT, QuanLy QL , KhachTro KT WHERE HD.MaPT = PT.MaPT AND HD.MAKTDAIDIEN = KT.MaKT AND QL.MaQL = HD.MaQL";
             return db.GetDataTable(sql);
         }
+
+        //Lấy hợp đồng theo mã phòng
+        public HopDongDTO LayHopDongTheoMaPhong(string maPhong)
+        {
+            string sql = "SELECT * FROM HopDong WHERE MaPT = '" + maPhong + "'";
+            using (var reader = db.ExecuteQuery(sql))
+            {
+                if (reader.Read())
+                {
+                    HopDongDTO hopDong = new HopDongDTO
+                    {
+                        MaHopDong = reader["MaHopDong"].ToString(),
+                        MaPT = reader["MaPT"].ToString(),
+                        MaQL = reader["MaQL"].ToString(),
+                        MaKT = reader["MAKTDAIDIEN"].ToString(),
+                        NgayLap = Convert.ToDateTime(reader["NgayLap"]),
+                        NgayHetHan = Convert.ToDateTime(reader["NgayHetHan"]),
+                        TienCoc = Convert.ToDecimal(reader["TienCoc"]),
+                        MoTa = reader["MoTa"].ToString()
+                    };
+                    return hopDong;
+                }
+            }
+            return null;
+        }
+
+        public bool CapNhatHopDong(HopDongDTO hopDong)
+        {
+            string sql = "UPDATE HopDong SET NgayLap = '" + hopDong.NgayLap + "', NgayHetHan = '" + hopDong.NgayHetHan + "', TienCoc = " + hopDong.TienCoc + ", MoTa = N'" + hopDong.MoTa + "' WHERE MaHopDong = '" + hopDong.MaHopDong + "'";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
     }
 }

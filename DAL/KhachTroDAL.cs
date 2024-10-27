@@ -2,6 +2,7 @@
 using SQLServerProvider;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,10 +22,10 @@ namespace DAL
         public List<KhachTroDTO> LayDanhSachKhachTro()
         {
             List<KhachTroDTO> lstKhachTro = new List<KhachTroDTO>();
-            string query = "SELECT * FROM KHACHTRO WHERE DAXOA = 0";
+            string sql = "SELECT * FROM KHACHTRO WHERE DAXOA = 0";
             try
             {
-                using (var reader = db.ExecuteQuery(query))
+                using (var reader = db.ExecuteQuery(sql))
                 {
                     while (reader.Read())
                     {
@@ -56,10 +57,10 @@ namespace DAL
         public List<KhachTroDTO> LayDSKhachTroChuaThuePhong()
         {
             List<KhachTroDTO> lstKhachTro = new List<KhachTroDTO>();
-            string query = "SELECT * FROM KHACHTRO WHERE DAXOA = 0 AND MaKT NOT IN (SELECT MaKT FROM KHACHTRO_HOPDONG)";
+            string sql = "SELECT * FROM KHACHTRO WHERE DAXOA = 0 AND MaKT NOT IN (SELECT MaKT FROM KHACHTRO_HOPDONG)";
             try
             {
-                using (var reader = db.ExecuteQuery(query))
+                using (var reader = db.ExecuteQuery(sql))
                 {
                     while (reader.Read())
                     {
@@ -91,10 +92,10 @@ namespace DAL
         public List<KhachTroDTO> TimKiemKhachTro(string ten)
         {
             List<KhachTroDTO> lstKhachTro = new List<KhachTroDTO>();
-            string query = "SELECT * FROM KHACHTRO WHERE DAXOA = 0 AND HOTEN LIKE N'%" + ten + "%'";
+            string sql = "SELECT * FROM KHACHTRO WHERE DAXOA = 0 AND HOTEN LIKE N'%" + ten + "%'";
             try
             {
-                using (var reader = db.ExecuteQuery(query))
+                using (var reader = db.ExecuteQuery(sql))
                 {
                     while (reader.Read())
                     {
@@ -125,11 +126,11 @@ namespace DAL
 
         public string PhatSinhMaKhachTro()
         {
-            string query = "SELECT TOP 1 MaKT FROM KHACHTRO ORDER BY MaKT DESC";
+            string sql = "SELECT TOP 1 MaKT FROM KHACHTRO ORDER BY MaKT DESC";
             string maKT = "KT001";
             try
             {
-                using (var reader = db.ExecuteQuery(query))
+                using (var reader = db.ExecuteQuery(sql))
                 {
                     if (reader.Read())
                     {
@@ -149,11 +150,11 @@ namespace DAL
         //Kiem tra khach tro co ton tai
         public bool KiemTraKhachTroTonTai(string MaKT)
         {
-            string query = "SELECT COUNT(*) FROM KHACHTRO WHERE MAKT = '" + MaKT + "'";
+            string sql = "SELECT COUNT(*) FROM KHACHTRO WHERE MAKT = '" + MaKT + "'";
             int count = 0;
             try
             {
-                using (var reader = db.ExecuteQuery(query))
+                using (var reader = db.ExecuteQuery(sql))
                 {
                     if (reader.Read())
                     {
@@ -170,8 +171,8 @@ namespace DAL
 
         public bool ThemKhachTro(KhachTroDTO khachTro)
         {
-            string query = "INSERT INTO KHACHTRO VALUES('" + khachTro.MaKT + "', N'" + khachTro.HoTen + "', '" + khachTro.CCCD + "', '" + khachTro.SoDT + "', N'" + khachTro.DiaChi + "', '" + khachTro.Email + "', '" + khachTro.NgaySinh + "', N'" + khachTro.GioiTinh + "', N'" + khachTro.Anh + "', N'" + khachTro.MoTa + "', 0)";
-            return db.ExecuteNonQuery(query) > 0;
+            string sql = "INSERT INTO KHACHTRO VALUES('" + khachTro.MaKT + "', N'" + khachTro.HoTen + "', '" + khachTro.CCCD + "', '" + khachTro.SoDT + "', N'" + khachTro.DiaChi + "', '" + khachTro.Email + "', '" + khachTro.NgaySinh + "', N'" + khachTro.GioiTinh + "', N'" + khachTro.Anh + "', N'" + khachTro.MoTa + "', 0)";
+            return db.ExecuteNonQuery(sql) > 0;
         }
 
         public string LayTenNguoiDaiDienTheoPhong(string maPT)
@@ -179,6 +180,24 @@ namespace DAL
             string sql = "SELECT HOTEN FROM KHACHTRO, HOPDONG WHERE KHACHTRO.MAKT = HOPDONG.MAKTDAIDIEN AND HOPDONG.MAPT = '" + maPT + "'";
             object ten = db.ExecuteScalar(sql);
             return (string)ten;
+        }
+
+        public DataTable LayThanhVienTheoPhong(string maPT)
+        {
+            string sql = "SELECT KHACHTRO.MAKT, KHACHTRO.HOTEN, KHACHTRO.CCCD, KHACHTRO.NGAYSINH, KHACHTRO.GIOITINH, KHACHTRO.SODT, KHACHTRO.EMAIL, KHACHTRO.DIACHI, KHACHTRO.ANH, KHACHTRO.MOTA FROM KHACHTRO, HOPDONG, KHACHTRO_HOPDONG WHERE KHACHTRO.MAKT = KHACHTRO_HOPDONG.MAKT AND HOPDONG.MAHOPDONG = KHACHTRO_HOPDONG.MAHOPDONG AND HOPDONG.MAPT = '" + maPT + "' AND KHACHTRO.MAKT != HOPDONG.MAKTDAIDIEN";
+            return db.GetDataTable(sql);
+        }
+
+        public bool SuaKhachTro(KhachTroDTO khachTroDTO)
+        {
+            string sql = "UPDATE KHACHTRO SET HOTEN = N'" + khachTroDTO.HoTen + "', CCCD = '" + khachTroDTO.CCCD + "', SODT = '" + khachTroDTO.SoDT + "', DIACHI = N'" + khachTroDTO.DiaChi + "', EMAIL = '" + khachTroDTO.Email + "', NGAYSINH = '" + khachTroDTO.NgaySinh + "', GIOITINH = N'" + khachTroDTO.GioiTinh + "', ANH = N'" + khachTroDTO.Anh + "', MOTA = N'" + khachTroDTO.MoTa + "' WHERE MAKT = '" + khachTroDTO.MaKT + "'";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
+
+        public bool XoaKhachTroHopDong(string maKT)
+        {
+            string sql = "DELETE FROM KHACHTRO_HOPDONG WHERE MAKT = '" + maKT + "'";
+            return db.ExecuteNonQuery(sql) > 0;
         }
     }
 }

@@ -176,5 +176,17 @@ namespace GUI
                 SuaPhongClick(this, e);
             }
         }
+
+        public delegate void UcClickHandler(object sender, EventArgs e);
+
+        public event UcClickHandler UcClick;
+
+        private void guna2Panel2_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            if (UcClick != null)
+            {
+                UcClick(this, e);
+            }
+        }
     }
 }
