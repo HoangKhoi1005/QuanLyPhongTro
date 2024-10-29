@@ -57,5 +57,10 @@ namespace BUL
         {
             return hopDongDAL.CapNhatHopDong(hopDong);
         }
+
+        public bool KiemTraPhongCoHopDong(string maPT)
+        {
+            return hopDongDAL.KiemTraPhongCoHopDong(maPT);
+        }
     }
 }

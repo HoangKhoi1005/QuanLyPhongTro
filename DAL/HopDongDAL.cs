@@ -111,5 +111,11 @@ namespace DAL
             string sql = "UPDATE HopDong SET NgayLap = '" + hopDong.NgayLap + "', NgayHetHan = '" + hopDong.NgayHetHan + "', TienCoc = " + hopDong.TienCoc + ", MoTa = N'" + hopDong.MoTa + "' WHERE MaHopDong = '" + hopDong.MaHopDong + "'";
             return db.ExecuteNonQuery(sql) > 0;
         }
+
+        public bool KiemTraPhongCoHopDong(string maPT)
+        {
+            string sql = "SELECT COUNT(*) FROM HopDong WHERE MaPT = '" + maPT + "' AND TRANGTHAIHOPDONG = 1";
+            return (int)(db.ExecuteScalar(sql)) > 0;
+        }
     }
 }
