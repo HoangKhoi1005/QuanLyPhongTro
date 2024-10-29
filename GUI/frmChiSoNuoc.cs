@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BUL;
+using DTO;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,63 +10,123 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
+using System.Windows.Input;
 
 namespace GUI
 {
     public partial class frmChiSoNuoc : Form
     {
+        ChiSoDienNuocBUL chiSoDienNuocBUL = new ChiSoDienNuocBUL();
         public frmChiSoNuoc()
         {
             InitializeComponent();
         }
 
+        public void loadCSDienNuoc()
+        {
+            dgvChiSo.DataSource = chiSoDienNuocBUL.loadDienNuoc();
+        }
+        Form overlayPanel;
+        private void ShowOverlay()
+        {
+            overlayPanel = new Form();
+            overlayPanel.FormBorderStyle = FormBorderStyle.None;
+            overlayPanel.StartPosition = FormStartPosition.Manual;
+            overlayPanel.Location = this.Location;
+            overlayPanel.Opacity = .50d;
+            overlayPanel.BackColor = Color.Black;
+            overlayPanel.WindowState = FormWindowState.Maximized;
+            overlayPanel.ShowInTaskbar = false;
+            overlayPanel.Show();
+        }
+
+        private void HideOverlay()
+        {
+            overlayPanel.Dispose();
+        }
+
         private void frmChiSoNuoc_Load(object sender, EventArgs e)
         {
-
+            loadCSDienNuoc();
         }
 
-
-        private void dgvCSNuoc_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnThemChiSo_Click(object sender, EventArgs e)
         {
-            
-        }
-
-        private void dgvCSNuoc_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
-        {
-            if (e.ColumnIndex >= 0 && dgvCSNuoc.Columns[e.ColumnIndex] is DataGridViewButtonColumn && e.RowIndex >= 0)
+            ShowOverlay();
+            frmThemDienNuoc frmThemDN = new frmThemDienNuoc();
+            frmThemDN.FormClosed += (s, args) =>
             {
-                // viền
-                e.PaintBackground(e.CellBounds, true);
-
-                // kích thước
-                Rectangle buttonRect = new Rectangle(
-                    e.CellBounds.Left + 79, 
-                    e.CellBounds.Top + 3,  
-                    70, //rộng
-                    40 //cao
-                );
-
-                Color buttonBackColor = Color.FromArgb(38, 185, 154); 
-                Color buttonTextColor = Color.White;   
-
-                // Vẽ hình chữ nhật làm nền của nút
-                using (Brush brush = new SolidBrush(buttonBackColor))
+                if (frmThemDN.kiemTraThanhCong)
                 {
-                    e.Graphics.FillRectangle(brush, buttonRect);
+                    loadCSDienNuoc();
                 }
+            };
+            frmThemDN.ShowDialog();
+            HideOverlay();
+        }
 
-                // Vẽ text
-                TextRenderer.DrawText(
-                    e.Graphics,
-                    "Lưu",
-                    e.CellStyle.Font,
-                    buttonRect,
-                    buttonTextColor,
-                    TextFormatFlags.HorizontalCenter | TextFormatFlags.VerticalCenter
-                );
+        private void btnSuaChiSo_Click(object sender, EventArgs e)
+        {
+            ChiSoDienNuocDTO chiSoDienNuocDTO = new ChiSoDienNuocDTO();
 
-                // Ngăn DataGridView vẽ lại ô theo kiểu mặc định
-                e.Handled = true;
+            chiSoDienNuocDTO.MaCS = int.Parse(dgvChiSo.CurrentRow.Cells["MACS"].Value.ToString());
+            chiSoDienNuocDTO.MaPT = dgvChiSo.CurrentRow.Cells["MAPT"].Value.ToString();
+            chiSoDienNuocDTO.NgayThang = DateTime.Parse(dgvChiSo.CurrentRow.Cells["NGAYTHANG"].Value.ToString());
+            chiSoDienNuocDTO.ChiSoDien = int.Parse(dgvChiSo.CurrentRow.Cells["CHISODIEN"].Value.ToString());
+            chiSoDienNuocDTO.ChiSoNuoc = int.Parse(dgvChiSo.CurrentRow.Cells["CHISONUOC"].Value.ToString());
+
+            ShowOverlay();
+            frmSuaDienNuoc frmSuaDN = new frmSuaDienNuoc(chiSoDienNuocDTO);
+            frmSuaDN.FormClosed += (s, args) =>
+            {
+                if (frmSuaDN.kiemTraThanhCong)
+                {
+                    loadCSDienNuoc();
+                }
+            };
+            frmSuaDN.ShowDialog();
+            HideOverlay();
+        }
+
+        private void btnXoaChiSo_Click(object sender, EventArgs e)
+        {
+            ChiSoDienNuocDTO chiSoDienNuocDTO = new ChiSoDienNuocDTO();
+
+            chiSoDienNuocDTO.MaCS = int.Parse(dgvChiSo.CurrentRow.Cells["MACS"].Value.ToString());
+            chiSoDienNuocDTO.MaPT = dgvChiSo.CurrentRow.Cells["MAPT"].Value.ToString();
+            chiSoDienNuocDTO.NgayThang = DateTime.Parse(dgvChiSo.CurrentRow.Cells["NGAYTHANG"].Value.ToString());
+            chiSoDienNuocDTO.ChiSoDien = int.Parse(dgvChiSo.CurrentRow.Cells["CHISODIEN"].Value.ToString());
+            chiSoDienNuocDTO.ChiSoNuoc = int.Parse(dgvChiSo.CurrentRow.Cells["CHISONUOC"].Value.ToString());
+
+            ShowOverlay();
+            frmXoaDienNuoc frmXoaDN = new frmXoaDienNuoc(chiSoDienNuocDTO);
+            frmXoaDN.FormClosed += (s, args) =>
+            {
+                if (frmXoaDN.kiemTraThanhCong)
+                {
+                    loadCSDienNuoc();
+                }
+            };
+            frmXoaDN.ShowDialog();
+            HideOverlay();
+        }
+
+        private void btnTraCuu_Click(object sender, EventArgs e)
+        {
+            dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(txtTraCuu.Text);
+        }
+
+        private void txtTraCuu_TextChanged(object sender, EventArgs e)
+        {
+            string keyword = txtTraCuu.Text.Trim();
+
+            if (string.IsNullOrEmpty(keyword))
+            {
+                dgvChiSo.DataSource = chiSoDienNuocBUL.loadDienNuoc();
+            }
+            else
+            {
+                dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(keyword);
             }
         }
     }
