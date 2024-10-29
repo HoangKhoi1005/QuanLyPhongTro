@@ -114,7 +114,7 @@ namespace DAL
             }
         }
 
-        public List<DichVuDTO> TimKiemDichVu(string tendv)
+        public List<DichVuDTO> TimKiemDichVu(string tendv )
         {
             try
             {
