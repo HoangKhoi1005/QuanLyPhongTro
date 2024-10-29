@@ -66,5 +66,15 @@ namespace BUL
         {
             return phongDAL.SuaPhong(phong);
         }
+
+        public bool XoaPhong(string maPT)
+        {
+            return phongDAL.XoaPhong(maPT);
+        }
+
+        public List<PhongDTO> LocPhongTheoGia(string gia, string maNT)
+        {
+            return phongDAL.LocPhongTheoGia(gia, maNT);
+        }
     }
 }

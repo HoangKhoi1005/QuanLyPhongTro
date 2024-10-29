@@ -280,6 +280,12 @@
     <Compile Include="frmXoaNT.Designer.cs">
       <DependentUpon>frmXoaNT.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmXoaPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXoaPhong.Designer.cs">
+      <DependentUpon>frmXoaPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmXoaSDDV.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -431,6 +437,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmXoaNT.resx">
       <DependentUpon>frmXoaNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXoaPhong.resx">
+      <DependentUpon>frmXoaPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmXoaSDDV.resx">
       <DependentUpon>frmXoaSDDV.cs</DependentUpon>

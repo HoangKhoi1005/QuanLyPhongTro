@@ -24,6 +24,7 @@ namespace GUI
             InitializeComponent();
             LoadNhaTro();
             LoadTrangThai();
+            LoadCboGia();
         }
         internal List<string> dsTenTaiSan = new List<string>();
 
@@ -132,11 +133,30 @@ namespace GUI
                 uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
                 uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                 uCPhong.UcClick += UCPhong_SuaPhongClick;
+                uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
                 groupDSPhong.Controls.Add(uCPhong);
             }
+        }
+
+        private void UCPhong_XoaPhongClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            ShowOverlay();
+            frmXoaPhong frmXoaPhong = new frmXoaPhong(phong, this);
+            frmXoaPhong.FormClosed += (s, args) =>
+            {
+                if (frmXoaPhong.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmXoaPhong.ShowDialog();
+            HideOverlay();
         }
 
         private void UCPhong_SuaPhongClick(object sender, EventArgs e)
@@ -254,6 +274,7 @@ namespace GUI
                     uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
                     uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                     uCPhong.UcClick += UCPhong_SuaPhongClick;
+                    uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -268,7 +289,7 @@ namespace GUI
 
             List<TrangThaiPhongDTO> danhSachTrangThai = new List<TrangThaiPhongDTO>
             {
-                new TrangThaiPhongDTO { MaTT = "all", TenTrangThai = "Tất cả" }
+                new TrangThaiPhongDTO { MaTT = "all", TenTrangThai = "Tất cả trạng thái" }
             };
             danhSachTrangThai.AddRange(tatCaTrangThai);
 
@@ -314,6 +335,7 @@ namespace GUI
                     uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
                     uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                     uCPhong.UcClick += UCPhong_SuaPhongClick;
+                    uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -367,6 +389,7 @@ namespace GUI
                 uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
                 uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                 uCPhong.UcClick += UCPhong_SuaPhongClick;
+                uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;
@@ -374,6 +397,65 @@ namespace GUI
 
             }
             HideOverlay();
+        }
+
+        private void cboGia_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (cboGia.SelectedIndex == 0)
+            {
+                LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+            }
+            else
+            {
+                string gia = cboGia.SelectedItem.ToString();
+                gia = gia.Replace(".", "");
+                List<PhongDTO> lstPhong = phongBUL.LocPhongTheoGia(gia, nhaTroDangChon.MaNT);
+                groupDSPhong.Controls.Clear();
+
+                int ucXPosition = 19;
+                int ucYPosition = 19;
+                int kt = 0;
+
+                foreach (var phong in lstPhong)
+                {
+                    UCPhong uCPhong = new UCPhong();
+                    if (kt == 6)
+                    {
+                        ucXPosition = 19;
+                        ucYPosition += 19 + uCPhong.Width;
+                        kt = 0;
+                    }
+
+                    uCPhong.LoadPhongTro(phong);
+                    uCPhong.Left = ucXPosition;
+                    uCPhong.Top = ucYPosition;
+                    uCPhong.Tag = phong;
+                    uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+                    uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
+                    uCPhong.UcClick += UCPhong_SuaPhongClick;
+                    uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+
+                    ucXPosition += uCPhong.Width + 19;
+                    kt++;
+                    groupDSPhong.Controls.Add(uCPhong);
+                }
+            }
+        }
+
+        public void LoadCboGia()
+        {
+            cboGia.Items.Add("Tất cả giá phòng");
+            cboGia.Items.Add("1.000.000");
+            cboGia.Items.Add("1.500.000");
+            cboGia.Items.Add("2.000.000");
+            cboGia.Items.Add("2.500.000");
+            cboGia.Items.Add("3.000.000");
+            cboGia.Items.Add("3.500.000");
+            cboGia.Items.Add("4.000.000");
+            cboGia.Items.Add("4.500.000");
+            cboGia.Items.Add("5.000.000");
+            cboGia.Items.Add("5.500.000");
+            cboGia.SelectedIndex = 0;
         }
     }
 }

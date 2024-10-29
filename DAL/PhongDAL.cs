@@ -295,5 +295,50 @@ namespace DAL
             string sql = "UPDATE PHONGTRO SET TENPHONG = N'" + phong.TenPhong + "', DONGIA = " + phong.DonGia + ", CHIEUDAI = " + phong.ChieuDai + ", CHIEURONG = " + phong.ChieuRong + ", SOLUONGNGUOITD = " + phong.SoLuongNguoiTD + ", MOTA = N'" + phong.MoTa + "', ANH = '" + phong.Anh + "', MATT = '" + phong.MaTT + "', MaNT = '" + phong.MaNT + "' WHERE MAPT = '" + phong.MaPT + "'";
             return conn.ExecuteNonQuery(sql) > 0;
         }
+
+        public bool XoaPhong(string maPT)
+        {
+            string sql = "UPDATE PHONGTRO SET DAXOA = 1 WHERE MAPT = '" + maPT + "'";
+            return conn.ExecuteNonQuery(sql) > 0;
+        }
+
+        public List<PhongDTO> LocPhongTheoGia(string gia, string maNT)
+        {
+            List<PhongDTO> danhSachPhong = new List<PhongDTO>();
+
+            try
+            {
+                string sql = "SELECT * FROM PHONGTRO WHERE DONGIA <= " + gia + " AND MANT = '" + maNT + "' AND DAXOA = 0";
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                while (reader.Read())
+                {
+                    PhongDTO phong = new PhongDTO();
+
+                    phong.MaPT = reader["MAPT"].ToString();
+                    phong.MaNT = reader["MANT"].ToString();
+                    phong.MaTT = reader["MATT"].ToString();
+                    phong.TenPhong = reader["TENPHONG"].ToString();
+                    phong.DonGia = Convert.ToDecimal(reader["DONGIA"]);
+                    phong.ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]);
+                    phong.ChieuRong = Convert.ToDouble(reader["CHIEURONG"]);
+                    phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
+                    phong.MoTa = reader["MOTA"].ToString();
+                    phong.Anh = reader["ANH"].ToString();
+
+                    danhSachPhong.Add(phong);
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lọc phòng theo giá: " + ex.Message);
+            }
+
+            return danhSachPhong;
+        }
     }
 }
