@@ -36,10 +36,16 @@ namespace DAL
     partial void InsertDICHVU(DICHVU instance);
     partial void UpdateDICHVU(DICHVU instance);
     partial void DeleteDICHVU(DICHVU instance);
+    partial void InsertCHISODIENNUOC(CHISODIENNUOC instance);
+    partial void UpdateCHISODIENNUOC(CHISODIENNUOC instance);
+    partial void DeleteCHISODIENNUOC(CHISODIENNUOC instance);
+    partial void InsertPHONGTRO(PHONGTRO instance);
+    partial void UpdatePHONGTRO(PHONGTRO instance);
+    partial void DeletePHONGTRO(PHONGTRO instance);
     #endregion
 		
 		public QLPTDataContext() : 
-				base(global::DAL.Properties.Settings.Default.QL_NhaTroConnectionString1, mappingSource)
+				base(global::DAL.Properties.Settings.Default.QL_NhaTroConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -81,6 +87,22 @@ namespace DAL
 			get
 			{
 				return this.GetTable<DICHVU>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CHISODIENNUOC> CHISODIENNUOCs
+		{
+			get
+			{
+				return this.GetTable<CHISODIENNUOC>();
+			}
+		}
+		
+		public System.Data.Linq.Table<PHONGTRO> PHONGTROs
+		{
+			get
+			{
+				return this.GetTable<PHONGTRO>();
 			}
 		}
 	}
@@ -470,6 +492,535 @@ namespace DAL
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CHISODIENNUOC")]
+	public partial class CHISODIENNUOC : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _MACS;
+		
+		private string _MAPT;
+		
+		private System.DateTime _NGAYTHANG;
+		
+		private int _CHISODIEN;
+		
+		private int _CHISONUOC;
+		
+		private EntityRef<PHONGTRO> _PHONGTRO;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMACSChanging(int value);
+    partial void OnMACSChanged();
+    partial void OnMAPTChanging(string value);
+    partial void OnMAPTChanged();
+    partial void OnNGAYTHANGChanging(System.DateTime value);
+    partial void OnNGAYTHANGChanged();
+    partial void OnCHISODIENChanging(int value);
+    partial void OnCHISODIENChanged();
+    partial void OnCHISONUOCChanging(int value);
+    partial void OnCHISONUOCChanged();
+    #endregion
+		
+		public CHISODIENNUOC()
+		{
+			this._PHONGTRO = default(EntityRef<PHONGTRO>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MACS", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int MACS
+		{
+			get
+			{
+				return this._MACS;
+			}
+			set
+			{
+				if ((this._MACS != value))
+				{
+					this.OnMACSChanging(value);
+					this.SendPropertyChanging();
+					this._MACS = value;
+					this.SendPropertyChanged("MACS");
+					this.OnMACSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPT", DbType="NVarChar(20) NOT NULL", CanBeNull=false)]
+		public string MAPT
+		{
+			get
+			{
+				return this._MAPT;
+			}
+			set
+			{
+				if ((this._MAPT != value))
+				{
+					if (this._PHONGTRO.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnMAPTChanging(value);
+					this.SendPropertyChanging();
+					this._MAPT = value;
+					this.SendPropertyChanged("MAPT");
+					this.OnMAPTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NGAYTHANG", DbType="Date NOT NULL")]
+		public System.DateTime NGAYTHANG
+		{
+			get
+			{
+				return this._NGAYTHANG;
+			}
+			set
+			{
+				if ((this._NGAYTHANG != value))
+				{
+					this.OnNGAYTHANGChanging(value);
+					this.SendPropertyChanging();
+					this._NGAYTHANG = value;
+					this.SendPropertyChanged("NGAYTHANG");
+					this.OnNGAYTHANGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CHISODIEN", DbType="Int NOT NULL")]
+		public int CHISODIEN
+		{
+			get
+			{
+				return this._CHISODIEN;
+			}
+			set
+			{
+				if ((this._CHISODIEN != value))
+				{
+					this.OnCHISODIENChanging(value);
+					this.SendPropertyChanging();
+					this._CHISODIEN = value;
+					this.SendPropertyChanged("CHISODIEN");
+					this.OnCHISODIENChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CHISONUOC", DbType="Int NOT NULL")]
+		public int CHISONUOC
+		{
+			get
+			{
+				return this._CHISONUOC;
+			}
+			set
+			{
+				if ((this._CHISONUOC != value))
+				{
+					this.OnCHISONUOCChanging(value);
+					this.SendPropertyChanging();
+					this._CHISONUOC = value;
+					this.SendPropertyChanged("CHISONUOC");
+					this.OnCHISONUOCChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHONGTRO_CHISODIENNUOC", Storage="_PHONGTRO", ThisKey="MAPT", OtherKey="MAPT", IsForeignKey=true)]
+		public PHONGTRO PHONGTRO
+		{
+			get
+			{
+				return this._PHONGTRO.Entity;
+			}
+			set
+			{
+				PHONGTRO previousValue = this._PHONGTRO.Entity;
+				if (((previousValue != value) 
+							|| (this._PHONGTRO.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._PHONGTRO.Entity = null;
+						previousValue.CHISODIENNUOCs.Remove(this);
+					}
+					this._PHONGTRO.Entity = value;
+					if ((value != null))
+					{
+						value.CHISODIENNUOCs.Add(this);
+						this._MAPT = value.MAPT;
+					}
+					else
+					{
+						this._MAPT = default(string);
+					}
+					this.SendPropertyChanged("PHONGTRO");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.PHONGTRO")]
+	public partial class PHONGTRO : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _MAPT;
+		
+		private string _MANT;
+		
+		private string _MATT;
+		
+		private string _TENPHONG;
+		
+		private System.Nullable<decimal> _DONGIA;
+		
+		private System.Nullable<double> _CHIEUDAI;
+		
+		private System.Nullable<double> _CHIEURONG;
+		
+		private System.Nullable<int> _SOLUONGNGUOITD;
+		
+		private string _MOTA;
+		
+		private string _ANH;
+		
+		private bool _DAXOA;
+		
+		private EntitySet<CHISODIENNUOC> _CHISODIENNUOCs;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnMAPTChanging(string value);
+    partial void OnMAPTChanged();
+    partial void OnMANTChanging(string value);
+    partial void OnMANTChanged();
+    partial void OnMATTChanging(string value);
+    partial void OnMATTChanged();
+    partial void OnTENPHONGChanging(string value);
+    partial void OnTENPHONGChanged();
+    partial void OnDONGIAChanging(System.Nullable<decimal> value);
+    partial void OnDONGIAChanged();
+    partial void OnCHIEUDAIChanging(System.Nullable<double> value);
+    partial void OnCHIEUDAIChanged();
+    partial void OnCHIEURONGChanging(System.Nullable<double> value);
+    partial void OnCHIEURONGChanged();
+    partial void OnSOLUONGNGUOITDChanging(System.Nullable<int> value);
+    partial void OnSOLUONGNGUOITDChanged();
+    partial void OnMOTAChanging(string value);
+    partial void OnMOTAChanged();
+    partial void OnANHChanging(string value);
+    partial void OnANHChanged();
+    partial void OnDAXOAChanging(bool value);
+    partial void OnDAXOAChanged();
+    #endregion
+		
+		public PHONGTRO()
+		{
+			this._CHISODIENNUOCs = new EntitySet<CHISODIENNUOC>(new Action<CHISODIENNUOC>(this.attach_CHISODIENNUOCs), new Action<CHISODIENNUOC>(this.detach_CHISODIENNUOCs));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MAPT", DbType="NVarChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string MAPT
+		{
+			get
+			{
+				return this._MAPT;
+			}
+			set
+			{
+				if ((this._MAPT != value))
+				{
+					this.OnMAPTChanging(value);
+					this.SendPropertyChanging();
+					this._MAPT = value;
+					this.SendPropertyChanged("MAPT");
+					this.OnMAPTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MANT", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string MANT
+		{
+			get
+			{
+				return this._MANT;
+			}
+			set
+			{
+				if ((this._MANT != value))
+				{
+					this.OnMANTChanging(value);
+					this.SendPropertyChanging();
+					this._MANT = value;
+					this.SendPropertyChanged("MANT");
+					this.OnMANTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MATT", DbType="NVarChar(10) NOT NULL", CanBeNull=false)]
+		public string MATT
+		{
+			get
+			{
+				return this._MATT;
+			}
+			set
+			{
+				if ((this._MATT != value))
+				{
+					this.OnMATTChanging(value);
+					this.SendPropertyChanging();
+					this._MATT = value;
+					this.SendPropertyChanged("MATT");
+					this.OnMATTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TENPHONG", DbType="NVarChar(30)")]
+		public string TENPHONG
+		{
+			get
+			{
+				return this._TENPHONG;
+			}
+			set
+			{
+				if ((this._TENPHONG != value))
+				{
+					this.OnTENPHONGChanging(value);
+					this.SendPropertyChanging();
+					this._TENPHONG = value;
+					this.SendPropertyChanged("TENPHONG");
+					this.OnTENPHONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DONGIA", DbType="Money")]
+		public System.Nullable<decimal> DONGIA
+		{
+			get
+			{
+				return this._DONGIA;
+			}
+			set
+			{
+				if ((this._DONGIA != value))
+				{
+					this.OnDONGIAChanging(value);
+					this.SendPropertyChanging();
+					this._DONGIA = value;
+					this.SendPropertyChanged("DONGIA");
+					this.OnDONGIAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CHIEUDAI", DbType="Float")]
+		public System.Nullable<double> CHIEUDAI
+		{
+			get
+			{
+				return this._CHIEUDAI;
+			}
+			set
+			{
+				if ((this._CHIEUDAI != value))
+				{
+					this.OnCHIEUDAIChanging(value);
+					this.SendPropertyChanging();
+					this._CHIEUDAI = value;
+					this.SendPropertyChanged("CHIEUDAI");
+					this.OnCHIEUDAIChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CHIEURONG", DbType="Float")]
+		public System.Nullable<double> CHIEURONG
+		{
+			get
+			{
+				return this._CHIEURONG;
+			}
+			set
+			{
+				if ((this._CHIEURONG != value))
+				{
+					this.OnCHIEURONGChanging(value);
+					this.SendPropertyChanging();
+					this._CHIEURONG = value;
+					this.SendPropertyChanged("CHIEURONG");
+					this.OnCHIEURONGChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SOLUONGNGUOITD", DbType="Int")]
+		public System.Nullable<int> SOLUONGNGUOITD
+		{
+			get
+			{
+				return this._SOLUONGNGUOITD;
+			}
+			set
+			{
+				if ((this._SOLUONGNGUOITD != value))
+				{
+					this.OnSOLUONGNGUOITDChanging(value);
+					this.SendPropertyChanging();
+					this._SOLUONGNGUOITD = value;
+					this.SendPropertyChanged("SOLUONGNGUOITD");
+					this.OnSOLUONGNGUOITDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MOTA", DbType="NVarChar(255)")]
+		public string MOTA
+		{
+			get
+			{
+				return this._MOTA;
+			}
+			set
+			{
+				if ((this._MOTA != value))
+				{
+					this.OnMOTAChanging(value);
+					this.SendPropertyChanging();
+					this._MOTA = value;
+					this.SendPropertyChanged("MOTA");
+					this.OnMOTAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ANH", DbType="NVarChar(MAX)")]
+		public string ANH
+		{
+			get
+			{
+				return this._ANH;
+			}
+			set
+			{
+				if ((this._ANH != value))
+				{
+					this.OnANHChanging(value);
+					this.SendPropertyChanging();
+					this._ANH = value;
+					this.SendPropertyChanged("ANH");
+					this.OnANHChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DAXOA", DbType="Bit NOT NULL")]
+		public bool DAXOA
+		{
+			get
+			{
+				return this._DAXOA;
+			}
+			set
+			{
+				if ((this._DAXOA != value))
+				{
+					this.OnDAXOAChanging(value);
+					this.SendPropertyChanging();
+					this._DAXOA = value;
+					this.SendPropertyChanged("DAXOA");
+					this.OnDAXOAChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="PHONGTRO_CHISODIENNUOC", Storage="_CHISODIENNUOCs", ThisKey="MAPT", OtherKey="MAPT")]
+		public EntitySet<CHISODIENNUOC> CHISODIENNUOCs
+		{
+			get
+			{
+				return this._CHISODIENNUOCs;
+			}
+			set
+			{
+				this._CHISODIENNUOCs.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_CHISODIENNUOCs(CHISODIENNUOC entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHONGTRO = this;
+		}
+		
+		private void detach_CHISODIENNUOCs(CHISODIENNUOC entity)
+		{
+			this.SendPropertyChanging();
+			entity.PHONGTRO = null;
 		}
 	}
 }

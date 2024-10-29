@@ -77,6 +77,8 @@ namespace GUI
             dichVuDTO.MoTa = dgvDichVu.CurrentRow.Cells["MOTA"].Value.ToString();
             dichVuDTO.DaXoa = bool.Parse(dgvDichVu.CurrentRow.Cells["DAXOA"].Value.ToString());
 
+            
+
             ShowOverlay();
             frmSuaDichVu frmSuaDV = new frmSuaDichVu(dichVuDTO);
             frmSuaDV.FormClosed += (s, args) =>
