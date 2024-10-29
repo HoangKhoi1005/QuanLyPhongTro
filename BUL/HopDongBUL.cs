@@ -47,5 +47,15 @@ namespace BUL
         {
             return hopDongDAL.LayDSHopDongDataGirdView();
         }
+
+        public HopDongDTO LayHopDongTheoMaPhong(string maPhong)
+        {
+            return hopDongDAL.LayHopDongTheoMaPhong(maPhong);
+        }
+
+        public bool CapNhatHopDong(HopDongDTO hopDong)
+        {
+            return hopDongDAL.CapNhatHopDong(hopDong);
+        }
     }
 }

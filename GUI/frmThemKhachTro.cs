@@ -36,7 +36,13 @@ namespace GUI
             }    
         }
 
+        public frmThemKhachTro(PhongDTO phong, frmPhong frmPhong) : this(phong)
+        {
+            this.frmPhong = frmPhong;
+        }
+
         Form overlayPanel;
+        private frmPhong frmPhong;
 
         private void ShowOverlay()
         {

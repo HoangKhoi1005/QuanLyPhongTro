@@ -69,6 +69,7 @@
             this.guna2Panel2.Name = "guna2Panel2";
             this.guna2Panel2.Size = new System.Drawing.Size(250, 250);
             this.guna2Panel2.TabIndex = 24;
+            this.guna2Panel2.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.guna2Panel2_MouseDoubleClick);
             // 
             // lblSoLuong
             // 

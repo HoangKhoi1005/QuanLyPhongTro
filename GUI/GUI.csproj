@@ -148,17 +148,35 @@
     <Compile Include="frmSuaDichVu.Designer.cs">
       <DependentUpon>frmSuaDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSuaKhachTro.cs">
+       <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaKhachTro.Designer.cs">
+       <DependentUpon>frmSuaKhachTro.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSuaDienNuoc.cs">
-      <SubType>Form</SubType>
+       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuaDienNuoc.Designer.cs">
-      <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
+       <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaNT.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuaNT.Designer.cs">
       <DependentUpon>frmSuaNT.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSuaPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaPhong.Designer.cs">
+      <DependentUpon>frmSuaPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSuaSDDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaSDDV.Designer.cs">
+      <DependentUpon>frmSuaSDDV.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaTaiSan.cs">
       <SubType>Form</SubType>
@@ -202,6 +220,12 @@
     <Compile Include="frmThemPhong.Designer.cs">
       <DependentUpon>frmThemPhong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmThemSDDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemSDDV.Designer.cs">
+      <DependentUpon>frmThemSDDV.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThemTaiSan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -238,6 +262,12 @@
     <Compile Include="frmXoaDichVu.Designer.cs">
       <DependentUpon>frmXoaDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmXoaKhachTro.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXoaKhachTro.Designer.cs">
+      <DependentUpon>frmXoaKhachTro.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmXoaDienNuoc.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -250,13 +280,49 @@
     <Compile Include="frmXoaNT.Designer.cs">
       <DependentUpon>frmXoaNT.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmXoaSDDV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXoaSDDV.Designer.cs">
+      <DependentUpon>frmXoaSDDV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmXoaTaiSan.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXoaTaiSan.Designer.cs">
+      <DependentUpon>frmXoaTaiSan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCDichVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDichVu.Designer.cs">
+      <DependentUpon>UCDichVu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCHopDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCHopDong.Designer.cs">
+      <DependentUpon>UCHopDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="UCPhong.Designer.cs">
       <DependentUpon>UCPhong.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCThanhVien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCThanhVien.Designer.cs">
+      <DependentUpon>UCThanhVien.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCThongTinPhongTro.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCThongTinPhongTro.Designer.cs">
+      <DependentUpon>UCThongTinPhongTro.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="frmChiSoDien.resx">
       <DependentUpon>frmChiSoDien.cs</DependentUpon>
@@ -300,11 +366,20 @@
     <EmbeddedResource Include="frmSuaDichVu.resx">
       <DependentUpon>frmSuaDichVu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaKhachTro.resx">
+      <DependentUpon>frmSuaKhachTro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSuaDienNuoc.resx">
       <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSuaNT.resx">
       <DependentUpon>frmSuaNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaPhong.resx">
+      <DependentUpon>frmSuaPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaSDDV.resx">
+      <DependentUpon>frmSuaSDDV.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSuaTaiSan.resx">
       <DependentUpon>frmSuaTaiSan.cs</DependentUpon>
@@ -327,6 +402,9 @@
     <EmbeddedResource Include="frmThemPhong.resx">
       <DependentUpon>frmThemPhong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmThemSDDV.resx">
+      <DependentUpon>frmThemSDDV.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmThemTaiSan.resx">
       <DependentUpon>frmThemTaiSan.cs</DependentUpon>
     </EmbeddedResource>
@@ -345,11 +423,20 @@
     <EmbeddedResource Include="frmXoaDichVu.resx">
       <DependentUpon>frmXoaDichVu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmXoaKhachTro.resx">
+      <DependentUpon>frmXoaKhachTro.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmXoaDienNuoc.resx">
       <DependentUpon>frmXoaDienNuoc.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmXoaNT.resx">
       <DependentUpon>frmXoaNT.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXoaSDDV.resx">
+      <DependentUpon>frmXoaSDDV.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXoaTaiSan.resx">
+      <DependentUpon>frmXoaTaiSan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -361,8 +448,20 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCDichVu.resx">
+      <DependentUpon>UCDichVu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCHopDong.resx">
+      <DependentUpon>UCHopDong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCPhong.resx">
       <DependentUpon>UCPhong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCThanhVien.resx">
+      <DependentUpon>UCThanhVien.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCThongTinPhongTro.resx">
+      <DependentUpon>UCThongTinPhongTro.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -443,6 +542,10 @@
   <ItemGroup>
     <None Include="Resources\Filter.png" />
     <None Include="Resources\z5952240387613_efbdaf629b9afa1f2040590b686dca10.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Resources\DefaultImage.png" />
+    <None Include="Resources\Image1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

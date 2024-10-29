@@ -26,8 +26,8 @@ namespace GUI
             LoadTrangThai();
         }
         internal List<string> dsTenTaiSan = new List<string>();
+
         Form overlayPanel;
-        
 
         private void ShowOverlay()
         {
@@ -130,11 +130,31 @@ namespace GUI
                 uCPhong.Top = ucYPosition;
                 uCPhong.Tag = phong;
                 uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+                uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
+                uCPhong.UcClick += UCPhong_SuaPhongClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
                 groupDSPhong.Controls.Add(uCPhong);
             }
+        }
+
+        private void UCPhong_SuaPhongClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            ShowOverlay();
+            frmSuaPhong frmSuaPhong = new frmSuaPhong(phong, this);
+            frmSuaPhong.FormClosed += (s, args) =>
+            {
+                if (frmSuaPhong.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmSuaPhong.ShowDialog();
+            HideOverlay();
         }
 
         private void UCPhong_ThemKhachTroClick(object sender, EventArgs e)
@@ -232,6 +252,8 @@ namespace GUI
                     uCPhong.Top = ucYPosition;
                     uCPhong.Tag = phong;
                     uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+                    uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
+                    uCPhong.UcClick += UCPhong_SuaPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -290,6 +312,8 @@ namespace GUI
                     uCPhong.Top = ucYPosition;
                     uCPhong.Tag = phong;
                     uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+                    uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
+                    uCPhong.UcClick += UCPhong_SuaPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -341,6 +365,8 @@ namespace GUI
                 uCPhong.Top = ucYPosition;
                 uCPhong.Tag = phong;
                 uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+                uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
+                uCPhong.UcClick += UCPhong_SuaPhongClick;
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;

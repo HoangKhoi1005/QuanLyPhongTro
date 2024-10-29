@@ -290,5 +290,10 @@ namespace DAL
             return danhSachPhong;
         }
 
+        public bool SuaPhong(PhongDTO phong)
+        {
+            string sql = "UPDATE PHONGTRO SET TENPHONG = N'" + phong.TenPhong + "', DONGIA = " + phong.DonGia + ", CHIEUDAI = " + phong.ChieuDai + ", CHIEURONG = " + phong.ChieuRong + ", SOLUONGNGUOITD = " + phong.SoLuongNguoiTD + ", MOTA = N'" + phong.MoTa + "', ANH = '" + phong.Anh + "', MATT = '" + phong.MaTT + "', MaNT = '" + phong.MaNT + "' WHERE MAPT = '" + phong.MaPT + "'";
+            return conn.ExecuteNonQuery(sql) > 0;
+        }
     }
 }

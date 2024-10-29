@@ -47,5 +47,10 @@ namespace BUL
         {
             return taiSanDAL.LayDSTenTaiSan();
         }
+
+        public bool XoaTaiSan(string maTS)
+        {
+            return taiSanDAL.XoaTaiSan(maTS);
+        }
     }
 }

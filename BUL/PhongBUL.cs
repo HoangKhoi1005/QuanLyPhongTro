@@ -61,5 +61,10 @@ namespace BUL
         {
             return phongDAL.LocPhongTheoTaiSan(dsTaiSan, maNT);
         }
+
+        public bool SuaPhong(PhongDTO phong)
+        {
+            return phongDAL.SuaPhong(phong);
+        }
     }
 }

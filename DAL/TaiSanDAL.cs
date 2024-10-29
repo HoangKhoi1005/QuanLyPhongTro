@@ -33,7 +33,7 @@ namespace DAL
         public List<TaiSanDTO> LayDSTaiSan()
         {
             List<TaiSanDTO> dsTaiSan = new List<TaiSanDTO>();
-            string sql = "SELECT * FROM TaiSan";
+            string sql = "SELECT * FROM TaiSan WHERE DAXOA = 0";
             using (var reader = db.ExecuteQuery(sql))
             {
                 while (reader.Read())
@@ -112,7 +112,7 @@ namespace DAL
         public List<string> LayDSTenTaiSan()
         {
             List<string> dsTenTaiSan = new List<string>();
-            string sql = "SELECT DISTINCT TenTaiSan FROM TaiSan";
+            string sql = "SELECT DISTINCT TenTaiSan FROM TaiSan WHERE DAXOA = 0";
             using (var reader = db.ExecuteQuery(sql))
             {
                 while (reader.Read())
@@ -121,6 +121,12 @@ namespace DAL
                 }
             }
             return dsTenTaiSan;
+        }
+
+        public bool XoaTaiSan(string maTS)
+        {
+            string sql = "UPDATE TaiSan SET DaXoa = 1 WHERE MaTS = '" + maTS + "'";
+            return db.ExecuteNonQuery(sql) > 0;
         }
     }
 }
