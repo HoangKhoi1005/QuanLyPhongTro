@@ -49,6 +49,7 @@
     <Compile Include="HopDongDAL.cs" />
     <Compile Include="KhachTroDAL.cs" />
     <Compile Include="LichSuChuyenPhongDAL.cs" />
+    <Compile Include="NhanVienDAL.cs" />
     <Compile Include="NhaTroDAL.cs" />
     <Compile Include="PhieuDatPhongDAL.cs" />
     <Compile Include="PhieuTraPhongDAL.cs" />
