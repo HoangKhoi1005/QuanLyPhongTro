@@ -239,7 +239,7 @@
             this.btnKyLuat.FlatAppearance.BorderSize = 0;
             this.btnKyLuat.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnKyLuat.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnKyLuat.IconChar = FontAwesome.Sharp.IconChar.HandHoldingUsd;
+            this.btnKyLuat.IconChar = FontAwesome.Sharp.IconChar.FileShield;
             this.btnKyLuat.IconColor = System.Drawing.Color.Gainsboro;
             this.btnKyLuat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnKyLuat.IconSize = 32;
@@ -253,6 +253,7 @@
             this.btnKyLuat.Text = "Kỷ luật";
             this.btnKyLuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnKyLuat.UseVisualStyleBackColor = true;
+            this.btnKyLuat.Click += new System.EventHandler(this.btnKyLuat_Click);
             // 
             // btnTienPhatSinh
             // 

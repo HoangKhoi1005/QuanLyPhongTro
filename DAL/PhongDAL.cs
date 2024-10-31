@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using DTO;
 using SQLServerProvider;
 
@@ -164,13 +165,42 @@ namespace DAL
             return maNT + "-P" + so;
         }
 
-        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string maNT)
+        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong,string tenKhachTro, string maNT)
         {
             List<PhongDTO> danhSachPhong = new List<PhongDTO>();
 
             try
             {
-                string sql = "SELECT * FROM PHONGTRO WHERE MAPT LIKE '%" + maPhong + "%' AND MANT = '" + maNT + "' AND DAXOA = 0";
+                string sql = "SELECT DISTINCT PHONGTRO.MAPT, PHONGTRO.MANT, PHONGTRO.MATT, PHONGTRO.TENPHONG, " +
+                 "PHONGTRO.DONGIA, PHONGTRO.CHIEUDAI, PHONGTRO.CHIEURONG, PHONGTRO.SOLUONGNGUOITD, " +
+                 "PHONGTRO.MOTA, PHONGTRO.ANH " +
+                 "FROM PHONGTRO, HOPDONG, KHACHTRO_HOPDONG, KHACHTRO " +
+                 "WHERE PHONGTRO.MAPT = HOPDONG.MAPT " +
+                 "AND HOPDONG.MAHOPDONG = KHACHTRO_HOPDONG.MAHOPDONG " +
+                 "AND KHACHTRO_HOPDONG.MAKT = KHACHTRO.MAKT " +
+                 "AND PHONGTRO.DAXOA = 0 " +
+                 "AND PHONGTRO.MANT = '" + maNT + "'";
+
+                if (!string.IsNullOrEmpty(maPhong) || !string.IsNullOrEmpty(tenKhachTro))
+                {
+                    sql += " AND (";
+
+                    if (!string.IsNullOrEmpty(maPhong))
+                    {
+                        sql += "PHONGTRO.MAPT LIKE '%" + maPhong + "%'";
+                    }
+
+                    if (!string.IsNullOrEmpty(tenKhachTro))
+                    {
+                        if (!string.IsNullOrEmpty(maPhong))
+                        {
+                            sql += " OR ";
+                        }
+                        sql += "KHACHTRO.HOTEN LIKE N'%" + tenKhachTro + "%'";
+                    }
+
+                    sql += ")";
+                }
 
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -336,6 +366,121 @@ namespace DAL
             catch (Exception ex)
             {
                 Console.WriteLine("Lỗi khi lọc phòng theo giá: " + ex.Message);
+            }
+
+            return danhSachPhong;
+        }
+
+        //Danh sách phòng trống theo nhà trọ
+        public List<PhongDTO> LayPhongTrongTheoNhaTro(string maNT)
+        {
+            List<PhongDTO> danhSachPhong = new List<PhongDTO>();
+
+            try
+            {
+                string sql = "SELECT * FROM PHONGTRO WHERE MATT = 'TT01' AND MANT = '" + maNT + "' AND DAXOA = 0";
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                while (reader.Read())
+                {
+                    PhongDTO phong = new PhongDTO();
+
+                    phong.MaPT = reader["MAPT"].ToString();
+                    phong.MaNT = reader["MANT"].ToString();
+                    phong.MaTT = reader["MATT"].ToString();
+                    phong.TenPhong = reader["TENPHONG"].ToString();
+                    phong.DonGia = Convert.ToDecimal(reader["DONGIA"]);
+                    phong.ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]);
+                    phong.ChieuRong = Convert.ToDouble(reader["CHIEURONG"]);
+                    phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
+                    phong.MoTa = reader["MOTA"].ToString();
+                    phong.Anh = reader["ANH"].ToString();
+
+                    danhSachPhong.Add(phong);
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách phòng trống: " + ex.Message);
+            }
+
+            return danhSachPhong;
+        }
+
+        public PhongDTO LayPhongTheoMa(string maPT)
+        {
+            PhongDTO phong = new PhongDTO();
+
+            try
+            {
+                string sql = "SELECT * FROM PHONGTRO WHERE MAPT = '" + maPT + "'";
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                if (reader.Read())
+                {
+                    phong.MaPT = reader["MAPT"].ToString();
+                    phong.MaNT = reader["MANT"].ToString();
+                    phong.MaTT = reader["MATT"].ToString();
+                    phong.TenPhong = reader["TENPHONG"].ToString();
+                    phong.DonGia = Convert.ToDecimal(reader["DONGIA"]);
+                    phong.ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]);
+                    phong.ChieuRong = Convert.ToDouble(reader["CHIEURONG"]);
+                    phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
+                    phong.MoTa = reader["MOTA"].ToString();
+                    phong.Anh = reader["ANH"].ToString();
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy phòng theo mã phòng: " + ex.Message);
+            }
+
+            return phong;
+        }
+
+        //Lấy tất cả phòng
+        public List<PhongDTO> LayTatCaPhong()
+        {
+            List<PhongDTO> danhSachPhong = new List<PhongDTO>();
+
+            try
+            {
+                string sql = "SELECT * FROM PHONGTRO WHERE DAXOA = 0";
+
+                SqlDataReader reader = conn.ExecuteQuery(sql);
+
+                while (reader.Read())
+                {
+                    PhongDTO phong = new PhongDTO();
+
+                    phong.MaPT = reader["MAPT"].ToString();
+                    phong.MaNT = reader["MANT"].ToString();
+                    phong.MaTT = reader["MATT"].ToString();
+                    phong.TenPhong = reader["TENPHONG"].ToString();
+                    phong.DonGia = Convert.ToDecimal(reader["DONGIA"]);
+                    phong.ChieuDai = Convert.ToDouble(reader["CHIEUDAI"]);
+                    phong.ChieuRong = Convert.ToDouble(reader["CHIEURONG"]);
+                    phong.SoLuongNguoiTD = Convert.ToInt32(reader["SOLUONGNGUOITD"]);
+                    phong.MoTa = reader["MOTA"].ToString();
+                    phong.Anh = reader["ANH"].ToString();
+
+                    danhSachPhong.Add(phong);
+                }
+
+                reader.Close();
+                conn.close();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách phòng: " + ex.Message);
             }
 
             return danhSachPhong;

@@ -32,5 +32,20 @@ namespace BUL
         {
             return PhieuDatPhongDAL.LayDSPhieuDatDataGirdView();
         }
+
+        public bool KiemTraPhongDaDatCoc(string maPT)
+        {
+            return PhieuDatPhongDAL.KiemTraPhongDaDatCoc(maPT);
+        }
+
+        public bool XoaPhieuDatPhong(string maPhieuDatPhong)
+        {
+            return PhieuDatPhongDAL.XoaPhieuDatPhong(maPhieuDatPhong);
+        }
+
+        public PhieuDatPhongDTO LayPhieuDatPhongTheoMaPhong(string maPhong)
+        {
+            return PhieuDatPhongDAL.LayPhieuDatPhongTheoMaPhong(maPhong);
+        }
     }
 }

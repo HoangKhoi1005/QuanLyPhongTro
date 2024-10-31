@@ -64,6 +64,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmBaoTraPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmBaoTraPhong.Designer.cs">
+      <DependentUpon>frmBaoTraPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmChiSoDien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -100,17 +106,35 @@
     <Compile Include="frmDichVu.Designer.cs">
       <DependentUpon>frmDichVu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDoiPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoiPhong.Designer.cs">
+      <DependentUpon>frmDoiPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmHopDong.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmHopDong.Designer.cs">
       <DependentUpon>frmHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHuyDatPhong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHuyDatPhong.Designer.cs">
+      <DependentUpon>frmHuyDatPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmKhachTro.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmKhachTro.Designer.cs">
       <DependentUpon>frmKhachTro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmKyLuat.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmKyLuat.Designer.cs">
+      <DependentUpon>frmKyLuat.cs</DependentUpon>
     </Compile>
     <Compile Include="frmLapHopDong.cs">
       <SubType>Form</SubType>
@@ -149,16 +173,16 @@
       <DependentUpon>frmSuaDichVu.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaKhachTro.cs">
-       <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuaKhachTro.Designer.cs">
-       <DependentUpon>frmSuaKhachTro.cs</DependentUpon>
+      <DependentUpon>frmSuaKhachTro.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaDienNuoc.cs">
-       <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuaDienNuoc.Designer.cs">
-       <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
+      <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaNT.cs">
       <SubType>Form</SubType>
@@ -238,6 +262,12 @@
     <Compile Include="frmTienPhatSinh.Designer.cs">
       <DependentUpon>frmTienPhatSinh.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTinhTien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTinhTien.Designer.cs">
+      <DependentUpon>frmTinhTien.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmTinhTienPhong.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -312,6 +342,12 @@
     <Compile Include="UCHopDong.Designer.cs">
       <DependentUpon>UCHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="UCNguoiDaiDien.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCNguoiDaiDien.Designer.cs">
+      <DependentUpon>UCNguoiDaiDien.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCPhong.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -330,6 +366,9 @@
     <Compile Include="UCThongTinPhongTro.Designer.cs">
       <DependentUpon>UCThongTinPhongTro.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="frmBaoTraPhong.resx">
+      <DependentUpon>frmBaoTraPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmChiSoDien.resx">
       <DependentUpon>frmChiSoDien.cs</DependentUpon>
     </EmbeddedResource>
@@ -348,8 +387,14 @@
     <EmbeddedResource Include="frmDichVu.resx">
       <DependentUpon>frmDichVu.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDoiPhong.resx">
+      <DependentUpon>frmDoiPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmHopDong.resx">
       <DependentUpon>frmHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHuyDatPhong.resx">
+      <DependentUpon>frmHuyDatPhong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmKhachTro.resx">
       <DependentUpon>frmKhachTro.cs</DependentUpon>
@@ -417,6 +462,9 @@
     <EmbeddedResource Include="frmTienPhatSinh.resx">
       <DependentUpon>frmTienPhatSinh.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmTinhTien.resx">
+      <DependentUpon>frmTinhTien.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmTinhTienPhong.resx">
       <DependentUpon>frmTinhTienPhong.cs</DependentUpon>
     </EmbeddedResource>
@@ -462,6 +510,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UCHopDong.resx">
       <DependentUpon>UCHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCNguoiDaiDien.resx">
+      <DependentUpon>UCNguoiDaiDien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UCPhong.resx">
       <DependentUpon>UCPhong.cs</DependentUpon>
@@ -553,7 +604,13 @@
     <None Include="Resources\z5952240387613_efbdaf629b9afa1f2040590b686dca10.jpg" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\MoneyBill.png" />
+    <None Include="Resources\LabelPrinter.png" />
+    <None Include="Resources\Estimate.png" />
+    <None Include="Resources\Cancel.png" />
+    <None Include="Resources\Alarm.png" />
     <Content Include="Resources\DefaultImage.png" />
+    <None Include="Resources\Done.png" />
     <None Include="Resources\Image1.bmp" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

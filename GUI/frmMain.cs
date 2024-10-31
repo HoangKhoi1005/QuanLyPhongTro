@@ -197,6 +197,13 @@ namespace GUI
             CollapseMenuWithButton();
         }
 
+        private void btnKyLuat_Click(object sender, EventArgs e)
+        {
+            ActivateButton(sender, Color.FromArgb(24, 161, 251));
+            OpenChildForm(new frmKyLuat());
+            CollapseMenuWithButton();
+        }
+
         bool isExpanded = false;
 
         private void btnQuanLyDichVu_Click(object sender, EventArgs e)
@@ -339,5 +346,7 @@ namespace GUI
                 }
             }
         }
+
+
     }
 }

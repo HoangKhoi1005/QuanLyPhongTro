@@ -26,6 +26,26 @@ namespace GUI
             dgvHopDong.DataSource = hopDongBUL.LayDSHopDongDataGirdView();
         }
 
+        Form overlayPanel;
+
+        private void ShowOverlay()
+        {
+            overlayPanel = new Form();
+            overlayPanel.FormBorderStyle = FormBorderStyle.None;
+            overlayPanel.StartPosition = FormStartPosition.Manual;
+            overlayPanel.Location = this.Location;
+            overlayPanel.Opacity = .50d;
+            overlayPanel.BackColor = Color.Black;
+            overlayPanel.WindowState = FormWindowState.Maximized;
+            overlayPanel.ShowInTaskbar = false;
+            overlayPanel.Show();
+        }
+
+        private void HideOverlay()
+        {
+            overlayPanel.Dispose();
+        }
+
         private void frmHopDong_Load(object sender, EventArgs e)
         {
 
@@ -34,6 +54,15 @@ namespace GUI
         private void btnTraCuu_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnThem_Click(object sender, EventArgs e)
+        {
+            ShowOverlay();
+            //frmLapHopDong frmThemHopDong = new frmLapHopDong();
+            //frmThemHopDong.ShowDialog();
+            HideOverlay();
+            LoadData();
         }
     }
 }

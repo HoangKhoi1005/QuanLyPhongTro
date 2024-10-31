@@ -42,9 +42,9 @@ namespace BUL
             return phongDAL.PhatSinhMaPhong(MaNT);
         }
 
-        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string maNT)
+        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string TenKhachTro, string maNT)
         {
-            return phongDAL.TimKiemPhongTheoMaPhong(maPhong, maNT);
+            return phongDAL.TimKiemPhongTheoMaPhong(maPhong, TenKhachTro, maNT);
         }
 
         public bool CapNhatTrangThaiPhong(string MaPT, string MaTT)
@@ -75,6 +75,21 @@ namespace BUL
         public List<PhongDTO> LocPhongTheoGia(string gia, string maNT)
         {
             return phongDAL.LocPhongTheoGia(gia, maNT);
+        }
+
+        public List<PhongDTO> LayPhongTrongTheoNhaTro(string maNT)
+        {
+            return phongDAL.LayPhongTrongTheoNhaTro(maNT);
+        }
+
+        public PhongDTO LayPhongTheoMa(string maPT)
+        {
+            return phongDAL.LayPhongTheoMa(maPT);
+        }
+
+        public List<PhongDTO> LayTatCaPhong()
+        {
+            return phongDAL.LayTatCaPhong();
         }
     }
 }

@@ -199,5 +199,34 @@ namespace DAL
             string sql = "DELETE FROM KHACHTRO_HOPDONG WHERE MAKT = '" + maKT + "'";
             return db.ExecuteNonQuery(sql) > 0;
         }
+
+        public KhachTroDTO LayNguoiDaiDienTheoPhong(string maPT)
+        {
+            string sql = "SELECT KHACHTRO.MAKT, KHACHTRO.HOTEN, KHACHTRO.CCCD, KHACHTRO.NGAYSINH, KHACHTRO.GIOITINH, KHACHTRO.SODT, KHACHTRO.EMAIL, KHACHTRO.DIACHI, KHACHTRO.ANH, KHACHTRO.MOTA FROM KHACHTRO, HOPDONG WHERE KHACHTRO.MAKT = HOPDONG.MAKTDAIDIEN AND HOPDONG.MAPT = '" + maPT + "' AND TRANGTHAIHOPDONG = 1" +
+                " UNION " +
+                "SELECT TOP 1 KHACHTRO.MAKT, KHACHTRO.HOTEN, KHACHTRO.CCCD, KHACHTRO.NGAYSINH, KHACHTRO.GIOITINH, KHACHTRO.SODT, KHACHTRO.EMAIL, KHACHTRO.DIACHI, KHACHTRO.ANH, KHACHTRO.MOTA FROM KHACHTRO, PHIEUDATPHONG WHERE KHACHTRO.MAKT = PHIEUDATPHONG.MAKT AND PHIEUDATPHONG.MAPT = '" + maPT + "' AND PHIEUDATPHONG.DAXOA = 0";
+
+            using (var reader = db.ExecuteQuery(sql))
+            {
+                if (reader.Read())
+                {
+                    KhachTroDTO khachTro = new KhachTroDTO
+                    {
+                        MaKT = reader["MaKT"].ToString(),
+                        HoTen = reader["HoTen"].ToString(),
+                        CCCD = reader["CCCD"].ToString(),
+                        NgaySinh = Convert.ToDateTime(reader["NgaySinh"]),
+                        GioiTinh = reader["GioiTinh"].ToString(),
+                        SoDT = reader["SoDT"].ToString(),
+                        Email = reader["Email"].ToString(),
+                        DiaChi = reader["DiaChi"].ToString(),
+                        Anh = reader["Anh"].ToString(),
+                        MoTa = reader["MoTa"].ToString()
+                    };
+                    return khachTro;
+                }
+            }
+            return null;
+        }
     }
 }

@@ -34,6 +34,7 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnHopDong = new Guna.UI2.WinForms.Guna2Button();
             this.btnThanhVien = new Guna.UI2.WinForms.Guna2Button();
+            this.btnNguoiDaiDien = new Guna.UI2.WinForms.Guna2Button();
             this.btnDichVu = new Guna.UI2.WinForms.Guna2Button();
             this.btnThongTInPhongTro = new Guna.UI2.WinForms.Guna2Button();
             this.groupBox1.SuspendLayout();
@@ -73,6 +74,7 @@
             // 
             this.panel1.Controls.Add(this.btnHopDong);
             this.panel1.Controls.Add(this.btnThanhVien);
+            this.panel1.Controls.Add(this.btnNguoiDaiDien);
             this.panel1.Controls.Add(this.btnDichVu);
             this.panel1.Controls.Add(this.btnThongTInPhongTro);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -97,7 +99,7 @@
             this.btnHopDong.ForeColor = System.Drawing.Color.Black;
             this.btnHopDong.HoverState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnHopDong.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnHopDong.Location = new System.Drawing.Point(495, 0);
+            this.btnHopDong.Location = new System.Drawing.Point(650, 0);
             this.btnHopDong.Name = "btnHopDong";
             this.btnHopDong.Size = new System.Drawing.Size(155, 64);
             this.btnHopDong.TabIndex = 25;
@@ -120,12 +122,35 @@
             this.btnThanhVien.ForeColor = System.Drawing.Color.Black;
             this.btnThanhVien.HoverState.CustomBorderColor = System.Drawing.Color.DarkGray;
             this.btnThanhVien.HoverState.FillColor = System.Drawing.Color.White;
-            this.btnThanhVien.Location = new System.Drawing.Point(340, 0);
+            this.btnThanhVien.Location = new System.Drawing.Point(495, 0);
             this.btnThanhVien.Name = "btnThanhVien";
             this.btnThanhVien.Size = new System.Drawing.Size(155, 64);
             this.btnThanhVien.TabIndex = 24;
             this.btnThanhVien.Text = "Thành Viên";
             this.btnThanhVien.Click += new System.EventHandler(this.btnThanhVien_Click);
+            // 
+            // btnNguoiDaiDien
+            // 
+            this.btnNguoiDaiDien.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnNguoiDaiDien.CheckedState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnNguoiDaiDien.CheckedState.FillColor = System.Drawing.Color.White;
+            this.btnNguoiDaiDien.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.btnNguoiDaiDien.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnNguoiDaiDien.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnNguoiDaiDien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnNguoiDaiDien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnNguoiDaiDien.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnNguoiDaiDien.FillColor = System.Drawing.Color.White;
+            this.btnNguoiDaiDien.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnNguoiDaiDien.ForeColor = System.Drawing.Color.Black;
+            this.btnNguoiDaiDien.HoverState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnNguoiDaiDien.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnNguoiDaiDien.Location = new System.Drawing.Point(340, 0);
+            this.btnNguoiDaiDien.Name = "btnNguoiDaiDien";
+            this.btnNguoiDaiDien.Size = new System.Drawing.Size(155, 64);
+            this.btnNguoiDaiDien.TabIndex = 26;
+            this.btnNguoiDaiDien.Text = "Người Đại Diện";
+            this.btnNguoiDaiDien.Click += new System.EventHandler(this.btnNguoiDaiDien_Click);
             // 
             // btnDichVu
             // 
@@ -198,5 +223,6 @@
         private Guna.UI2.WinForms.Guna2Button btnDichVu;
         private Guna.UI2.WinForms.Guna2Button btnThongTInPhongTro;
         private System.Windows.Forms.GroupBox grpNoiDung;
+        private Guna.UI2.WinForms.Guna2Button btnNguoiDaiDien;
     }
 }
