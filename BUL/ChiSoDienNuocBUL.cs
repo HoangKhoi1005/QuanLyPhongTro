@@ -46,9 +46,9 @@ namespace BUL
             return chiSoDienNuocDAL.xoaDienNuoc(dienNuoc);
         }
 
-        public List<ChiSoDienNuocDTO> TimKiemDienNuoc(string mapt)
+        public List<ChiSoDienNuocDTO> TimKiemDienNuoc(string maPT, int ngay, int thang, int nam)
         {
-            return chiSoDienNuocDAL.TimKiemDienNuoc(mapt);
+            return chiSoDienNuocDAL.TimKiemDienNuoc(maPT, ngay, thang, nam);
         }
     }
 }

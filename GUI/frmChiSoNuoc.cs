@@ -113,21 +113,111 @@ namespace GUI
 
         private void btnTraCuu_Click(object sender, EventArgs e)
         {
-            dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(txtTraCuu.Text);
+            string input = txtTraCuu.Text.Trim();
+            string maPT = "";
+            int ngay = 0;
+            int thang = 0;
+            int nam = 0;
+
+            // Phân tích chuỗi
+            if (!string.IsNullOrEmpty(input))
+            {
+                string[] parts = input.Split('/');
+
+                if (parts.Length == 1) 
+                {
+                    if (int.TryParse(parts[0], out int day))
+                    {
+                        ngay = day; 
+                    }
+                    else
+                    {
+                        maPT = parts[0]; 
+                    }
+                }
+                else if (parts.Length == 2) 
+                {
+                    if (int.TryParse(parts[0], out int day))
+                    {
+                        ngay = day; 
+                    }
+                    if (int.TryParse(parts[1], out int month))
+                    {
+                        thang = month; 
+                    }
+                }
+                else if (parts.Length == 3) 
+                {
+                    if (int.TryParse(parts[0], out int day))
+                    {
+                        ngay = day; 
+                    }
+                    if (int.TryParse(parts[1], out int month))
+                    {
+                        thang = month; 
+                    }
+                    if (int.TryParse(parts[2], out int year))
+                    {
+                        nam = year; 
+                    }
+                }
+            }
+
+            dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(maPT, ngay, thang, nam);
         }
 
         private void txtTraCuu_TextChanged(object sender, EventArgs e)
         {
-            string keyword = txtTraCuu.Text.Trim();
+            string input = txtTraCuu.Text.Trim();
+            string maPT = "";
+            int ngay = 0; 
+            int thang = 0; 
+            int nam = 0;
 
-            if (string.IsNullOrEmpty(keyword))
+            if (!string.IsNullOrEmpty(input))
             {
-                dgvChiSo.DataSource = chiSoDienNuocBUL.loadDienNuoc();
+                string[] parts = input.Split('/');
+
+                if (parts.Length == 1) 
+                {
+                    if (int.TryParse(parts[0], out int day))
+                    {
+                        ngay = day; 
+                    }
+                    else
+                    {
+                        maPT = parts[0]; 
+                    }
+                }
+                else if (parts.Length == 2) 
+                {
+                    if (int.TryParse(parts[0], out int day))
+                    {
+                        ngay = day; 
+                    }
+                    if (int.TryParse(parts[1], out int month))
+                    {
+                        thang = month; 
+                    }
+                }
+                else if (parts.Length == 3) 
+                {
+                    if (int.TryParse(parts[0], out int day))
+                    {
+                        ngay = day; 
+                    }
+                    if (int.TryParse(parts[1], out int month))
+                    {
+                        thang = month; 
+                    }
+                    if (int.TryParse(parts[2], out int year))
+                    {
+                        nam = year; 
+                    }
+                }
             }
-            else
-            {
-                dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(keyword);
-            }
+
+            dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(maPT, ngay, thang, nam);
         }
     }
 }

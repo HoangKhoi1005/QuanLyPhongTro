@@ -9,7 +9,6 @@ namespace DAL
     public class QuanLyDAL
     {
         private QLPTDataContext ql = new QLPTDataContext();
-
         public bool dangNhap(string maQL, string matKhau)
         {
             var query = from quanLy in ql.QUANLies
@@ -68,5 +67,7 @@ namespace DAL
                 return false;
             }
         }
+
+        
     }
 }

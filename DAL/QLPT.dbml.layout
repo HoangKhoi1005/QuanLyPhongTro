@@ -2,16 +2,10 @@
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="QLPT">
   <DataContextMoniker Name="/QLPTDataContext" />
   <nestedChildShapes>
-    <classShape Id="8282d626-86e0-4dbc-bdc1-cf15581f9e59" absoluteBounds="0.5, 3, 2, 2.3478011067708335">
-      <DataClassMoniker Name="/QLPTDataContext/QUANLY" />
-      <nestedChildShapes>
-        <elementListCompartment Id="bea9929e-b7a1-4acd-8c82-8a83f2339275" absoluteBounds="0.51500000000000012, 3.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="49c17b91-084d-4475-9c22-bfbadaebfb9d" absoluteBounds="4.75, 3.5, 2, 1.7708968098958331">
+    <classShape Id="49c17b91-084d-4475-9c22-bfbadaebfb9d" absoluteBounds="4.75, 3.875, 2, 1.7708968098958331">
       <DataClassMoniker Name="/QLPTDataContext/DICHVU" />
       <nestedChildShapes>
-        <elementListCompartment Id="ddb19ae9-7ee2-4280-98b2-dca1089463df" absoluteBounds="4.7650000000000006, 3.96, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="ddb19ae9-7ee2-4280-98b2-dca1089463df" absoluteBounds="4.7650000000000006, 4.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="324581e2-8a07-4bb0-8ef8-cad518bd2fc2" absoluteBounds="0.5, 0.625, 2, 1.7708968098958331">
@@ -20,18 +14,24 @@
         <elementListCompartment Id="abfd1e2c-011b-484c-be2d-090b964c2587" absoluteBounds="0.51500000000000012, 1.085, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="556e2906-a51a-42ba-843b-51ac0a3cbaff" absoluteBounds="3, 0.5, 2, 2.9247054036458331">
+    <classShape Id="556e2906-a51a-42ba-843b-51ac0a3cbaff" absoluteBounds="3.125, 0.5, 2, 2.9247054036458331">
       <DataClassMoniker Name="/QLPTDataContext/PHONGTRO" />
       <nestedChildShapes>
-        <elementListCompartment Id="3c5f34a8-4106-431e-a713-2360a62427fc" absoluteBounds="3.015, 0.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3c5f34a8-4106-431e-a713-2360a62427fc" absoluteBounds="3.14, 0.96, 1.9700000000000002, 2.364705403645833" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(3 : 1.51044840494792); (2.5 : 1.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(3.125 : 1.51044840494792); (2.5 : 1.51044840494792)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/QLPTDataContext/PHONGTRO/PHONGTRO_CHISODIENNUOC" />
       <nodes>
         <classShapeMoniker Id="556e2906-a51a-42ba-843b-51ac0a3cbaff" />
         <classShapeMoniker Id="324581e2-8a07-4bb0-8ef8-cad518bd2fc2" />
       </nodes>
     </associationConnector>
+    <classShape Id="84f76bda-02a7-46c8-adc5-8268ad6b0464" absoluteBounds="0.625, 3.375, 2, 2.5401025390625">
+      <DataClassMoniker Name="/QLPTDataContext/QUANLY" />
+      <nestedChildShapes>
+        <elementListCompartment Id="64ff1187-7995-4f9c-a790-1d22da656e3c" absoluteBounds="0.64000000000000012, 3.835, 1.9700000000000002, 1.9801025390625" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
   </nestedChildShapes>
 </ordesignerObjectsDiagram>

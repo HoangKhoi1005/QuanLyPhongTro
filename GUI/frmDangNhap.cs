@@ -41,7 +41,7 @@ namespace GUI
 
             if(qlbul.dangNhap(txtTaiKhoan.Text, txtMatKhau.Text))
             {
-                frmMain frm = new frmMain();
+                frmMain frm = new frmMain(txtTaiKhoan.Text);
                 frm.Show();
                 this.Hide();
             }    

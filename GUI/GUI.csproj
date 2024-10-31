@@ -149,16 +149,22 @@
       <DependentUpon>frmSuaDichVu.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaKhachTro.cs">
-       <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuaKhachTro.Designer.cs">
-       <DependentUpon>frmSuaKhachTro.cs</DependentUpon>
+      <DependentUpon>frmSuaKhachTro.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaDienNuoc.cs">
-       <SubType>Form</SubType>
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmSuaDienNuoc.Designer.cs">
-       <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
+      <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSuaKhachTro_QLKT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSuaKhachTro_QLKT.Designer.cs">
+      <DependentUpon>frmSuaKhachTro_QLKT.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSuaNT.cs">
       <SubType>Form</SubType>
@@ -207,6 +213,12 @@
     </Compile>
     <Compile Include="frmThemKhachTro.Designer.cs">
       <DependentUpon>frmThemKhachTro.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmThemKhachTro_QLKT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmThemKhachTro_QLKT.Designer.cs">
+      <DependentUpon>frmThemKhachTro_QLKT.cs</DependentUpon>
     </Compile>
     <Compile Include="frmThemNhaTro.cs">
       <SubType>Form</SubType>
@@ -273,6 +285,12 @@
     </Compile>
     <Compile Include="frmXoaDienNuoc.Designer.cs">
       <DependentUpon>frmXoaDienNuoc.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmXoaKhachTro_QLKT.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmXoaKhachTro_QLKT.Designer.cs">
+      <DependentUpon>frmXoaKhachTro_QLKT.cs</DependentUpon>
     </Compile>
     <Compile Include="frmXoaNT.cs">
       <SubType>Form</SubType>
@@ -378,6 +396,9 @@
     <EmbeddedResource Include="frmSuaDienNuoc.resx">
       <DependentUpon>frmSuaDienNuoc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmSuaKhachTro_QLKT.resx">
+      <DependentUpon>frmSuaKhachTro_QLKT.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmSuaNT.resx">
       <DependentUpon>frmSuaNT.cs</DependentUpon>
     </EmbeddedResource>
@@ -401,6 +422,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemKhachTro.resx">
       <DependentUpon>frmThemKhachTro.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmThemKhachTro_QLKT.resx">
+      <DependentUpon>frmThemKhachTro_QLKT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThemNhaTro.resx">
       <DependentUpon>frmThemNhaTro.cs</DependentUpon>
@@ -434,6 +458,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmXoaDienNuoc.resx">
       <DependentUpon>frmXoaDienNuoc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmXoaKhachTro_QLKT.resx">
+      <DependentUpon>frmXoaKhachTro_QLKT.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmXoaNT.resx">
       <DependentUpon>frmXoaNT.cs</DependentUpon>
