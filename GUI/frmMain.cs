@@ -18,6 +18,40 @@ namespace GUI
         private Panel leftBorderBtn;
         private Form currentChildForm;
         Label arrowLabel = new Label();
+        string maQL;
+        public frmMain(string maQL)
+        {
+            InitializeComponent();
+            leftBorderBtn = new Panel();
+            leftBorderBtn.Size = new Size(7, 60);
+            panelMenu.Controls.Add(leftBorderBtn);
+            //Form
+            this.Text = string.Empty;
+            this.ControlBox = false;
+            this.DoubleBuffered = true;
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.maQL = maQL;
+
+            arrowLabel.BackColor = Color.Transparent;
+            arrowLabel.Text = "▶";
+            arrowLabel.Font = new Font("Microsoft Sans Serif", 10, FontStyle.Bold);
+            arrowLabel.ForeColor = Color.Gainsboro;
+            arrowLabel.Location = new Point(btnQuanLyDichVu.Width - 30, btnQuanLyDichVu.Height / 2 - 8);
+            arrowLabel.AutoSize = true;
+            btnQuanLyDichVu.Controls.Add(arrowLabel);
+
+            foreach (Button menuButton in panelMenu.Controls.OfType<Button>())
+            {
+                menuButton.Text = "  " + menuButton.Tag.ToString();
+
+            }
+            foreach (Button menuButton in groupAdmin.Controls.OfType<Button>())
+            {
+                menuButton.Text = "  " + menuButton.Tag.ToString();
+
+            }
+        }
+
         public frmMain()
         {
             InitializeComponent();
@@ -29,6 +63,7 @@ namespace GUI
             this.ControlBox = false;
             this.DoubleBuffered = true;
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            maQL = "";
 
             arrowLabel.BackColor = Color.Transparent;
             arrowLabel.Text = "▶";
@@ -165,7 +200,7 @@ namespace GUI
         private void btnNhanVien_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(24, 161, 251));
-            OpenChildForm(new frmNhanVien());
+            OpenChildForm(new frmNhanVien(maQL));
             CollapseMenuWithButton();
         }
 

@@ -115,23 +115,22 @@ namespace DAL
             }
         }
 
-        public List<ChiSoDienNuocDTO> TimKiemDienNuoc(string keyword)
+        public List<ChiSoDienNuocDTO> TimKiemDienNuoc(string maPT, int ngay, int thang, int nam)
         {
             try
             {
                 var result = from dn in ql.CHISODIENNUOCs
-                             where dn.MAPT.Contains(keyword) ||
-                                   dn.MACS.ToString().Contains(keyword) ||
-                                   dn.NGAYTHANG.ToString().Contains(keyword) ||
-                                   dn.CHISODIEN.ToString().Contains(keyword) ||
-                                   dn.CHISONUOC.ToString().Contains(keyword)
+                             where (string.IsNullOrEmpty(maPT) || dn.MAPT.Contains(maPT)) &&
+                                   (ngay == 0 || dn.NGAYTHANG.Day == ngay) &&
+                                   (thang == 0 || dn.NGAYTHANG.Month == thang) &&
+                                   (nam == 0 || dn.NGAYTHANG.Year == nam)
                              select new ChiSoDienNuocDTO
                              {
                                  MaCS = dn.MACS,
                                  MaPT = dn.MAPT,
-                                 NgayThang = DateTime.Parse(dn.NGAYTHANG.ToString()),
-                                 ChiSoDien = int.Parse(dn.CHISODIEN.ToString()),
-                                 ChiSoNuoc = int.Parse(dn.CHISONUOC.ToString())
+                                 NgayThang = dn.NGAYTHANG, 
+                                 ChiSoDien = dn.CHISODIEN,
+                                 ChiSoNuoc = dn.CHISONUOC
                              };
 
                 return result.ToList();
@@ -142,5 +141,6 @@ namespace DAL
                 return new List<ChiSoDienNuocDTO>();
             }
         }
+
     }
 }

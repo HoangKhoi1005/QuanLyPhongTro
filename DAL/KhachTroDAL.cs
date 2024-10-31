@@ -199,5 +199,11 @@ namespace DAL
             string sql = "DELETE FROM KHACHTRO_HOPDONG WHERE MAKT = '" + maKT + "'";
             return db.ExecuteNonQuery(sql) > 0;
         }
+
+        public bool XoaKhachTro(string maKT)
+        {
+            string sql = "UPDATE KHACHTRO SET DAXOA = 1 WHERE MAKT = '" + maKT + "'";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
     }
 }

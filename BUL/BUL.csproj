@@ -45,6 +45,7 @@
     <Compile Include="DichVuBUL.cs" />
     <Compile Include="HopDongBUL.cs" />
     <Compile Include="KhachTroBUL.cs" />
+    <Compile Include="NhanVienBUL.cs" />
     <Compile Include="NhaTroBUL.cs" />
     <Compile Include="PhieuDatPhongBUL.cs" />
     <Compile Include="PhongBUL.cs" />
