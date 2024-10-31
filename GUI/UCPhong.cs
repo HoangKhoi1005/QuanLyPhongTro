@@ -76,15 +76,20 @@ namespace GUI
                     toolTip.SetToolTip(guna2Panel2, "Phòng đã đặt");
                     btnThemKT.Visible = false;
                     break;
+                case "Báo trả phòng":
+                    guna2Panel2.BackColor = Color.FromArgb(189, 195, 199);
+                    toolTip.SetToolTip(guna2Panel2, "Phòng đã báo trả");
+                    btnThemKT.Visible = false;
+                    break;
                 default:
                     guna2Panel2.BackColor = Color.Gray;
                     break;
             }
 
-            if (TrangThai == "Có người" || TrangThai == "Đã đặt")
+            if (TrangThai == "Có người")
             {
-                Guna.UI2.WinForms.Guna2Button btnSuaKhach = new Guna.UI2.WinForms.Guna2Button();
-                Guna.UI2.WinForms.Guna2Button btnXemThongTin = new Guna.UI2.WinForms.Guna2Button();
+                //Guna.UI2.WinForms.Guna2Button btnSuaKhach = new Guna.UI2.WinForms.Guna2Button();
+                Guna.UI2.WinForms.Guna2Button btnBaoTraPhong = new Guna.UI2.WinForms.Guna2Button();
                 Guna.UI2.WinForms.Guna2Button btnTraPhong = new Guna.UI2.WinForms.Guna2Button();
                 Guna.UI2.WinForms.Guna2Button btnDoiPhong = new Guna.UI2.WinForms.Guna2Button();
 
@@ -95,27 +100,28 @@ namespace GUI
                 lblMaPhong.ForeColor = Color.White;
                 lblSoLuong.ForeColor = Color.White;
 
-                btnSuaKhach.BorderColor = Color.FromArgb(70, 184, 218);
-                btnSuaKhach.BorderRadius = 4;
-                btnSuaKhach.FillColor = Color.Purple;
-                btnSuaKhach.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
-                btnSuaKhach.ForeColor = Color.White;
-                btnSuaKhach.Image = global::GUI.Properties.Resources.EditUser;
-                btnSuaKhach.Location = new Point(151, 90);
-                btnSuaKhach.Size = new Size(41, 37);
-                toolTip1.SetToolTip(btnSuaKhach, "Sửa khách");
-                guna2Panel2.Controls.Add(btnSuaKhach);
+                //btnSuaKhach.BorderColor = Color.FromArgb(70, 184, 218);
+                //btnSuaKhach.BorderRadius = 4;
+                //btnSuaKhach.FillColor = Color.Purple;
+                //btnSuaKhach.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                //btnSuaKhach.ForeColor = Color.White;
+                //btnSuaKhach.Image = global::GUI.Properties.Resources.EditUser;
+                //btnSuaKhach.Location = new Point(151, 90);
+                //btnSuaKhach.Size = new Size(41, 37);
+                //toolTip1.SetToolTip(btnSuaKhach, "Sửa khách");
+                //guna2Panel2.Controls.Add(btnSuaKhach);
 
-                btnXemThongTin.BorderColor = Color.FromArgb(70, 184, 218);
-                btnXemThongTin.BorderRadius = 4;
-                btnXemThongTin.FillColor = Color.DodgerBlue;
-                btnXemThongTin.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
-                btnXemThongTin.ForeColor = Color.White;
-                btnXemThongTin.Image = global::GUI.Properties.Resources.Eye;
-                btnXemThongTin.Location = new Point(104, 90);
-                btnXemThongTin.Size = new Size(41, 37);
-                toolTip1.SetToolTip(btnXemThongTin, "Xem thông tin");
-                guna2Panel2.Controls.Add(btnXemThongTin);
+                btnBaoTraPhong.BorderColor = Color.FromArgb(70, 184, 218);
+                btnBaoTraPhong.BorderRadius = 4;
+                btnBaoTraPhong.FillColor = Color.DodgerBlue;
+                btnBaoTraPhong.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnBaoTraPhong.ForeColor = Color.White;
+                btnBaoTraPhong.Image = global::GUI.Properties.Resources.Alarm;
+                btnBaoTraPhong.Location = new Point(104, 90);
+                btnBaoTraPhong.Size = new Size(41, 37);
+                btnBaoTraPhong.Click += new EventHandler(btnBaoTraPhong_Click);
+                toolTip1.SetToolTip(btnBaoTraPhong, "Báo trả phòng");
+                guna2Panel2.Controls.Add(btnBaoTraPhong);
 
                 btnTraPhong.BorderColor = Color.FromArgb(70, 184, 218);
                 btnTraPhong.BorderRadius = 4;
@@ -136,8 +142,78 @@ namespace GUI
                 btnDoiPhong.Image = global::GUI.Properties.Resources.ChangeRoom;
                 btnDoiPhong.Location = new Point(57, 90);
                 btnDoiPhong.Size = new Size(41, 37);
+                btnDoiPhong.Click += new EventHandler(btnDoiPhong_Click);
                 toolTip1.SetToolTip(btnDoiPhong, "Đổi phòng");
                 guna2Panel2.Controls.Add(btnDoiPhong);
+            }
+            else if (TrangThai == "Đã đặt")
+            {
+                Guna.UI2.WinForms.Guna2Button btnHuyDatPhong = new Guna.UI2.WinForms.Guna2Button();
+
+                iconPictureBox20.ForeColor = Color.White;
+                iconPictureBox4.ForeColor = Color.White;
+                iconPictureBox5.ForeColor = Color.White;
+                iconPictureBox6.ForeColor = Color.White;
+                lblMaPhong.ForeColor = Color.White;
+                lblSoLuong.ForeColor = Color.White;
+
+                btnHuyDatPhong.BorderColor = Color.FromArgb(70, 184, 218);
+                btnHuyDatPhong.BorderRadius = 4;
+                btnHuyDatPhong.FillColor = Color.OrangeRed;
+                btnHuyDatPhong.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnHuyDatPhong.ForeColor = Color.White;
+                btnHuyDatPhong.Image = global::GUI.Properties.Resources.Door;
+                btnHuyDatPhong.Location = new Point(10, 90);
+                btnHuyDatPhong.Size = new Size(41, 37);
+                btnHuyDatPhong.Click += new EventHandler(btnHuyDatPhong_Click);
+                toolTip1.SetToolTip(btnHuyDatPhong, "Hủy đặt phòng");
+                guna2Panel2.Controls.Add(btnHuyDatPhong);
+            }
+            else if (TrangThai == "Báo trả phòng")
+            {
+                Guna.UI2.WinForms.Guna2Button btnTraPhong = new Guna.UI2.WinForms.Guna2Button();
+
+                iconPictureBox20.ForeColor = Color.White;
+                iconPictureBox4.ForeColor = Color.White;
+                iconPictureBox5.ForeColor = Color.White;
+                iconPictureBox6.ForeColor = Color.White;
+                lblMaPhong.ForeColor = Color.White;
+                lblSoLuong.ForeColor = Color.White;
+
+                btnTraPhong.BorderColor = Color.FromArgb(70, 184, 218);
+                btnTraPhong.BorderRadius = 4;
+                btnTraPhong.FillColor = Color.OrangeRed;
+                btnTraPhong.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnTraPhong.ForeColor = Color.White;
+                btnTraPhong.Image = global::GUI.Properties.Resources.Door;
+                btnTraPhong.Location = new Point(10, 90);
+                btnTraPhong.Size = new Size(41, 37);
+                toolTip1.SetToolTip(btnTraPhong, "Trả phòng");
+                guna2Panel2.Controls.Add(btnTraPhong);
+            }
+        }
+
+        public delegate void BaoTraPhongHandler(object sender, EventArgs e);
+
+        public event BaoTraPhongHandler BaoTraPhongClick;
+
+        private void btnBaoTraPhong_Click(object sender, EventArgs e)
+        {
+            if (BaoTraPhongClick != null)
+            {
+                BaoTraPhongClick(this, e);
+            }
+        }
+
+        public delegate void HuyDatPhongHandler(object sender, EventArgs e);
+
+        public event HuyDatPhongHandler HuyDatPhongClick;
+
+        private void btnHuyDatPhong_Click(object sender, EventArgs e)
+        {
+            if (HuyDatPhongClick != null)
+            {
+                HuyDatPhongClick(this, e);
             }
         }
 
@@ -186,6 +262,18 @@ namespace GUI
             if (UcClick != null)
             {
                 UcClick(this, e);
+            }
+        }
+
+        public delegate void DoiPhongHandler(object sender, EventArgs e);
+
+        public event DoiPhongHandler DoiPhongClick;
+
+        private void btnDoiPhong_Click(object sender, EventArgs e)
+        {
+            if (DoiPhongClick != null)
+            {
+                DoiPhongClick(this, e);
             }
         }
     }

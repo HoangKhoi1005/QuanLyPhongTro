@@ -68,6 +68,10 @@ namespace BUL
             return khachTroDAL.XoaKhachTroHopDong(maKT);
         }
 
+        public KhachTroDTO LayNguoiDaiDienTheoPhong(string maPT)
+        {
+            return khachTroDAL.LayNguoiDaiDienTheoPhong(maPT);
+        }
         public bool XoaKhachTro(string maKT)
         {
             return khachTroDAL.XoaKhachTro(maKT);

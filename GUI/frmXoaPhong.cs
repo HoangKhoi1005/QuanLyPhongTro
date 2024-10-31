@@ -21,6 +21,7 @@ namespace GUI
         NhaTroBUL nhaTroBUL = new NhaTroBUL();
         HopDongBUL hopDongBUL = new HopDongBUL();
         PhongBUL phongBUL = new PhongBUL();
+        PhieuDatPhongBUL phieuDatPhongBUL = new PhieuDatPhongBUL();
 
         public frmXoaPhong(PhongDTO phong, frmPhong frmPhong)
         {
@@ -68,6 +69,12 @@ namespace GUI
             if (hopDongBUL.KiemTraPhongCoHopDong(phong.MaPT))
             {
                 MessageBox.Show("Phòng đang có hợp đồng, không thể xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (phieuDatPhongBUL.KiemTraPhongDaDatCoc(phong.MaPT))
+            {
+                MessageBox.Show("Phòng đã được đặt cọc, không thể xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

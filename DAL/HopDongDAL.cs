@@ -50,7 +50,7 @@ namespace DAL
         public string TimMaHopDongTheoMaPhong(string maPhong)
         {
             string maHopDong = "";
-            string sql = "SELECT MaHopDong FROM HopDong WHERE MaPT = '" + maPhong + "'";
+            string sql = "SELECT MaHopDong FROM HopDong WHERE MaPT = '" + maPhong + "' AND HOPDONG.TRANGTHAIHOPDONG = 1";
             using (var reader = db.ExecuteQuery(sql))
             {
                 if (reader.Read())
@@ -63,7 +63,7 @@ namespace DAL
 
         public int DemSoLuongKhachTroTrongHopDong(string maHopDong)
         {
-            string sql = "SELECT COUNT(*) FROM KhachTro_HopDong WHERE MaHopDong = '" + maHopDong + "'";
+            string sql = "SELECT COUNT(*) FROM KhachTro_HopDong, HOPDONG WHERE KhachTro_HopDong.MaHopDong = HOPDONG.MaHopDong AND KhachTro_HopDong.MaHopDong = '" + maHopDong + "' AND HOPDONG.TRANGTHAIHOPDONG = 1";
             int count = 0;
             using (var reader = db.ExecuteQuery(sql))
             {
@@ -116,6 +116,31 @@ namespace DAL
         {
             string sql = "SELECT COUNT(*) FROM HopDong WHERE MaPT = '" + maPT + "' AND TRANGTHAIHOPDONG = 1";
             return (int)(db.ExecuteScalar(sql)) > 0;
+        }
+
+        public void CapNhatTrangThaiHopDong(object maHD, int v)
+        {
+            string sql = "UPDATE HopDong SET TRANGTHAIHOPDONG = " + v + " WHERE MAHOPDONG = '" + maHD + "'";
+            db.ExecuteNonQuery(sql);
+        }
+
+        public List<KhachTroHopDongDTO> LayDanhSachKhachTroHopDong(string maHopDong)
+        {
+            List<KhachTroHopDongDTO> khachTroHopDongs = new List<KhachTroHopDongDTO>();
+            string sql = "SELECT * FROM KhachTro_HopDong WHERE MaHopDong = '" + maHopDong + "'";
+            using (var reader = db.ExecuteQuery(sql))
+            {
+                while (reader.Read())
+                {
+                    KhachTroHopDongDTO khachTroHopDong = new KhachTroHopDongDTO
+                    {
+                        MaHopDong = reader["MaHopDong"].ToString(),
+                        MaKT = reader["MaKT"].ToString()
+                    };
+                    khachTroHopDongs.Add(khachTroHopDong);
+                }
+            }
+            return khachTroHopDongs;
         }
     }
 }

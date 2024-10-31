@@ -47,5 +47,39 @@ namespace DAL
             string sql = "SELECT PD.MAPDP, PD.MaPT, QL.HOTENNV, KT.HoTen, PD.NGAYLAPPHIEU, PD.NGAYDUKIENNHANPHONG, PD.TIENDATPHONG, PD.MoTa FROM PHIEUDATPHONG PD, PhongTro PT, QuanLy QL , KhachTro KT WHERE PD.MaPT = PT.MaPT AND PD.MaKT = KT.MaKT AND QL.MaQL = PD.MaQL";
             return db.GetDataTable(sql);
         }
+
+        public bool KiemTraPhongDaDatCoc(string maPT)
+        {
+            string sql = "SELECT COUNT(*) FROM PHIEUDATPHONG WHERE MaPT = '" + maPT + "' AND DAXOA = 0";
+            return (int)(db.ExecuteScalar(sql)) > 0;
+        }
+
+        public bool XoaPhieuDatPhong(string maPhieuDatPhong)
+        {
+            string sql = "UPDATE PHIEUDATPHONG SET DAXOA = 1 WHERE MAPDP = '" + maPhieuDatPhong + "'";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
+
+        public PhieuDatPhongDTO LayPhieuDatPhongTheoMaPhong(string maPhong)
+        {
+            string sql = "SELECT * FROM PHIEUDATPHONG WHERE MaPT = '" + maPhong + "' AND DAXOA = 0";
+            using (var reader = db.ExecuteQuery(sql))
+            {
+                if (reader.Read())
+                {
+                    PhieuDatPhongDTO phieuDatPhong = new PhieuDatPhongDTO();
+                    phieuDatPhong.MaPhieuDatPhong = reader["MAPDP"].ToString();
+                    phieuDatPhong.MaKhachTro = reader["MaKT"].ToString();
+                    phieuDatPhong.MaPhongTro = reader["MaPT"].ToString();
+                    phieuDatPhong.MaQuanLy = reader["MaQL"].ToString();
+                    phieuDatPhong.NgayDuKienNhanPhong = DateTime.Parse(reader["NGAYDUKIENNHANPHONG"].ToString());
+                    phieuDatPhong.TienDatPhong = decimal.Parse(reader["TIENDATPHONG"].ToString());
+                    phieuDatPhong.NgayLapPhieu = DateTime.Parse(reader["NGAYLAPPHIEU"].ToString());
+                    phieuDatPhong.MoTa = reader["MoTa"].ToString();
+                    return phieuDatPhong;
+                }
+            }
+            return null;
+        }
     }
 }

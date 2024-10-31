@@ -43,11 +43,14 @@
   <ItemGroup>
     <Compile Include="ChiSoDienNuocBUL.cs" />
     <Compile Include="DichVuBUL.cs" />
+    <Compile Include="HoaDonBUL.cs" />
     <Compile Include="HopDongBUL.cs" />
     <Compile Include="KhachTroBUL.cs" />
+    <Compile Include="LichSuChuyenPhongBUL.cs" />
     <Compile Include="NhanVienBUL.cs" />
     <Compile Include="NhaTroBUL.cs" />
     <Compile Include="PhieuDatPhongBUL.cs" />
+    <Compile Include="PhieuTraPhongBUL.cs" />
     <Compile Include="PhongBUL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLyBUL.cs" />

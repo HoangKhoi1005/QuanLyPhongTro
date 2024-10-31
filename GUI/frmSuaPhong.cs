@@ -18,6 +18,7 @@ namespace GUI
         private frmPhong frmPhong;
         internal bool kiemTraThanhCong;
         private HopDongBUL HopDongBUL = new HopDongBUL();
+        private KhachTroBUL khachTroBUL = new KhachTroBUL();
 
         public frmSuaPhong(PhongDTO phong, frmPhong frmPhong)
         {
@@ -64,6 +65,17 @@ namespace GUI
             }
             UCHopDong uCHopDong = new UCHopDong(phong);
             addUserControl(uCHopDong);
+        }
+
+        private void btnNguoiDaiDien_Click(object sender, EventArgs e)
+        {
+            if(khachTroBUL.LayNguoiDaiDienTheoPhong(phong.MaPT) == null)
+            {
+                MessageBox.Show("Phòng này chưa có người đại diện", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }    
+            UCNguoiDaiDien uCNguoiDaiDien = new UCNguoiDaiDien(phong);
+            addUserControl(uCNguoiDaiDien);
         }
     }
 }

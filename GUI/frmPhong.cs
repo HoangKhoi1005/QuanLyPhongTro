@@ -134,11 +134,68 @@ namespace GUI
                 uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                 uCPhong.UcClick += UCPhong_SuaPhongClick;
                 uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+                uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
+                uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
+                uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
                 groupDSPhong.Controls.Add(uCPhong);
             }
+        }
+
+        private void UCPhong_BaoTraPhongClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            ShowOverlay();
+            frmBaoTraPhong frmBaoTraPhong = new frmBaoTraPhong(phong, this);
+            frmBaoTraPhong.FormClosed += (s, args) =>
+            {
+                if (frmBaoTraPhong.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmBaoTraPhong.ShowDialog();
+            HideOverlay();
+        }
+
+        private void UCPhong_HuyDatPhongClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            ShowOverlay();
+            frmHuyDatPhong frmHuyDatPhong = new frmHuyDatPhong(phong, this);
+            frmHuyDatPhong.FormClosed += (s, args) =>
+            {
+                if (frmHuyDatPhong.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmHuyDatPhong.ShowDialog();
+            HideOverlay();
+        }
+
+        private void UCPhong_DoiPhongClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            ShowOverlay();
+            frmDoiPhong frmDoiPhong = new frmDoiPhong(phong, this);
+            frmDoiPhong.FormClosed += (s, args) =>
+            {
+                if (frmDoiPhong.kiemTraThanhCong)
+                {
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+            };
+            frmDoiPhong.ShowDialog();
+            HideOverlay();
         }
 
         private void UCPhong_XoaPhongClick(object sender, EventArgs e)
@@ -243,14 +300,17 @@ namespace GUI
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
+            //Tìm kiếm phòng theo mã phòng hoặc tên khách trọ
             string maPhong = txtMaPhong.Text;
-            if (string.IsNullOrEmpty(maPhong))
+            string tenKhachTro = txtTenKhachTro.Text;
+            if (string.IsNullOrEmpty(maPhong) && string.IsNullOrEmpty(tenKhachTro))
             {
                 LoadPhongByNhaTro(nhaTroDangChon.MaNT);
             }
             else
             {
-                List<PhongDTO> lstPhong = phongBUL.TimKiemPhongTheoMaPhong(maPhong, nhaTroDangChon.MaNT);
+                List<PhongDTO> lstPhong = phongBUL.TimKiemPhongTheoMaPhong(maPhong, tenKhachTro, nhaTroDangChon.MaNT);
+                MessageBox.Show("Tìm thấy " + lstPhong.Count + " kết quả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 groupDSPhong.Controls.Clear();
 
                 int ucXPosition = 19;
@@ -456,6 +516,15 @@ namespace GUI
             cboGia.Items.Add("5.000.000");
             cboGia.Items.Add("5.500.000");
             cboGia.SelectedIndex = 0;
+        }
+
+        private void btnHuyTimKiem_Click(object sender, EventArgs e)
+        {
+            txtMaPhong.Text = "";
+            txtTenKhachTro.Text = "";
+            LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+            cboGia.SelectedIndex = 0;
+            cboTrangThai.SelectedIndex = 0;
         }
     }
 }

@@ -62,5 +62,15 @@ namespace BUL
         {
             return hopDongDAL.KiemTraPhongCoHopDong(maPT);
         }
+
+        public void CapNhatTrangThaiHopDong(string maHopDong, int v)
+        {
+            hopDongDAL.CapNhatTrangThaiHopDong(maHopDong, v);
+        }
+
+        public List<KhachTroHopDongDTO> LayDanhSachKhachTroHopDong(string maHopDong)
+        {
+            return hopDongDAL.LayDanhSachKhachTroHopDong(maHopDong);
+        }
     }
 }
