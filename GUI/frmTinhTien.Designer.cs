@@ -131,6 +131,7 @@
             this.btnHuy.Size = new System.Drawing.Size(115, 35);
             this.btnHuy.TabIndex = 153;
             this.btnHuy.Text = "Đóng";
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click);
             // 
             // btnTinhTien
             // 
@@ -141,7 +142,7 @@
             this.btnTinhTien.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
             this.btnTinhTien.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
             this.btnTinhTien.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(122)))), ((int)(((byte)(183)))));
-            this.btnTinhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTinhTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold);
             this.btnTinhTien.ForeColor = System.Drawing.Color.White;
             this.btnTinhTien.Image = global::GUI.Properties.Resources.Estimate;
             this.btnTinhTien.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;

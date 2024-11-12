@@ -25,6 +25,16 @@ namespace GUI
             LoadNhaTro();
             LoadTrangThai();
             LoadCboGia();
+
+            dtpNgayChonPhong.ValueChanged -= dtpNgayChonPhong_ValueChanged;
+
+            dtpNgayChonPhong.Value = DateTime.Now;
+
+            dtpNgayChonPhong.ValueChanged += dtpNgayChonPhong_ValueChanged;
+
+            lblSoPhongTrong.Text = lblSoPhongTrong.Text + " " + phongBUL.DemSoPhongTrongTheoNha(nhaTroDangChon.MaNT).ToString();
+            lblSoPhongDaThue.Text = lblSoPhongDaThue.Text + " " + phongBUL.DemSoPhongDaThueTheoNha(nhaTroDangChon.MaNT).ToString();
+            lblSoPhongDaDat.Text = lblSoPhongDaDat.Text + " " + phongBUL.DemSoPhongDaDatTheoNha(nhaTroDangChon.MaNT).ToString();
         }
         internal List<string> dsTenTaiSan = new List<string>();
 
@@ -103,15 +113,20 @@ namespace GUI
             string diaChi = nhaTroBUL.LayDiaChiNTTheoMaNT(maNT);
             groupMain.Text = "Danh sách phòng trọ tại " + diaChi;
             LoadPhongByNhaTro(maNT);
+
+            lblSoPhongTrong.Text = "Còn trống" + " " + phongBUL.DemSoPhongTrongTheoNha(nhaTroDangChon.MaNT).ToString();
+            lblSoPhongDaThue.Text = "| Đã cho thuê" + " " + phongBUL.DemSoPhongDaThueTheoNha(nhaTroDangChon.MaNT).ToString();
+            lblSoPhongDaDat.Text = "| Đã đặt" + " " + phongBUL.DemSoPhongDaDatTheoNha(nhaTroDangChon.MaNT).ToString();
         }
     
 
         public void LoadPhongByNhaTro(string MaNT)
         {
-            groupDSPhong.Controls.Clear();
+            
 
             List<PhongDTO> lstPhong = phongBUL.LayPhongTheoNhaTro(MaNT);
 
+            groupDSPhong.Controls.Clear();
             int ucXPosition = 19;
             int ucYPosition = 19;
             int kt = 0;
@@ -137,6 +152,7 @@ namespace GUI
                 uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
                 uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                 uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
+                uCPhong.TraPhongClick += UCPhong_TraPhongClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
@@ -300,19 +316,21 @@ namespace GUI
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            //Tìm kiếm phòng theo mã phòng hoặc tên khách trọ
+            int soLuongNguoiO;
+            bool isSoLuongValid = int.TryParse(txtTraCuuSoLuongNguoi.Text, out soLuongNguoiO);
+
             string maPhong = txtMaPhong.Text;
             string tenKhachTro = txtTenKhachTro.Text;
-            if (string.IsNullOrEmpty(maPhong) && string.IsNullOrEmpty(tenKhachTro))
+
+            if (string.IsNullOrEmpty(maPhong) && string.IsNullOrEmpty(tenKhachTro) && !isSoLuongValid)
             {
                 LoadPhongByNhaTro(nhaTroDangChon.MaNT);
             }
             else
             {
-                List<PhongDTO> lstPhong = phongBUL.TimKiemPhongTheoMaPhong(maPhong, tenKhachTro, nhaTroDangChon.MaNT);
-                MessageBox.Show("Tìm thấy " + lstPhong.Count + " kết quả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                groupDSPhong.Controls.Clear();
+                List<PhongDTO> lstPhong = phongBUL.TimKiemPhongTheoMaPhong(maPhong, tenKhachTro, nhaTroDangChon.MaNT, isSoLuongValid ? soLuongNguoiO : -1);
 
+                groupDSPhong.Controls.Clear();
                 int ucXPosition = 19;
                 int ucYPosition = 19;
                 int kt = 0;
@@ -335,6 +353,10 @@ namespace GUI
                     uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                     uCPhong.UcClick += UCPhong_SuaPhongClick;
                     uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+                    uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
+                    uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
+                    uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
+                    uCPhong.TraPhongClick += UCPhong_TraPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -372,8 +394,8 @@ namespace GUI
             {
                 string maTT = cboTrangThai.SelectedValue.ToString();
                 List<PhongDTO> lstPhong = phongBUL.LayPhongTheoTrangThai(maTT, nhaTroDangChon.MaNT);
-                groupDSPhong.Controls.Clear();
 
+                groupDSPhong.Controls.Clear();
                 int ucXPosition = 19;
                 int ucYPosition = 19;
                 int kt = 0;
@@ -396,6 +418,10 @@ namespace GUI
                     uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                     uCPhong.UcClick += UCPhong_SuaPhongClick;
                     uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+                    uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
+                    uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
+                    uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
+                    uCPhong.TraPhongClick += UCPhong_TraPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -450,6 +476,10 @@ namespace GUI
                 uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                 uCPhong.UcClick += UCPhong_SuaPhongClick;
                 uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+                uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
+                uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
+                uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
+                uCPhong.TraPhongClick += UCPhong_TraPhongClick;
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;
@@ -470,8 +500,8 @@ namespace GUI
                 string gia = cboGia.SelectedItem.ToString();
                 gia = gia.Replace(".", "");
                 List<PhongDTO> lstPhong = phongBUL.LocPhongTheoGia(gia, nhaTroDangChon.MaNT);
-                groupDSPhong.Controls.Clear();
 
+                groupDSPhong.Controls.Clear();
                 int ucXPosition = 19;
                 int ucYPosition = 19;
                 int kt = 0;
@@ -494,6 +524,10 @@ namespace GUI
                     uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
                     uCPhong.UcClick += UCPhong_SuaPhongClick;
                     uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+                    uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
+                    uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
+                    uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
+                    uCPhong.TraPhongClick += UCPhong_TraPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -522,9 +556,100 @@ namespace GUI
         {
             txtMaPhong.Text = "";
             txtTenKhachTro.Text = "";
+            txtTraCuuSoLuongNguoi.Text = "";
             LoadPhongByNhaTro(nhaTroDangChon.MaNT);
             cboGia.SelectedIndex = 0;
             cboTrangThai.SelectedIndex = 0;
+        }
+
+        private DateTime? KtDateTime = null;
+
+        private void dtpNgayChonPhong_ValueChanged(object sender, EventArgs e)
+        {
+            DateTime ngayChon = dtpNgayChonPhong.Value;
+
+            if (KtDateTime.HasValue && KtDateTime.Value == ngayChon)
+            {
+                return;
+            }
+
+            KtDateTime = ngayChon;
+
+            List<PhongDTO> lstPhong = phongBUL.LocPhongTrongTheoNgay(ngayChon, nhaTroDangChon.MaNT);
+
+            groupDSPhong.Controls.Clear();
+            int ucXPosition = 19;
+            int ucYPosition = 19;
+            int kt = 0;
+
+            foreach (var phong in lstPhong)
+            {
+                UCPhong uCPhong = new UCPhong();
+                if (kt == 6)
+                {
+                    ucXPosition = 19;
+                    ucYPosition += 19 + uCPhong.Width;
+                    kt = 0;
+                }
+
+                uCPhong.LoadPhongTro(phong);
+                uCPhong.Left = ucXPosition;
+                uCPhong.Top = ucYPosition;
+                uCPhong.Tag = phong;
+                uCPhong.ThemKhachTroClick += UCPhong_ThemKhachTroClick;
+                uCPhong.SuaPhongClick += UCPhong_SuaPhongClick;
+                uCPhong.UcClick += UCPhong_SuaPhongClick;
+                uCPhong.XoaPhongClick += UCPhong_XoaPhongClick;
+                uCPhong.DoiPhongClick += UCPhong_DoiPhongClick;
+                uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
+                uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
+                uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+
+                ucXPosition += uCPhong.Width + 19;
+                kt++;
+                groupDSPhong.Controls.Add(uCPhong);
+            }
+        }
+
+        
+
+        private void UCPhong_TraPhongClick(object sender, EventArgs e)
+        {
+            
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+            HopDongBUL hopDongBUL = new HopDongBUL();
+            if (phongBUL.KiemTraPhongDaCoHoaDonTrongThang(phong.MaPT,DateTime.Now))
+            {
+                if(MessageBox.Show("Bạn có chắc chắn muốn trả phòng này không?", "Xác nhận trả phòng", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    HopDongDTO hopDong = hopDongBUL.LayHopDongTheoMaPhong(phong.MaPT);
+                    hopDong.TrangThaiHopDong = false;
+                    if (hopDongBUL.CapNhatHopDong(hopDong))
+                    {
+                        if (phongBUL.CapNhatTrangThaiPhong(phong.MaPT, "TT01"))
+                        {
+                            MessageBox.Show("Trả phòng thành công");
+                            LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Trả phòng thất bại");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Trả phòng thất bại");
+                    }
+                }
+
+
+            }
+            else
+            {
+                MessageBox.Show("Phòng chưa có hóa đơn trong tháng, vui lòng nhập hóa đơn trước khi trả phòng");
+            }
+
         }
     }
 }

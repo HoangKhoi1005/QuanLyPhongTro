@@ -41,11 +41,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoTraPhongBUL.cs" />
     <Compile Include="ChiSoDienNuocBUL.cs" />
     <Compile Include="DichVuBUL.cs" />
     <Compile Include="HoaDonBUL.cs" />
     <Compile Include="HopDongBUL.cs" />
     <Compile Include="KhachTroBUL.cs" />
+    <Compile Include="KyLuatBUL.cs" />
     <Compile Include="LichSuChuyenPhongBUL.cs" />
     <Compile Include="NhanVienBUL.cs" />
     <Compile Include="NhaTroBUL.cs" />

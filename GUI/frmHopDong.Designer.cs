@@ -37,14 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvHopDong = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.MAHOPDONG = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MAPT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DIACHI = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.HOTEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NGAYLAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NGAYHETHAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TIENCOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MAPHIEUNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NGAYNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HOTENNV = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +44,14 @@
             this.THANHTIEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThem = new FontAwesome.Sharp.IconButton();
             this.btnXuatPhieuNhap = new FontAwesome.Sharp.IconButton();
+            this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TIENCOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NGAYHETHAN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NGAYLAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.HOTEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DIACHI = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MAPT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MAHOPDONG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvHopDong)).BeginInit();
             this.SuspendLayout();
@@ -188,6 +188,7 @@
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvHopDong.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgvHopDong.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvHopDong.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgvHopDong.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvHopDong.Location = new System.Drawing.Point(0, 40);
             this.dgvHopDong.Name = "dgvHopDong";
@@ -218,70 +219,6 @@
             this.dgvHopDong.ThemeStyle.RowsStyle.Height = 50;
             this.dgvHopDong.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvHopDong.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // MAHOPDONG
-            // 
-            this.MAHOPDONG.DataPropertyName = "MAHOPDONG";
-            this.MAHOPDONG.FillWeight = 102.7595F;
-            this.MAHOPDONG.HeaderText = "Mã Hợp Đồng";
-            this.MAHOPDONG.MinimumWidth = 6;
-            this.MAHOPDONG.Name = "MAHOPDONG";
-            // 
-            // MAPT
-            // 
-            this.MAPT.DataPropertyName = "MAPT";
-            this.MAPT.FillWeight = 83.63564F;
-            this.MAPT.HeaderText = "Mã Phòng";
-            this.MAPT.MinimumWidth = 6;
-            this.MAPT.Name = "MAPT";
-            // 
-            // DIACHI
-            // 
-            this.DIACHI.DataPropertyName = "HOTENNV";
-            this.DIACHI.FillWeight = 86.85548F;
-            this.DIACHI.HeaderText = "Người Lập";
-            this.DIACHI.MinimumWidth = 6;
-            this.DIACHI.Name = "DIACHI";
-            // 
-            // HOTEN
-            // 
-            this.HOTEN.DataPropertyName = "HOTEN";
-            this.HOTEN.FillWeight = 89.2562F;
-            this.HOTEN.HeaderText = "Người Thuê";
-            this.HOTEN.MinimumWidth = 6;
-            this.HOTEN.Name = "HOTEN";
-            // 
-            // NGAYLAP
-            // 
-            this.NGAYLAP.DataPropertyName = "NGAYLAP";
-            this.NGAYLAP.FillWeight = 92.83664F;
-            this.NGAYLAP.HeaderText = "Ngày Lập";
-            this.NGAYLAP.MinimumWidth = 6;
-            this.NGAYLAP.Name = "NGAYLAP";
-            // 
-            // NGAYHETHAN
-            // 
-            this.NGAYHETHAN.DataPropertyName = "NGAYHETHAN";
-            this.NGAYHETHAN.FillWeight = 96.03417F;
-            this.NGAYHETHAN.HeaderText = "Ngày Hết Hạn";
-            this.NGAYHETHAN.MinimumWidth = 6;
-            this.NGAYHETHAN.Name = "NGAYHETHAN";
-            // 
-            // TIENCOC
-            // 
-            this.TIENCOC.DataPropertyName = "TIENCOC";
-            this.TIENCOC.FillWeight = 98.88972F;
-            this.TIENCOC.HeaderText = "Tiền Cọc";
-            this.TIENCOC.MinimumWidth = 6;
-            this.TIENCOC.Name = "TIENCOC";
-            // 
-            // MOTA
-            // 
-            this.MOTA.DataPropertyName = "MOTA";
-            this.MOTA.FillWeight = 149.7326F;
-            this.MOTA.HeaderText = "Mô Tả";
-            this.MOTA.MinimumWidth = 6;
-            this.MOTA.Name = "MOTA";
             // 
             // MAPHIEUNHAP
             // 
@@ -377,6 +314,70 @@
             this.btnXuatPhieuNhap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnXuatPhieuNhap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnXuatPhieuNhap.UseVisualStyleBackColor = false;
+            // 
+            // MOTA
+            // 
+            this.MOTA.DataPropertyName = "MOTA";
+            this.MOTA.FillWeight = 149.7326F;
+            this.MOTA.HeaderText = "Mô Tả";
+            this.MOTA.MinimumWidth = 6;
+            this.MOTA.Name = "MOTA";
+            // 
+            // TIENCOC
+            // 
+            this.TIENCOC.DataPropertyName = "TIENCOC";
+            this.TIENCOC.FillWeight = 98.88972F;
+            this.TIENCOC.HeaderText = "Tiền Cọc";
+            this.TIENCOC.MinimumWidth = 6;
+            this.TIENCOC.Name = "TIENCOC";
+            // 
+            // NGAYHETHAN
+            // 
+            this.NGAYHETHAN.DataPropertyName = "NGAYHETHAN";
+            this.NGAYHETHAN.FillWeight = 96.03417F;
+            this.NGAYHETHAN.HeaderText = "Ngày Hết Hạn";
+            this.NGAYHETHAN.MinimumWidth = 6;
+            this.NGAYHETHAN.Name = "NGAYHETHAN";
+            // 
+            // NGAYLAP
+            // 
+            this.NGAYLAP.DataPropertyName = "NGAYLAP";
+            this.NGAYLAP.FillWeight = 92.83664F;
+            this.NGAYLAP.HeaderText = "Ngày Lập";
+            this.NGAYLAP.MinimumWidth = 6;
+            this.NGAYLAP.Name = "NGAYLAP";
+            // 
+            // HOTEN
+            // 
+            this.HOTEN.DataPropertyName = "HOTEN";
+            this.HOTEN.FillWeight = 89.2562F;
+            this.HOTEN.HeaderText = "Người Thuê";
+            this.HOTEN.MinimumWidth = 6;
+            this.HOTEN.Name = "HOTEN";
+            // 
+            // DIACHI
+            // 
+            this.DIACHI.DataPropertyName = "HOTENNV";
+            this.DIACHI.FillWeight = 86.85548F;
+            this.DIACHI.HeaderText = "Người Lập";
+            this.DIACHI.MinimumWidth = 6;
+            this.DIACHI.Name = "DIACHI";
+            // 
+            // MAPT
+            // 
+            this.MAPT.DataPropertyName = "MAPT";
+            this.MAPT.FillWeight = 83.63564F;
+            this.MAPT.HeaderText = "Mã Phòng";
+            this.MAPT.MinimumWidth = 6;
+            this.MAPT.Name = "MAPT";
+            // 
+            // MAHOPDONG
+            // 
+            this.MAHOPDONG.DataPropertyName = "MAHOPDONG";
+            this.MAHOPDONG.FillWeight = 102.7595F;
+            this.MAHOPDONG.HeaderText = "Mã Hợp Đồng";
+            this.MAHOPDONG.MinimumWidth = 6;
+            this.MAHOPDONG.Name = "MAHOPDONG";
             // 
             // frmHopDong
             // 
