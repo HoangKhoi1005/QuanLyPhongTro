@@ -186,7 +186,7 @@ namespace GUI
         private void btnTienPhatSinh_Click(object sender, EventArgs e)
         {
             ActivateButton(sender, Color.FromArgb(24, 161, 251));
-            OpenChildForm(new frmTienPhatSinh());
+            OpenChildForm(new btnLuu());
             CollapseMenuWithButton();
         }
 
@@ -382,6 +382,14 @@ namespace GUI
             }
         }
 
-
+        private void btnDangXuat_Click_1(object sender, EventArgs e)
+        {
+            DialogResult r;
+            r = MessageBox.Show("Bạn có muốn đăng xuất không?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (r == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

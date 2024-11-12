@@ -1,18 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Database Name="QL_NhaTro" Class="QLPTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-85VQT4K5\SQLEXPRESS05;Initial Catalog=QL_NhaTro;User ID=sa" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QL_NhaTroConnectionString2" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.QUANLY" Member="QUANLies">
-    <Type Name="QUANLY">
-      <Column Name="MAQL" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="HOTENNV" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="DIACHINV" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="SODT" Type="System.String" DbType="NVarChar(20)" CanBeNull="true" />
-      <Column Name="EMAILNV" Type="System.String" DbType="NVarChar(30)" CanBeNull="true" />
-      <Column Name="NGAYSINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="NGAYVAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="MATKHAU" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_NhaTro" Class="QLPTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QL_NhaTroConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DICHVU" Member="DICHVUs">
     <Type Name="DICHVU">
       <Column Name="MADV" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -46,6 +33,8 @@
       <Column Name="ANH" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
       <Column Name="DAXOA" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="PHONGTRO_CHISODIENNUOC" Member="CHISODIENNUOCs" ThisKey="MAPT" OtherKey="MAPT" Type="CHISODIENNUOC" />
+      <Association Name="PHONGTRO_PHATSINH" Member="PHATSINHs" ThisKey="MAPT" OtherKey="MAPT" Type="PHATSINH" />
+      <Association Name="TRANGTHAIPHONG_PHONGTRO" Member="TRANGTHAIPHONG" ThisKey="MATT" OtherKey="MATT" Type="TRANGTHAIPHONG" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.QUANLY" Member="QUANLies">
@@ -59,6 +48,26 @@
       <Column Name="NGAYSINH" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="NGAYVAO" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="MATKHAU" Type="System.String" DbType="NVarChar(512) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PHATSINH" Member="PHATSINHs">
+    <Type Name="PHATSINH">
+      <Column Name="MAPHATSINH" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="MAPT" Type="System.String" DbType="NVarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="NGAYTHANG" Type="System.DateTime" DbType="Date NOT NULL" CanBeNull="false" />
+      <Column Name="SOTIEN" Type="System.Decimal" DbType="Money" CanBeNull="true" />
+      <Column Name="MOTA" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="LOAIPHATSINH" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="PHONGTRO_PHATSINH" Member="PHONGTRO" ThisKey="MAPT" OtherKey="MAPT" Type="PHONGTRO" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.TRANGTHAIPHONG" Member="TRANGTHAIPHONGs">
+    <Type Name="TRANGTHAIPHONG">
+      <Column Name="MATT" Type="System.String" DbType="NVarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TENTRANGTHAI" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="MOTA" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DAXOA" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Association Name="TRANGTHAIPHONG_PHONGTRO" Member="PHONGTROs" ThisKey="MATT" OtherKey="MATT" Type="PHONGTRO" />
     </Type>
   </Table>
 </Database>

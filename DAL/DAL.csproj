@@ -45,15 +45,19 @@
   <ItemGroup>
     <Compile Include="ChiSoDienNuocDAL.cs" />
     <Compile Include="DichVuDAL.cs" />
+    <Compile Include="DoanhThuDAL.cs" />
     <Compile Include="HoaDonDAL.cs" />
     <Compile Include="HopDongDAL.cs" />
     <Compile Include="KhachTroDAL.cs" />
+    <Compile Include="KhachTroSapHetHanHopDongDAL.cs" />
     <Compile Include="LichSuChuyenPhongDAL.cs" />
     <Compile Include="NhanVienDAL.cs" />
     <Compile Include="NhaTroDAL.cs" />
+    <Compile Include="PhatSinhDAL.cs" />
     <Compile Include="PhieuDatPhongDAL.cs" />
     <Compile Include="PhieuTraPhongDAL.cs" />
     <Compile Include="PhongDAL.cs" />
+    <Compile Include="PhongTrongDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -68,6 +72,7 @@
     <Compile Include="QuanLyDAL.cs" />
     <Compile Include="SuDungDichVuDAL.cs" />
     <Compile Include="TaiSanDAL.cs" />
+    <Compile Include="TrangThaiPhong1DAL.cs" />
     <Compile Include="TrangThaiPhongDAL.cs" />
   </ItemGroup>
   <ItemGroup>
