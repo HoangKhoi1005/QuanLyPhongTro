@@ -3,6 +3,7 @@ using SQLServerProvider;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -46,7 +47,6 @@ namespace DAL
             return maHopDong;
         }
 
-        //Tìm mã hợp đồng theo mã phòng
         public string TimMaHopDongTheoMaPhong(string maPhong)
         {
             string maHopDong = "";
@@ -141,6 +141,31 @@ namespace DAL
                 }
             }
             return khachTroHopDongs;
+        }
+
+        public DataTable layThongTinHopDong(string maHopDong)
+        {
+            string query = @"
+            SELECT HD.NGAYLAP, HD.TIENCOC, KT.HOTEN AS TENKHACHTRO, KT.CCCD AS CCCDKHACHTRO, KT.DIACHI AS DIACHIKHACHTRO, KT.SODT AS SODIENTHOAIKT,
+               QL.HOTENNV AS TENQUANLY, QL.DIACHINV AS DIACHIQUANLY, QL.SODT AS SODIENTHOAIQL,
+               PT.MAPT AS MAPHONGTRO, PT.DONGIA AS GIATHUE, NT.DIACHINT AS DIACHINHATRO,
+               HD.NGAYLAP AS NGAYBATDAU, HD.NGAYHETHAN AS NGAYKETTHUC
+            FROM HOPDONG HD
+            JOIN KHACHTRO KT ON HD.MAKTDAIDIEN = KT.MAKT
+            JOIN PHONGTRO PT ON HD.MAPT = PT.MAPT
+            JOIN QUANLY QL ON HD.MAQL = QL.MAQL
+            JOIN NHATRO NT ON PT.MANT = NT.MANT
+            WHERE HD.MAHOPDONG = @maHopDong;";
+
+            using (SqlConnection conn = db.Conn)
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@maHopDong", maHopDong);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
         }
     }
 }

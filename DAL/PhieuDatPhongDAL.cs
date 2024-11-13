@@ -3,6 +3,7 @@ using SQLServerProvider;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -80,6 +81,49 @@ namespace DAL
                 }
             }
             return null;
+        }
+
+        public DataTable layThongTinPhieuDat(string maPhieuDat)
+        {
+            string query = @"
+            SELECT 
+                PDP.MAPDP,                   
+                KT.HOTEN AS TENKHACHTRO,  
+                KT.CCCD AS CCCDKHACHTRO,
+                KT.DIACHI AS DIACHIKHACHTRO, 
+                KT.SODT AS SODIENTHOAIKT,    
+                PT.MAPT AS MAPHONGTRO, 
+                NT.DIACHINT AS DIACHINHATRO, 
+                PDP.NGAYLAPPHIEU AS NGAYLAPPHIEU,           
+                PDP.NGAYDUKIENNHANPHONG AS NGAYDUKIENNHANPHONG,   
+                PDP.TIENDATPHONG AS TIENCOC,                        
+                QL.HOTENNV AS TENQUANLY,      
+                QL.DIACHINV AS DIACHIQUANLY,  
+                QL.SODT AS SODIENTHOAIQL,   
+                PDP.MOTA,
+                PT.DONGIA AS GIATHUE
+            FROM 
+                PHIEUDATPHONG PDP
+            JOIN 
+                KHACHTRO KT ON PDP.MAKT = KT.MAKT
+            JOIN 
+                PHONGTRO PT ON PDP.MAPT = PT.MAPT
+            JOIN 
+                QUANLY QL ON PDP.MAQL = QL.MAQL
+            JOIN 
+                NHATRO NT ON PT.MANT = NT.MANT  
+            WHERE 
+                PDP.MAPDP = @maPhieuDat";
+
+            using (SqlConnection conn = db.Conn)
+            {
+                SqlDataAdapter da = new SqlDataAdapter(query, conn);
+                da.SelectCommand.Parameters.AddWithValue("@maPhieuDat", maPhieuDat);
+
+                DataTable dt = new DataTable();
+                da.Fill(dt);
+                return dt;
+            }
         }
     }
 }
