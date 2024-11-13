@@ -19,6 +19,7 @@ namespace GUI
         internal bool kiemTraThanhCong;
         private HopDongBUL HopDongBUL = new HopDongBUL();
         private KhachTroBUL khachTroBUL = new KhachTroBUL();
+        private BaoTraPhongBUL baoTraPhongBUL = new BaoTraPhongBUL();
 
         public frmSuaPhong(PhongDTO phong, frmPhong frmPhong)
         {
@@ -76,6 +77,12 @@ namespace GUI
             }    
             UCNguoiDaiDien uCNguoiDaiDien = new UCNguoiDaiDien(phong);
             addUserControl(uCNguoiDaiDien);
+        }
+
+        private void btnBaoTraPhong_Click(object sender, EventArgs e)
+        {
+            UCBaoTraPhong uCBaoTraPhong = new UCBaoTraPhong(phong);
+            addUserControl(uCBaoTraPhong);
         }
     }
 }

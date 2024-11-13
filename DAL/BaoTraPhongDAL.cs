@@ -2,6 +2,7 @@
 using SQLServerProvider;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,18 @@ namespace DAL
         public BaoTraPhongDAL()
         {
             db = new DBConnect();
+        }
+
+        public bool HuyBaoTraPhong(string maPT)
+        {
+            string sql = "UPDATE BaoTraPhong SET DaXoa = 1 WHERE MaPT = '" + maPT + "'";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
+
+        public DataTable LayBaoTraPhongTheoMaPhong(string maPT)
+        {
+            string sql = "SELECT * FROM BaoTraPhong WHERE MaPT = '" + maPT + "' AND DAXOA = 0";
+            return db.GetDataTable(sql);
         }
 
         public string PhatSinhMaBaoTraPhong()

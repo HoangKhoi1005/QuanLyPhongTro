@@ -50,5 +50,10 @@ namespace BUL
         {
             return chiSoDienNuocDAL.TimKiemDienNuoc(maPT, ngay, thang, nam);
         }
+
+        public ChiSoDienNuocDTO LayChiSoDienNuocTheoMaPhong(string maPT, DateTime ngayLap)
+        {
+            return chiSoDienNuocDAL.LayChiSoDienNuocTheoMaPhong(maPT, ngayLap);
+        }
     }
 }

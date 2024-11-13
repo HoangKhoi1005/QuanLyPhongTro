@@ -190,6 +190,7 @@ namespace GUI
                 btnTraPhong.Location = new Point(10, 90);
                 btnTraPhong.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnTraPhong, "Trả phòng");
+                btnTraPhong.Click += new EventHandler(btnTraPhong_Click);
                 guna2Panel2.Controls.Add(btnTraPhong);
 
                 Guna.UI2.WinForms.Guna2Button btnInPhieuTraPhong = new Guna.UI2.WinForms.Guna2Button();
@@ -222,6 +223,38 @@ namespace GUI
                 btnDatPhongTruoc.Click += new EventHandler(btnDatPhongTruoc_Click);
                 toolTip1.SetToolTip(btnDatPhongTruoc, "Đặt phòng trước");
                 guna2Panel2.Controls.Add(btnDatPhongTruoc);
+
+                //Huỷ báo trả phòng
+
+                Guna.UI2.WinForms.Guna2Button btnHuyBaoTraPhong = new Guna.UI2.WinForms.Guna2Button();
+
+                btnHuyBaoTraPhong.BorderColor = Color.FromArgb(70, 184, 218);
+                btnHuyBaoTraPhong.BorderRadius = 4;
+                btnHuyBaoTraPhong.FillColor = Color.OrangeRed;
+                btnHuyBaoTraPhong.Font = new Font("Microsoft Sans Serif", 7.2F, FontStyle.Bold);
+                btnHuyBaoTraPhong.ForeColor = Color.White;
+                btnHuyBaoTraPhong.Image = global::GUI.Properties.Resources.CancelRoom;
+                btnHuyBaoTraPhong.ImageAlign = HorizontalAlignment.Left;
+                btnHuyBaoTraPhong.Location = new Point(120, 90);
+                btnHuyBaoTraPhong.Size = new Size(120, 37);
+                btnHuyBaoTraPhong.Text = "Hủy báo trả";
+                btnHuyBaoTraPhong.TextAlign = HorizontalAlignment.Right;
+                btnHuyBaoTraPhong.Click += new EventHandler(btnHuyBaoTraPhong_Click);
+                toolTip1.SetToolTip(btnHuyBaoTraPhong, "Hủy báo trả phòng");
+                guna2Panel2.Controls.Add(btnHuyBaoTraPhong);
+
+            }
+        }
+
+        public delegate void HuyBaoTraPhongHandler(object sender, EventArgs e);
+
+        public event HuyBaoTraPhongHandler HuyBaoTraPhongClick;
+
+        private void btnHuyBaoTraPhong_Click(object sender, EventArgs e)
+        {
+            if (HuyBaoTraPhongClick != null)
+            {
+                HuyBaoTraPhongClick(this, e);
             }
         }
 

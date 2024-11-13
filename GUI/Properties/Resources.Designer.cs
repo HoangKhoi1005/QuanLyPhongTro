@@ -133,6 +133,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap CancelRoom {
+            get {
+                object obj = ResourceManager.GetObject("CancelRoom", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ChangeRoom {
             get {
                 object obj = ResourceManager.GetObject("ChangeRoom", resourceCulture);
