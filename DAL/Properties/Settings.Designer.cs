@@ -26,7 +26,8 @@ namespace DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa;Password=123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-85VQT4K5\\SQLEXPRESS05;Initial Catalog=QL_NhaTro;User ID=sa;Pas" +
+            "sword=123")]
         public string QL_NhaTroConnectionString {
             get {
                 return ((string)(this["QL_NhaTroConnectionString"]));
@@ -36,7 +37,8 @@ namespace DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa;Password=123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-85VQT4K5\\SQLEXPRESS05;Initial Catalog=QL_NhaTro;User ID=sa;Pas" +
+            "sword=123")]
         public string QL_NhaTroConnectionString1 {
             get {
                 return ((string)(this["QL_NhaTroConnectionString1"]));
@@ -46,7 +48,8 @@ namespace DAL.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa;Password=123")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=LAPTOP-85VQT4K5\\SQLEXPRESS05;Initial Catalog=QL_NhaTro;User ID=sa;Pas" +
+            "sword=123")]
         public string QL_NhaTroConnectionString2 {
             get {
                 return ((string)(this["QL_NhaTroConnectionString2"]));

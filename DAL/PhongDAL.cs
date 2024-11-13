@@ -66,7 +66,7 @@ namespace DAL
             int kq;
             try
             {
-                string sql = "SELECT count(*) FROM HOPDONG WHERE MAPT = '" + maPT + "'";
+                string sql = "SELECT count(*) FROM HOPDONG WHERE MAPT = '" + maPT + "' AND TRANGTHAIHOPDONG = 1";
 
                 kq  = (int)conn.ExecuteScalar(sql);
 
@@ -590,31 +590,31 @@ namespace DAL
                 string ngayChonStr = ngayChon.ToString("yyyy-MM-dd");
 
                 string sql = $@"
-        SELECT PT.*
-        FROM PHONGTRO PT
-        LEFT JOIN HOPDONG HD ON PT.MAPT = HD.MAPT
-        LEFT JOIN BAOTRAPHONG BP ON PT.MAPT = BP.MAPT
-        LEFT JOIN PHIEUDATPHONG PDP ON PT.MAPT = PDP.MAPT
-        WHERE 
-            PT.MANT = '{maNT}' AND 
-            PT.DAXOA = 0 AND
-            (
-                -- Điều kiện 1: Phòng không có hợp đồng hoặc hợp đồng đã hết hạn trước 'ngayChon'
-                (HD.MAHOPDONG IS NULL OR 
-                (HD.NGAYHETHAN <= '{ngayChonStr}' AND HD.TRANGTHAIHOPDONG = 1) OR 
-                (BP.MABAOTRA IS NOT NULL AND BP.NGAYTRAPHONGDUKIEN <= '{ngayChonStr}'))
-                AND
-                -- Điều kiện 2: Phòng có bản ghi trong BAOTRAPHONG, kiểm tra ngày trả dự kiến
-                (
-                    BP.MABAOTRA IS NULL OR BP.NGAYTRAPHONGDUKIEN <= '{ngayChonStr}'
-                )
-                AND
-                -- Điều kiện 3: Phòng không có bản ghi trong PHIEUDATPHONG hoặc ngày dự kiến nhận phòng đã qua
-                (
-                    PDP.MAPDP IS NULL OR 
-                    (PDP.NGAYDUKIENNHANPHONG > '{ngayChonStr}' OR PDP.NGAYLAPPHIEU < '{ngayChonStr}')
-                )
-            )";
+                        SELECT PT.*
+                        FROM PHONGTRO PT
+                        LEFT JOIN HOPDONG HD ON PT.MAPT = HD.MAPT
+                        LEFT JOIN BAOTRAPHONG BP ON PT.MAPT = BP.MAPT
+                        LEFT JOIN PHIEUDATPHONG PDP ON PT.MAPT = PDP.MAPT
+                        WHERE 
+                            PT.MANT = '{maNT}' AND 
+                            PT.DAXOA = 0 AND
+                            (
+                                -- Điều kiện 1: Phòng không có hợp đồng hoặc hợp đồng đã hết hạn trước 'ngayChon'
+                                (HD.MAHOPDONG IS NULL OR 
+                                (HD.NGAYHETHAN <= '{ngayChonStr}' AND HD.TRANGTHAIHOPDONG = 1) OR 
+                                (BP.MABAOTRA IS NOT NULL AND BP.NGAYTRAPHONGDUKIEN <= '{ngayChonStr}' AND BP.DAXOA = 0))
+                                AND
+                                -- Điều kiện 2: Phòng có bản ghi trong BAOTRAPHONG, kiểm tra ngày trả dự kiến
+                                (
+                                    BP.MABAOTRA IS NULL OR BP.NGAYTRAPHONGDUKIEN <= '{ngayChonStr}'
+                                )
+                                AND
+                                -- Điều kiện 3: Phòng không có bản ghi trong PHIEUDATPHONG hoặc ngày dự kiến nhận phòng đã qua
+                                (
+                                    PDP.MAPDP IS NULL OR 
+                                    (PDP.NGAYDUKIENNHANPHONG > '{ngayChonStr}' OR PDP.NGAYLAPPHIEU < '{ngayChonStr}')
+                                )
+                            )";
 
                 // Thực thi truy vấn SQL và đọc dữ liệu
                 SqlDataReader reader = conn.ExecuteQuery(sql);
