@@ -51,7 +51,7 @@ namespace GUI
         public void LoadCboPhong()
         {
             PhongBUL phongBUL = new PhongBUL();
-            cboMaPT.DataSource = phongBUL.LayPhongTrongTheoNhaTro(cboNT.SelectedValue.ToString());
+            cboMaPT.DataSource = phongBUL.LayPhongCoHopDongTheoNhaTro(cboNT.SelectedValue.ToString());
             cboMaPT.DisplayMember = "MaPT";
             cboMaPT.ValueMember = "MaPT";
         }
@@ -76,9 +76,22 @@ namespace GUI
             hoaDonDTO.DaXoa = false;
             hoaDonDTO.MaQL = "QL001";
 
+            DateTime thangNam = dtpThangNam.Value;
+
             if (cboNT.SelectedValue.ToString() == "All")
             {
-                var danhSachPhong = phongBUL.LayTatCaPhong();
+                
+                var danhSachPhongThieuChiSo = KiemTraThieuChiSoDienNuoc(thangNam);
+
+                if (danhSachPhongThieuChiSo.Count > 0)
+                {
+                    string phongThieuChiSo = string.Join(", ", danhSachPhongThieuChiSo);
+                    MessageBox.Show($"Các phòng sau chưa nhập chỉ số điện nước cho tháng {thangNam:MM/yyyy}: {phongThieuChiSo}",
+                                    "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                var danhSachPhong = phongBUL.LayPhongDaCoHopDong();
 
                 foreach (var phong in danhSachPhong)
                 {
@@ -95,6 +108,12 @@ namespace GUI
             }
             else
             {
+                if (!hoaDonBUL.KiemTraChiSoDienNuoc(dtpThangNam.Value, cboMaPT.SelectedValue.ToString()))
+                {
+                    MessageBox.Show($"Phòng chưa nhập chỉ số điện nước cho tháng {thangNam:MM/yyyy}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 if (!hoaDonBUL.KiemTraHoaDonThang(dtpThangNam.Value, cboMaPT.SelectedValue.ToString()))
                 {
                     hoaDonDTO.MaHD = hoaDonBUL.PhatSinhMaHoaDon();
@@ -110,5 +129,28 @@ namespace GUI
             frmTinhTienPhong.LoadDataGirdViewHoaDon();
         }
 
+        private List<string> KiemTraThieuChiSoDienNuoc(DateTime thangNam)
+        {
+            var danhSachPhongThieuChiSo = new List<string>();
+            var danhSachPhong = phongBUL.LayPhongDaCoHopDong();
+
+            foreach (var phong in danhSachPhong)
+            {
+                if (!hoaDonBUL.KiemTraChiSoDienNuoc(thangNam, phong.MaPT))
+                {
+                    danhSachPhongThieuChiSo.Add(phong.MaPT);
+                }
+            }
+            return danhSachPhongThieuChiSo;
+        }
+
+        private void btnHuy_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
+            }
+        }
     }
 }

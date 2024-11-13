@@ -108,7 +108,7 @@ namespace DAL
 
         public bool CapNhatHopDong(HopDongDTO hopDong)
         {
-            string sql = "UPDATE HopDong SET NgayLap = '" + hopDong.NgayLap + "', NgayHetHan = '" + hopDong.NgayHetHan + "', TienCoc = " + hopDong.TienCoc + ", MoTa = N'" + hopDong.MoTa + "' WHERE MaHopDong = '" + hopDong.MaHopDong + "'";
+            string sql = "UPDATE HopDong SET NgayLap = '" + hopDong.NgayLap + "', NgayHetHan = '" + hopDong.NgayHetHan + "', TienCoc = " + hopDong.TienCoc + ", MoTa = N'" + hopDong.MoTa + "',TRANGTHAIHOPDONG = '" + hopDong.TrangThaiHopDong + "' WHERE MaHopDong = '" + hopDong.MaHopDong + "'";
             return db.ExecuteNonQuery(sql) > 0;
         }
 

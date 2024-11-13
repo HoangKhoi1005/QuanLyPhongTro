@@ -28,6 +28,7 @@ namespace GUI
             this.khachTro = khachTro;
             this.frmCha = frmCha;
 
+            dtpNgayNhanPhong.Value = DateTime.Now;
             txtMaPT.Text = phong.MaPT;
             txtTenKT.Text = khachTro.HoTen;
             txtTenNL.Text = "QL001";

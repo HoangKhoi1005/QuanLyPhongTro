@@ -43,12 +43,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaoTraPhongDAL.cs" />
     <Compile Include="ChiSoDienNuocDAL.cs" />
     <Compile Include="DichVuDAL.cs" />
     <Compile Include="DoanhThuDAL.cs" />
     <Compile Include="HoaDonDAL.cs" />
     <Compile Include="HopDongDAL.cs" />
     <Compile Include="KhachTroDAL.cs" />
+    <Compile Include="KyLuatDAL.cs" />
     <Compile Include="KhachTroSapHetHanHopDongDAL.cs" />
     <Compile Include="LichSuChuyenPhongDAL.cs" />
     <Compile Include="NhanVienDAL.cs" />

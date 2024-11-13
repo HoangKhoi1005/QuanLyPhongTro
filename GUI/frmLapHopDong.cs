@@ -20,6 +20,7 @@ namespace GUI
         private KhachTroBUL khachTroBUL = new KhachTroBUL();
         private PhongBUL phongBUL = new PhongBUL();
         private frmThemKhachTro frmCha;
+        SuDungDichVuBUL suDungDichVuBUL = new SuDungDichVuBUL();
 
         public frmLapHopDong(PhongDTO phong, KhachTroDTO khachTro, frmThemKhachTro frmCha)
         {
@@ -31,7 +32,10 @@ namespace GUI
             txtTenNL.Text = "QL001";
             txtMaPT.Text = phong.MaPT;
             txtTenKT.Text = khachTro.HoTen;
+            dtpNgayDenHan.Value = DateTime.Now;
             txtMaHopDong.Text = hopDongBUL.PhatSinhMaHopDong();
+            txtTienCoc.Text = string.Format("{0:#,##0}", phong.DonGia);
+
         }
 
         private void btnLapHopDon_Click(object sender, EventArgs e)
@@ -42,7 +46,9 @@ namespace GUI
                 return;
             }
 
-            if(txtTienCoc.Text.All(char.IsDigit) == false)
+            string tienCocText = txtTienCoc.Text.Replace(",", "");
+
+            if (!tienCocText.All(char.IsDigit))
             {
                 MessageBox.Show("Tiền cọc phải là số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -79,6 +85,27 @@ namespace GUI
                 {
                     phong.MaTT = "TT02";
                     phongBUL.CapNhatTrangThaiPhong(phong.MaPT,phong.MaTT);
+
+                    var suDungDichVuDien = new SuDungDichVuDTO
+                    {
+                        MaPT = hopDong.MaPT,
+                        MaDV = "DV001",
+                        SoLuong = 1,
+                        NgayBatDau = hopDong.NgayLap,
+                        NgayKetThuc = hopDong.NgayHetHan
+                    };
+                    suDungDichVuBUL.themSuDungDichVu(suDungDichVuDien);
+
+                    var suDungDichVuNuoc = new SuDungDichVuDTO
+                    {
+                        MaPT = hopDong.MaPT,
+                        MaDV = "DV002",
+                        SoLuong = 1,
+                        NgayBatDau = hopDong.NgayLap,
+                        NgayKetThuc = hopDong.NgayHetHan
+                    };
+                    suDungDichVuBUL.themSuDungDichVu(suDungDichVuNuoc);
+
                     MessageBox.Show("Lập hợp đồng thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     frmCha.kiemTraThanhCong = true;
                     frmCha.Close();

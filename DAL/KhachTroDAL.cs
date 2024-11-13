@@ -6,6 +6,7 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL
 {
@@ -58,6 +59,41 @@ namespace DAL
         {
             List<KhachTroDTO> lstKhachTro = new List<KhachTroDTO>();
             string sql = "SELECT * FROM KHACHTRO WHERE DAXOA = 0 AND MaKT NOT IN (SELECT MaKT FROM KHACHTRO_HOPDONG)";
+            try
+            {
+                using (var reader = db.ExecuteQuery(sql))
+                {
+                    while (reader.Read())
+                    {
+                        KhachTroDTO khachTro = new KhachTroDTO();
+
+                        khachTro.MaKT = reader["MaKT"].ToString();
+                        khachTro.HoTen = reader["HoTen"].ToString();
+                        khachTro.DiaChi = reader["DiaChi"].ToString();
+                        khachTro.SoDT = reader["SoDT"].ToString();
+                        khachTro.CCCD = reader["CCCD"].ToString();
+                        khachTro.Email = reader["Email"].ToString();
+                        khachTro.NgaySinh = Convert.ToDateTime(reader["NgaySinh"]);
+                        khachTro.GioiTinh = reader["GioiTinh"].ToString();
+                        khachTro.Anh = reader["Anh"].ToString();
+                        khachTro.MoTa = reader["MoTa"].ToString();
+                        khachTro.DaXoa = Convert.ToInt32(reader["DaXoa"]);
+
+                        lstKhachTro.Add(khachTro);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi lấy danh sách khách trọ chưa thuê phòng: " + ex.Message);
+            }
+            return lstKhachTro;
+        }
+
+        public List<KhachTroDTO> LayDSKhachTroDaThuePhong()
+        {
+            List<KhachTroDTO> lstKhachTro = new List<KhachTroDTO>();
+            string sql = "SELECT * FROM KHACHTRO WHERE DAXOA = 0 AND MaKT IN (SELECT MaKT FROM KHACHTRO_HOPDONG)";
             try
             {
                 using (var reader = db.ExecuteQuery(sql))
@@ -233,6 +269,32 @@ namespace DAL
         {
             string sql = "UPDATE KHACHTRO SET DAXOA = 1 WHERE MAKT = '" + maKT + "'";
             return db.ExecuteNonQuery(sql) > 0;
+        }
+
+        public DataTable TraCuuKhachTro(string hoTen, string cccd, string maPT)
+        {
+            string sql = "SELECT DISTINCT KHACHTRO.MAKT, HOTEN, DIACHI, SODT, CCCD, EMAIL, NGAYSINH, GIOITINH, ANH, KHACHTRO.MOTA, KHACHTRO.DAXOA " +
+                         "FROM KHACHTRO " +
+                         "JOIN KHACHTRO_HOPDONG ON KHACHTRO.MAKT = KHACHTRO_HOPDONG.MAKT " +
+                         "JOIN HOPDONG ON KHACHTRO_HOPDONG.MAHOPDONG = HOPDONG.MAHOPDONG " +
+                         "WHERE KHACHTRO.DAXOA = 0 ";
+           
+            if (!string.IsNullOrEmpty(hoTen))
+            {
+                sql += "AND HOTEN LIKE N'%" + hoTen + "%' ";
+            }
+
+            if (!string.IsNullOrEmpty(cccd))
+            {
+                sql += "AND CCCD LIKE '%" + cccd + "%' ";
+            }
+
+            if (!string.IsNullOrEmpty(maPT))
+            {
+                sql += "AND HOPDONG.MAPT LIKE '%" + maPT + "%' ";
+            }
+
+            return db.GetDataTable(sql);
         }
     }
 }

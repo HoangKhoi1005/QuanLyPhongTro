@@ -61,5 +61,10 @@ namespace GUI
             else
                 txtMatKhau.PasswordChar = '*';
         }
+
+        private void frmDangNhap_Load(object sender, EventArgs e)
+        {
+            this.AcceptButton = btnDangNhap;
+        }
     }
 }

@@ -131,6 +131,7 @@ namespace GUI
                 btnTraPhong.Image = global::GUI.Properties.Resources.Door;
                 btnTraPhong.Location = new Point(10, 90);
                 btnTraPhong.Size = new Size(41, 37);
+                btnTraPhong.Click += new EventHandler(btnTraPhong_Click);
                 toolTip1.SetToolTip(btnTraPhong, "Trả phòng");
                 guna2Panel2.Controls.Add(btnTraPhong);
 
@@ -190,6 +191,73 @@ namespace GUI
                 btnTraPhong.Size = new Size(41, 37);
                 toolTip1.SetToolTip(btnTraPhong, "Trả phòng");
                 guna2Panel2.Controls.Add(btnTraPhong);
+
+                Guna.UI2.WinForms.Guna2Button btnInPhieuTraPhong = new Guna.UI2.WinForms.Guna2Button();
+
+                btnInPhieuTraPhong.BorderColor = Color.FromArgb(70, 184, 218);
+                btnInPhieuTraPhong.BorderRadius = 4;
+                btnInPhieuTraPhong.FillColor = Color.FromArgb(40, 167, 69);
+                btnInPhieuTraPhong.Font = new Font("Microsoft Sans Serif", 7.8F, FontStyle.Bold);
+                btnInPhieuTraPhong.ForeColor = Color.White;
+                btnInPhieuTraPhong.Image = global::GUI.Properties.Resources.LabelPrinter;
+                btnInPhieuTraPhong.Location = new Point(57, 90);
+                btnInPhieuTraPhong.Size = new Size(41, 37);
+                btnInPhieuTraPhong.Click += new EventHandler(btnInPhieuTraPhong_Click);
+                toolTip1.SetToolTip(btnInPhieuTraPhong, "In phiếu trả phòng");
+                guna2Panel2.Controls.Add(btnInPhieuTraPhong);
+
+                Guna.UI2.WinForms.Guna2Button btnDatPhongTruoc = new Guna.UI2.WinForms.Guna2Button();
+
+                btnDatPhongTruoc.BorderColor = Color.FromArgb(40, 167, 69);
+                btnDatPhongTruoc.BorderRadius = 4;
+                btnDatPhongTruoc.FillColor = Color.FromArgb(40, 167, 69);
+                btnDatPhongTruoc.Font = new Font("Microsoft Sans Serif", 7.2F, FontStyle.Bold);
+                btnDatPhongTruoc.ForeColor = Color.White;
+                btnDatPhongTruoc.Image = global::GUI.Properties.Resources.Calendar;
+                btnDatPhongTruoc.ImageAlign = HorizontalAlignment.Left;
+                btnDatPhongTruoc.Location = new Point(130, 9);
+                btnDatPhongTruoc.Size = new Size(110, 37);
+                btnDatPhongTruoc.TextAlign = HorizontalAlignment.Right;
+                btnDatPhongTruoc.Text = "Đặt trước";
+                btnDatPhongTruoc.Click += new EventHandler(btnDatPhongTruoc_Click);
+                toolTip1.SetToolTip(btnDatPhongTruoc, "Đặt phòng trước");
+                guna2Panel2.Controls.Add(btnDatPhongTruoc);
+            }
+        }
+
+        public delegate void TraPhongHandler(object sender, EventArgs e);
+
+        public event TraPhongHandler TraPhongClick;
+
+        private void btnTraPhong_Click(object sender, EventArgs e)
+        {
+            if (TraPhongClick != null)
+            {
+                TraPhongClick(this, e);
+            }
+        }
+
+        public delegate void DatPhongTruocHandler(object sender, EventArgs e);
+
+        public event DatPhongTruocHandler DatPhongTruocClick;
+
+        private void btnDatPhongTruoc_Click(object sender, EventArgs e)
+        {
+            if (DatPhongTruocClick != null)
+            {
+                DatPhongTruocClick(this, e);
+            }
+        }
+
+        public delegate void InPhieuTraPhongHandler(object sender, EventArgs e);
+
+        public event InPhieuTraPhongHandler InPhieuTraPhongClick;
+
+        private void btnInPhieuTraPhong_Click(object sender, EventArgs e)
+        {
+            if (InPhieuTraPhongClick != null)
+            {
+                InPhieuTraPhongClick(this, e);
             }
         }
 

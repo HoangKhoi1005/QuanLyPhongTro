@@ -76,5 +76,15 @@ namespace BUL
         {
             return khachTroDAL.XoaKhachTro(maKT);
         }
+
+        public DataTable TraCuuKhachTro(string hoTen, string cccd, string maPT)
+        {
+            return khachTroDAL.TraCuuKhachTro(hoTen, cccd, maPT);
+        }
+
+        public List<KhachTroDTO> LayDSKhachTroDaThuePhong()
+        {
+            return khachTroDAL.LayDSKhachTroDaThuePhong();
+        }
     }
 }
