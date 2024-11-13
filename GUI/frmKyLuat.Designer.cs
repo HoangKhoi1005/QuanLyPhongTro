@@ -80,7 +80,6 @@
             this.txtTraCuuMaPT = new Guna.UI2.WinForms.Guna2TextBox();
             this.btnHuyTimKiem = new Guna.UI2.WinForms.Guna2Button();
             this.btnThem = new FontAwesome.Sharp.IconButton();
-            this.btnXuatPhieuNhap = new FontAwesome.Sharp.IconButton();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKyLuat)).BeginInit();
             this.guna2GroupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -758,31 +757,6 @@
             this.btnThem.UseVisualStyleBackColor = false;
             this.btnThem.Click += new System.EventHandler(this.btnThem_Click);
             // 
-            // btnXuatPhieuNhap
-            // 
-            this.btnXuatPhieuNhap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnXuatPhieuNhap.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(50)))), ((int)(((byte)(150)))));
-            this.btnXuatPhieuNhap.FlatAppearance.BorderSize = 0;
-            this.btnXuatPhieuNhap.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXuatPhieuNhap.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXuatPhieuNhap.ForeColor = System.Drawing.Color.White;
-            this.btnXuatPhieuNhap.IconChar = FontAwesome.Sharp.IconChar.Receipt;
-            this.btnXuatPhieuNhap.IconColor = System.Drawing.Color.White;
-            this.btnXuatPhieuNhap.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXuatPhieuNhap.IconSize = 35;
-            this.btnXuatPhieuNhap.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXuatPhieuNhap.Location = new System.Drawing.Point(1397, 896);
-            this.btnXuatPhieuNhap.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnXuatPhieuNhap.Name = "btnXuatPhieuNhap";
-            this.btnXuatPhieuNhap.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnXuatPhieuNhap.Size = new System.Drawing.Size(263, 45);
-            this.btnXuatPhieuNhap.TabIndex = 66;
-            this.btnXuatPhieuNhap.Tag = "Sửa";
-            this.btnXuatPhieuNhap.Text = "In phiếu đặt phòng";
-            this.btnXuatPhieuNhap.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXuatPhieuNhap.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXuatPhieuNhap.UseVisualStyleBackColor = false;
-            // 
             // frmKyLuat
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -795,7 +769,6 @@
             this.Controls.Add(this.txtTraCuuHoTen);
             this.Controls.Add(this.btnTraCuu);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.btnXuatPhieuNhap);
             this.Controls.Add(this.guna2GroupBox2);
             this.Name = "frmKyLuat";
             this.Text = "Kỷ Luật";
@@ -819,7 +792,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HOTENNV;
         private System.Windows.Forms.DataGridViewTextBoxColumn TENNCC;
         private System.Windows.Forms.DataGridViewTextBoxColumn THANHTIEN;
-        private FontAwesome.Sharp.IconButton btnXuatPhieuNhap;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.PictureBox ptbAnh;

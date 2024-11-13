@@ -17,6 +17,7 @@ namespace GUI
         private PhongDTO phong;
         private HopDongBUL HopDongBUL = new HopDongBUL();
         private HopDongDTO hopDong;
+        private ChiSoDienNuocBUL ChiSoDienNuocBUL = new ChiSoDienNuocBUL();
 
         public UCHopDong(PhongDTO phong)
         {
@@ -32,6 +33,9 @@ namespace GUI
             dtpNgayLap.Value = hopDong.NgayLap;
             txtTienCoc.Text = string.Format("{0:#,##0}", hopDong.TienCoc);
             txtMoTa.Text = hopDong.MoTa;
+
+            txtChiSoDien.Text = ChiSoDienNuocBUL.LayChiSoDienNuocTheoMaPhong(phong.MaPT,hopDong.NgayLap).ChiSoDien.ToString();
+            txtChiSoNuoc.Text = ChiSoDienNuocBUL.LayChiSoDienNuocTheoMaPhong(phong.MaPT, hopDong.NgayLap).ChiSoNuoc.ToString();
         }
 
         private void btnLuuHopDong_Click(object sender, EventArgs e)

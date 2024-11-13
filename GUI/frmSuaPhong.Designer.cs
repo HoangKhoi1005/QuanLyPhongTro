@@ -37,6 +37,7 @@
             this.btnNguoiDaiDien = new Guna.UI2.WinForms.Guna2Button();
             this.btnDichVu = new Guna.UI2.WinForms.Guna2Button();
             this.btnThongTInPhongTro = new Guna.UI2.WinForms.Guna2Button();
+            this.btnBaoTraPhong = new Guna.UI2.WinForms.Guna2Button();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +73,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnBaoTraPhong);
             this.panel1.Controls.Add(this.btnHopDong);
             this.panel1.Controls.Add(this.btnThanhVien);
             this.panel1.Controls.Add(this.btnNguoiDaiDien);
@@ -199,6 +201,29 @@
             this.btnThongTInPhongTro.Text = "Thông Tin Phòng Trọ";
             this.btnThongTInPhongTro.Click += new System.EventHandler(this.btnThongTInPhongTro_Click);
             // 
+            // btnBaoTraPhong
+            // 
+            this.btnBaoTraPhong.ButtonMode = Guna.UI2.WinForms.Enums.ButtonMode.RadioButton;
+            this.btnBaoTraPhong.CheckedState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnBaoTraPhong.CheckedState.FillColor = System.Drawing.Color.White;
+            this.btnBaoTraPhong.CustomBorderThickness = new System.Windows.Forms.Padding(0, 0, 0, 3);
+            this.btnBaoTraPhong.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnBaoTraPhong.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnBaoTraPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnBaoTraPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnBaoTraPhong.Dock = System.Windows.Forms.DockStyle.Left;
+            this.btnBaoTraPhong.FillColor = System.Drawing.Color.White;
+            this.btnBaoTraPhong.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.btnBaoTraPhong.ForeColor = System.Drawing.Color.Black;
+            this.btnBaoTraPhong.HoverState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnBaoTraPhong.HoverState.FillColor = System.Drawing.Color.White;
+            this.btnBaoTraPhong.Location = new System.Drawing.Point(805, 0);
+            this.btnBaoTraPhong.Name = "btnBaoTraPhong";
+            this.btnBaoTraPhong.Size = new System.Drawing.Size(155, 64);
+            this.btnBaoTraPhong.TabIndex = 27;
+            this.btnBaoTraPhong.Text = "Báo Trả";
+            this.btnBaoTraPhong.Click += new System.EventHandler(this.btnBaoTraPhong_Click);
+            // 
             // frmSuaPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -224,5 +249,6 @@
         private Guna.UI2.WinForms.Guna2Button btnThongTInPhongTro;
         private System.Windows.Forms.GroupBox grpNoiDung;
         private Guna.UI2.WinForms.Guna2Button btnNguoiDaiDien;
+        private Guna.UI2.WinForms.Guna2Button btnBaoTraPhong;
     }
 }
