@@ -142,5 +142,21 @@ namespace DAL
             }
         }
 
+        public ChiSoDienNuocDTO LayChiSoDienNuocTheoMaPhong(string maPT, DateTime ngayLap)
+        {
+            var result = (from dn in ql.CHISODIENNUOCs
+                          where dn.MAPT == maPT && dn.NGAYTHANG.Month == ngayLap.Month && dn.NGAYTHANG.Year == ngayLap.Year
+                          select new ChiSoDienNuocDTO
+                          {
+                              MaCS = dn.MACS,
+                              MaPT = dn.MAPT,
+                              NgayThang = dn.NGAYTHANG,
+                              ChiSoDien = dn.CHISODIEN,
+                              ChiSoNuoc = dn.CHISONUOC
+                          }).FirstOrDefault();
+
+            return result;
+        }
+
     }
 }

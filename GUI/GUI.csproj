@@ -377,6 +377,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UCBaoTraPhong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCBaoTraPhong.Designer.cs">
+      <DependentUpon>UCBaoTraPhong.cs</DependentUpon>
+    </Compile>
     <Compile Include="UCDichVu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -577,6 +583,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="UCBaoTraPhong.resx">
+      <DependentUpon>UCBaoTraPhong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCDichVu.resx">
       <DependentUpon>UCDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -683,6 +692,7 @@
     <None Include="Resources\Cancel.png" />
     <None Include="Resources\Alarm.png" />
     <None Include="Resources\Calendar.png" />
+    <None Include="Resources\CancelRoom.png" />
     <Content Include="Resources\DefaultImage.png" />
     <None Include="Resources\Done.png" />
     <None Include="Resources\Image1.bmp" />
@@ -716,6 +726,7 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

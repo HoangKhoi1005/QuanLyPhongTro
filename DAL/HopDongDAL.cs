@@ -84,7 +84,7 @@ namespace DAL
         //Lấy hợp đồng theo mã phòng
         public HopDongDTO LayHopDongTheoMaPhong(string maPhong)
         {
-            string sql = "SELECT * FROM HopDong WHERE MaPT = '" + maPhong + "'";
+            string sql = "SELECT * FROM HopDong WHERE MaPT = '" + maPhong + "' AND TRANGTHAIHOPDONG = 1";
             using (var reader = db.ExecuteQuery(sql))
             {
                 if (reader.Read())

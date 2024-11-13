@@ -153,10 +153,32 @@ namespace GUI
                 uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                 uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                 uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+                uCPhong.HuyBaoTraPhongClick += UCPhong_HuyBaoTraPhongClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
                 groupDSPhong.Controls.Add(uCPhong);
+            }
+        }
+
+        private void UCPhong_HuyBaoTraPhongClick(object sender, EventArgs e)
+        {
+            UCPhong uCPhong = (UCPhong)sender;
+            PhongDTO phong = (PhongDTO)uCPhong.Tag;
+            BaoTraPhongBUL baoTraPhongBUL = new BaoTraPhongBUL();
+            //Hỏi xác nhận hủy báo trả phòng
+            if (MessageBox.Show("Bạn có chắc chắn muốn hủy báo trả phòng này không?", "Xác nhận hủy báo trả phòng", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (baoTraPhongBUL.HuyBaoTraPhong(phong.MaPT))
+                {
+                    MessageBox.Show("Hủy báo trả phòng thành công");
+                    phongBUL.CapNhatTrangThaiPhong(phong.MaPT, "TT02");
+                    LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                }
+                else
+                {
+                    MessageBox.Show("Hủy báo trả phòng thất bại");
+                }
             }
         }
 
