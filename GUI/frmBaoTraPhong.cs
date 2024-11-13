@@ -17,7 +17,7 @@ namespace GUI
         internal bool kiemTraThanhCong;
         private PhongDTO phong;
         private frmPhong frmPhong;
-        private PhieuTraPhongBUL phieuTraPhongBUL = new PhieuTraPhongBUL();
+        private BaoTraPhongBUL baoTraPhongBUL = new BaoTraPhongBUL();
         private PhongBUL phongBUL = new PhongBUL();
 
         public frmBaoTraPhong(PhongDTO phong, frmPhong frmPhong)
@@ -27,7 +27,9 @@ namespace GUI
             this.frmPhong = frmPhong;
 
             txtMaPT.Text = phong.MaPT;
+            txtMaBaoTra.Text = baoTraPhongBUL.PhatSinhMaBaoTraPhong();
             dtpNgayBao.Value = DateTime.Now;
+            dtpNgayTra.Value = DateTime.Now;
         }
 
         private void btnLapBaoTraPhong_Click(object sender, EventArgs e)
@@ -38,33 +40,20 @@ namespace GUI
                 return;
             }
 
-            if(txtTienHoanTra.Text == "")
-            {
-                MessageBox.Show("Vui lòng nhập số tiền hoàn trả", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
             if (dtpNgayTra.Value < dtpNgayBao.Value)
             {
                 MessageBox.Show("Ngày trả phòng không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            if (!int.TryParse(txtTienHoanTra.Text, out int tienHoanTra))
-            {
-                MessageBox.Show("Tiền hoàn trả phải là số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            PhieuTraPhongDTO baoTraPhong = new PhieuTraPhongDTO();
+            BaoTraPhongDTO baoTraPhong = new BaoTraPhongDTO();
             baoTraPhong.MaPT = phong.MaPT;
             baoTraPhong.NgayBao = dtpNgayBao.Value;
             baoTraPhong.MoTa = txtMoTa.Text;
-            baoTraPhong.TienHoanTra = txtTienHoanTra.Text == "" ? 0 : Convert.ToInt32(txtTienHoanTra.Text);
-            baoTraPhong.NgayTra = dtpNgayTra.Value;
-            baoTraPhong.MaPhieuTra = phieuTraPhongBUL.PhatSinhMaPhieuTraPhong();
+            baoTraPhong.NgayTraPhongDuKien = dtpNgayTra.Value;
+            baoTraPhong.MaBaoTra = txtMaBaoTra.Text;
 
-            if (phieuTraPhongBUL.ThemPhieuTraPhong(baoTraPhong))
+            if (baoTraPhongBUL.ThemBaoTraPhong(baoTraPhong))
             {
                 kiemTraThanhCong = true;
                 phongBUL.CapNhatTrangThaiPhong(phong.MaPT, "TT05");
@@ -75,6 +64,15 @@ namespace GUI
             {
                 kiemTraThanhCong = false;
                 MessageBox.Show("Lập báo trả phòng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show("Bạn có muốn thoát không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (result == DialogResult.Yes)
+            {
+                this.Close();
             }
         }
     }

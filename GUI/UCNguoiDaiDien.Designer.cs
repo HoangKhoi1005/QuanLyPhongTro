@@ -82,7 +82,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label4.Location = new System.Drawing.Point(360, 170);
+            this.label4.Location = new System.Drawing.Point(389, 167);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 23);
             this.label4.TabIndex = 196;
@@ -91,7 +91,7 @@
             // rdbNu
             // 
             this.rdbNu.AutoSize = true;
-            this.rdbNu.Location = new System.Drawing.Point(621, 173);
+            this.rdbNu.Location = new System.Drawing.Point(641, 173);
             this.rdbNu.Name = "rdbNu";
             this.rdbNu.Size = new System.Drawing.Size(45, 20);
             this.rdbNu.TabIndex = 195;
@@ -102,7 +102,7 @@
             // 
             this.rdbNam.AutoSize = true;
             this.rdbNam.Checked = true;
-            this.rdbNam.Location = new System.Drawing.Point(539, 173);
+            this.rdbNam.Location = new System.Drawing.Point(559, 173);
             this.rdbNam.Name = "rdbNam";
             this.rdbNam.Size = new System.Drawing.Size(57, 20);
             this.rdbNam.TabIndex = 194;
@@ -113,9 +113,9 @@
             // ptbKhachTro
             // 
             this.ptbKhachTro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
-            this.ptbKhachTro.Location = new System.Drawing.Point(24, 34);
+            this.ptbKhachTro.Location = new System.Drawing.Point(15, 34);
             this.ptbKhachTro.Name = "ptbKhachTro";
-            this.ptbKhachTro.Size = new System.Drawing.Size(303, 414);
+            this.ptbKhachTro.Size = new System.Drawing.Size(355, 414);
             this.ptbKhachTro.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.ptbKhachTro.TabIndex = 192;
             this.ptbKhachTro.TabStop = false;
@@ -127,7 +127,7 @@
             this.dtpNgaySinh.FillColor = System.Drawing.Color.White;
             this.dtpNgaySinh.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.dtpNgaySinh.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpNgaySinh.Location = new System.Drawing.Point(539, 432);
+            this.dtpNgaySinh.Location = new System.Drawing.Point(557, 432);
             this.dtpNgaySinh.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
             this.dtpNgaySinh.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
             this.dtpNgaySinh.Name = "dtpNgaySinh";
@@ -138,17 +138,17 @@
             // txtMoTa
             // 
             this.txtMoTa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMoTa.Location = new System.Drawing.Point(539, 578);
+            this.txtMoTa.Location = new System.Drawing.Point(557, 578);
             this.txtMoTa.Multiline = true;
             this.txtMoTa.Name = "txtMoTa";
-            this.txtMoTa.Size = new System.Drawing.Size(464, 113);
+            this.txtMoTa.Size = new System.Drawing.Size(446, 113);
             this.txtMoTa.TabIndex = 190;
             // 
             // label9
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label9.Location = new System.Drawing.Point(360, 578);
+            this.label9.Location = new System.Drawing.Point(389, 575);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(62, 23);
             this.label9.TabIndex = 189;
@@ -157,16 +157,16 @@
             // txtDiaChi
             // 
             this.txtDiaChi.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDiaChi.Location = new System.Drawing.Point(539, 502);
+            this.txtDiaChi.Location = new System.Drawing.Point(557, 502);
             this.txtDiaChi.Name = "txtDiaChi";
-            this.txtDiaChi.Size = new System.Drawing.Size(464, 31);
+            this.txtDiaChi.Size = new System.Drawing.Size(446, 31);
             this.txtDiaChi.TabIndex = 188;
             // 
             // label8
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label8.Location = new System.Drawing.Point(360, 510);
+            this.label8.Location = new System.Drawing.Point(389, 507);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(162, 23);
             this.label8.TabIndex = 187;
@@ -176,7 +176,7 @@
             // 
             this.txtNgaySinh.AutoSize = true;
             this.txtNgaySinh.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.txtNgaySinh.Location = new System.Drawing.Point(360, 442);
+            this.txtNgaySinh.Location = new System.Drawing.Point(389, 439);
             this.txtNgaySinh.Name = "txtNgaySinh";
             this.txtNgaySinh.Size = new System.Drawing.Size(92, 23);
             this.txtNgaySinh.TabIndex = 186;
@@ -185,16 +185,16 @@
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(539, 230);
+            this.txtEmail.Location = new System.Drawing.Point(557, 230);
             this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(327, 31);
+            this.txtEmail.Size = new System.Drawing.Size(309, 31);
             this.txtEmail.TabIndex = 185;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label7.Location = new System.Drawing.Point(360, 238);
+            this.label7.Location = new System.Drawing.Point(389, 235);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(60, 23);
             this.label7.TabIndex = 184;
@@ -203,16 +203,16 @@
             // txtCCCD
             // 
             this.txtCCCD.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCCCD.Location = new System.Drawing.Point(539, 366);
+            this.txtCCCD.Location = new System.Drawing.Point(557, 366);
             this.txtCCCD.Name = "txtCCCD";
-            this.txtCCCD.Size = new System.Drawing.Size(327, 31);
+            this.txtCCCD.Size = new System.Drawing.Size(309, 31);
             this.txtCCCD.TabIndex = 183;
             // 
             // label6
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label6.Location = new System.Drawing.Point(360, 374);
+            this.label6.Location = new System.Drawing.Point(389, 371);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(117, 23);
             this.label6.TabIndex = 182;
@@ -221,16 +221,16 @@
             // txtSoDT
             // 
             this.txtSoDT.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSoDT.Location = new System.Drawing.Point(539, 298);
+            this.txtSoDT.Location = new System.Drawing.Point(557, 298);
             this.txtSoDT.Name = "txtSoDT";
-            this.txtSoDT.Size = new System.Drawing.Size(327, 31);
+            this.txtSoDT.Size = new System.Drawing.Size(309, 31);
             this.txtSoDT.TabIndex = 181;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label5.Location = new System.Drawing.Point(360, 306);
+            this.label5.Location = new System.Drawing.Point(389, 303);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(120, 23);
             this.label5.TabIndex = 180;
@@ -239,16 +239,16 @@
             // txtTenKT
             // 
             this.txtTenKT.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtTenKT.Location = new System.Drawing.Point(539, 94);
+            this.txtTenKT.Location = new System.Drawing.Point(557, 94);
             this.txtTenKT.Name = "txtTenKT";
-            this.txtTenKT.Size = new System.Drawing.Size(327, 31);
+            this.txtTenKT.Size = new System.Drawing.Size(309, 31);
             this.txtTenKT.TabIndex = 179;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label3.Location = new System.Drawing.Point(360, 102);
+            this.label3.Location = new System.Drawing.Point(389, 99);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(121, 23);
             this.label3.TabIndex = 178;
@@ -257,18 +257,18 @@
             // txtMaKT
             // 
             this.txtMaKT.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMaKT.Location = new System.Drawing.Point(539, 24);
+            this.txtMaKT.Location = new System.Drawing.Point(557, 24);
             this.txtMaKT.Multiline = true;
             this.txtMaKT.Name = "txtMaKT";
             this.txtMaKT.ReadOnly = true;
-            this.txtMaKT.Size = new System.Drawing.Size(327, 33);
+            this.txtMaKT.Size = new System.Drawing.Size(309, 33);
             this.txtMaKT.TabIndex = 177;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label1.Location = new System.Drawing.Point(360, 34);
+            this.label1.Location = new System.Drawing.Point(389, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(119, 23);
             this.label1.TabIndex = 176;

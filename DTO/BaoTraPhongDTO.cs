@@ -6,34 +6,31 @@ using System.Threading.Tasks;
 
 namespace DTO
 {
-    public class PhieuTraPhongDTO
+    public class BaoTraPhongDTO
     {
-        public string MaPhieuTra { get; set; }
         public string MaBaoTra { get; set; }
         public string MaPT { get; set; }
-        public DateTime NgayTra { get; set; }
-        public decimal TienHoanTra { get; set; }
+        public DateTime NgayBao { get; set; }
+        public DateTime NgayTraPhongDuKien { get; set; }
         public string MoTa { get; set; }
         public bool DaXoa { get; set; }
 
-        public PhieuTraPhongDTO()
+        public BaoTraPhongDTO()
         {
-            MaPhieuTra = "";
             MaBaoTra = "";
             MaPT = "";
-            NgayTra = DateTime.Now;
-            TienHoanTra = 0;
+            NgayBao = DateTime.Now;
+            NgayTraPhongDuKien = DateTime.Now;
             MoTa = "";
             DaXoa = false;
         }
 
-        public PhieuTraPhongDTO(string maPhieuTra, string maBaoTra, string maPT, DateTime ngayTra, decimal tienHoanTra, string moTa, bool daXoa)
+        public BaoTraPhongDTO(string maBaoTra, string maPT, DateTime ngayBao, DateTime ngayTraPhongDuKien, string moTa, bool daXoa)
         {
-            MaPhieuTra = maPhieuTra;
             MaBaoTra = maBaoTra;
             MaPT = maPT;
-            NgayTra = ngayTra;
-            TienHoanTra = tienHoanTra;
+            NgayBao = ngayBao;
+            NgayTraPhongDuKien = ngayTraPhongDuKien;
             MoTa = moTa;
             DaXoa = daXoa;
         }

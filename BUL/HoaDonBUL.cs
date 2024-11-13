@@ -2,6 +2,7 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -37,19 +38,39 @@ namespace BUL
             return HoaDonDAL.LayDanhSachHoaDon();
         }
 
-        public object LayDanhSachHoaDonTheoThang(DateTime value)
+        public object LayDanhSachHoaDonTheoThang(DateTime value, string trangThaiThanhToan)
         {
-            return HoaDonDAL.LayDanhSachHoaDonTheoThang(value);
+            return HoaDonDAL.LayDanhSachHoaDonTheoThang(value, trangThaiThanhToan);
         }
 
-        public object LayDanhSachHoaDonTheoThangVaNT(DateTime value, string v)
+        public object LayDanhSachHoaDonTheoThangVaNT(DateTime value, string maNT, string trangThaiThanhToan)
         {
-            return HoaDonDAL.LayDanhSachHoaDonTheoThangVaNT(value, v);
+            return HoaDonDAL.LayDanhSachHoaDonTheoThangVaNT(value, maNT, trangThaiThanhToan);
         }
 
         public bool KiemTraHoaDonThang(DateTime thangNam, string maPT)
         {
             return HoaDonDAL.KiemTraHoaDonThang(thangNam, maPT);
+        }
+
+        public bool KiemTraChiSoDienNuoc(DateTime thangNam, string maPT)
+        {
+            return HoaDonDAL.KiemTraChiSoDienNuoc(thangNam, maPT);
+        }
+
+        public object LayDanhSachHoaDonTheoMaPhongVaThang(string maPT, DateTime value, string trangThaiThanhToan)
+        {
+            return HoaDonDAL.LayDanhSachHoaDonTheoMaPhongVaThang(maPT, value, trangThaiThanhToan);
+        }
+
+        public void ThuTien(string maHD, decimal soTienThu)
+        {
+            HoaDonDAL.ThuTien(maHD, soTienThu);
+        }
+
+        public DataTable LayHoaDonTheoMaHD(string maHD)
+        {
+            return HoaDonDAL.LayHoaDonTheoMaHD(maHD);
         }
     }
 }

@@ -16,15 +16,5 @@ namespace BUL
         {
             phieuTraPhongDAL = new PhieuTraPhongDAL();
         }
-
-        public string PhatSinhMaPhieuTraPhong()
-        {
-            return phieuTraPhongDAL.PhatSinhMaPhieuTraPhong();
-        }
-
-        public bool ThemPhieuTraPhong(PhieuTraPhongDTO phieuTraPhongDTO)
-        {
-            return phieuTraPhongDAL.ThemPhieuTraPhong(phieuTraPhongDTO);
-        }
     }
 }

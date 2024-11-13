@@ -42,9 +42,9 @@ namespace BUL
             return phongDAL.PhatSinhMaPhong(MaNT);
         }
 
-        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string TenKhachTro, string maNT)
+        public List<PhongDTO> TimKiemPhongTheoMaPhong(string maPhong, string tenKhachTro, string maNT, int soLuongNguoiO = -1)
         {
-            return phongDAL.TimKiemPhongTheoMaPhong(maPhong, TenKhachTro, maNT);
+            return phongDAL.TimKiemPhongTheoMaPhong(maPhong, tenKhachTro, maNT, soLuongNguoiO);
         }
 
         public bool CapNhatTrangThaiPhong(string MaPT, string MaTT)
@@ -90,6 +90,41 @@ namespace BUL
         public List<PhongDTO> LayTatCaPhong()
         {
             return phongDAL.LayTatCaPhong();
+        }
+
+        public List<PhongDTO> LayPhongDaCoHopDong()
+        {
+            return phongDAL.LayPhongDaCoHopDong();
+        }
+
+        public List<PhongDTO> LayPhongCoHopDongTheoNhaTro(string maNT)
+        {
+            return phongDAL.LayPhongCoHopDongTheoNhaTro(maNT);
+        }
+
+        public List<PhongDTO> LocPhongTrongTheoNgay(DateTime ngayChon, string maNT)
+        {
+            return phongDAL.LocPhongTrongTheoNgay(ngayChon, maNT);
+        }
+
+        public int DemSoPhongTrongTheoNha(string maNT)
+        {
+            return phongDAL.DemSoPhongTrongTheoNha(maNT);
+        }
+
+        public int DemSoPhongDaThueTheoNha(string maNT)
+        {
+            return phongDAL.DemSoPhongDaThueTheoNha(maNT);
+        }
+
+        public int DemSoPhongDaDatTheoNha(string maNT)
+        {
+            return phongDAL.DemSoPhongDaDatTheoNha(maNT);
+        }
+
+        public bool KiemTraPhongDaCoHoaDonTrongThang(string maPT, DateTime now)
+        {
+            return phongDAL.KiemTraPhongDaCoHoaDonTrongThang(maPT, now);
         }
     }
 }

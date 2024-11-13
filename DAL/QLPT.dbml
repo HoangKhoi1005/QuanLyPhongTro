@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QL_NhaTro" Class="QLPTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+<?xml version="1.0" encoding="utf-8"?><Database Name="QL_NhaTro" Class="QLPTDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa" SettingsObjectName="DAL.Properties.Settings" SettingsPropertyName="QL_NhaTroConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="dbo.DICHVU" Member="DICHVUs">
     <Type Name="DICHVU">
