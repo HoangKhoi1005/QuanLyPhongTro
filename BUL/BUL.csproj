@@ -44,20 +44,25 @@
     <Compile Include="BaoTraPhongBUL.cs" />
     <Compile Include="ChiSoDienNuocBUL.cs" />
     <Compile Include="DichVuBUL.cs" />
+    <Compile Include="DoanhThuBUL.cs" />
     <Compile Include="HoaDonBUL.cs" />
     <Compile Include="HopDongBUL.cs" />
     <Compile Include="KhachTroBUL.cs" />
     <Compile Include="KyLuatBUL.cs" />
+    <Compile Include="KhachTroSapHetHanHopDongBUL.cs" />
     <Compile Include="LichSuChuyenPhongBUL.cs" />
     <Compile Include="NhanVienBUL.cs" />
     <Compile Include="NhaTroBUL.cs" />
+    <Compile Include="PhatSinhBUL.cs" />
     <Compile Include="PhieuDatPhongBUL.cs" />
     <Compile Include="PhieuTraPhongBUL.cs" />
     <Compile Include="PhongBUL.cs" />
+    <Compile Include="PhongTrongBUL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuanLyBUL.cs" />
     <Compile Include="SuDungDichVuBUL.cs" />
     <Compile Include="TaiSanBUL.cs" />
+    <Compile Include="TrangThaiPhong1BUL.cs" />
     <Compile Include="TrangThaiPhongBUL.cs" />
   </ItemGroup>
   <ItemGroup>

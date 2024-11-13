@@ -16,6 +16,8 @@ namespace GUI
 {
     public partial class frmChiSoNuoc : Form
     {
+        ChiSoDienNuocDTO cs = new ChiSoDienNuocDTO();
+        BindingList<ChiSoDienNuocDTO> chiSoDienNuocList;
         ChiSoDienNuocBUL chiSoDienNuocBUL = new ChiSoDienNuocBUL();
         public frmChiSoNuoc()
         {
@@ -24,93 +26,23 @@ namespace GUI
 
         public void loadCSDienNuoc()
         {
-            dgvChiSo.DataSource = chiSoDienNuocBUL.loadDienNuoc();
-        }
-        Form overlayPanel;
-        private void ShowOverlay()
-        {
-            overlayPanel = new Form();
-            overlayPanel.FormBorderStyle = FormBorderStyle.None;
-            overlayPanel.StartPosition = FormStartPosition.Manual;
-            overlayPanel.Location = this.Location;
-            overlayPanel.Opacity = .50d;
-            overlayPanel.BackColor = Color.Black;
-            overlayPanel.WindowState = FormWindowState.Maximized;
-            overlayPanel.ShowInTaskbar = false;
-            overlayPanel.Show();
-        }
+            var csList = chiSoDienNuocBUL.loadDienNuoc();
+            chiSoDienNuocList = new BindingList<ChiSoDienNuocDTO>(csList);
+            dgvChiSo.DataSource = chiSoDienNuocList;
 
-        private void HideOverlay()
-        {
-            overlayPanel.Dispose();
-        }
-
-        private void frmChiSoNuoc_Load(object sender, EventArgs e)
-        {
-            loadCSDienNuoc();
-        }
-
-        private void btnThemChiSo_Click(object sender, EventArgs e)
-        {
-            ShowOverlay();
-            frmThemDienNuoc frmThemDN = new frmThemDienNuoc();
-            frmThemDN.FormClosed += (s, args) =>
+            foreach (DataGridViewColumn column in dgvChiSo.Columns)
             {
-                if (frmThemDN.kiemTraThanhCong)
+                if (column.Name != "MACS")
                 {
-                    loadCSDienNuoc();
+                    column.ReadOnly = false;
                 }
-            };
-            frmThemDN.ShowDialog();
-            HideOverlay();
-        }
-
-        private void btnSuaChiSo_Click(object sender, EventArgs e)
-        {
-            ChiSoDienNuocDTO chiSoDienNuocDTO = new ChiSoDienNuocDTO();
-
-            chiSoDienNuocDTO.MaCS = int.Parse(dgvChiSo.CurrentRow.Cells["MACS"].Value.ToString());
-            chiSoDienNuocDTO.MaPT = dgvChiSo.CurrentRow.Cells["MAPT"].Value.ToString();
-            chiSoDienNuocDTO.NgayThang = DateTime.Parse(dgvChiSo.CurrentRow.Cells["NGAYTHANG"].Value.ToString());
-            chiSoDienNuocDTO.ChiSoDien = int.Parse(dgvChiSo.CurrentRow.Cells["CHISODIEN"].Value.ToString());
-            chiSoDienNuocDTO.ChiSoNuoc = int.Parse(dgvChiSo.CurrentRow.Cells["CHISONUOC"].Value.ToString());
-
-            ShowOverlay();
-            frmSuaDienNuoc frmSuaDN = new frmSuaDienNuoc(chiSoDienNuocDTO);
-            frmSuaDN.FormClosed += (s, args) =>
-            {
-                if (frmSuaDN.kiemTraThanhCong)
+                else
                 {
-                    loadCSDienNuoc();
+                    column.ReadOnly = true;
                 }
-            };
-            frmSuaDN.ShowDialog();
-            HideOverlay();
+            }
         }
-
-        private void btnXoaChiSo_Click(object sender, EventArgs e)
-        {
-            ChiSoDienNuocDTO chiSoDienNuocDTO = new ChiSoDienNuocDTO();
-
-            chiSoDienNuocDTO.MaCS = int.Parse(dgvChiSo.CurrentRow.Cells["MACS"].Value.ToString());
-            chiSoDienNuocDTO.MaPT = dgvChiSo.CurrentRow.Cells["MAPT"].Value.ToString();
-            chiSoDienNuocDTO.NgayThang = DateTime.Parse(dgvChiSo.CurrentRow.Cells["NGAYTHANG"].Value.ToString());
-            chiSoDienNuocDTO.ChiSoDien = int.Parse(dgvChiSo.CurrentRow.Cells["CHISODIEN"].Value.ToString());
-            chiSoDienNuocDTO.ChiSoNuoc = int.Parse(dgvChiSo.CurrentRow.Cells["CHISONUOC"].Value.ToString());
-
-            ShowOverlay();
-            frmXoaDienNuoc frmXoaDN = new frmXoaDienNuoc(chiSoDienNuocDTO);
-            frmXoaDN.FormClosed += (s, args) =>
-            {
-                if (frmXoaDN.kiemTraThanhCong)
-                {
-                    loadCSDienNuoc();
-                }
-            };
-            frmXoaDN.ShowDialog();
-            HideOverlay();
-        }
-
+        
         private void btnTraCuu_Click(object sender, EventArgs e)
         {
             string input = txtTraCuu.Text.Trim();
@@ -218,6 +150,114 @@ namespace GUI
             }
 
             dgvChiSo.DataSource = chiSoDienNuocBUL.TimKiemDienNuoc(maPT, ngay, thang, nam);
+        }
+
+        private void frmChiSoNuoc_Load(object sender, EventArgs e)
+        {
+            dgvChiSo.AllowUserToAddRows = true;
+            dgvChiSo.AllowUserToDeleteRows = true;
+            dgvChiSo.ReadOnly = false;
+            dgvChiSo.EditMode = DataGridViewEditMode.EditOnEnter;
+            loadCSDienNuoc();
+        }
+
+        private void btnLuuSua_Click(object sender, EventArgs e)
+        {
+            int kt = 0;
+            foreach (DataGridViewRow row in dgvChiSo.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                var chiSoDN = new ChiSoDienNuocDTO
+                {
+                    MaCS = Convert.ToInt32(row.Cells["MACS"].Value),
+                    MaPT = row.Cells["MAPT"].Value.ToString(),  
+                    NgayThang = Convert.ToDateTime(row.Cells["NGAYTHANG"].Value),  
+                    ChiSoDien = Convert.ToInt32(row.Cells["CHISODIEN"].Value),
+                    ChiSoNuoc = Convert.ToInt32(row.Cells["CHISONUOC"].Value)
+                };
+
+                if (chiSoDN.MaCS == 0)
+                {
+                    chiSoDN.MaCS = chiSoDienNuocBUL.PhatSinhMaChiSoDN();
+                    chiSoDienNuocBUL.themDienNuoc(chiSoDN);
+                    kt = 0;
+                }
+                else
+                {
+                    if (kiemTraMa(chiSoDN.MaCS))
+                    {
+                        chiSoDienNuocBUL.suaDienNuoc(chiSoDN);
+                        kt = 1;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Mã chỉ số điện nước không tồn tại trong cơ sở dữ liệu.");
+                    }
+                }
+            }
+
+            if (kt == 0)
+                MessageBox.Show("Thêm thành công");
+            else
+                MessageBox.Show("Sửa thành công");
+
+            loadCSDienNuoc();
+        }
+
+        private bool kiemTraMa(int maCS)
+        {
+            var maChiSo = chiSoDienNuocBUL.loadDienNuoc().FirstOrDefault(dn => dn.MaCS == maCS);
+            return maChiSo != null;
+        }
+
+        private void btnXoa_Click(object sender, EventArgs e)
+        {
+            int kt = 0;
+            DialogResult r;
+            r = MessageBox.Show("Bạn có muốn xóa không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (r == DialogResult.Yes)
+            {
+                if (dgvChiSo.SelectedRows.Count > 0)
+                {
+                    foreach (DataGridViewRow row in dgvChiSo.SelectedRows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        var chiSoDN = new ChiSoDienNuocDTO
+                        {
+                            MaCS = Convert.ToInt32(row.Cells["MACS"].Value),
+                            MaPT = row.Cells["MAPT"].Value.ToString(),
+                            NgayThang = Convert.ToDateTime(row.Cells["NGAYTHANG"].Value),
+                            ChiSoDien = Convert.ToInt32(row.Cells["CHISODIEN"].Value),
+                            ChiSoNuoc = Convert.ToInt32(row.Cells["CHISONUOC"].Value)
+                        };
+                        if (chiSoDienNuocBUL.xoaDienNuoc(chiSoDN))
+                        {
+                            kt = 1;
+                        }
+                        else
+                        {
+                            kt = 0;
+                        }
+                    }
+                    if (kt == 1)
+                    {
+                        MessageBox.Show("Xóa chỉ số điện nước thành công");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xóa chỉ số điện nước thất bại");
+                    }
+                    loadCSDienNuoc();
+                }
+                else
+                {
+                    MessageBox.Show("Vui lòng chọn ít nhất một dòng để xóa.");
+                }
+            }
+            else
+                return;
         }
     }
 }
