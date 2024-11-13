@@ -24,5 +24,27 @@ namespace GUI
         {
             dgvPhieuDat.DataSource = phieuDatPhongBUL.LayDSPhieuDatDataGirdView();
         }
+
+        private void btnXuatPhieuNhap_Click(object sender, EventArgs e)
+        {
+
+            if (dgvPhieuDat.CurrentRow != null)
+            {
+                string maPhietDat = dgvPhieuDat.CurrentRow.Cells["MAPDP"].Value.ToString();
+
+                Dictionary<string, string> contractDict = phieuDatPhongBUL.GetContractDictionary(maPhietDat);
+
+                string templatePath = @"D:\PhatTrienPhamMemUDTM\PhieuDatphong.docx";
+                WordExport wordExport = new WordExport(templatePath, true);
+
+                wordExport.WriteFields(contractDict);
+
+                MessageBox.Show("Xuất phiếu đặt thành công!");
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một phiếu để xuất.");
+            }
+        }
     }
 }

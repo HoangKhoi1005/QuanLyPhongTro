@@ -69,6 +69,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConvertUltil.cs" />
     <Compile Include="crpInHoaDon.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -419,6 +420,7 @@
     <Compile Include="UCThongTinPhongTro.Designer.cs">
       <DependentUpon>UCThongTinPhongTro.cs</DependentUpon>
     </Compile>
+    <Compile Include="WordExport.cs" />
     <EmbeddedResource Include="crpInHoaDon.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>crpInHoaDon.cs</LastGenOutput>

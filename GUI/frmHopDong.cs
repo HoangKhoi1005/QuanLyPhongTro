@@ -64,5 +64,26 @@ namespace GUI
             HideOverlay();
             LoadData();
         }
+
+        private void btnXuatPhieuNhap_Click(object sender, EventArgs e)
+        {
+            if (dgvHopDong.CurrentRow != null)
+            {
+                string maHopDong = dgvHopDong.CurrentRow.Cells["MaHopDong"].Value.ToString();
+
+                Dictionary<string, string> contractDict = hopDongBUL.GetContractDictionary(maHopDong);
+
+                string templatePath = @"D:\PhatTrienPhamMemUDTM\HopDong.docx";
+                WordExport wordExport = new WordExport(templatePath, true);
+
+                wordExport.WriteFields(contractDict);
+
+                MessageBox.Show("Xuất hợp đồng thành công!");
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một hợp đồng để xuất.");
+            }
+        }
     }
 }
