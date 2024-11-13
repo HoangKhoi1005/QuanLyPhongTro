@@ -48,8 +48,8 @@
     <Compile Include="HoaDonBUL.cs" />
     <Compile Include="HopDongBUL.cs" />
     <Compile Include="KhachTroBUL.cs" />
-    <Compile Include="KyLuatBUL.cs" />
     <Compile Include="KhachTroSapHetHanHopDongBUL.cs" />
+    <Compile Include="KyLuatBUL.cs" />
     <Compile Include="LichSuChuyenPhongBUL.cs" />
     <Compile Include="NhanVienBUL.cs" />
     <Compile Include="NhaTroBUL.cs" />
