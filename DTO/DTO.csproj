@@ -49,11 +49,8 @@
     <Compile Include="HopDongDTO.cs" />
     <Compile Include="KhachTroDTO.cs" />
     <Compile Include="KhachTroHopDongDTO.cs" />
-<<<<<<< HEAD
     <Compile Include="KhachTroSapHetHanHopDongDTO.cs" />
-=======
     <Compile Include="KyLuatDTO.cs" />
->>>>>>> febd51ea8a40f8deadb398792fb5342a08082b6d
     <Compile Include="LichSuChuyenPhongDTO.cs" />
     <Compile Include="NhanVienDTO.cs" />
     <Compile Include="NhaTroDTO.cs" />
