@@ -28,20 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             this.txtTraCuu = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvChiSo = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.btnXoa = new FontAwesome.Sharp.IconButton();
-            this.btnLuuSua = new FontAwesome.Sharp.IconButton();
             this.MACS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MAPT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NGAYTHANG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHISODIEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHISONUOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnXoa = new FontAwesome.Sharp.IconButton();
+            this.btnLuuSua = new FontAwesome.Sharp.IconButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpNgayThang = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.btnHuy = new FontAwesome.Sharp.IconButton();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiSo)).BeginInit();
             this.SuspendLayout();
@@ -120,16 +123,16 @@
             // 
             // dgvChiSo
             // 
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            this.dgvChiSo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvChiSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            this.dgvChiSo.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(88)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvChiSo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvChiSo.ColumnHeadersHeight = 50;
             this.dgvChiSo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.EnableResizing;
             this.dgvChiSo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -138,14 +141,14 @@
             this.NGAYTHANG,
             this.CHISODIEN,
             this.CHISONUOC});
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvChiSo.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvChiSo.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvChiSo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvChiSo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvChiSo.Location = new System.Drawing.Point(0, 40);
@@ -176,6 +179,41 @@
             this.dgvChiSo.ThemeStyle.RowsStyle.Height = 50;
             this.dgvChiSo.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvChiSo.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            // 
+            // MACS
+            // 
+            this.MACS.DataPropertyName = "MACS";
+            this.MACS.HeaderText = "Mã chỉ số";
+            this.MACS.MinimumWidth = 6;
+            this.MACS.Name = "MACS";
+            // 
+            // MAPT
+            // 
+            this.MAPT.DataPropertyName = "MAPT";
+            this.MAPT.HeaderText = "Mã phòng trọ";
+            this.MAPT.MinimumWidth = 6;
+            this.MAPT.Name = "MAPT";
+            // 
+            // NGAYTHANG
+            // 
+            this.NGAYTHANG.DataPropertyName = "NGAYTHANG";
+            this.NGAYTHANG.HeaderText = "Ngày tháng";
+            this.NGAYTHANG.MinimumWidth = 6;
+            this.NGAYTHANG.Name = "NGAYTHANG";
+            // 
+            // CHISODIEN
+            // 
+            this.CHISODIEN.DataPropertyName = "CHISODIEN";
+            this.CHISODIEN.HeaderText = "Chỉ số điện";
+            this.CHISODIEN.MinimumWidth = 6;
+            this.CHISODIEN.Name = "CHISODIEN";
+            // 
+            // CHISONUOC
+            // 
+            this.CHISONUOC.DataPropertyName = "CHISONUOC";
+            this.CHISONUOC.HeaderText = "Chỉ số nước";
+            this.CHISONUOC.MinimumWidth = 6;
+            this.CHISONUOC.Name = "CHISONUOC";
             // 
             // btnXoa
             // 
@@ -229,46 +267,65 @@
             this.btnLuuSua.UseVisualStyleBackColor = false;
             this.btnLuuSua.Click += new System.EventHandler(this.btnLuuSua_Click);
             // 
-            // MACS
+            // label6
             // 
-            this.MACS.DataPropertyName = "MACS";
-            this.MACS.HeaderText = "Mã chỉ số";
-            this.MACS.MinimumWidth = 6;
-            this.MACS.Name = "MACS";
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label6.Location = new System.Drawing.Point(493, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(108, 23);
+            this.label6.TabIndex = 118;
+            this.label6.Text = "Chọn Tháng:";
             // 
-            // MAPT
+            // dtpNgayThang
             // 
-            this.MAPT.DataPropertyName = "MAPT";
-            this.MAPT.HeaderText = "Mã phòng trọ";
-            this.MAPT.MinimumWidth = 6;
-            this.MAPT.Name = "MAPT";
+            this.dtpNgayThang.Checked = true;
+            this.dtpNgayThang.FillColor = System.Drawing.Color.White;
+            this.dtpNgayThang.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpNgayThang.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpNgayThang.Location = new System.Drawing.Point(607, 19);
+            this.dtpNgayThang.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpNgayThang.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpNgayThang.Name = "dtpNgayThang";
+            this.dtpNgayThang.Size = new System.Drawing.Size(260, 33);
+            this.dtpNgayThang.TabIndex = 119;
+            this.dtpNgayThang.Value = new System.DateTime(2024, 11, 11, 0, 0, 0, 0);
+            this.dtpNgayThang.ValueChanged += new System.EventHandler(this.dtpNgayThang_ValueChanged);
             // 
-            // NGAYTHANG
+            // btnHuy
             // 
-            this.NGAYTHANG.DataPropertyName = "NGAYTHANG";
-            this.NGAYTHANG.HeaderText = "Ngày tháng";
-            this.NGAYTHANG.MinimumWidth = 6;
-            this.NGAYTHANG.Name = "NGAYTHANG";
-            // 
-            // CHISODIEN
-            // 
-            this.CHISODIEN.DataPropertyName = "CHISODIEN";
-            this.CHISODIEN.HeaderText = "Chỉ số điện";
-            this.CHISODIEN.MinimumWidth = 6;
-            this.CHISODIEN.Name = "CHISODIEN";
-            // 
-            // CHISONUOC
-            // 
-            this.CHISONUOC.DataPropertyName = "CHISONUOC";
-            this.CHISONUOC.HeaderText = "Chỉ số nước";
-            this.CHISONUOC.MinimumWidth = 6;
-            this.CHISONUOC.Name = "CHISONUOC";
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnHuy.FlatAppearance.BorderSize = 0;
+            this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHuy.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuy.ForeColor = System.Drawing.Color.White;
+            this.btnHuy.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.btnHuy.IconColor = System.Drawing.Color.White;
+            this.btnHuy.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHuy.IconSize = 40;
+            this.btnHuy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHuy.Location = new System.Drawing.Point(287, 605);
+            this.btnHuy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnHuy.Size = new System.Drawing.Size(131, 60);
+            this.btnHuy.TabIndex = 120;
+            this.btnHuy.Tag = "Thêm";
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = false;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
             // 
             // frmChiSoNuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1613, 737);
+            this.Controls.Add(this.btnHuy);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.dtpNgayThang);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.btnXoa);
             this.Controls.Add(this.btnLuuSua);
@@ -280,6 +337,7 @@
             this.guna2GroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiSo)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -295,5 +353,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CHISONUOC;
         private FontAwesome.Sharp.IconButton btnXoa;
         private FontAwesome.Sharp.IconButton btnLuuSua;
+        private System.Windows.Forms.Label label6;
+        private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayThang;
+        private FontAwesome.Sharp.IconButton btnHuy;
     }
 }
