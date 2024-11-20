@@ -37,7 +37,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.rdbNu = new System.Windows.Forms.RadioButton();
             this.rdbNam = new System.Windows.Forms.RadioButton();
-            this.btnThemAnh = new FontAwesome.Sharp.IconButton();
             this.ptbKhachTro = new System.Windows.Forms.PictureBox();
             this.dtpNgaySinh = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.txtMoTa = new System.Windows.Forms.TextBox();
@@ -71,6 +70,7 @@
             this.NGAYSINH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GIOITINH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThemKhachTro_HopDong = new FontAwesome.Sharp.IconButton();
+            this.btnThemAnh = new FontAwesome.Sharp.IconButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbKhachTro)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -176,31 +176,6 @@
             this.rdbNam.TabStop = true;
             this.rdbNam.Text = "Nam";
             this.rdbNam.UseVisualStyleBackColor = true;
-            // 
-            // btnThemAnh
-            // 
-            this.btnThemAnh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnThemAnh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.btnThemAnh.FlatAppearance.BorderSize = 0;
-            this.btnThemAnh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnThemAnh.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnThemAnh.ForeColor = System.Drawing.Color.White;
-            this.btnThemAnh.IconChar = FontAwesome.Sharp.IconChar.Plus;
-            this.btnThemAnh.IconColor = System.Drawing.Color.White;
-            this.btnThemAnh.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnThemAnh.IconSize = 38;
-            this.btnThemAnh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemAnh.Location = new System.Drawing.Point(75, 372);
-            this.btnThemAnh.Name = "btnThemAnh";
-            this.btnThemAnh.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
-            this.btnThemAnh.Size = new System.Drawing.Size(171, 46);
-            this.btnThemAnh.TabIndex = 104;
-            this.btnThemAnh.Tag = "Xóa";
-            this.btnThemAnh.Text = "Thêm Ảnh";
-            this.btnThemAnh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemAnh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnThemAnh.UseVisualStyleBackColor = false;
-            this.btnThemAnh.Click += new System.EventHandler(this.btnThemAnh_Click);
             // 
             // ptbKhachTro
             // 
@@ -658,6 +633,31 @@
             this.btnThemKhachTro_HopDong.Visible = false;
             this.btnThemKhachTro_HopDong.Click += new System.EventHandler(this.btnThemKhachTro_HopDong_Click);
             // 
+            // btnThemAnh
+            // 
+            this.btnThemAnh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnThemAnh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.btnThemAnh.FlatAppearance.BorderSize = 0;
+            this.btnThemAnh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnThemAnh.Font = new System.Drawing.Font("Segoe UI", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnThemAnh.ForeColor = System.Drawing.Color.White;
+            this.btnThemAnh.IconChar = FontAwesome.Sharp.IconChar.Plus;
+            this.btnThemAnh.IconColor = System.Drawing.Color.White;
+            this.btnThemAnh.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnThemAnh.IconSize = 38;
+            this.btnThemAnh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemAnh.Location = new System.Drawing.Point(75, 372);
+            this.btnThemAnh.Name = "btnThemAnh";
+            this.btnThemAnh.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnThemAnh.Size = new System.Drawing.Size(171, 46);
+            this.btnThemAnh.TabIndex = 104;
+            this.btnThemAnh.Tag = "Xóa";
+            this.btnThemAnh.Text = "Thêm Ảnh";
+            this.btnThemAnh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemAnh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnThemAnh.UseVisualStyleBackColor = false;
+            this.btnThemAnh.Click += new System.EventHandler(this.btnThemAnh_Click);
+            // 
             // frmThemKhachTro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -703,7 +703,6 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.PictureBox ptbKhachTro;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgaySinh;
-        private FontAwesome.Sharp.IconButton btnThemAnh;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.RadioButton rdbNu;
         private System.Windows.Forms.RadioButton rdbNam;
@@ -724,5 +723,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NGAYSINH;
         private System.Windows.Forms.DataGridViewTextBoxColumn GIOITINH;
         private FontAwesome.Sharp.IconButton btnThemKhachTro_HopDong;
+        private FontAwesome.Sharp.IconButton btnThemAnh;
     }
 }

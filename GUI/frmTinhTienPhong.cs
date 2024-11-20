@@ -288,7 +288,7 @@ namespace GUI
 
         private void SetDatabaseLogon(ReportDocument reportDocument)
         {
-            string server = "LAPTOP-85VQT4K5\\SQLEXPRESS05";
+            string server = "LAPTOP-GQAMABND";
             string database = "QL_NhaTro";
             string user = "sa";
             string password = "123";
