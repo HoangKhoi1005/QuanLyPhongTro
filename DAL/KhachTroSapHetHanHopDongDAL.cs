@@ -40,7 +40,7 @@ namespace DAL
             NHATRO NT ON PT.MANT = NT.MANT
         WHERE 
             HD.NGAYHETHAN BETWEEN GETDATE() AND DATEADD(DAY, 30, GETDATE())
-            AND HD.TRANGTHAIHOPDONG = 0";
+            AND HD.TRANGTHAIHOPDONG = 1";
 
             // Lấy dữ liệu từ database
             DataTable dt = dbConnect.GetDataTable(query);

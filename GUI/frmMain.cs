@@ -83,6 +83,22 @@ namespace GUI
                 menuButton.Text = "  " + menuButton.Tag.ToString();
 
             }
+
+            Form form = new frmTrangChu();
+            if (currentChildForm != null)
+            {
+                currentChildForm.Close();
+            }
+            currentChildForm = form;
+            //End
+            form.TopLevel = false;
+            form.FormBorderStyle = FormBorderStyle.None;
+            form.Dock = DockStyle.Fill;
+            panelDesktop.Controls.Add(form);
+            panelDesktop.Tag = form;
+            form.BringToFront();
+            form.Show();
+            lblTitleChildForm.Text = form.Text;
         }
 
         private void ActivateButton(object senderBtn, Color color)

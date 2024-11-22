@@ -118,7 +118,7 @@ namespace GUI
                 {
                     hoaDonDTO.MaHD = hoaDonBUL.PhatSinhMaHoaDon();
                     hoaDonDTO.MaPT = cboMaPT.SelectedValue.ToString();
-                    hoaDonDTO.TongTien = hoaDonBUL.TinhTienHoaDon(dtpThangNam.Value, hoaDonDTO.MaPT);
+                    hoaDonDTO.TongTien = hoaDonBUL.TinhTienHoaDonKhiTraPhong(dtpThangNam.Value, hoaDonDTO.MaPT);
                     hoaDonBUL.ThemHoaDon(hoaDonDTO);
                 }
             }

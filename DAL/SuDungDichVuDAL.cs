@@ -67,5 +67,21 @@ namespace DAL
                          "' AND (NGAYKETTHUC IS NULL OR NGAYKETTHUC >= '" + ngayBatDau.ToString("yyyy-MM-dd") + "')))";
             return (int)db.ExecuteScalar(sql) > 0;
         }
+
+        //xóa sử dụng dịch vụ theo mã phòng
+        public bool XoaSuDungDichVuTheoMaPhong(string maPT)
+        {
+            string sql = "UPDATE SUDUNGDV SET DAXOA = 1, NGAYKETTHUC = '" + DateTime.Now.ToString("yyyy-MM-dd") +
+                         "' WHERE MAPT = '" + maPT + "' AND DAXOA = 0";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
+
+        //Cập nhật ngày kết thúc của sử dụng dịch vụ theo mã phòng
+        public bool CapNhatNgayKetThucSuDungDichVuTheoMaPhong(string maPT)
+        {
+            string sql = "UPDATE SUDUNGDV SET NGAYKETTHUC = '" + DateTime.Now.ToString("yyyy-MM-dd") +
+                         "' WHERE MAPT = '" + maPT + "' AND NGAYKETTHUC IS NULL AND DAXOA = 0";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
     }
 }

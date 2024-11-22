@@ -669,7 +669,52 @@ namespace GUI
             }
             else
             {
-                MessageBox.Show("Phòng chưa có hóa đơn trong tháng, vui lòng nhập hóa đơn trước khi trả phòng");
+                //MessageBox.Show("Phòng chưa có hóa đơn trong tháng, vui lòng nhập hóa đơn trước khi trả phòng");
+                // hỏi xác nhận tính tiền trước khi trả phòng
+                if (MessageBox.Show("Phòng chưa có hóa đơn trong tháng, bạn có muốn tính tiền trước khi trả phòng không?", "Xác nhận tính tiền", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    HoaDonBUL hoaDonBUL = new HoaDonBUL();
+
+                    if (!hoaDonBUL.KiemTraChiSoDienNuoc(DateTime.Now, phong.MaPT))
+                    {
+                        MessageBox.Show($"Phòng chưa nhập chỉ số điện nước cho tháng {DateTime.Now:MM/yyyy}", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                    SuDungDichVuBUL suDungDichVuBUL = new SuDungDichVuBUL();
+                    suDungDichVuBUL.CapNhatNgayKetThucSuDungDichVuTheoMaPhong(phong.MaPT);
+
+                    HoaDonDTO hoaDonDTO = new HoaDonDTO();
+                    hoaDonDTO.NgayLap = DateTime.Now;
+                    hoaDonDTO.NgayThanhToan = DateTime.Now;
+                    hoaDonDTO.MaHD = hoaDonBUL.PhatSinhMaHoaDon();
+                    hoaDonDTO.MaPT = phong.MaPT;
+                    hoaDonDTO.TongTien = hoaDonBUL.TinhTienHoaDonKhiTraPhong(DateTime.Now, phong.MaPT);
+                    hoaDonDTO.TienDaThanhToan = 0;
+                    hoaDonDTO.MaQL = "QL001";
+                    hoaDonDTO.DaXoa = true;
+                    hoaDonBUL.ThemHoaDon(hoaDonDTO);
+
+                    HopDongDTO hopDong = hopDongBUL.LayHopDongTheoMaPhong(phong.MaPT);
+                    hopDong.TrangThaiHopDong = false;
+                    if (hopDongBUL.CapNhatHopDong(hopDong))
+                    {
+                        if (phongBUL.CapNhatTrangThaiPhong(phong.MaPT, "TT01"))
+                        {
+                            
+
+                            MessageBox.Show("Trả phòng thành công");
+                            LoadPhongByNhaTro(nhaTroDangChon.MaNT);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Trả phòng thất bại");
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Trả phòng thất bại");
+                    }
+                }
             }
 
         }

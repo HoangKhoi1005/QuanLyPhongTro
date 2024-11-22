@@ -72,5 +72,10 @@ namespace BUL
         {
             return HoaDonDAL.LayHoaDonTheoMaHD(maHD);
         }
+
+        public decimal TinhTienHoaDonKhiTraPhong(DateTime now, string maPT)
+        {
+            return HoaDonDAL.TinhTienHoaDonKhiTraPhong(now, maPT);
+        }
     }
 }

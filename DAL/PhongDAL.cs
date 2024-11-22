@@ -590,7 +590,7 @@ namespace DAL
                 string ngayChonStr = ngayChon.ToString("yyyy-MM-dd");
 
                 string sql = $@"
-                        SELECT PT.*
+                        SELECT DISTINCT  PT.*
                         FROM PHONGTRO PT
                         LEFT JOIN HOPDONG HD ON PT.MAPT = HD.MAPT
                         LEFT JOIN BAOTRAPHONG BP ON PT.MAPT = BP.MAPT
@@ -600,7 +600,7 @@ namespace DAL
                             PT.DAXOA = 0 AND
                             (
                                 -- Điều kiện 1: Phòng không có hợp đồng hoặc hợp đồng đã hết hạn trước 'ngayChon'
-                                (HD.MAHOPDONG IS NULL OR 
+                                (HD.MAHOPDONG IS NULL OR HD.TRANGTHAIHOPDONG = 0 OR
                                 (HD.NGAYHETHAN <= '{ngayChonStr}' AND HD.TRANGTHAIHOPDONG = 1) OR 
                                 (BP.MABAOTRA IS NOT NULL AND BP.NGAYTRAPHONGDUKIEN <= '{ngayChonStr}' AND BP.DAXOA = 0))
                                 AND
@@ -614,8 +614,10 @@ namespace DAL
                                     PDP.MAPDP IS NULL OR 
                                     (PDP.NGAYDUKIENNHANPHONG > '{ngayChonStr}' OR PDP.NGAYLAPPHIEU < '{ngayChonStr}')
                                 )
-                            )";
+                            )
+                            ";
 
+                Console.WriteLine(sql);
                 // Thực thi truy vấn SQL và đọc dữ liệu
                 SqlDataReader reader = conn.ExecuteQuery(sql);
 
@@ -675,7 +677,7 @@ namespace DAL
 
         public bool KiemTraPhongDaCoHoaDonTrongThang(string maPT, DateTime now)
         {
-            string sql = "SELECT COUNT(*) FROM HOADON WHERE MAPT = '" + maPT + "' AND MONTH(NGAYLAP) = " + now.Month + " AND YEAR(NGAYLAP) = " + now.Year;
+            string sql = "SELECT COUNT(*) FROM HOADON WHERE DAXOA = 1 AND MAPT = '" + maPT + "' AND MONTH(NGAYLAP) = " + now.Month + " AND YEAR(NGAYLAP) = " + now.Year ;
             return (int)conn.ExecuteScalar(sql) > 0;
         }
     }
