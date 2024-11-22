@@ -34,7 +34,7 @@ namespace DAL
 
         public List<HoaDonDTO> LayDanhSachHoaDon()
         {
-            string sql = "SELECT * FROM HOADON WHERE DAXOA = 0 AND MONTH(NgayLap) = MONTH(GETDATE()) AND YEAR(NgayLap) = YEAR(GETDATE())";
+            string sql = "SELECT * FROM HOADON WHERE MONTH(NgayLap) = MONTH(GETDATE()) AND YEAR(NgayLap) = YEAR(GETDATE())";
             var reader = db.ExecuteQuery(sql);
             var danhSachHoaDon = new List<HoaDonDTO>();
 
@@ -322,6 +322,127 @@ namespace DAL
                          "WHERE HOADON.MAHD = '" + maHD + "'";
 
             return db.GetDataTable(sql);
+        }
+
+        public decimal TinhTienHoaDonKhiTraPhong(DateTime ngay, string maPT)
+        {
+            decimal tongTien = 0;
+            string ngayStr = ngay.ToString("yyyy-MM-dd");
+            // Get the total days in the month
+            DateTime firstDayOfMonth = new DateTime(ngay.Year, ngay.Month, 1);
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+            int totalDaysInMonth = DateTime.DaysInMonth(ngay.Year, ngay.Month);
+
+            // Prorate room rent
+            string sqlPhongTro = $"SELECT DONGIA FROM PHONGTRO WHERE MAPT = '{maPT}'";
+            object resultPhongTro = db.ExecuteScalar(sqlPhongTro);
+            decimal donGiaPhong = resultPhongTro != null && resultPhongTro != DBNull.Value ? Convert.ToDecimal(resultPhongTro) : 0;
+
+            decimal proratedRent = donGiaPhong; // If room is occupied for the whole month
+            string sqlDaysOccupied = $@"
+        SELECT DATEDIFF(DAY, 
+                CASE WHEN NGAYLAP < '{firstDayOfMonth:yyyy-MM-dd}' THEN '{firstDayOfMonth:yyyy-MM-dd}' ELSE NGAYLAP END,
+                '{ngay:yyyy-MM-dd}') + 1
+        FROM HOPDONG
+        WHERE MAPT = '{maPT}' AND NGAYLAP <= '{lastDayOfMonth:yyyy-MM-dd}' ";
+
+            object resultDaysOccupied = db.ExecuteScalar(sqlDaysOccupied);
+            int daysOccupied = resultDaysOccupied != null && resultDaysOccupied != DBNull.Value ? Convert.ToInt32(resultDaysOccupied) : totalDaysInMonth;
+            proratedRent = (donGiaPhong / totalDaysInMonth) * daysOccupied;
+
+            string firstDayOfMonthStr = firstDayOfMonth.ToString("yyyy-MM-dd");
+            string lastDayOfMonthStr = lastDayOfMonth.ToString("yyyy-MM-dd");
+
+            string sqlDichVu = $@"
+                    SELECT 
+                        SUM(
+                            CASE 
+                                WHEN SD.NGAYBATDAU <= '{lastDayOfMonthStr}' 
+                                     AND (SD.NGAYKETTHUC IS NULL OR SD.NGAYKETTHUC >= '{firstDayOfMonthStr}')
+                                THEN (DV.DONGIA / {totalDaysInMonth}) * SD.SOLUONG * 
+                                     (DATEDIFF(DAY, 
+                                               CASE WHEN SD.NGAYBATDAU < '{firstDayOfMonthStr}' THEN '{firstDayOfMonthStr}' ELSE SD.NGAYBATDAU END, 
+                                               CASE WHEN SD.NGAYKETTHUC IS NULL OR SD.NGAYKETTHUC > '{lastDayOfMonthStr}' THEN '{lastDayOfMonthStr}' ELSE SD.NGAYKETTHUC END) + 1)
+                                ELSE 0 
+                            END
+                        ) AS TongTienDichVu
+                    FROM SUDUNGDV SD
+                    JOIN DICHVU DV ON SD.MADV = DV.MADV
+                    WHERE SD.MAPT = '{maPT}'
+                      AND SD.DAXOA = 0 
+                      AND DV.TENDV NOT LIKE N'%Điện%' 
+                      AND DV.TENDV NOT LIKE N'%Nước%'";
+
+            Console.WriteLine(sqlDichVu);
+            object resultDichVu = db.ExecuteScalar(sqlDichVu);
+            decimal tongTienDichVu = resultDichVu != null && resultDichVu != DBNull.Value ? Convert.ToDecimal(resultDichVu) : 0;
+
+            // Calculate electricity costs
+            string sqlDien = $@"
+        DECLARE @donGiaDien MONEY, @chiSoDienMax INT, @chiSoDienMin INT;
+        SELECT @donGiaDien = DONGIA
+        FROM DICHVU DV
+        JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
+        WHERE SD.MAPT = '{maPT}' AND DV.TENDV LIKE N'%Điện%';
+
+        SELECT TOP 1 @chiSoDienMax = CHISODIEN
+        FROM CHISODIENNUOC
+        WHERE MAPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+        ORDER BY NGAYTHANG DESC;
+
+        SELECT @chiSoDienMin = CHISODIEN
+        FROM CHISODIENNUOC
+        WHERE MAPT = '{maPT}' 
+        AND NGAYTHANG < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
+        ORDER BY NGAYTHANG DESC
+        OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY;
+
+        SELECT (@chiSoDienMax - @chiSoDienMin) * ISNULL(@donGiaDien, 0) AS TienDien;
+    ";
+
+            object resultDien = db.ExecuteScalar(sqlDien);
+            decimal tongTienDien = resultDien != null && resultDien != DBNull.Value ? Convert.ToDecimal(resultDien) : 0;
+
+            // Calculate water costs
+            string sqlNuoc = $@"
+        DECLARE @donGiaNuoc MONEY, @chiSoNuocMax INT, @chiSoNuocMin INT;
+        SELECT @donGiaNuoc = DONGIA
+        FROM DICHVU DV
+        JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
+        WHERE SD.MAPT = '{maPT}' AND DV.TENDV LIKE N'%Nước%';
+
+        SELECT TOP 1 @chiSoNuocMax = CHISONUOC
+        FROM CHISODIENNUOC
+        WHERE MAPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+        ORDER BY NGAYTHANG DESC;
+
+        SELECT @chiSoNuocMin = CHISONUOC
+        FROM CHISODIENNUOC
+        WHERE MAPT = '{maPT}' 
+        AND NGAYTHANG < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
+        ORDER BY NGAYTHANG DESC
+        OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY;
+
+        SELECT (@chiSoNuocMax - @chiSoNuocMin) * ISNULL(@donGiaNuoc, 0) AS TienNuoc;
+    ";
+
+            object resultNuoc = db.ExecuteScalar(sqlNuoc);
+            decimal tongTienNuoc = resultNuoc != null && resultNuoc != DBNull.Value ? Convert.ToDecimal(resultNuoc) : 0;
+
+            // Calculate additional charges
+            string sqlPhatSinh = $@"
+        SELECT SUM(SoTien)
+        FROM PHATSINH
+        WHERE MaPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+    ";
+
+            object resultPhatSinh = db.ExecuteScalar(sqlPhatSinh);
+            decimal tongTienPhatSinh = resultPhatSinh != null && resultPhatSinh != DBNull.Value ? Convert.ToDecimal(resultPhatSinh) : 0;
+
+            // Sum up all costs
+            tongTien = proratedRent + tongTienDichVu + tongTienDien + tongTienNuoc + tongTienPhatSinh;
+
+            return tongTien;
         }
     }
 }

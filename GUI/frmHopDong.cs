@@ -73,7 +73,7 @@ namespace GUI
 
                 Dictionary<string, string> contractDict = hopDongBUL.GetContractDictionary(maHopDong);
 
-                string templatePath = @"D:\PhatTrienPhamMemUDTM\HopDong.docx";
+                string templatePath = @"D:\Nam4KyI\PhatTrienPMUDTM\HopDong.docx";
                 WordExport wordExport = new WordExport(templatePath, true);
 
                 wordExport.WriteFields(contractDict);

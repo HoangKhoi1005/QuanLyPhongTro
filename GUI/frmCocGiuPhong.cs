@@ -34,7 +34,7 @@ namespace GUI
 
                 Dictionary<string, string> contractDict = phieuDatPhongBUL.GetContractDictionary(maPhietDat);
 
-                string templatePath = @"D:\PhatTrienPhamMemUDTM\PhieuDatphong.docx";
+                string templatePath = @"D:\Nam4KyI\PhatTrienPMUDTM\PhieuDatphong.docx";
                 WordExport wordExport = new WordExport(templatePath, true);
 
                 wordExport.WriteFields(contractDict);

@@ -42,5 +42,15 @@ namespace BUL
         {
             return suDungDichVuDAL.KiemTraSuDungDichVuTonTai(maPT, maDV, ngayBatDau, ngayKetThuc);
         }
+
+        public bool XoaSuDungDichVuTheoMaPhong(string maPT)
+        {
+            return suDungDichVuDAL.XoaSuDungDichVuTheoMaPhong(maPT);
+        }
+
+        public bool CapNhatNgayKetThucSuDungDichVuTheoMaPhong(string maPT)
+        {
+            return suDungDichVuDAL.CapNhatNgayKetThucSuDungDichVuTheoMaPhong(maPT);
+        }
     }
 }

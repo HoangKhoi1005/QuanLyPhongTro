@@ -26,7 +26,6 @@ namespace DAL
             string query = @"
                 SELECT MONTH(NGAYTHANHTOAN) AS Thang, SUM(TONGTIEN) AS DoanhThu
                 FROM HOADON
-                WHERE DAXOA = 0
                 GROUP BY MONTH(NGAYTHANHTOAN)
                 ORDER BY Thang";
 

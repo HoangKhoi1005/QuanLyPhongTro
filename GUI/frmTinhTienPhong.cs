@@ -30,6 +30,7 @@ namespace GUI
             dtpThangNam.Format = DateTimePickerFormat.Custom;
             dtpThangNam.CustomFormat = "MM/yyyy";
             dtpThangNam.Value = DateTime.Now;
+
         }
 
         Form overlayPanel;
@@ -288,7 +289,7 @@ namespace GUI
 
         private void SetDatabaseLogon(ReportDocument reportDocument)
         {
-            string server = "LAPTOP-GQAMABND";
+            string server = "LAPTOP-85VQT4K5\\SQLEXPRESS05";
             string database = "QL_NhaTro";
             string user = "sa";
             string password = "123";

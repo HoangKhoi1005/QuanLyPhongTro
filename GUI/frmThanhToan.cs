@@ -52,6 +52,13 @@ namespace GUI
                 return;
             }
 
+            //Tiền phải là số
+            if (!decimal.TryParse(txtSoTienThu.Text, out _))
+            {
+                MessageBox.Show("Số tiền thu phải là số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             decimal soTienThu = decimal.Parse(txtSoTienThu.Text);
             if (soTienThu > congNo)
             {
