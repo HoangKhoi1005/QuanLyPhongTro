@@ -1,6 +1,7 @@
 ﻿using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -157,6 +158,37 @@ namespace DAL
 
             return result;
         }
+
+        public bool CapNhatChiSoVe0(string maPhong)
+        {
+            try
+            {
+                var chiSo = (from dn in ql.CHISODIENNUOCs
+                             where dn.MAPT == maPhong
+                             select dn).FirstOrDefault();
+
+                if (chiSo != null)
+                {
+                    chiSo.CHISODIEN = 0;
+                    chiSo.CHISONUOC = 0;
+
+                    ql.SubmitChanges();
+                    return true;
+                }
+                else
+                {
+                    Console.WriteLine("Không tìm thấy bản ghi với mã phòng: " + maPhong);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Lỗi khi cập nhật dữ liệu: " + ex.Message);
+                return false;
+            }
+        }
+
+
 
     }
 }

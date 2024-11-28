@@ -1,46 +1,157 @@
 ﻿using DTO;
 using SQLServerProvider;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace DAL
 {
     public class DoanhThuDAL
     {
 
-        private DBConnect dbConnect;
+        private DBConnect db;
 
         public DoanhThuDAL()
         {
-            dbConnect = new DBConnect(); // Khởi tạo đối tượng DBConnect
+            db = new DBConnect();
         }
 
-        // Lấy doanh thu theo tháng
-        public List<DoanhThuDTO> LayDoanhThuTheoThang()
+        public DataTable LoadDoanhThu(DateTime ngay)
         {
-            // Truy vấn SQL lấy doanh thu theo tháng
-            string query = @"
-                SELECT MONTH(NGAYTHANHTOAN) AS Thang, SUM(TONGTIEN) AS DoanhThu
-                FROM HOADON
-                GROUP BY MONTH(NGAYTHANHTOAN)
-                ORDER BY Thang";
+            DataTable dataTable = new DataTable();
 
-            // Lấy dữ liệu từ DBConnect và chuyển sang DataTable
-            DataTable dt = dbConnect.GetDataTable(query);
+            dataTable.Columns.Add("MaPhong", typeof(string));
+            dataTable.Columns.Add("GiaPhong", typeof(decimal));
+            dataTable.Columns.Add("ProratedRent", typeof(decimal));
+            dataTable.Columns.Add("TienDien", typeof(decimal));
+            dataTable.Columns.Add("TienNuoc", typeof(decimal));
+            dataTable.Columns.Add("TienDichVu", typeof(decimal));
+            dataTable.Columns.Add("PhatSinh", typeof(decimal));
+            dataTable.Columns.Add("TongTien", typeof(decimal));
 
-            // Dùng LINQ để chuyển DataTable thành List<DoanhThuDTO>
-            var result = (from row in dt.AsEnumerable()
-                          select new DoanhThuDTO
-                          {
-                              Thang = Convert.ToInt32(row["Thang"]),
-                              DoanhThu = Convert.ToDecimal(row["DoanhThu"])
-                          }).ToList();
+            DateTime firstDayOfMonth = new DateTime(ngay.Year, ngay.Month, 1);
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+            int totalDaysInMonth = DateTime.DaysInMonth(ngay.Year, ngay.Month);
 
-            return result;
+            string sqlRooms = "SELECT MAPT, DONGIA FROM PHONGTRO ";
+            DataTable rooms = db.GetDataTable(sqlRooms);
+
+            foreach (DataRow room in rooms.Rows)
+            {
+                string maPT = room["MAPT"].ToString();
+                decimal donGiaPhong = room["DONGIA"] != DBNull.Value ? Convert.ToDecimal(room["DONGIA"]) : 0;
+
+                string sqlCheckInvoice = $@"
+            SELECT COUNT(*) 
+            FROM HOADON
+            WHERE MAPT = '{maPT}' 
+            AND NGAYLAP BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+            AND DAXOA = 0";
+                int invoiceCount = Convert.ToInt32(db.ExecuteScalar(sqlCheckInvoice));
+
+                if (invoiceCount == 0)
+                {
+                    dataTable.Rows.Add(maPT, donGiaPhong, 0, 0, 0, 0, 0, 0);
+                    continue; 
+                }
+
+                string sqlDaysOccupied = $@"
+                SELECT DATEDIFF(DAY, 
+                        CASE WHEN NGAYLAP < '{firstDayOfMonth:yyyy-MM-dd}' THEN '{firstDayOfMonth:yyyy-MM-dd}' ELSE NGAYLAP END,
+                        '{ngay:yyyy-MM-dd}') + 1
+                FROM HOPDONG
+                WHERE MAPT = '{maPT}' AND NGAYLAP <= '{lastDayOfMonth:yyyy-MM-dd}'";
+                object resultDaysOccupied = db.ExecuteScalar(sqlDaysOccupied);
+                int daysOccupied = resultDaysOccupied != null && resultDaysOccupied != DBNull.Value ? Convert.ToInt32(resultDaysOccupied) : totalDaysInMonth;
+                decimal proratedRent = (donGiaPhong / totalDaysInMonth) * daysOccupied;
+
+                string sqlDichVu = $@"
+                SELECT 
+                    SUM(
+                        CASE 
+                            WHEN SD.NGAYBATDAU <= '{lastDayOfMonth:yyyy-MM-dd}' 
+                                 AND (SD.NGAYKETTHUC IS NULL OR SD.NGAYKETTHUC >= '{firstDayOfMonth:yyyy-MM-dd}')
+                            THEN (DV.DONGIA / {totalDaysInMonth}) * SD.SOLUONG * 
+                                 (DATEDIFF(DAY, 
+                                           CASE WHEN SD.NGAYBATDAU < '{firstDayOfMonth:yyyy-MM-dd}' THEN '{firstDayOfMonth:yyyy-MM-dd}' ELSE SD.NGAYBATDAU END, 
+                                           CASE WHEN SD.NGAYKETTHUC IS NULL OR SD.NGAYKETTHUC > '{lastDayOfMonth:yyyy-MM-dd}' THEN '{lastDayOfMonth:yyyy-MM-dd}' ELSE SD.NGAYKETTHUC END) + 1)
+                            ELSE 0 
+                        END
+                    ) AS TongTienDichVu
+FROM SUDUNGDV SD
+                JOIN DICHVU DV ON SD.MADV = DV.MADV
+                WHERE SD.MAPT = '{maPT}'
+                  AND SD.DAXOA = 0 
+                  AND DV.TENDV NOT LIKE N'%Điện%' 
+                  AND DV.TENDV NOT LIKE N'%Nước%'";
+                object resultDichVu = db.ExecuteScalar(sqlDichVu);
+                decimal tongTienDichVu = resultDichVu != null && resultDichVu != DBNull.Value ? Convert.ToDecimal(resultDichVu) : 0;
+
+                string sqlDien = $@"
+                DECLARE @donGiaDien MONEY, @chiSoDienMax INT, @chiSoDienMin INT;
+                SELECT @donGiaDien = DONGIA
+                FROM DICHVU DV
+                JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
+                WHERE SD.MAPT = '{maPT}' AND DV.TENDV LIKE N'%Điện%';
+
+                SELECT TOP 1 @chiSoDienMax = CHISODIEN
+                FROM CHISODIENNUOC
+                WHERE MAPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+                ORDER BY NGAYTHANG DESC;
+
+                SELECT @chiSoDienMin = CHISODIEN
+                FROM CHISODIENNUOC
+                WHERE MAPT = '{maPT}' 
+                AND NGAYTHANG < '{firstDayOfMonth:yyyy-MM-dd}'
+                ORDER BY NGAYTHANG DESC;
+
+                SELECT (@chiSoDienMax - @chiSoDienMin) * ISNULL(@donGiaDien, 0) AS TienDien;";
+                object resultDien = db.ExecuteScalar(sqlDien);
+                decimal tongTienDien = resultDien != null && resultDien != DBNull.Value ? Convert.ToDecimal(resultDien) : 0;
+
+                string sqlNuoc = $@"
+                DECLARE @donGiaNuoc MONEY, @chiSoNuocMax INT, @chiSoNuocMin INT;
+                SELECT @donGiaNuoc = DONGIA
+                FROM DICHVU DV
+                JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
+                WHERE SD.MAPT = '{maPT}' AND DV.TENDV LIKE N'%Nước%';
+
+                SELECT TOP 1 @chiSoNuocMax = CHISONUOC
+                FROM CHISODIENNUOC
+                WHERE MAPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+                ORDER BY NGAYTHANG DESC;
+
+                SELECT @chiSoNuocMin = CHISONUOC
+                FROM CHISODIENNUOC
+                WHERE MAPT = '{maPT}' 
+                AND NGAYTHANG < '{firstDayOfMonth:yyyy-MM-dd}'
+                ORDER BY NGAYTHANG DESC;
+
+                SELECT (@chiSoNuocMax - @chiSoNuocMin) * ISNULL(@donGiaNuoc, 0) AS TienNuoc;";
+                object resultNuoc = db.ExecuteScalar(sqlNuoc);
+                decimal tongTienNuoc = resultNuoc != null && resultNuoc != DBNull.Value ? Convert.ToDecimal(resultNuoc) : 0;
+
+                string sqlPhatSinh = $@"
+                SELECT SUM(SoTien)
+                FROM PHATSINH
+                WHERE MaPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'";
+                object resultPhatSinh = db.ExecuteScalar(sqlPhatSinh);
+                decimal tongTienPhatSinh = resultPhatSinh != null && resultPhatSinh != DBNull.Value ? Convert.ToDecimal(resultPhatSinh) : 0;
+
+                decimal tongTien = proratedRent + tongTienDichVu + tongTienDien + tongTienNuoc + tongTienPhatSinh;
+
+                dataTable.Rows.Add(maPT, donGiaPhong, proratedRent, tongTienDien, tongTienNuoc, tongTienDichVu, tongTienPhatSinh, tongTien);
+            }
+
+            return dataTable;
         }
+
     }
 }

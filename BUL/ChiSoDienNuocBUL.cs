@@ -55,5 +55,10 @@ namespace BUL
         {
             return chiSoDienNuocDAL.LayChiSoDienNuocTheoMaPhong(maPT, ngayLap);
         }
+
+        public bool CapNhatChiSoVe0(string maPhong)
+        {
+            return chiSoDienNuocDAL.CapNhatChiSoVe0(maPhong);
+        }
     }
 }
