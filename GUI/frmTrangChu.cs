@@ -27,6 +27,10 @@ namespace GUI
 
             phongTrongBUL = new PhongTrongBUL();
             HienThiPhongTrong();
+
+            dtpNgayThang.Format = DateTimePickerFormat.Custom;
+            dtpNgayThang.CustomFormat = "MM/yyyy";
+            dtpNgayThang.ShowUpDown = true;
         }
 
         private void frmTrangChu_Load(object sender, EventArgs e)
@@ -34,11 +38,10 @@ namespace GUI
             var trangThaiPhongList = trangThaiPhongBUL.LayTrangThaiPhong();
             loadChartTrangThai(trangThaiPhongList);
 
-            var doanhThuList = doanhThuBUL.LayDoanhThuTheoThang();
-            loadChartDoanhThu(doanhThuList);
-
             var khachTroSapHetHopDong = khachTroSapBUL.LayKhachTroSapHetHopDong();
             dgvKhachSapHetHopDong.DataSource = khachTroSapHetHopDong;
+
+            dtpNgayThang.Value = DateTime.Now;
         }
 
         private void loadChartTrangThai(List<TrangThaiPhong1DTO> trangThaiPhongList)
@@ -61,29 +64,47 @@ namespace GUI
             chartTrangThai.Legends[0].Enabled = true;
         }
 
-        private void loadChartDoanhThu(List<DoanhThuDTO> doanhThuList)
-        {
-            chartDoanhThu.Legends.Clear();
-            chartDoanhThu.Series.Clear();
-            Series series = new Series("Doanh Thu");
-            series.ChartType = SeriesChartType.Column;
-            chartDoanhThu.Series.Add(series);
-
-            // Thêm dữ liệu vào biểu đồ cột
-            foreach (var item in doanhThuList)
-            {
-                series.Points.AddXY(item.Thang, item.DoanhThu);
-            }
-
-            // Tùy chỉnh thêm cho biểu đồ nếu cần
-            chartDoanhThu.ChartAreas[0].AxisX.Title = "Tháng";
-        }
-
         private void HienThiPhongTrong()
         {
             dgvPhongTrong.DataSource = phongTrongBUL.LayDanhSachPhongTrong();
         }
 
+        private void dtpNgayThang_ValueChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                DateTime selectedDate = dtpNgayThang.Value;
+                DateTime firstDayOfMonth = new DateTime(selectedDate.Year, selectedDate.Month, 1);
+                DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
+                DataTable doanhThuData = doanhThuBUL.LoadDoanhThu(selectedDate);
+                dgvDoanhThu.DataSource = doanhThuData;
+
+                dgvDoanhThu.Columns["MaPhong"].HeaderText = "Mã Phòng";
+                dgvDoanhThu.Columns["GiaPhong"].HeaderText = "Giá Phòng";
+                dgvDoanhThu.Columns["ProratedRent"].HeaderText = "Tiền Thuê Tính Theo Ngày";
+                dgvDoanhThu.Columns["TienDien"].HeaderText = "Tiền Điện";
+                dgvDoanhThu.Columns["TienNuoc"].HeaderText = "Tiền Nước";
+                dgvDoanhThu.Columns["TienDichVu"].HeaderText = "Tiền Dịch Vụ";
+                dgvDoanhThu.Columns["PhatSinh"].HeaderText = "Phí Phát Sinh";
+                dgvDoanhThu.Columns["TongTien"].HeaderText = "Tổng Tiền";
+
+                dgvDoanhThu.Columns["GiaPhong"].DefaultCellStyle.Format = "N0"; // Hiển thị số nguyên, không có thập phân
+                                                                                // Hoặc, nếu bạn muốn hiển thị với 2 chữ số thập phân
+                dgvDoanhThu.Columns["GiaPhong"].DefaultCellStyle.Format = "N2"; // Hiển thị 2 chữ số thập phân
+
+                // Áp dụng định dạng tương tự cho các cột khác
+                dgvDoanhThu.Columns["ProratedRent"].DefaultCellStyle.Format = "N2";
+                dgvDoanhThu.Columns["TienDien"].DefaultCellStyle.Format = "N2";
+                dgvDoanhThu.Columns["TienNuoc"].DefaultCellStyle.Format = "N2";
+                dgvDoanhThu.Columns["TienDichVu"].DefaultCellStyle.Format = "N2";
+                dgvDoanhThu.Columns["PhatSinh"].DefaultCellStyle.Format = "N2";
+                dgvDoanhThu.Columns["TongTien"].DefaultCellStyle.Format = "N2";
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Có lỗi xảy ra: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

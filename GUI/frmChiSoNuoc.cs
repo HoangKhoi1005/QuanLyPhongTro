@@ -162,38 +162,91 @@ namespace GUI
             dgvChiSo.AllowUserToDeleteRows = true;
             dgvChiSo.ReadOnly = false;
             dgvChiSo.EditMode = DataGridViewEditMode.EditOnEnter;
+            dgvChiSo.DataError += dgvChiSo_DataError;
             loadCSDienNuoc();
         }
 
         private void btnLuuSua_Click(object sender, EventArgs e)
         {
+            bool isValid = true; 
+
             foreach (DataGridViewRow row in dgvChiSo.Rows)
             {
                 if (row.IsNewRow) continue;
+
+                int chiSoDien = row.Cells["CHISODIEN"].Value != DBNull.Value && row.Cells["CHISODIEN"].Value != null
+                                ? Convert.ToInt32(row.Cells["CHISODIEN"].Value)
+                                : 0;
+
+                int chiSoNuoc = row.Cells["CHISONUOC"].Value != DBNull.Value && row.Cells["CHISONUOC"].Value != null
+                                ? Convert.ToInt32(row.Cells["CHISONUOC"].Value)
+                                : 0;
+
+                if (row.Cells["CHISODIEN"].Value == DBNull.Value || row.Cells["CHISONUOC"].Value == DBNull.Value)
+                {
+                    MessageBox.Show("Chỉ số điện và nước không được để trống!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    isValid = false;
+                    taiDuLieu();
+                    return;
+                }
 
                 var chiSoDN = new ChiSoDienNuocDTO
                 {
                     MaCS = Convert.ToInt32(row.Cells["MACS"].Value),
                     MaPT = row.Cells["MAPT"].Value.ToString(),
                     NgayThang = Convert.ToDateTime(row.Cells["NGAYTHANG"].Value),
-                    ChiSoDien = Convert.ToInt32(row.Cells["CHISODIEN"].Value),
-                    ChiSoNuoc = Convert.ToInt32(row.Cells["CHISONUOC"].Value)
+                    ChiSoDien = chiSoDien,
+                    ChiSoNuoc = chiSoNuoc,
+                    ChiSoDienCu = row.Cells["CHISODIENCU"].Value != DBNull.Value && row.Cells["CHISODIENCU"].Value != null
+                                  ? Convert.ToInt32(row.Cells["CHISODIENCU"].Value)
+                                  : 0,
+                    ChiSoNuocCu = row.Cells["CHISONUOCCU"].Value != DBNull.Value && row.Cells["CHISONUOCCU"].Value != null
+                                  ? Convert.ToInt32(row.Cells["CHISONUOCCU"].Value)
+                                  : 0
                 };
 
-                if (chiSoDN.MaCS == 0)
+                if (chiSoDN.ChiSoDien <= chiSoDN.ChiSoDienCu || chiSoDN.ChiSoNuoc <= chiSoDN.ChiSoNuocCu)
                 {
-                    chiSoDN.MaCS = chiSoDienNuocBUL.PhatSinhMaChiSoDN();
-                    chiSoDienNuocBUL.themDienNuoc(chiSoDN);
+                    MessageBox.Show("Chỉ số điện và nước mới phải lớn hơn chỉ số điện và nước cũ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    isValid = false;
+                    taiDuLieu();
+                    break;
                 }
                 else
                 {
-                    chiSoDienNuocBUL.suaDienNuoc(chiSoDN);
+                    if (chiSoDN.MaCS == 0)
+                    {
+                        chiSoDN.MaCS = chiSoDienNuocBUL.PhatSinhMaChiSoDN();
+                        chiSoDienNuocBUL.themDienNuoc(chiSoDN);
+                    }
+                    else
+                    {
+                        chiSoDienNuocBUL.suaDienNuoc(chiSoDN);
+                    }
                 }
             }
 
-            MessageBox.Show("Lưu thành công!");
-            loadCSDienNuoc();
+            if (isValid)
+            {
+                MessageBox.Show("Lưu thành công!");
+                taiDuLieu();
+            }
         }
+
+        private void dgvChiSo_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception is FormatException)
+            {
+                MessageBox.Show("Dữ liệu nhập không hợp lệ. Vui lòng nhập số vào các ô chỉ số điện và nước!",
+                                "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.ThrowException = false; 
+            }
+            else
+            {
+                e.ThrowException = true; 
+            }
+        }
+
 
         private void btnXoa_Click(object sender, EventArgs e)
         {
@@ -203,22 +256,26 @@ namespace GUI
             {
                 if (dgvChiSo.SelectedRows.Count > 0)
                 {
-                    foreach (DataGridViewRow row in dgvChiSo.SelectedRows)
+                    var row = dgvChiSo.SelectedRows[0];
+                    string maPhong = row.Cells["MAPT"].Value.ToString();
+                    MessageBox.Show(maPhong);
+
+                    bool isUpdated = chiSoDienNuocBUL.CapNhatChiSoVe0(maPhong);
+
+                    if (isUpdated)
                     {
-                        if (row.IsNewRow) continue; 
-
-                        // Đặt lại các giá trị chỉ số điện nước về mặc định
-                        row.Cells["CHISODIEN"].Value = 0;
-                        row.Cells["CHISONUOC"].Value = 0;
+                        MessageBox.Show("Xóa điện nước thành công.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        row.Cells["ChiSoDien"].Value = 0;
+                        row.Cells["ChiSoNuoc"].Value = 0;
                     }
-
-                    MessageBox.Show("Đã xóa chỉ số điện nước cho các phòng đã chọn.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    else
+                    {
+                        MessageBox.Show("Xóa điện nước thất bại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
                 else
                 {
-                    MessageBox.Show("Vui lòng chọn ít nhất một dòng để xóa chỉ số điện nước.", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("Vui lòng chọn một dòng để xóa.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
             }
         }
@@ -237,26 +294,30 @@ namespace GUI
 
             foreach (var maPhong in danhSachPhong)
             {
-                var chiSoPhong = danhSachChiSo.FirstOrDefault(cs =>
+                var chiSoPhongThangHienTai = danhSachChiSo.FirstOrDefault(cs =>
+            cs.MaPT == maPhong &&
+            cs.NgayThang.Month == month &&
+            cs.NgayThang.Year == year);
+
+                // Tìm chỉ số điện nước của tháng trước
+                var chiSoPhongThangTruoc = danhSachChiSo.FirstOrDefault(cs =>
                     cs.MaPT == maPhong &&
-                    cs.NgayThang.Month == month &&
+                    cs.NgayThang.Month == month - 1 &&
                     cs.NgayThang.Year == year);
 
-                if (chiSoPhong != null)
+                // Tạo đối tượng ChiSoDienNuocDTO mới để thêm vào danh sách hiển thị
+                var chiSoDN = new ChiSoDienNuocDTO
                 {
-                    danhSachHienThi.Add(chiSoPhong);
-                }
-                else
-                {
-                    danhSachHienThi.Add(new ChiSoDienNuocDTO
-                    {
-                        MaCS = 0, 
-                        MaPT = maPhong,
-                        NgayThang = new DateTime(year, month, 1), 
-                        ChiSoDien = 0, 
-                        ChiSoNuoc = 0  
-                    });
-                }
+                    MaCS = chiSoPhongThangHienTai != null ? chiSoPhongThangHienTai.MaCS : 0,
+                    MaPT = maPhong,
+                    NgayThang = new DateTime(year, month, 1),
+                    ChiSoDien = chiSoPhongThangHienTai != null ? chiSoPhongThangHienTai.ChiSoDien : 0,
+                    ChiSoNuoc = chiSoPhongThangHienTai != null ? chiSoPhongThangHienTai.ChiSoNuoc : 0,
+                    ChiSoDienCu = chiSoPhongThangTruoc != null ? chiSoPhongThangTruoc.ChiSoDien : 0, // Chỉ số điện cũ
+                    ChiSoNuocCu = chiSoPhongThangTruoc != null ? chiSoPhongThangTruoc.ChiSoNuoc : 0 // Chỉ số nước cũ
+                };
+
+                danhSachHienThi.Add(chiSoDN);
             }
 
             chiSoDienNuocList = new BindingList<ChiSoDienNuocDTO>(danhSachHienThi);

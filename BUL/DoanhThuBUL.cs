@@ -2,24 +2,27 @@
 using DTO;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+
 
 namespace BUL
 {
     public class DoanhThuBUL
     {
-        private DoanhThuDAL _dal;
+        private DoanhThuDAL doanhThuDAL;
 
         public DoanhThuBUL()
         {
-            _dal = new DoanhThuDAL(); 
+            doanhThuDAL = new DoanhThuDAL();
         }
 
-        public List<DoanhThuDTO> LayDoanhThuTheoThang()
+        public DataTable LoadDoanhThu(DateTime ngay)
         {
-            return _dal.LayDoanhThuTheoThang();
+            return doanhThuDAL.LoadDoanhThu(ngay);
         }
     }
 }
