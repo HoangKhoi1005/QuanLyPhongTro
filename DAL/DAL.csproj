@@ -74,6 +74,7 @@
     <Compile Include="QuanLyDAL.cs" />
     <Compile Include="SuDungDichVuDAL.cs" />
     <Compile Include="TaiSanDAL.cs" />
+    <Compile Include="TamTruTamVangDAL.cs" />
     <Compile Include="TrangThaiPhong1DAL.cs" />
     <Compile Include="TrangThaiPhongDAL.cs" />
   </ItemGroup>

@@ -444,5 +444,11 @@ namespace DAL
 
             return tongTien;
         }
+
+        public object TongTienTrongThang(DateTime value)
+        {
+            string sql = "SELECT SUM(TongTien) FROM HOADON WHERE MONTH(NgayThanhToan) = " + value.Month + " AND YEAR(NgayThanhToan) = " + value.Year;
+            return db.ExecuteScalar(sql);
+        }
     }
 }

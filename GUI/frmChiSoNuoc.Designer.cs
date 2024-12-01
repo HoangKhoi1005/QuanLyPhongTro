@@ -35,11 +35,6 @@
             this.txtTraCuu = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvChiSo = new Guna.UI2.WinForms.Guna2DataGridView();
-            this.btnXoa = new FontAwesome.Sharp.IconButton();
-            this.btnLuuSua = new FontAwesome.Sharp.IconButton();
-            this.label6 = new System.Windows.Forms.Label();
-            this.dtpNgayThang = new Guna.UI2.WinForms.Guna2DateTimePicker();
-            this.btnHuy = new FontAwesome.Sharp.IconButton();
             this.MACS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MAPT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NGAYTHANG = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +42,11 @@
             this.ChiSoNuocCu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHISODIEN = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CHISONUOC = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnXoa = new FontAwesome.Sharp.IconButton();
+            this.btnLuuSua = new FontAwesome.Sharp.IconButton();
+            this.label6 = new System.Windows.Forms.Label();
+            this.dtpNgayThang = new Guna.UI2.WinForms.Guna2DateTimePicker();
+            this.btnHuy = new FontAwesome.Sharp.IconButton();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiSo)).BeginInit();
             this.SuspendLayout();
@@ -118,7 +118,7 @@
             this.guna2GroupBox2.Location = new System.Drawing.Point(12, 62);
             this.guna2GroupBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.guna2GroupBox2.Name = "guna2GroupBox2";
-            this.guna2GroupBox2.Size = new System.Drawing.Size(1589, 530);
+            this.guna2GroupBox2.Size = new System.Drawing.Size(1589, 587);
             this.guna2GroupBox2.TabIndex = 65;
             this.guna2GroupBox2.Text = "Danh sách chỉ số điện nước";
             this.guna2GroupBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -160,7 +160,7 @@
             this.dgvChiSo.RowHeadersVisible = false;
             this.dgvChiSo.RowHeadersWidth = 51;
             this.dgvChiSo.RowTemplate.Height = 50;
-            this.dgvChiSo.Size = new System.Drawing.Size(1589, 490);
+            this.dgvChiSo.Size = new System.Drawing.Size(1589, 547);
             this.dgvChiSo.TabIndex = 46;
             this.dgvChiSo.ThemeStyle.AlternatingRowsStyle.BackColor = System.Drawing.Color.White;
             this.dgvChiSo.ThemeStyle.AlternatingRowsStyle.Font = null;
@@ -183,109 +183,6 @@
             this.dgvChiSo.ThemeStyle.RowsStyle.Height = 50;
             this.dgvChiSo.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvChiSo.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            // 
-            // btnXoa
-            // 
-            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.btnXoa.FlatAppearance.BorderSize = 0;
-            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoa.ForeColor = System.Drawing.Color.White;
-            this.btnXoa.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
-            this.btnXoa.IconColor = System.Drawing.Color.White;
-            this.btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnXoa.IconSize = 35;
-            this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.Location = new System.Drawing.Point(150, 605);
-            this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnXoa.Name = "btnXoa";
-            this.btnXoa.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnXoa.Size = new System.Drawing.Size(131, 60);
-            this.btnXoa.TabIndex = 67;
-            this.btnXoa.Tag = "Thêm";
-            this.btnXoa.Text = "Xóa";
-            this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnXoa.UseVisualStyleBackColor = false;
-            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
-            // 
-            // btnLuuSua
-            // 
-            this.btnLuuSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLuuSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(109)))), ((int)(((byte)(164)))));
-            this.btnLuuSua.FlatAppearance.BorderSize = 0;
-            this.btnLuuSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLuuSua.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLuuSua.ForeColor = System.Drawing.Color.White;
-            this.btnLuuSua.IconChar = FontAwesome.Sharp.IconChar.Edit;
-            this.btnLuuSua.IconColor = System.Drawing.Color.White;
-            this.btnLuuSua.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnLuuSua.IconSize = 35;
-            this.btnLuuSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuuSua.Location = new System.Drawing.Point(12, 605);
-            this.btnLuuSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnLuuSua.Name = "btnLuuSua";
-            this.btnLuuSua.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnLuuSua.Size = new System.Drawing.Size(130, 60);
-            this.btnLuuSua.TabIndex = 66;
-            this.btnLuuSua.Tag = "Thêm";
-            this.btnLuuSua.Text = "Lưu";
-            this.btnLuuSua.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuuSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnLuuSua.UseVisualStyleBackColor = false;
-            this.btnLuuSua.Click += new System.EventHandler(this.btnLuuSua_Click);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
-            this.label6.Location = new System.Drawing.Point(493, 24);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(108, 23);
-            this.label6.TabIndex = 118;
-            this.label6.Text = "Chọn Tháng:";
-            // 
-            // dtpNgayThang
-            // 
-            this.dtpNgayThang.Checked = true;
-            this.dtpNgayThang.FillColor = System.Drawing.Color.White;
-            this.dtpNgayThang.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.dtpNgayThang.Format = System.Windows.Forms.DateTimePickerFormat.Long;
-            this.dtpNgayThang.Location = new System.Drawing.Point(607, 19);
-            this.dtpNgayThang.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
-            this.dtpNgayThang.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
-            this.dtpNgayThang.Name = "dtpNgayThang";
-            this.dtpNgayThang.Size = new System.Drawing.Size(260, 33);
-            this.dtpNgayThang.TabIndex = 119;
-            this.dtpNgayThang.Value = new System.DateTime(2024, 11, 11, 0, 0, 0, 0);
-            this.dtpNgayThang.ValueChanged += new System.EventHandler(this.dtpNgayThang_ValueChanged);
-            // 
-            // btnHuy
-            // 
-            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
-            this.btnHuy.FlatAppearance.BorderSize = 0;
-            this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHuy.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHuy.ForeColor = System.Drawing.Color.White;
-            this.btnHuy.IconChar = FontAwesome.Sharp.IconChar.Ban;
-            this.btnHuy.IconColor = System.Drawing.Color.White;
-            this.btnHuy.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.btnHuy.IconSize = 40;
-            this.btnHuy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHuy.Location = new System.Drawing.Point(287, 605);
-            this.btnHuy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.btnHuy.Name = "btnHuy";
-            this.btnHuy.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
-            this.btnHuy.Size = new System.Drawing.Size(131, 60);
-            this.btnHuy.TabIndex = 120;
-            this.btnHuy.Tag = "Thêm";
-            this.btnHuy.Text = "Hủy";
-            this.btnHuy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnHuy.UseVisualStyleBackColor = false;
-            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
             // 
             // MACS
             // 
@@ -336,6 +233,109 @@
             this.CHISONUOC.MinimumWidth = 6;
             this.CHISONUOC.Name = "CHISONUOC";
             // 
+            // btnXoa
+            // 
+            this.btnXoa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnXoa.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.btnXoa.FlatAppearance.BorderSize = 0;
+            this.btnXoa.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnXoa.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoa.ForeColor = System.Drawing.Color.White;
+            this.btnXoa.IconChar = FontAwesome.Sharp.IconChar.TrashAlt;
+            this.btnXoa.IconColor = System.Drawing.Color.White;
+            this.btnXoa.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnXoa.IconSize = 35;
+            this.btnXoa.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXoa.Location = new System.Drawing.Point(150, 666);
+            this.btnXoa.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnXoa.Name = "btnXoa";
+            this.btnXoa.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnXoa.Size = new System.Drawing.Size(131, 60);
+            this.btnXoa.TabIndex = 67;
+            this.btnXoa.Tag = "Thêm";
+            this.btnXoa.Text = "Xóa";
+            this.btnXoa.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXoa.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnXoa.UseVisualStyleBackColor = false;
+            this.btnXoa.Click += new System.EventHandler(this.btnXoa_Click);
+            // 
+            // btnLuuSua
+            // 
+            this.btnLuuSua.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLuuSua.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(109)))), ((int)(((byte)(164)))));
+            this.btnLuuSua.FlatAppearance.BorderSize = 0;
+            this.btnLuuSua.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLuuSua.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLuuSua.ForeColor = System.Drawing.Color.White;
+            this.btnLuuSua.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnLuuSua.IconColor = System.Drawing.Color.White;
+            this.btnLuuSua.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnLuuSua.IconSize = 35;
+            this.btnLuuSua.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLuuSua.Location = new System.Drawing.Point(12, 666);
+            this.btnLuuSua.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnLuuSua.Name = "btnLuuSua";
+            this.btnLuuSua.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnLuuSua.Size = new System.Drawing.Size(130, 60);
+            this.btnLuuSua.TabIndex = 66;
+            this.btnLuuSua.Tag = "Thêm";
+            this.btnLuuSua.Text = "Lưu";
+            this.btnLuuSua.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLuuSua.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnLuuSua.UseVisualStyleBackColor = false;
+            this.btnLuuSua.Click += new System.EventHandler(this.btnLuuSua_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Segoe UI", 10.2F);
+            this.label6.Location = new System.Drawing.Point(493, 24);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(108, 23);
+            this.label6.TabIndex = 118;
+            this.label6.Text = "Chọn Tháng:";
+            // 
+            // dtpNgayThang
+            // 
+            this.dtpNgayThang.Checked = true;
+            this.dtpNgayThang.FillColor = System.Drawing.Color.White;
+            this.dtpNgayThang.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.dtpNgayThang.Format = System.Windows.Forms.DateTimePickerFormat.Long;
+            this.dtpNgayThang.Location = new System.Drawing.Point(607, 19);
+            this.dtpNgayThang.MaxDate = new System.DateTime(9998, 12, 31, 0, 0, 0, 0);
+            this.dtpNgayThang.MinDate = new System.DateTime(1753, 1, 1, 0, 0, 0, 0);
+            this.dtpNgayThang.Name = "dtpNgayThang";
+            this.dtpNgayThang.Size = new System.Drawing.Size(260, 33);
+            this.dtpNgayThang.TabIndex = 119;
+            this.dtpNgayThang.Value = new System.DateTime(2024, 11, 11, 0, 0, 0, 0);
+            this.dtpNgayThang.ValueChanged += new System.EventHandler(this.dtpNgayThang_ValueChanged);
+            // 
+            // btnHuy
+            // 
+            this.btnHuy.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHuy.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnHuy.FlatAppearance.BorderSize = 0;
+            this.btnHuy.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHuy.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHuy.ForeColor = System.Drawing.Color.White;
+            this.btnHuy.IconChar = FontAwesome.Sharp.IconChar.Ban;
+            this.btnHuy.IconColor = System.Drawing.Color.White;
+            this.btnHuy.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnHuy.IconSize = 40;
+            this.btnHuy.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHuy.Location = new System.Drawing.Point(287, 666);
+            this.btnHuy.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnHuy.Name = "btnHuy";
+            this.btnHuy.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnHuy.Size = new System.Drawing.Size(131, 60);
+            this.btnHuy.TabIndex = 120;
+            this.btnHuy.Tag = "Thêm";
+            this.btnHuy.Text = "Hủy";
+            this.btnHuy.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnHuy.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnHuy.UseVisualStyleBackColor = false;
+            this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
+            // 
             // frmChiSoNuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -350,7 +350,7 @@
             this.Controls.Add(this.btnTraCuu);
             this.Controls.Add(this.txtTraCuu);
             this.Name = "frmChiSoNuoc";
-            this.Text = "Chỉ số nước";
+            this.Text = "Chỉ số điện nước";
             this.Load += new System.EventHandler(this.frmChiSoNuoc_Load);
             this.guna2GroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiSo)).EndInit();

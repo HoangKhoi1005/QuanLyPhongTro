@@ -296,5 +296,57 @@ namespace DAL
 
             return db.GetDataTable(sql);
         }
+
+        public DataRow LayKhachTroTheoMaKT(string maKT)
+        {
+            /*
+             CREATE TABLE HOPDONG (
+    MAHOPDONG NVARCHAR(20) NOT NULL,					-- Mã hợp đồng (khóa chính)
+    MAPT NVARCHAR(20) NOT NULL,							-- Mã phòng trọ (khóa ngoại từ bảng PHONGTRO)
+	MAQL NVARCHAR(10) NOT NULL,							-- Mã quản lý (khóa ngoại từ bảng QUANLY)
+	MAKTDAIDIEN NVARCHAR(10) NOT NULL,					-- Mã khách trọ đại diện (khóa ngoại từ bảng KHACHTRO)
+    NGAYLAP DATE,										-- Ngày lập hợp đồng
+    NGAYHETHAN DATE,									-- Ngày hết hạn hợp đồng
+    TIENCOC MONEY,										-- Tiền cọc
+	TRANGTHAIHOPDONG BIT NOT NULL DEFAULT 0,			-- Trạng thái hợp đồng (0: Chưa kết thúc, 1: Đã kết thúc)
+	MOTA NVARCHAR(255),									-- Ghi chú thêm
+    CONSTRAINT PK_HOPDONG PRIMARY KEY (MAHOPDONG),		-- Thiết lập khóa chính cho MAHD
+	CONSTRAINT FK_HOPDONG_QUANLY FOREIGN KEY (MAQL) REFERENCES QUANLY(MAQL),  -- Liên kết với bảng QUANLY
+	CONSTRAINT FK_HOPDONG_PHONGTRO FOREIGN KEY (MAPT) REFERENCES PHONGTRO(MAPT),  -- Liên kết với bảng PHONGTRO
+	CONSTRAINT FK_HOPDONG_KHACHTRO FOREIGN KEY (MAKTDAIDIEN) REFERENCES KHACHTRO(MAKT) -- Liên kết với khách trọ đại diện
+);
+
+
+CREATE TABLE KHACHTRO_HOPDONG (
+    MAHOPDONG NVARCHAR(20) NOT NULL,	-- Mã hợp đồng (khóa ngoại từ bảng HOPDONG)
+    MAKT NVARCHAR(10) NOT NULL,			-- Mã khách trọ (khóa ngoại từ bảng KHACHTRO)
+    CONSTRAINT FK_KHACHTRO_HOPDONG_HOPDONG FOREIGN KEY (MAHOPDONG) REFERENCES HOPDONG(MAHOPDONG),
+    CONSTRAINT FK_KHACHTRO_HOPDONG_KHACHTRO FOREIGN KEY (MAKT) REFERENCES KHACHTRO(MAKT),
+    CONSTRAINT PK_KHACHTRO_HOPDONG PRIMARY KEY (MAHOPDONG, MAKT)
+);
+            CREATE TABLE KHACHTRO (
+    MAKT NVARCHAR(10) NOT NULL,
+    HOTEN NVARCHAR(50),
+    DIACHI NVARCHAR(100),
+    SODT NVARCHAR(20),
+    CCCD NVARCHAR(12),
+	EMAIL NVARCHAR(50),
+    NGAYSINH DATE,
+    GIOITINH NVARCHAR(10),
+	ANH NVARCHAR(MAX),
+	MOTA NVARCHAR(255),
+	DAXOA BIT NOT NULL DEFAULT 0,	-- Trạng thái (0: Đã rời đi, 1: Đang ở)
+    CONSTRAINT PK_KHACHTRO PRIMARY KEY (MAKT)
+);
+            //Lấy cả mã phòng
+             */
+            string sql = "SELECT KHACHTRO.MAKT, HOTEN, DIACHI, SODT, CCCD, EMAIL, NGAYSINH, GIOITINH, ANH, KHACHTRO.MOTA, KHACHTRO.DAXOA, HOPDONG.MAPT " +
+                         "FROM KHACHTRO " +
+                         "JOIN KHACHTRO_HOPDONG ON KHACHTRO.MAKT = KHACHTRO_HOPDONG.MAKT " +
+                         "JOIN HOPDONG ON KHACHTRO_HOPDONG.MAHOPDONG = HOPDONG.MAHOPDONG " +
+                         "WHERE KHACHTRO.MAKT = '" + maKT + "'";
+            return db.GetDataRow(sql);
+
+        }
     }
 }

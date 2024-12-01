@@ -63,6 +63,7 @@
     <Compile Include="QuanLyBUL.cs" />
     <Compile Include="SuDungDichVuBUL.cs" />
     <Compile Include="TaiSanBUL.cs" />
+    <Compile Include="TamTruTamVangBUL.cs" />
     <Compile Include="TrangThaiPhong1BUL.cs" />
     <Compile Include="TrangThaiPhongBUL.cs" />
   </ItemGroup>
