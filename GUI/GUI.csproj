@@ -238,6 +238,12 @@
     <Compile Include="frmTaiSan.Designer.cs">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmTamTruTamVang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTamTruTamVang.Designer.cs">
+      <DependentUpon>frmTamTruTamVang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmThanhToan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -505,6 +511,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmTaiSan.resx">
       <DependentUpon>frmTaiSan.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTamTruTamVang.resx">
+      <DependentUpon>frmTamTruTamVang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmThanhToan.resx">
       <DependentUpon>frmThanhToan.cs</DependentUpon>

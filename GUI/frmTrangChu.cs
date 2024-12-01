@@ -18,6 +18,7 @@ namespace GUI
     {
         TrangThaiPhong1BUL trangThaiPhongBUL = new TrangThaiPhong1BUL();
         DoanhThuBUL doanhThuBUL = new DoanhThuBUL();
+        HoaDonBUL hoaDonBUL = new HoaDonBUL();
         KhachTroSapHetHanHopDongBUL khachTroSapBUL;
         private PhongTrongBUL phongTrongBUL;
         public frmTrangChu()
@@ -71,6 +72,9 @@ namespace GUI
 
         private void dtpNgayThang_ValueChanged(object sender, EventArgs e)
         {
+            //Tổng tiền hóa đơn theo tháng
+            label1.Text = hoaDonBUL.TongTienTrongThang(dtpNgayThang.Value).ToString();
+
             try
             {
                 DateTime selectedDate = dtpNgayThang.Value;

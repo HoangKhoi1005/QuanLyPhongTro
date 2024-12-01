@@ -86,5 +86,10 @@ namespace BUL
         {
             return khachTroDAL.LayDSKhachTroDaThuePhong();
         }
+
+        public DataRow LayKhachTroTheoMaKT(string maKT)
+        {
+            return khachTroDAL.LayKhachTroTheoMaKT(maKT);
+        }
     }
 }

@@ -10,7 +10,7 @@ namespace SQLServerProvider
 {
     public class DBConnect
     {
-        string strConn = "Data Source=LAPTOP-GQAMABND;Initial Catalog=QL_NhaTro;User ID=sa;Password=123";
+        string strConn = "Data Source=LAPTOP-85VQT4K5\\SQLEXPRESS05;Initial Catalog=QL_NhaTro;User ID=sa;Password=123";
         SqlConnection conn;
 
         public SqlConnection Conn
@@ -73,5 +73,17 @@ namespace SQLServerProvider
             return dt;
         }
 
+        public DataRow GetDataRow(string sql)
+        {
+            DataTable dt = GetDataTable(sql);
+            if (dt.Rows.Count > 0)
+            {
+                return dt.Rows[0];
+            }
+            else
+            {
+                return null;
+            }
+        }
     }
 }

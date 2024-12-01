@@ -153,5 +153,22 @@ FROM SUDUNGDV SD
             return dataTable;
         }
 
+        public object TongTienTrongThang(DateTime value)
+        {
+            DateTime firstDayOfMonth = new DateTime(value.Year, value.Month, 1);
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
+
+            string sql = $@"
+            SELECT SUM(TongTien)
+            FROM (
+                SELECT 
+                    SUM(ProratedRent + TienDien + TienNuoc + TienDichVu + PhatSinh) AS TongTien
+                FROM HOADON
+                WHERE NGAYLAP BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
+                GROUP BY MAPT
+            ) AS T";
+            object result = db.ExecuteScalar(sql);
+            return result != null && result != DBNull.Value ? result : 0;
+        }
     }
 }

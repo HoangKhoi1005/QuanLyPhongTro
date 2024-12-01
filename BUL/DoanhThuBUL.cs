@@ -24,5 +24,10 @@ namespace BUL
         {
             return doanhThuDAL.LoadDoanhThu(ngay);
         }
+
+        public object TongTienTrongThang(DateTime value)
+        {
+            return doanhThuDAL.TongTienTrongThang(value);
+        }
     }
 }

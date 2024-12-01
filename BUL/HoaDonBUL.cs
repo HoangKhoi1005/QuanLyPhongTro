@@ -77,5 +77,10 @@ namespace BUL
         {
             return HoaDonDAL.TinhTienHoaDonKhiTraPhong(now, maPT);
         }
+
+        public object TongTienTrongThang(DateTime value)
+        {
+            return HoaDonDAL.TongTienTrongThang(value);
+        }
     }
 }

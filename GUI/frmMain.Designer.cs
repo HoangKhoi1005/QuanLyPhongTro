@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.panelMenu = new System.Windows.Forms.Panel();
             this.btnDangXuat = new FontAwesome.Sharp.IconButton();
+            this.btnTamTruTamVang = new FontAwesome.Sharp.IconButton();
             this.groupAdmin = new System.Windows.Forms.FlowLayoutPanel();
             this.btnQuanLyDichVu = new FontAwesome.Sharp.IconButton();
             this.btnDichVu = new FontAwesome.Sharp.IconButton();
@@ -75,6 +76,7 @@
             this.panelMenu.AutoScroll = true;
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(63)))), ((int)(((byte)(84)))));
             this.panelMenu.Controls.Add(this.btnDangXuat);
+            this.panelMenu.Controls.Add(this.btnTamTruTamVang);
             this.panelMenu.Controls.Add(this.groupAdmin);
             this.panelMenu.Controls.Add(this.btnTaiSan);
             this.panelMenu.Controls.Add(this.btnKyLuat);
@@ -105,7 +107,7 @@
             this.btnDangXuat.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnDangXuat.IconSize = 32;
             this.btnDangXuat.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDangXuat.Location = new System.Drawing.Point(0, 760);
+            this.btnDangXuat.Location = new System.Drawing.Point(0, 820);
             this.btnDangXuat.Name = "btnDangXuat";
             this.btnDangXuat.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnDangXuat.Size = new System.Drawing.Size(230, 60);
@@ -115,6 +117,28 @@
             this.btnDangXuat.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDangXuat.UseVisualStyleBackColor = true;
             this.btnDangXuat.Click += new System.EventHandler(this.btnDangXuat_Click_1);
+            // 
+            // btnTamTruTamVang
+            // 
+            this.btnTamTruTamVang.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btnTamTruTamVang.FlatAppearance.BorderSize = 0;
+            this.btnTamTruTamVang.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTamTruTamVang.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTamTruTamVang.IconChar = FontAwesome.Sharp.IconChar.FileShield;
+            this.btnTamTruTamVang.IconColor = System.Drawing.Color.Gainsboro;
+            this.btnTamTruTamVang.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTamTruTamVang.IconSize = 32;
+            this.btnTamTruTamVang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTamTruTamVang.Location = new System.Drawing.Point(0, 760);
+            this.btnTamTruTamVang.Name = "btnTamTruTamVang";
+            this.btnTamTruTamVang.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
+            this.btnTamTruTamVang.Size = new System.Drawing.Size(230, 60);
+            this.btnTamTruTamVang.TabIndex = 17;
+            this.btnTamTruTamVang.Tag = "Tạm trú/Tạm vắng";
+            this.btnTamTruTamVang.Text = "Tạm trú/Tạm vắng";
+            this.btnTamTruTamVang.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTamTruTamVang.UseVisualStyleBackColor = true;
+            this.btnTamTruTamVang.Click += new System.EventHandler(this.btnTamTruTamVang_Click);
             // 
             // groupAdmin
             // 
@@ -185,8 +209,8 @@
             this.btnChiSoNuoc.Padding = new System.Windows.Forms.Padding(10, 0, 20, 0);
             this.btnChiSoNuoc.Size = new System.Drawing.Size(220, 60);
             this.btnChiSoNuoc.TabIndex = 5;
-            this.btnChiSoNuoc.Tag = "Chỉ số nước";
-            this.btnChiSoNuoc.Text = "Chỉ số nước";
+            this.btnChiSoNuoc.Tag = "Chỉ số điện nước";
+            this.btnChiSoNuoc.Text = "Chỉ số điện nước";
             this.btnChiSoNuoc.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnChiSoNuoc.UseVisualStyleBackColor = true;
             this.btnChiSoNuoc.Click += new System.EventHandler(this.btnChiSoNuoc_Click);
@@ -210,6 +234,7 @@
             this.btnChiSoDien.Text = "Chỉ số điện";
             this.btnChiSoDien.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnChiSoDien.UseVisualStyleBackColor = true;
+            this.btnChiSoDien.Visible = false;
             this.btnChiSoDien.Click += new System.EventHandler(this.btnChiSoDien_Click);
             // 
             // btnTaiSan
@@ -641,6 +666,7 @@
         private FontAwesome.Sharp.IconButton btnQuanLyDichVu;
         private FontAwesome.Sharp.IconButton btnKhachTro;
         private FontAwesome.Sharp.IconButton btnKyLuat;
+        private FontAwesome.Sharp.IconButton btnTamTruTamVang;
     }
 }
 
