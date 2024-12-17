@@ -55,6 +55,19 @@ namespace GUI
                 return;
             }
 
+            if (!decimal.TryParse(txtDonGia.Text, out decimal donGia))
+            {
+                MessageBox.Show("Đơn giá phải là số");
+                return;
+            }
+
+            if (decimal.Parse(txtDonGia.Text) <= 0)
+            {
+                MessageBox.Show("Đơn giá phải lớn hơn 0");
+                return;
+            }
+
+
             TaiSanDTO taiSan = new TaiSanDTO();
             taiSan.MaPT = cboMaPT.Text;
             taiSan.MaTS = txtMaTS.Text;

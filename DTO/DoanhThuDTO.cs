@@ -9,6 +9,8 @@ namespace DTO
     public class DoanhThuDTO
     {
         public int Thang { get; set; }
+        public int Nam { get; set; }
         public decimal DoanhThu { get; set; }
+        public string IDNhaTro { get; set; }
     }
 }

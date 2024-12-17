@@ -1,4 +1,5 @@
-﻿using BUL;
+﻿using AForge.Imaging.Filters;
+using BUL;
 using DTO;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,13 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 using System.Windows.Input;
+using Tesseract;
 
 namespace GUI
 {
@@ -19,13 +22,39 @@ namespace GUI
         ChiSoDienNuocDTO cs = new ChiSoDienNuocDTO();
         BindingList<ChiSoDienNuocDTO> chiSoDienNuocList;
         ChiSoDienNuocBUL chiSoDienNuocBUL = new ChiSoDienNuocBUL();
+        private Rectangle cropArea;
+
         public frmChiSoNuoc()
         {
             InitializeComponent();
 
             dtpNgayThang.Format = DateTimePickerFormat.Custom;
             dtpNgayThang.CustomFormat = "MM/yyyy";
-            dtpNgayThang.ShowUpDown = true;
+            //dtpNgayThang.ShowUpDown = true;
+
+            cropArea = new Rectangle(272, 193, 152, 24);
+
+            pbAnh.MouseDown += pbAnh_MouseDown;
+            pbAnh.MouseMove += pbAnh_MouseMove;
+            pbAnh.MouseUp += pbAnh_MouseUp;
+            pbAnh.Paint += pbAnh_Paint;
+        }
+
+        private void pbAnh_MouseMove(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point currentPoint = e.Location;
+                cropArea = new Rectangle(
+                    Math.Min(startPoint.X, currentPoint.X),
+                    Math.Min(startPoint.Y, currentPoint.Y),
+                    Math.Abs(currentPoint.X - startPoint.X),
+                    Math.Abs(currentPoint.Y - startPoint.Y));
+
+                pbAnh.Invalidate();
+
+                label1.Text = $"X: {cropArea.X}, Y: {cropArea.Y}, W: {cropArea.Width}, H: {cropArea.Height}";
+            }
         }
 
         public void loadCSDienNuoc()
@@ -164,6 +193,11 @@ namespace GUI
             dgvChiSo.EditMode = DataGridViewEditMode.EditOnEnter;
             dgvChiSo.DataError += dgvChiSo_DataError;
             loadCSDienNuoc();
+
+            dgvChiSo.Columns["MAPT"].ReadOnly = true;
+            dgvChiSo.Columns["NGAYTHANG"].ReadOnly = true;
+            dgvChiSo.Columns["CHISODIENCU"].ReadOnly = true;
+            dgvChiSo.Columns["CHISONUOCCU"].ReadOnly = true;
         }
 
         private void btnLuuSua_Click(object sender, EventArgs e)
@@ -286,7 +320,6 @@ namespace GUI
             int month = selectedDate.Month;
             int year = selectedDate.Year;
 
-            // Tải danh sách mã phòng
             var danhSachPhong = chiSoDienNuocBUL.loadMaPT();
             var danhSachChiSo = chiSoDienNuocBUL.loadDienNuoc();
 
@@ -299,13 +332,11 @@ namespace GUI
             cs.NgayThang.Month == month &&
             cs.NgayThang.Year == year);
 
-                // Tìm chỉ số điện nước của tháng trước
                 var chiSoPhongThangTruoc = danhSachChiSo.FirstOrDefault(cs =>
                     cs.MaPT == maPhong &&
                     cs.NgayThang.Month == month - 1 &&
                     cs.NgayThang.Year == year);
 
-                // Tạo đối tượng ChiSoDienNuocDTO mới để thêm vào danh sách hiển thị
                 var chiSoDN = new ChiSoDienNuocDTO
                 {
                     MaCS = chiSoPhongThangHienTai != null ? chiSoPhongThangHienTai.MaCS : 0,
@@ -313,8 +344,8 @@ namespace GUI
                     NgayThang = new DateTime(year, month, 1),
                     ChiSoDien = chiSoPhongThangHienTai != null ? chiSoPhongThangHienTai.ChiSoDien : 0,
                     ChiSoNuoc = chiSoPhongThangHienTai != null ? chiSoPhongThangHienTai.ChiSoNuoc : 0,
-                    ChiSoDienCu = chiSoPhongThangTruoc != null ? chiSoPhongThangTruoc.ChiSoDien : 0, // Chỉ số điện cũ
-                    ChiSoNuocCu = chiSoPhongThangTruoc != null ? chiSoPhongThangTruoc.ChiSoNuoc : 0 // Chỉ số nước cũ
+                    ChiSoDienCu = chiSoPhongThangTruoc != null ? chiSoPhongThangTruoc.ChiSoDien : 0,
+                    ChiSoNuocCu = chiSoPhongThangTruoc != null ? chiSoPhongThangTruoc.ChiSoNuoc : 0
                 };
 
                 danhSachHienThi.Add(chiSoDN);
@@ -344,6 +375,178 @@ namespace GUI
             if (result == DialogResult.Yes)
             {
                 loadCSDienNuoc();            
+            }
+        }
+
+        private void btnTaiAnh_Click(object sender, EventArgs e)
+        {
+            if(dgvChiSo.SelectedRows.Count > 0)
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Image files (*.jpg, *.jpeg, *.png) | *.jpg; *.jpeg; *.png";
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string fileName = openFileDialog.FileName;
+                    pbAnh.Image = Image.FromFile(fileName);
+
+                    PerformAutomaticAnalysis();
+                }
+            }
+            else
+            {
+                MessageBox.Show("Vui lòng chọn một hàng để tải ảnh lên.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
+        }
+
+        private void PerformAutomaticAnalysis()
+        {
+            if (pbAnh.Image == null)
+            {
+                MessageBox.Show("Chưa tải ảnh lên!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Bitmap originalImg = new Bitmap(pbAnh.Image);
+
+            float scaleX = (float)originalImg.Width / pbAnh.ClientSize.Width;
+            float scaleY = (float)originalImg.Height / pbAnh.ClientSize.Height;
+
+            Rectangle adjustedCropArea = new Rectangle(
+                (int)(cropArea.X * scaleX),
+                (int)(cropArea.Y * scaleY),
+                (int)(cropArea.Width * scaleX),
+                (int)(cropArea.Height * scaleY)
+            );
+
+            Rectangle imageBounds = new Rectangle(0, 0, originalImg.Width, originalImg.Height);
+            adjustedCropArea = Rectangle.Intersect(adjustedCropArea, imageBounds);
+
+            if (adjustedCropArea.Width <= 0 || adjustedCropArea.Height <= 0)
+            {
+                MessageBox.Show("Vùng chọn không hợp lệ hoặc nằm ngoài ảnh.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            Bitmap croppedImg = originalImg.Clone(adjustedCropArea, originalImg.PixelFormat);
+
+            Bitmap processedImg = PreprocessImage(croppedImg);
+
+            string resultText = PerformOCR(processedImg);
+
+            string extractedDigits = ExtractMaxFourDigits(resultText);
+
+            textBox1.Text = extractedDigits;
+
+            if (dgvChiSo.SelectedRows.Count > 0)
+            {
+                var row = dgvChiSo.SelectedRows[0];
+                int validNumber = 0;
+
+                if (!string.IsNullOrWhiteSpace(extractedDigits) && int.TryParse(extractedDigits, out validNumber))
+                {
+                    row.Cells["CHISODIEN"].Value = validNumber;
+                }
+                else
+                {
+                    MessageBox.Show("Không thể trích xuất giá trị hợp lệ từ kết quả OCR.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    row.Cells["CHISODIEN"].Value = validNumber;
+                }
+            }
+        }
+
+        private string ExtractMaxFourDigits(string input)
+        {
+            var matches = System.Text.RegularExpressions.Regex.Matches(input, @"\d");
+            return string.Concat(matches.Cast<System.Text.RegularExpressions.Match>().Select(m => m.Value).Take(4));
+        }
+
+
+        private Bitmap PreprocessImage(Bitmap img)
+        {
+            Grayscale grayscaleFilter = new Grayscale(0.3, 0.59, 0.11);
+            Bitmap grayImg = grayscaleFilter.Apply(img);
+
+            GaussianBlur blurFilter = new GaussianBlur(3.0, 7);
+            Bitmap blurredImg = blurFilter.Apply(grayImg);
+
+            BradleyLocalThresholding thresholdFilter = new BradleyLocalThresholding
+            {
+                PixelBrightnessDifferenceLimit = -0.1f
+            };
+            Bitmap binaryImg = thresholdFilter.Apply(blurredImg);
+
+            Invert invertFilter = new Invert();
+            invertFilter.ApplyInPlace(binaryImg);
+
+            return binaryImg;
+        }
+
+        private string PerformOCR(Bitmap img)
+        {
+            string result = "";
+            try
+            {
+                using (var ocr = new TesseractEngine("./tessdata", "eng", EngineMode.Default))
+                {
+                    ocr.SetVariable("tessedit_char_whitelist", "012345689");
+
+                    using (var page = ocr.Process(img))
+                    {
+                        result = page.GetText();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi OCR: " + ex.Message);
+            }
+            return result;
+        }
+        private bool isDragging = false;
+        private Point startPoint;
+        private void pbAnh_MouseDown(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                startPoint = e.Location;
+                isDragging = true;
+
+                
+            }
+        }
+
+        private void pbAnh_MouseUp(object sender, System.Windows.Forms.MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                isDragging = false;
+            }
+        }
+
+        private void pbAnh_Paint(object sender, PaintEventArgs e)
+        {
+            if (cropArea != Rectangle.Empty && isDragging)
+            {
+                e.Graphics.DrawRectangle(Pens.Red, cropArea);
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            PerformAutomaticAnalysis();
+        }
+
+        private void dgvChiSo_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            string columnName = dgvChiSo.Columns[e.ColumnIndex].Name;
+
+            if (columnName == "CHISODIEN" || columnName == "CHISONUOC")
+            {
+                if (!int.TryParse(e.FormattedValue.ToString(), out int result))
+                {
+                    MessageBox.Show("Vui lòng nhập một số nguyên hợp lệ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    e.Cancel = true;
+                }
             }
         }
     }

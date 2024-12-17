@@ -167,5 +167,29 @@ namespace DAL
                 return dt;
             }
         }
+
+        public DataTable TraCuuHopDong(string maPhong, string maKhachTro)
+        {
+            string sql = "SELECT HOPDONG.MAHOPDONG, HOPDONG.MAPT, QUANLY.HOTENNV, KHACHTRO.HOTEN, " +
+                         "HOPDONG.NGAYLAP, HOPDONG.NGAYHETHAN, HOPDONG.TIENCOC, " +
+                         "HOPDONG.MOTA " +
+                         "FROM HOPDONG " +
+                         "JOIN KHACHTRO_HOPDONG ON HOPDONG.MAHOPDONG = KHACHTRO_HOPDONG.MAHOPDONG " +
+                         "JOIN KHACHTRO ON KHACHTRO_HOPDONG.MAKT = KHACHTRO.MAKT " +
+                         "JOIN QUANLY ON HOPDONG.MAQL = QUANLY.MAQL " +
+                         "WHERE 1=1 ";
+
+            if (!string.IsNullOrEmpty(maPhong))
+            {
+                sql += "AND HOPDONG.MAPT LIKE '%" + maPhong + "%' ";
+            }
+
+            if (!string.IsNullOrEmpty(maKhachTro))
+            {
+                sql += "AND KHACHTRO.HOTEN LIKE N'%" + maKhachTro + "%' ";
+            }
+
+            return db.GetDataTable(sql);
+        }
     }
 }

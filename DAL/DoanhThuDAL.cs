@@ -5,6 +5,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Common;
+using System.Data.Linq;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
@@ -170,5 +171,70 @@ FROM SUDUNGDV SD
             object result = db.ExecuteScalar(sql);
             return result != null && result != DBNull.Value ? result : 0;
         }
+
+        public List<DoanhThuDTO> LayDoanhThuTheoThang()
+        {
+            // Truy vấn SQL lấy doanh thu theo tháng
+            string query = @"
+                SELECT MONTH(NGAYTHANHTOAN) AS Thang, SUM(TONGTIEN) AS DoanhThu
+                FROM HOADON
+                WHERE DAXOA = 0
+                GROUP BY MONTH(NGAYTHANHTOAN)
+                ORDER BY Thang";
+            DataTable dt = db.GetDataTable(query);
+            var result = (from row in dt.AsEnumerable()
+                          select new DoanhThuDTO
+                          {
+                              Thang = Convert.ToInt32(row["Thang"]),
+                              DoanhThu = Convert.ToDecimal(row["DoanhThu"])
+                          }).ToList();
+            return result;
+        }
+
+        public List<DoanhThuDTO> LayDoanhThuTheoNam()
+        {
+            // Truy vấn SQL lấy doanh thu theo năm
+            string query = @"
+                SELECT YEAR(NGAYTHANHTOAN) AS Nam, SUM(TONGTIEN) AS DoanhThu
+                FROM HOADON
+                WHERE DAXOA = 0
+                GROUP BY YEAR(NGAYTHANHTOAN)
+                ORDER BY Nam";
+            DataTable dt = db.GetDataTable(query);
+            var result = (from row in dt.AsEnumerable()
+                          select new DoanhThuDTO
+                          {
+                              Nam = Convert.ToInt32(row["Nam"]),
+                              DoanhThu = Convert.ToDecimal(row["DoanhThu"])
+                          }).ToList();
+            return result;
+        }
+
+        public List<string> LayDanhSachNhaTro()
+        {
+            string query = "SELECT MANT FROM NHATRO WHERE DAXOA = 0";
+            DataTable dt = db.GetDataTable(query);
+            return dt.AsEnumerable().Select(row => row["MANT"].ToString()).ToList();
+        }
+
+        public List<DoanhThuDTO> LayDoanhThuTheoNhaTro()
+        {
+            string query = @"
+        SELECT NT.MANT, SUM(HD.TONGTIEN) AS DoanhThu
+        FROM NHATRO NT
+        LEFT JOIN PHONGTRO PT ON NT.MANT = PT.MANT
+        LEFT JOIN HOADON HD ON PT.MAPT = HD.MAPT AND HD.DAXOA = 0
+        WHERE NT.DAXOA = 0
+        GROUP BY NT.MANT";
+
+            DataTable dt = db.GetDataTable(query);
+            return (from row in dt.AsEnumerable()
+                    select new DoanhThuDTO
+                    {
+                        IDNhaTro = row["MANT"].ToString(),
+                        DoanhThu = row["DoanhThu"] != DBNull.Value ? Convert.ToDecimal(row["DoanhThu"]) : 0
+                    }).ToList();
+        }
+
     }
 }

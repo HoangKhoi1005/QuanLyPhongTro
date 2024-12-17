@@ -296,5 +296,10 @@ namespace GUI
             else
                 return;
         }
+
+        private void btnTraCuu_Click_1(object sender, EventArgs e)
+        {
+            LoadKhachTroTimKiem(txtTraCuu.Text);
+        }
     }
 }

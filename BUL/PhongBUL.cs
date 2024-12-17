@@ -126,5 +126,10 @@ namespace BUL
         {
             return phongDAL.KiemTraPhongDaCoHoaDonTrongThang(maPT, now);
         }
+
+        public Dictionary<string, string> GetContractDictionary(string maPhong)
+        {
+            return phongDAL.GetContractDictionary(maPhong);
+        }
     }
 }

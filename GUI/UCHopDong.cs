@@ -73,5 +73,17 @@ namespace GUI
                 MessageBox.Show("Cập nhật hợp đồng thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void btnInHopDong_Click(object sender, EventArgs e)
+        {
+            string maHopDong = txtMaHopDong.Text;
+
+            Dictionary<string, string> contractDict = HopDongBUL.GetContractDictionary(maHopDong);
+            WordExport wordExport = new WordExport(Application.StartupPath + "\\HopDong.docx", true);
+
+            wordExport.WriteFields(contractDict);
+
+            MessageBox.Show("Xuất hợp đồng thành công!");
+        }
     }
 }

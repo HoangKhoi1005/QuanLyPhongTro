@@ -38,8 +38,6 @@
             this.NGAYNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MAPHIEUNHAP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnThem = new FontAwesome.Sharp.IconButton();
-            this.cboLocSach = new MetroFramework.Controls.MetroComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvPhieuDat = new Guna.UI2.WinForms.Guna2DataGridView();
             this.MAPDP = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -150,35 +148,7 @@
             this.btnThem.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnThem.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnThem.UseVisualStyleBackColor = false;
-            // 
-            // cboLocSach
-            // 
-            this.cboLocSach.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cboLocSach.FormattingEnabled = true;
-            this.cboLocSach.ItemHeight = 24;
-            this.cboLocSach.Items.AddRange(new object[] {
-            "Mã phiếu nhập",
-            "Nhân viên nhập",
-            "Nhà cung cấp"});
-            this.cboLocSach.Location = new System.Drawing.Point(1435, 14);
-            this.cboLocSach.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.cboLocSach.Name = "cboLocSach";
-            this.cboLocSach.Size = new System.Drawing.Size(225, 30);
-            this.cboLocSach.TabIndex = 57;
-            this.cboLocSach.UseSelectable = true;
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.label1.Location = new System.Drawing.Point(1281, 19);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 25);
-            this.label1.TabIndex = 56;
-            this.label1.Text = "Lọc phiếu theo: ";
+            this.btnThem.Visible = false;
             // 
             // guna2GroupBox2
             // 
@@ -384,8 +354,6 @@
             this.ClientSize = new System.Drawing.Size(1672, 948);
             this.Controls.Add(this.btnXuatPhieuNhap);
             this.Controls.Add(this.btnThem);
-            this.Controls.Add(this.cboLocSach);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.btnTraCuu);
             this.Controls.Add(this.txtTraCuu);
@@ -395,7 +363,6 @@
             this.guna2GroupBox2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuDat)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -408,8 +375,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NGAYNHAP;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAPHIEUNHAP;
         private FontAwesome.Sharp.IconButton btnThem;
-        private MetroFramework.Controls.MetroComboBox cboLocSach;
-        private System.Windows.Forms.Label label1;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPhieuDat;
         private Guna.UI2.WinForms.Guna2Button btnTraCuu;

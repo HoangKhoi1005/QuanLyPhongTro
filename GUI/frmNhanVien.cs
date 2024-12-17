@@ -54,6 +54,32 @@ namespace GUI
 
         private void btnLuu_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(txtMaQL.Text) ||
+                string.IsNullOrWhiteSpace(txtTenQL.Text) ||
+                string.IsNullOrWhiteSpace(txtDiaChi.Text) ||
+                string.IsNullOrWhiteSpace(txtSoDT.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtMatKhau.Text))
+            {
+                MessageBox.Show("Vui lòng nhập đầy đủ thông tin.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string phonePattern = @"^\d{10}$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtSoDT.Text, phonePattern))
+            {
+                MessageBox.Show("Số điện thoại không hợp lệ. Vui lòng nhập đúng 10 chữ số.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+            if (!System.Text.RegularExpressions.Regex.IsMatch(txtEmail.Text, emailPattern))
+            {
+                MessageBox.Show("Email không hợp lệ. Vui lòng nhập đúng định dạng (vd: username@domain.com).", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
             NhanVienDTO nhanVienDTO = new NhanVienDTO();
             nhanVienDTO.MaQL = txtMaQL.Text;
             nhanVienDTO.HoTen = txtTenQL.Text;

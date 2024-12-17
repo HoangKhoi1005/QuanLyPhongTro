@@ -1,10 +1,12 @@
 ﻿using BUL;
 using DTO;
+using Syncfusion.XlsIO;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -154,11 +156,27 @@ namespace GUI
                 uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                 uCPhong.TraPhongClick += UCPhong_TraPhongClick;
                 uCPhong.HuyBaoTraPhongClick += UCPhong_HuyBaoTraPhongClick;
+                uCPhong.InPhieuTraPhongClick += UCPhong_InPhieuTraPhongClick;
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
                 groupDSPhong.Controls.Add(uCPhong);
             }
+        }
+
+        private void UCPhong_InPhieuTraPhongClick(object sender, EventArgs e)
+        {
+            //UCPhong uCPhong = (UCPhong)sender;
+            //PhongDTO phong = (PhongDTO)uCPhong.Tag;
+
+            //string maPhong = phong.MaPT;
+
+            //Dictionary<string, string> contractDict = phongBUL.GetContractDictionary(maPhong);
+            //WordExport wordExport = new WordExport(Application.StartupPath + "\\PhieuTraPhong.docx", true);
+
+            //wordExport.WriteFields(contractDict);
+
+            //MessageBox.Show("Xuất phiếu đặt thành công!");
         }
 
         private void UCPhong_HuyBaoTraPhongClick(object sender, EventArgs e)
@@ -379,6 +397,7 @@ namespace GUI
                     uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                     uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                     uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+                    uCPhong.InPhieuTraPhongClick += UCPhong_InPhieuTraPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -444,6 +463,7 @@ namespace GUI
                     uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                     uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                     uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+                    uCPhong.InPhieuTraPhongClick += UCPhong_InPhieuTraPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -502,6 +522,7 @@ namespace GUI
                 uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                 uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                 uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+                uCPhong.InPhieuTraPhongClick += UCPhong_InPhieuTraPhongClick;
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;
@@ -550,6 +571,7 @@ namespace GUI
                     uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                     uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                     uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+                    uCPhong.InPhieuTraPhongClick += UCPhong_InPhieuTraPhongClick;
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
@@ -582,6 +604,7 @@ namespace GUI
             LoadPhongByNhaTro(nhaTroDangChon.MaNT);
             cboGia.SelectedIndex = 0;
             cboTrangThai.SelectedIndex = 0;
+            dtpNgayChonPhong.Value = DateTime.Now;
         }
 
         private DateTime? KtDateTime = null;
@@ -626,6 +649,7 @@ namespace GUI
                 uCPhong.HuyDatPhongClick += UCPhong_HuyDatPhongClick;
                 uCPhong.BaoTraPhongClick += UCPhong_BaoTraPhongClick;
                 uCPhong.TraPhongClick += UCPhong_TraPhongClick;
+                uCPhong.InPhieuTraPhongClick += UCPhong_InPhieuTraPhongClick;
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;
@@ -700,8 +724,6 @@ namespace GUI
                     {
                         if (phongBUL.CapNhatTrangThaiPhong(phong.MaPT, "TT01"))
                         {
-                            
-
                             MessageBox.Show("Trả phòng thành công");
                             LoadPhongByNhaTro(nhaTroDangChon.MaNT);
                         }
@@ -718,5 +740,108 @@ namespace GUI
             }
 
         }
+
+        private void btnXuatExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string maNhaTro = nhaTroDangChon.MaNT;
+                List<PhongDTO> danhSachPhong = phongBUL.LayPhongTheoNhaTro(maNhaTro);
+
+                if (danhSachPhong == null || danhSachPhong.Count == 0)
+                {
+                    MessageBox.Show("Không có phòng nào để xuất!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                string fileName = string.Empty;
+                ExportDanhSachPhong(danhSachPhong, ref fileName);
+
+                if (!string.IsNullOrEmpty(fileName))
+                {
+                    MessageBox.Show("Xuất file thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Lỗi khi xuất file: {ex.Message}", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public void ExportDanhSachPhong(List<PhongDTO> danhSachPhong, ref string fileName)
+        {
+            try
+            {
+                Dictionary<string, string> replacer = new Dictionary<string, string>();
+
+                string ngay = "Ngày " + DateTime.Now.Day + " tháng " + DateTime.Now.Month + " năm " + DateTime.Now.Year;
+                replacer.Add("%NgayThangNam", ngay);
+                replacer.Add("%NhaTro", nhaTroDangChon.TenNT);
+                replacer.Add("%TenNV", "Trần Hoàng Khôi");
+                
+
+                byte[] arrByte = File.ReadAllBytes("DanhSachPhong.xlsx").ToArray();
+                MemoryStream stream = new MemoryStream(arrByte);
+
+                ExcelEngine engine = new ExcelEngine();
+                IWorkbook workbook = engine.Excel.Workbooks.Open(stream);
+                IWorksheet worksheet = workbook.Worksheets[0];
+                ITemplateMarkersProcessor markerProcessor = worksheet.CreateTemplateMarkersProcessor();
+
+                if (replacer != null && replacer.Count > 0)
+                {
+                    foreach (KeyValuePair<string, string> repl in replacer)
+                    {
+                        Replace(worksheet, repl.Key, repl.Value);
+                    }
+                }
+
+                List<object> phongData = new List<object>();
+                int stt = 1;
+
+                foreach (var phong in danhSachPhong)
+                {
+                    phongData.Add(new
+                    {
+                        STT = stt++,
+                        MaPhong = phong.MaPT,
+                        TenPhong = phong.TenPhong,
+                        DonGia = String.Format("{0:0,0 VNĐ}", phong.DonGia),
+                        DienTich = $"{phong.ChieuDai * phong.ChieuRong:0.0} m²",
+                        SoLuongNguoiToiDa = phong.SoLuongNguoiTD,
+                        TrangThai = trangThaiPhongBUL.LayTenTrangThaiTheoMa(phong.MaTT),
+                        MoTa = phong.MoTa
+                    });
+                }
+
+                // Ánh xạ danh sách phòng vào file Excel
+                markerProcessor.AddVariable("DanhSachPhong", phongData);
+                markerProcessor.ApplyMarkers();
+
+                // Lưu file tạm
+                string tempPath = Path.GetTempFileName() + ".xlsx";
+                workbook.SaveAs(tempPath);
+                fileName = tempPath;
+
+                workbook.Close();
+                engine.Dispose();
+
+                // Mở file nếu cần
+                if (File.Exists(fileName) && MessageBox.Show("Bạn có muốn mở file không?", "Thông báo", MessageBoxButtons.YesNo, MessageBoxIcon.Information) == DialogResult.Yes)
+                {
+                    System.Diagnostics.Process.Start(fileName);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Lỗi khi xuất danh sách phòng: " + ex.Message);
+            }
+        }
+
+        private void Replace(IWorksheet wordSheet, string placeholder, string value)
+        {
+            wordSheet.Replace(placeholder, value, ExcelFindOptions.MatchCase);
+        }
+
     }
 }

@@ -20,6 +20,7 @@ namespace GUI
         private KhachTroBUL khachTroBUL = new KhachTroBUL();
         private PhongBUL phongBUL = new PhongBUL();
         private frmThemKhachTro frmCha;
+        private ChiSoDienNuocBUL chiSoDienNuocBUL = new ChiSoDienNuocBUL();
         SuDungDichVuBUL suDungDichVuBUL = new SuDungDichVuBUL();
 
         public frmLapHopDong(PhongDTO phong, KhachTroDTO khachTro, frmThemKhachTro frmCha)
@@ -40,7 +41,16 @@ namespace GUI
 
         private void btnLapHopDon_Click(object sender, EventArgs e)
         {
-            if(txtTienCoc.Text == "")
+            var chiSoDienNuoc = chiSoDienNuocBUL.LayChiSoDienNuocTheoMaPhong(phong.MaPT,DateTime.Now);
+
+            if (chiSoDienNuoc == null)
+            {
+                MessageBox.Show("Vui lòng nhập chỉ số điện nước của phòng " + txtMaPT.Text + "", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+
+            if (txtTienCoc.Text == "")
             {
                 MessageBox.Show("Tiền cọc không được để trống", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -73,6 +83,7 @@ namespace GUI
             hopDong.NgayLap = DateTime.Now;
             hopDong.NgayHetHan = dtpNgayDenHan.Value;
             hopDong.TienCoc = decimal.Parse(txtTienCoc.Text);
+            hopDong.TrangThaiHopDong = false;
             hopDong.MoTa = txtMoTa.Text;
 
             if (hopDongBUL.ThemHopDong(hopDong))

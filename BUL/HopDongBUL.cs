@@ -114,5 +114,10 @@ namespace BUL
 
             return contractDict;
         }
+
+        public DataTable TraCuuHopDong(string maPhong, string maKhachTro)
+        {
+            return hopDongDAL.TraCuuHopDong(maPhong, maKhachTro);
+        }
     }
 }
