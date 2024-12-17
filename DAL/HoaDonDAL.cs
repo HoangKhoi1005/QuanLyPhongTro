@@ -328,17 +328,15 @@ namespace DAL
         {
             decimal tongTien = 0;
             string ngayStr = ngay.ToString("yyyy-MM-dd");
-            // Get the total days in the month
             DateTime firstDayOfMonth = new DateTime(ngay.Year, ngay.Month, 1);
             DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
             int totalDaysInMonth = DateTime.DaysInMonth(ngay.Year, ngay.Month);
 
-            // Prorate room rent
             string sqlPhongTro = $"SELECT DONGIA FROM PHONGTRO WHERE MAPT = '{maPT}'";
             object resultPhongTro = db.ExecuteScalar(sqlPhongTro);
             decimal donGiaPhong = resultPhongTro != null && resultPhongTro != DBNull.Value ? Convert.ToDecimal(resultPhongTro) : 0;
 
-            decimal proratedRent = donGiaPhong; // If room is occupied for the whole month
+            decimal proratedRent = donGiaPhong;
             string sqlDaysOccupied = $@"
         SELECT DATEDIFF(DAY, 
                 CASE WHEN NGAYLAP < '{firstDayOfMonth:yyyy-MM-dd}' THEN '{firstDayOfMonth:yyyy-MM-dd}' ELSE NGAYLAP END,
@@ -377,59 +375,70 @@ namespace DAL
             object resultDichVu = db.ExecuteScalar(sqlDichVu);
             decimal tongTienDichVu = resultDichVu != null && resultDichVu != DBNull.Value ? Convert.ToDecimal(resultDichVu) : 0;
 
-            // Calculate electricity costs
-            string sqlDien = $@"
-        DECLARE @donGiaDien MONEY, @chiSoDienMax INT, @chiSoDienMin INT;
-        SELECT @donGiaDien = DONGIA
-        FROM DICHVU DV
-        JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
-        WHERE SD.MAPT = '{maPT}' AND DV.TENDV LIKE N'%Điện%';
+            string sqlDien = @"
+                        DECLARE @donGiaDien MONEY;
+                        DECLARE @chiSoDienMax INT, @chiSoDienMin INT;
 
-        SELECT TOP 1 @chiSoDienMax = CHISODIEN
-        FROM CHISODIENNUOC
-        WHERE MAPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
-        ORDER BY NGAYTHANG DESC;
+                        -- Lấy đơn giá điện cho mã phòng cụ thể
+                        SELECT @donGiaDien = DONGIA
+                        FROM DICHVU DV
+                        INNER JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
+                        WHERE SD.MAPT = '" + maPT + @"' AND DV.TENDV LIKE N'%điện%' AND SD.NGAYKETTHUC >= '" + ngayStr + @"';
 
-        SELECT @chiSoDienMin = CHISODIEN
-        FROM CHISODIENNUOC
-        WHERE MAPT = '{maPT}' 
-        AND NGAYTHANG < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
-        ORDER BY NGAYTHANG DESC
-        OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY;
+                        -- Lấy chỉ số điện cao nhất trong tháng hiện tại
+                        SELECT TOP 1 @chiSoDienMax = CHISODIEN
+                        FROM CHISODIENNUOC
+                        WHERE MAPT = '" + maPT + @"' 
+                          AND MONTH(NGAYTHANG) = MONTH(GETDATE()) 
+                          AND YEAR(NGAYTHANG) = YEAR(GETDATE())
+                        ORDER BY NGAYTHANG DESC;
 
-        SELECT (@chiSoDienMax - @chiSoDienMin) * ISNULL(@donGiaDien, 0) AS TienDien;
-    ";
+                        -- Lấy chỉ số điện gần nhất trước đó
+                        SELECT TOP 1 @chiSoDienMin = CHISODIEN
+                        FROM CHISODIENNUOC
+                        WHERE MAPT = '" + maPT + @"' 
+                          AND NGAYTHANG < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
+                        ORDER BY NGAYTHANG DESC;
+
+                        -- Tính tiền điện
+                        SELECT (@chiSoDienMax - @chiSoDienMin) * ISNULL(@donGiaDien, 0) AS TienDien;
+                    ";
 
             object resultDien = db.ExecuteScalar(sqlDien);
             decimal tongTienDien = resultDien != null && resultDien != DBNull.Value ? Convert.ToDecimal(resultDien) : 0;
 
-            // Calculate water costs
-            string sqlNuoc = $@"
-        DECLARE @donGiaNuoc MONEY, @chiSoNuocMax INT, @chiSoNuocMin INT;
-        SELECT @donGiaNuoc = DONGIA
-        FROM DICHVU DV
-        JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
-        WHERE SD.MAPT = '{maPT}' AND DV.TENDV LIKE N'%Nước%';
+            string sqlNuoc = @"
+                        DECLARE @donGiaNuoc MONEY;
+                        DECLARE @chiSoNuocMax INT, @chiSoNuocMin INT;
 
-        SELECT TOP 1 @chiSoNuocMax = CHISONUOC
-        FROM CHISODIENNUOC
-        WHERE MAPT = '{maPT}' AND NGAYTHANG BETWEEN '{firstDayOfMonth:yyyy-MM-dd}' AND '{lastDayOfMonth:yyyy-MM-dd}'
-        ORDER BY NGAYTHANG DESC;
+                        -- Lấy đơn giá nước cho mã phòng cụ thể
+                        SELECT @donGiaNuoc = DONGIA
+                        FROM DICHVU DV
+                        INNER JOIN SUDUNGDV SD ON DV.MADV = SD.MADV
+                        WHERE SD.MAPT = '" + maPT + @"' AND DV.TENDV LIKE N'%nước%' AND SD.NGAYKETTHUC >= '" + ngayStr + @"';
 
-        SELECT @chiSoNuocMin = CHISONUOC
-        FROM CHISODIENNUOC
-        WHERE MAPT = '{maPT}' 
-        AND NGAYTHANG < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
-        ORDER BY NGAYTHANG DESC
-        OFFSET 1 ROWS FETCH NEXT 1 ROWS ONLY;
+                        -- Lấy chỉ số nước cao nhất trong tháng hiện tại
+                        SELECT TOP 1 @chiSoNuocMax = CHISONUOC
+                        FROM CHISODIENNUOC
+                        WHERE MAPT = '" + maPT + @"' 
+                          AND MONTH(NGAYTHANG) = MONTH(GETDATE()) 
+                          AND YEAR(NGAYTHANG) = YEAR(GETDATE())
+                        ORDER BY NGAYTHANG DESC;
 
-        SELECT (@chiSoNuocMax - @chiSoNuocMin) * ISNULL(@donGiaNuoc, 0) AS TienNuoc;
-    ";
+                        -- Lấy chỉ số nước gần nhất trước đó
+                        SELECT TOP 1 @chiSoNuocMin = CHISONUOC
+                        FROM CHISODIENNUOC
+                        WHERE MAPT = '" + maPT + @"' 
+                          AND NGAYTHANG < DATEADD(MONTH, DATEDIFF(MONTH, 0, GETDATE()), 0)
+                        ORDER BY NGAYTHANG DESC;
+
+                        -- Tính tiền nước
+                        SELECT (@chiSoNuocMax - @chiSoNuocMin) * ISNULL(@donGiaNuoc, 0) AS TienNuoc;
+                    ";
 
             object resultNuoc = db.ExecuteScalar(sqlNuoc);
             decimal tongTienNuoc = resultNuoc != null && resultNuoc != DBNull.Value ? Convert.ToDecimal(resultNuoc) : 0;
 
-            // Calculate additional charges
             string sqlPhatSinh = $@"
         SELECT SUM(SoTien)
         FROM PHATSINH
@@ -439,16 +448,16 @@ namespace DAL
             object resultPhatSinh = db.ExecuteScalar(sqlPhatSinh);
             decimal tongTienPhatSinh = resultPhatSinh != null && resultPhatSinh != DBNull.Value ? Convert.ToDecimal(resultPhatSinh) : 0;
 
-            // Sum up all costs
             tongTien = proratedRent + tongTienDichVu + tongTienDien + tongTienNuoc + tongTienPhatSinh;
 
             return tongTien;
         }
 
-        public object TongTienTrongThang(DateTime value)
+        public decimal TongTienTrongThang(DateTime value)
         {
-            string sql = "SELECT SUM(TongTien) FROM HOADON WHERE MONTH(NgayThanhToan) = " + value.Month + " AND YEAR(NgayThanhToan) = " + value.Year;
-            return db.ExecuteScalar(sql);
+            string sql = "SELECT ISNULL(SUM(TongTien), 0) FROM HOADON WHERE MONTH(NgayThanhToan) = " + value.Month + " AND YEAR(NgayThanhToan) = " + value.Year;
+            return Convert.ToDecimal(db.ExecuteScalar(sql)); // Sử dụng decimal để đảm bảo tính chính xác
         }
+
     }
 }

@@ -22,6 +22,8 @@ namespace GUI
             InitializeComponent();
             this.phong = phong;
             dgvSDDV.DataSource = suDungDichVuBUL.LayDSSuDungDVDataGirdView(phong.MaPT);
+            //định dạng cột DONGIA theo tiền Việt Nam không có dollar
+            dgvSDDV.Columns[2].DefaultCellStyle.Format = "N0";
         }
 
         Form overlayPanel;

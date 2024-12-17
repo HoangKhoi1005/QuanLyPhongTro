@@ -78,7 +78,7 @@ namespace BUL
             return HoaDonDAL.TinhTienHoaDonKhiTraPhong(now, maPT);
         }
 
-        public object TongTienTrongThang(DateTime value)
+        public decimal TongTienTrongThang(DateTime value)
         {
             return HoaDonDAL.TongTienTrongThang(value);
         }

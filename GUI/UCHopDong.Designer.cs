@@ -49,7 +49,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.dtpNgayLap = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.label10 = new System.Windows.Forms.Label();
-            this.iconButton1 = new FontAwesome.Sharp.IconButton();
+            this.btnInHopDong = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // btnLuuHopDong
@@ -281,35 +281,36 @@
             this.label10.TabIndex = 134;
             this.label10.Text = "Ngày Ngày Lập:";
             // 
-            // iconButton1
+            // btnInHopDong
             // 
-            this.iconButton1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.iconButton1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.iconButton1.FlatAppearance.BorderSize = 0;
-            this.iconButton1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.iconButton1.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.iconButton1.ForeColor = System.Drawing.Color.White;
-            this.iconButton1.IconChar = FontAwesome.Sharp.IconChar.Receipt;
-            this.iconButton1.IconColor = System.Drawing.Color.White;
-            this.iconButton1.IconFont = FontAwesome.Sharp.IconFont.Auto;
-            this.iconButton1.IconSize = 30;
-            this.iconButton1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.Location = new System.Drawing.Point(790, 641);
-            this.iconButton1.Name = "iconButton1";
-            this.iconButton1.Padding = new System.Windows.Forms.Padding(10, 0, 2, 0);
-            this.iconButton1.Size = new System.Drawing.Size(209, 49);
-            this.iconButton1.TabIndex = 137;
-            this.iconButton1.Tag = "Thêm";
-            this.iconButton1.Text = "In Hợp Đồng";
-            this.iconButton1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.iconButton1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.iconButton1.UseVisualStyleBackColor = false;
+            this.btnInHopDong.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnInHopDong.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
+            this.btnInHopDong.FlatAppearance.BorderSize = 0;
+            this.btnInHopDong.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnInHopDong.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInHopDong.ForeColor = System.Drawing.Color.White;
+            this.btnInHopDong.IconChar = FontAwesome.Sharp.IconChar.Receipt;
+            this.btnInHopDong.IconColor = System.Drawing.Color.White;
+            this.btnInHopDong.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnInHopDong.IconSize = 30;
+            this.btnInHopDong.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInHopDong.Location = new System.Drawing.Point(790, 641);
+            this.btnInHopDong.Name = "btnInHopDong";
+            this.btnInHopDong.Padding = new System.Windows.Forms.Padding(10, 0, 2, 0);
+            this.btnInHopDong.Size = new System.Drawing.Size(209, 49);
+            this.btnInHopDong.TabIndex = 137;
+            this.btnInHopDong.Tag = "Thêm";
+            this.btnInHopDong.Text = "In Hợp Đồng";
+            this.btnInHopDong.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnInHopDong.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnInHopDong.UseVisualStyleBackColor = false;
+            this.btnInHopDong.Click += new System.EventHandler(this.btnInHopDong_Click);
             // 
             // UCHopDong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.iconButton1);
+            this.Controls.Add(this.btnInHopDong);
             this.Controls.Add(this.dtpNgayLap);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.txtChiSoNuoc);
@@ -360,6 +361,6 @@
         private System.Windows.Forms.Label label8;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpNgayLap;
         private System.Windows.Forms.Label label10;
-        private FontAwesome.Sharp.IconButton iconButton1;
+        private FontAwesome.Sharp.IconButton btnInHopDong;
     }
 }

@@ -15,12 +15,25 @@ namespace GUI
 {
     public partial class btnLuu : Form
     {
+        DateTimePicker DateTimePicker = new DateTimePicker();
+        Rectangle _Rectangle;
         PhatSinhDTO ps = new PhatSinhDTO();
         PhatSinhBUL phatSinhBUL = new PhatSinhBUL();
         BindingList<PhatSinhDTO> phatSinhBindingList;
+        PhongBUL phongBUL = new PhongBUL();
         public btnLuu()
         {
             InitializeComponent();
+
+            dgvPhatSinh.Controls.Add(DateTimePicker);
+            DateTimePicker.Visible = false;
+            DateTimePicker.Format = DateTimePickerFormat.Custom;
+            DateTimePicker.TextChanged += new EventHandler(DateTimePicker_TextChanged);
+        }
+
+        private void DateTimePicker_TextChanged(object sender, EventArgs e)
+        {
+            dgvPhatSinh.CurrentCell.Value = DateTimePicker.Text.ToString();
         }
 
         public void loadTienPhatSinh()
@@ -28,6 +41,13 @@ namespace GUI
             var phatSinhList = phatSinhBUL.loadPhatSinh();
             phatSinhBindingList = new BindingList<PhatSinhDTO>(phatSinhList);
             dgvPhatSinh.DataSource = phatSinhBindingList;
+
+            if (dgvPhatSinh.Columns["MAPT"] is DataGridViewComboBoxColumn colMaPT)
+            {
+                // Đặt DataSource cho cột MAPT
+                colMaPT.DataSource = phongBUL.LayTatCaMaPhong();
+            }
+
 
             foreach (DataGridViewColumn column in dgvPhatSinh.Columns)
             {
@@ -49,6 +69,19 @@ namespace GUI
             dgvPhatSinh.ReadOnly = false;  
             dgvPhatSinh.EditMode = DataGridViewEditMode.EditOnEnter; 
             loadTienPhatSinh();
+            dgvPhatSinh.DataError += dgvPhatSinh_DataError;
+        }
+
+        private void dgvPhatSinh_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception is FormatException)
+            {
+                MessageBox.Show("Định dạng dữ liệu không hợp lệ. Vui lòng kiểm tra ngày tháng và thử lại.",
+                                "Lỗi định dạng",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                e.ThrowException = false;
+            }
         }
 
         private void btnLuuSua_Click(object sender, EventArgs e)
@@ -57,6 +90,31 @@ namespace GUI
             foreach (DataGridViewRow row in dgvPhatSinh.Rows)
             {
                 if (row.IsNewRow) continue;
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                    {
+                        MessageBox.Show("Vui lòng nhập đầy đủ thông tin trước khi lưu.");
+                        return;
+                    }
+                }
+
+                DateTime ngayThang;
+                if (row.Cells["NGAYTHANG"].Value == null || !DateTime.TryParse(row.Cells["NGAYTHANG"].Value.ToString(), out ngayThang))
+                {
+                    MessageBox.Show("Vui lòng nhập ngày tháng hợp lệ (định dạng: MM/dd/yyyy).");
+                    return;
+                }
+
+                decimal soTien;
+                if (row.Cells["SOTIEN"].Value == null || !decimal.TryParse(row.Cells["SOTIEN"].Value.ToString(), out soTien) || soTien <= 0)
+                {
+                    MessageBox.Show("Vui lòng nhập số tiền hợp lệ lớn hơn 0.");
+                    return;
+                }
+
+
 
                 var phatSinh = new PhatSinhDTO
                 {
@@ -88,7 +146,7 @@ namespace GUI
                 }
             }
 
-            if(kt == 0)
+            if (kt == 0)
                 MessageBox.Show("Thêm thành công");
             else
                 MessageBox.Show("Sửa thành công");
@@ -123,6 +181,15 @@ namespace GUI
                     foreach (DataGridViewRow row in dgvPhatSinh.SelectedRows)
                     {
                         if (row.IsNewRow) continue;
+
+                        foreach (DataGridViewCell cell in row.Cells)
+                        {
+                            if (cell.Value == null || string.IsNullOrWhiteSpace(cell.Value.ToString()))
+                            {
+                                MessageBox.Show("Chưa có dữ liệu để xóa.");
+                                return;
+                            }
+                        }
 
                         var phatSinh = new PhatSinhDTO
                         {
@@ -159,6 +226,37 @@ namespace GUI
             }
             else
                 return;
+        }
+
+        private void txtTraCuu_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnTraCuu_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvPhatSinh_Scroll(object sender, ScrollEventArgs e)
+        {
+            DateTimePicker.Visible = false;
+        }
+
+        private void dgvPhatSinh_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            switch (dgvPhatSinh.Columns[e.ColumnIndex].Name)
+            {
+                case "NGAYTHANG":
+                    _Rectangle = dgvPhatSinh.GetCellDisplayRectangle(e.ColumnIndex, e.RowIndex, true);
+                    DateTimePicker.Size = new Size(_Rectangle.Width, _Rectangle.Height);
+                    DateTimePicker.Location = new Point(_Rectangle.X, _Rectangle.Y);
+                    DateTimePicker.Visible = true;
+                    break;
+                default:
+                    DateTimePicker.Visible = false;
+                    break;
+            }
         }
     }
 }

@@ -33,6 +33,7 @@ namespace GUI
             txtTenKT.Text = khachTro.HoTen;
             txtTenNL.Text = "QL001";
             txtMaPhieuDat.Text = PhieuDatPhongBUL.PhatSinhMaPhieuDatPhong();
+            txtTienCoc.Text = phong.DonGia.ToString();
         }
 
         private void btnLapPhieuDat_Click(object sender, EventArgs e)

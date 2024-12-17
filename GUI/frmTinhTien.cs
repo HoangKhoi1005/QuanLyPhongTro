@@ -97,7 +97,7 @@ namespace GUI
                 {
                     if (!hoaDonBUL.KiemTraHoaDonThang(dtpThangNam.Value, phong.MaPT))
                     {
-                        decimal tongTien = hoaDonBUL.TinhTienHoaDon(dtpThangNam.Value, phong.MaPT);
+                        decimal tongTien = hoaDonBUL.TinhTienHoaDonKhiTraPhong(dtpThangNam.Value, phong.MaPT);
                         hoaDonDTO.MaHD = hoaDonBUL.PhatSinhMaHoaDon();
                         hoaDonDTO.TongTien += tongTien;
                         hoaDonDTO.MaPT = phong.MaPT;

@@ -283,6 +283,16 @@ namespace GUI.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap MicrosoftExcel {
+            get {
+                object obj = ResourceManager.GetObject("MicrosoftExcel", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap MoneyBill {
             get {
                 object obj = ResourceManager.GetObject("MoneyBill", resourceCulture);

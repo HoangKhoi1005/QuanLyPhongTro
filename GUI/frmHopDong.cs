@@ -53,7 +53,10 @@ namespace GUI
 
         private void btnTraCuu_Click(object sender, EventArgs e)
         {
+            string maPhong = txtTraCuuMaPhong.Text;
+            string maKhachTro = txtTraCuuTenKhach.Text;
 
+            dgvHopDong.DataSource = hopDongBUL.TraCuuHopDong(maPhong, maKhachTro);
         }
 
         private void btnThem_Click(object sender, EventArgs e)
@@ -74,7 +77,7 @@ namespace GUI
                 Dictionary<string, string> contractDict = hopDongBUL.GetContractDictionary(maHopDong);
 
                 string templatePath = @"D:\Nam4KyI\PhatTrienPMUDTM\HopDong.docx";
-                WordExport wordExport = new WordExport(templatePath, true);
+                WordExport wordExport = new WordExport(Application.StartupPath + "\\HopDong.docx", true);
 
                 wordExport.WriteFields(contractDict);
 

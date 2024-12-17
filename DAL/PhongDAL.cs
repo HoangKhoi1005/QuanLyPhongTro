@@ -680,5 +680,10 @@ namespace DAL
             string sql = "SELECT COUNT(*) FROM HOADON WHERE DAXOA = 1 AND MAPT = '" + maPT + "' AND MONTH(NGAYLAP) = " + now.Month + " AND YEAR(NGAYLAP) = " + now.Year ;
             return (int)conn.ExecuteScalar(sql) > 0;
         }
+
+        public Dictionary<string, string> GetContractDictionary(string maPhong)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

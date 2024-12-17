@@ -34,6 +34,7 @@
             this.btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             this.txtTraCuu = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
+            this.pbAnh = new System.Windows.Forms.PictureBox();
             this.dgvChiSo = new Guna.UI2.WinForms.Guna2DataGridView();
             this.MACS = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MAPT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,7 +48,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.dtpNgayThang = new Guna.UI2.WinForms.Guna2DateTimePicker();
             this.btnHuy = new FontAwesome.Sharp.IconButton();
+            this.btnTaiAnh = new FontAwesome.Sharp.IconButton();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             this.guna2GroupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiSo)).BeginInit();
             this.SuspendLayout();
             // 
@@ -112,6 +118,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.guna2GroupBox2.BorderRadius = 10;
+            this.guna2GroupBox2.Controls.Add(this.pbAnh);
             this.guna2GroupBox2.Controls.Add(this.dgvChiSo);
             this.guna2GroupBox2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.guna2GroupBox2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(125)))), ((int)(((byte)(137)))), ((int)(((byte)(149)))));
@@ -122,6 +129,19 @@
             this.guna2GroupBox2.TabIndex = 65;
             this.guna2GroupBox2.Text = "Danh sách chỉ số điện nước";
             this.guna2GroupBox2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // pbAnh
+            // 
+            this.pbAnh.Location = new System.Drawing.Point(0, 1);
+            this.pbAnh.Name = "pbAnh";
+            this.pbAnh.Size = new System.Drawing.Size(641, 491);
+            this.pbAnh.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbAnh.TabIndex = 47;
+            this.pbAnh.TabStop = false;
+            this.pbAnh.Visible = false;
+            this.pbAnh.Paint += new System.Windows.Forms.PaintEventHandler(this.pbAnh_Paint);
+            this.pbAnh.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbAnh_MouseDown);
+            this.pbAnh.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pbAnh_MouseUp);
             // 
             // dgvChiSo
             // 
@@ -183,6 +203,7 @@
             this.dgvChiSo.ThemeStyle.RowsStyle.Height = 50;
             this.dgvChiSo.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvChiSo.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvChiSo.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvChiSo_CellValidating);
             // 
             // MACS
             // 
@@ -336,11 +357,70 @@
             this.btnHuy.UseVisualStyleBackColor = false;
             this.btnHuy.Click += new System.EventHandler(this.btnHuy_Click_1);
             // 
+            // btnTaiAnh
+            // 
+            this.btnTaiAnh.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnTaiAnh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(109)))), ((int)(((byte)(164)))));
+            this.btnTaiAnh.FlatAppearance.BorderSize = 0;
+            this.btnTaiAnh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnTaiAnh.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTaiAnh.ForeColor = System.Drawing.Color.White;
+            this.btnTaiAnh.IconChar = FontAwesome.Sharp.IconChar.Edit;
+            this.btnTaiAnh.IconColor = System.Drawing.Color.White;
+            this.btnTaiAnh.IconFont = FontAwesome.Sharp.IconFont.Auto;
+            this.btnTaiAnh.IconSize = 35;
+            this.btnTaiAnh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTaiAnh.Location = new System.Drawing.Point(1433, 10);
+            this.btnTaiAnh.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.btnTaiAnh.Name = "btnTaiAnh";
+            this.btnTaiAnh.Padding = new System.Windows.Forms.Padding(11, 0, 20, 0);
+            this.btnTaiAnh.Size = new System.Drawing.Size(168, 48);
+            this.btnTaiAnh.TabIndex = 121;
+            this.btnTaiAnh.Tag = "Thêm";
+            this.btnTaiAnh.Text = "Tải ảnh";
+            this.btnTaiAnh.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTaiAnh.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnTaiAnh.UseVisualStyleBackColor = false;
+            this.btnTaiAnh.Click += new System.EventHandler(this.btnTaiAnh_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(1191, 23);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(100, 22);
+            this.textBox1.TabIndex = 122;
+            this.textBox1.Visible = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(917, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(44, 16);
+            this.label1.TabIndex = 123;
+            this.label1.Text = "label1";
+            this.label1.Visible = false;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(1354, 19);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(53, 33);
+            this.button1.TabIndex = 124;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Visible = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // frmChiSoNuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1613, 737);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.btnTaiAnh);
             this.Controls.Add(this.btnHuy);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.dtpNgayThang);
@@ -353,6 +433,7 @@
             this.Text = "Chỉ số điện nước";
             this.Load += new System.EventHandler(this.frmChiSoNuoc_Load);
             this.guna2GroupBox2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbAnh)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvChiSo)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -376,5 +457,10 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ChiSoNuocCu;
         private System.Windows.Forms.DataGridViewTextBoxColumn CHISODIEN;
         private System.Windows.Forms.DataGridViewTextBoxColumn CHISONUOC;
+        private FontAwesome.Sharp.IconButton btnTaiAnh;
+        private System.Windows.Forms.PictureBox pbAnh;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -29,5 +29,25 @@ namespace BUL
         {
             return doanhThuDAL.TongTienTrongThang(value);
         }
+
+        public List<DoanhThuDTO> LayDoanhThuTheoThang()
+        {
+            return doanhThuDAL.LayDoanhThuTheoThang();
+        }
+
+        public List<DoanhThuDTO> LayDoanhThuTheoNam()
+        {
+            return doanhThuDAL.LayDoanhThuTheoNam();
+        }
+
+        public List<DoanhThuDTO> LayDoanhThuTheoNhaTro()
+        {
+            return doanhThuDAL.LayDoanhThuTheoNhaTro();
+        }
+
+        public List<string> LayDanhSachNhaTro()
+        {
+            return doanhThuDAL.LayDanhSachNhaTro();
+        }
     }
 }

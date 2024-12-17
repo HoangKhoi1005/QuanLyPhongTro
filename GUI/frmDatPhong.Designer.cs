@@ -120,6 +120,7 @@
             this.txtTienCoc.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTienCoc.Location = new System.Drawing.Point(148, 212);
             this.txtTienCoc.Name = "txtTienCoc";
+            this.txtTienCoc.ReadOnly = true;
             this.txtTienCoc.Size = new System.Drawing.Size(237, 31);
             this.txtTienCoc.TabIndex = 125;
             // 
