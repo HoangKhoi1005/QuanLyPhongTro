@@ -206,7 +206,7 @@ namespace GUI
                 btnInPhieuTraPhong.Click += new EventHandler(btnInPhieuTraPhong_Click);
                 toolTip1.SetToolTip(btnInPhieuTraPhong, "In phiếu trả phòng");
                 guna2Panel2.Controls.Add(btnInPhieuTraPhong);
-
+                btnInPhieuTraPhong.Visible = false;
                 Guna.UI2.WinForms.Guna2Button btnDatPhongTruoc = new Guna.UI2.WinForms.Guna2Button();
 
                 btnDatPhongTruoc.BorderColor = Color.FromArgb(40, 167, 69);
@@ -223,6 +223,7 @@ namespace GUI
                 btnDatPhongTruoc.Click += new EventHandler(btnDatPhongTruoc_Click);
                 toolTip1.SetToolTip(btnDatPhongTruoc, "Đặt phòng trước");
                 guna2Panel2.Controls.Add(btnDatPhongTruoc);
+                btnDatPhongTruoc.Visible = false;
 
                 //Huỷ báo trả phòng
 

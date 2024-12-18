@@ -411,6 +411,8 @@ namespace GUI
             r = MessageBox.Show("Bạn có muốn đăng xuất không?", "Đăng xuất", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (r == DialogResult.Yes)
             {
+                frmDangNhap frmDangNhap = new frmDangNhap();
+                frmDangNhap.Show();
                 this.Close();
             }
         }

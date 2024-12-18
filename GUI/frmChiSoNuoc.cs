@@ -239,7 +239,7 @@ namespace GUI
                                   : 0
                 };
 
-                if (chiSoDN.ChiSoDien <= chiSoDN.ChiSoDienCu || chiSoDN.ChiSoNuoc <= chiSoDN.ChiSoNuocCu)
+                if (chiSoDN.ChiSoDien < chiSoDN.ChiSoDienCu || chiSoDN.ChiSoNuoc < chiSoDN.ChiSoNuocCu)
                 {
                     MessageBox.Show("Chỉ số điện và nước mới phải lớn hơn chỉ số điện và nước cũ!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     isValid = false;

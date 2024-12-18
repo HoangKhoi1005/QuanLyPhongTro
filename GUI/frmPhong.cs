@@ -162,7 +162,7 @@ namespace GUI
                 kt++;
                 groupDSPhong1.Controls.Add(uCPhong);
 
-                if (kt > 100)  // Giới hạn số lượng UCPhong để tránh vượt quá giới hạn
+                if (kt > 100)
                 {
                     break;
                 }

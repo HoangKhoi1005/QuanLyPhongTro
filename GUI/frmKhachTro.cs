@@ -347,7 +347,21 @@ namespace GUI
 
         private void btnTraCuu_Click_1(object sender, EventArgs e)
         {
+            LoadKhachTroTimKiem(txtTraCuu.Text);
+        }
 
+        private void txtTraCuu_TextChanged_1(object sender, EventArgs e)
+        {
+            string tenDichVu = txtTraCuu.Text.Trim();
+
+            if (string.IsNullOrEmpty(tenDichVu))
+            {
+                LoadKhachTroTimKiem(tenDichVu);
+            }
+            else
+            {
+                LoadKhachTroTimKiem(tenDichVu);
+            }
         }
     }
 }
