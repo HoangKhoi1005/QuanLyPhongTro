@@ -102,6 +102,16 @@ namespace GUI
                 txtSoLuong.Focus();
                 return;
             }
+            if(txtChieuDai.Text == "0" || txtChieuRong.Text == "0")
+            {
+                MessageBox.Show("Chiều dài và chiều rộng phải lớn hơn 0", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            if(int.Parse(txtChieuDai.Text) < int.Parse(txtChieuRong.Text))
+            {
+                MessageBox.Show("Chiều dài phải lớn hơn chiều rộng", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
 
             PhongDTO phong = new PhongDTO();

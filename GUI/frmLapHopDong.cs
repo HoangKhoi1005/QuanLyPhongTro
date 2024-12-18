@@ -41,6 +41,20 @@ namespace GUI
 
         private void btnLapHopDon_Click(object sender, EventArgs e)
         {
+            ChiSoDienNuocDTO chiSoDienNuocDTO = new ChiSoDienNuocDTO();
+            chiSoDienNuocDTO.MaPT = phong.MaPT;
+            chiSoDienNuocDTO.ChiSoNuocCu = 0;
+            chiSoDienNuocDTO.ChiSoDienCu = 0;
+            chiSoDienNuocDTO.ChiSoNuoc = 0;
+            chiSoDienNuocDTO.ChiSoDien = 0;
+            chiSoDienNuocDTO.NgayThang = DateTime.Now;
+
+            if (!chiSoDienNuocBUL.themDienNuoc(chiSoDienNuocDTO))
+            {
+                MessageBox.Show("Thêm chỉ số điện nước thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             var chiSoDienNuoc = chiSoDienNuocBUL.LayChiSoDienNuocTheoMaPhong(phong.MaPT,DateTime.Now);
 
             if (chiSoDienNuoc == null)

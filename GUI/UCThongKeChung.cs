@@ -105,15 +105,15 @@ namespace GUI
                 {
                     AxisLabel = item.TenTrangThai,
                     YValues = new double[] { item.SoLuong },
-                    Label = $"{item.PhanTram:F2}%", // Hiển thị % trên từng phần của biểu đồ
-                    LegendText = $"{item.TenTrangThai} - {item.SoLuong} phòng ({item.PhanTram:F2}%)" // Chú thích
+                    Label = $"{item.PhanTram:F2}%",
+                    LegendText = $"{item.TenTrangThai} - {item.SoLuong} phòng ({item.PhanTram:F2}%)"
                 };
 
                 // Gán màu sắc cho từng trạng thái
                 switch (item.TenTrangThai)
                 {
                     case "Trống":
-                        point.Color = Color.FromArgb(46, 204, 113);
+                        point.Color = Color.FromArgb(255, 128, 128);
                         break;
                     case "Có người":
                         point.Color = Color.FromArgb(133, 193, 233);
