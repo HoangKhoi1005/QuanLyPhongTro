@@ -49,7 +49,9 @@
             this.TIENDATPHONG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
-            this.txtTraCuu = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtTraCuuMaPhieu = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtTraCuuMaPhong = new Guna.UI2.WinForms.Guna2TextBox();
+            this.txtTraCuuHoTen = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPhieuDat)).BeginInit();
             this.SuspendLayout();
@@ -314,49 +316,104 @@
             this.btnTraCuu.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnTraCuu.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
             this.btnTraCuu.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuu.Location = new System.Drawing.Point(325, 14);
+            this.btnTraCuu.Location = new System.Drawing.Point(669, 14);
             this.btnTraCuu.Name = "btnTraCuu";
             this.btnTraCuu.PressedColor = System.Drawing.Color.Blue;
             this.btnTraCuu.Size = new System.Drawing.Size(109, 35);
             this.btnTraCuu.TabIndex = 54;
             this.btnTraCuu.Text = "Tra cứu";
+            this.btnTraCuu.Click += new System.EventHandler(this.btnTraCuu_Click);
             // 
-            // txtTraCuu
+            // txtTraCuuMaPhieu
             // 
-            this.txtTraCuu.BackColor = System.Drawing.Color.Transparent;
-            this.txtTraCuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.txtTraCuu.BorderRadius = 5;
-            this.txtTraCuu.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.txtTraCuu.BorderThickness = 2;
-            this.txtTraCuu.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTraCuu.DefaultText = "";
-            this.txtTraCuu.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTraCuu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTraCuu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTraCuu.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTraCuu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTraCuu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTraCuu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTraCuu.Location = new System.Drawing.Point(12, 14);
-            this.txtTraCuu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtTraCuu.Name = "txtTraCuu";
-            this.txtTraCuu.PasswordChar = '\0';
-            this.txtTraCuu.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.txtTraCuu.PlaceholderText = "Nhập mã phiếu để tìm";
-            this.txtTraCuu.SelectedText = "";
-            this.txtTraCuu.Size = new System.Drawing.Size(307, 35);
-            this.txtTraCuu.TabIndex = 53;
+            this.txtTraCuuMaPhieu.BackColor = System.Drawing.Color.Transparent;
+            this.txtTraCuuMaPhieu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.txtTraCuuMaPhieu.BorderRadius = 5;
+            this.txtTraCuuMaPhieu.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtTraCuuMaPhieu.BorderThickness = 2;
+            this.txtTraCuuMaPhieu.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTraCuuMaPhieu.DefaultText = "";
+            this.txtTraCuuMaPhieu.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTraCuuMaPhieu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTraCuuMaPhieu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuuMaPhieu.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuuMaPhieu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuuMaPhieu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTraCuuMaPhieu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuuMaPhieu.Location = new System.Drawing.Point(12, 14);
+            this.txtTraCuuMaPhieu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTraCuuMaPhieu.Name = "txtTraCuuMaPhieu";
+            this.txtTraCuuMaPhieu.PasswordChar = '\0';
+            this.txtTraCuuMaPhieu.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtTraCuuMaPhieu.PlaceholderText = "Nhập mã phiếu để tìm";
+            this.txtTraCuuMaPhieu.SelectedText = "";
+            this.txtTraCuuMaPhieu.Size = new System.Drawing.Size(213, 35);
+            this.txtTraCuuMaPhieu.TabIndex = 53;
+            // 
+            // txtTraCuuMaPhong
+            // 
+            this.txtTraCuuMaPhong.BackColor = System.Drawing.Color.Transparent;
+            this.txtTraCuuMaPhong.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.txtTraCuuMaPhong.BorderRadius = 5;
+            this.txtTraCuuMaPhong.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtTraCuuMaPhong.BorderThickness = 2;
+            this.txtTraCuuMaPhong.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTraCuuMaPhong.DefaultText = "";
+            this.txtTraCuuMaPhong.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTraCuuMaPhong.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTraCuuMaPhong.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuuMaPhong.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuuMaPhong.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuuMaPhong.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTraCuuMaPhong.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuuMaPhong.Location = new System.Drawing.Point(231, 14);
+            this.txtTraCuuMaPhong.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTraCuuMaPhong.Name = "txtTraCuuMaPhong";
+            this.txtTraCuuMaPhong.PasswordChar = '\0';
+            this.txtTraCuuMaPhong.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtTraCuuMaPhong.PlaceholderText = "Nhập mã phòng để tìm";
+            this.txtTraCuuMaPhong.SelectedText = "";
+            this.txtTraCuuMaPhong.Size = new System.Drawing.Size(213, 35);
+            this.txtTraCuuMaPhong.TabIndex = 60;
+            // 
+            // txtTraCuuHoTen
+            // 
+            this.txtTraCuuHoTen.BackColor = System.Drawing.Color.Transparent;
+            this.txtTraCuuHoTen.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.txtTraCuuHoTen.BorderRadius = 5;
+            this.txtTraCuuHoTen.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtTraCuuHoTen.BorderThickness = 2;
+            this.txtTraCuuHoTen.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTraCuuHoTen.DefaultText = "";
+            this.txtTraCuuHoTen.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTraCuuHoTen.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTraCuuHoTen.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuuHoTen.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuuHoTen.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuuHoTen.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTraCuuHoTen.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuuHoTen.Location = new System.Drawing.Point(450, 14);
+            this.txtTraCuuHoTen.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTraCuuHoTen.Name = "txtTraCuuHoTen";
+            this.txtTraCuuHoTen.PasswordChar = '\0';
+            this.txtTraCuuHoTen.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtTraCuuHoTen.PlaceholderText = "Nhập họ tên để tìm";
+            this.txtTraCuuHoTen.SelectedText = "";
+            this.txtTraCuuHoTen.Size = new System.Drawing.Size(213, 35);
+            this.txtTraCuuHoTen.TabIndex = 61;
             // 
             // frmCocGiuPhong
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1672, 948);
+            this.Controls.Add(this.txtTraCuuHoTen);
+            this.Controls.Add(this.txtTraCuuMaPhong);
             this.Controls.Add(this.btnXuatPhieuNhap);
             this.Controls.Add(this.btnThem);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.btnTraCuu);
-            this.Controls.Add(this.txtTraCuu);
+            this.Controls.Add(this.txtTraCuuMaPhieu);
             this.Name = "frmCocGiuPhong";
             this.Text = "Cọc giữ phòng";
             this.Load += new System.EventHandler(this.frmCocGiuPhong_Load);
@@ -378,7 +435,7 @@
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         private Guna.UI2.WinForms.Guna2DataGridView dgvPhieuDat;
         private Guna.UI2.WinForms.Guna2Button btnTraCuu;
-        private Guna.UI2.WinForms.Guna2TextBox txtTraCuu;
+        private Guna.UI2.WinForms.Guna2TextBox txtTraCuuMaPhieu;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAPDP;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAPT;
         private System.Windows.Forms.DataGridViewTextBoxColumn DIACHI;
@@ -387,5 +444,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn NGAYDUKIENNHANPHONG;
         private System.Windows.Forms.DataGridViewTextBoxColumn TIENDATPHONG;
         private System.Windows.Forms.DataGridViewTextBoxColumn MOTA;
+        private Guna.UI2.WinForms.Guna2TextBox txtTraCuuMaPhong;
+        private Guna.UI2.WinForms.Guna2TextBox txtTraCuuHoTen;
     }
 }

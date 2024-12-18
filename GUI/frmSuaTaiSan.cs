@@ -76,7 +76,6 @@ namespace GUI
             taiSan.MaPT = cboMaPT.Text;
             taiSan.MoTa = txtMoTa.Text;
             taiSan.NgayThanhLy = ckbNgayThanhLy.Checked ? (DateTime?)dtpNgayThanhLy.Value : null;
-            MessageBox.Show(taiSan.NgayThanhLy.ToString());
 
             if (taiSanBUL.SuaTaiSan(taiSan))
             {

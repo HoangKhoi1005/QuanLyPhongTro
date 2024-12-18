@@ -82,5 +82,10 @@ namespace BUL
         {
             return HoaDonDAL.TongTienTrongThang(value);
         }
+
+        public bool XoaHoaDon(string maHD)
+        {
+            return HoaDonDAL.XoaHoaDon(maHD);
+        }
     }
 }

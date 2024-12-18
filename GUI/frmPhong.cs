@@ -128,7 +128,7 @@ namespace GUI
 
             List<PhongDTO> lstPhong = phongBUL.LayPhongTheoNhaTro(MaNT);
 
-            groupDSPhong.Controls.Clear();
+            groupDSPhong1.Controls.Clear();
             int ucXPosition = 19;
             int ucYPosition = 19;
             int kt = 0;
@@ -160,7 +160,12 @@ namespace GUI
 
                 ucXPosition += uCPhong.Width +19;
                 kt++;
-                groupDSPhong.Controls.Add(uCPhong);
+                groupDSPhong1.Controls.Add(uCPhong);
+
+                if (kt > 100)  // Giới hạn số lượng UCPhong để tránh vượt quá giới hạn
+                {
+                    break;
+                }
             }
         }
 
@@ -370,7 +375,7 @@ namespace GUI
             {
                 List<PhongDTO> lstPhong = phongBUL.TimKiemPhongTheoMaPhong(maPhong, tenKhachTro, nhaTroDangChon.MaNT, isSoLuongValid ? soLuongNguoiO : -1);
 
-                groupDSPhong.Controls.Clear();
+                groupDSPhong1.Controls.Clear();
                 int ucXPosition = 19;
                 int ucYPosition = 19;
                 int kt = 0;
@@ -401,7 +406,7 @@ namespace GUI
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
-                    groupDSPhong.Controls.Add(uCPhong);
+                    groupDSPhong1.Controls.Add(uCPhong);
                 }
             }
         }
@@ -436,7 +441,7 @@ namespace GUI
                 string maTT = cboTrangThai.SelectedValue.ToString();
                 List<PhongDTO> lstPhong = phongBUL.LayPhongTheoTrangThai(maTT, nhaTroDangChon.MaNT);
 
-                groupDSPhong.Controls.Clear();
+                groupDSPhong1.Controls.Clear();
                 int ucXPosition = 19;
                 int ucYPosition = 19;
                 int kt = 0;
@@ -467,7 +472,7 @@ namespace GUI
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
-                    groupDSPhong.Controls.Add(uCPhong);
+                    groupDSPhong1.Controls.Add(uCPhong);
                 }
             }
         }
@@ -495,7 +500,7 @@ namespace GUI
             PhongBUL phongBUL = new PhongBUL();
             List<PhongDTO> dsPhong = phongBUL.LocPhongTheoTaiSan(dsTenTaiSan, nhaTroDangChon.MaNT);
 
-            groupDSPhong.Controls.Clear();
+            groupDSPhong1.Controls.Clear();
             int ucXPosition = 19;
             int ucYPosition = 19;
             int kt = 0;
@@ -526,7 +531,7 @@ namespace GUI
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;
-                groupDSPhong.Controls.Add(uCPhong);
+                groupDSPhong1.Controls.Add(uCPhong);
 
             }
             HideOverlay();
@@ -544,7 +549,7 @@ namespace GUI
                 gia = gia.Replace(".", "");
                 List<PhongDTO> lstPhong = phongBUL.LocPhongTheoGia(gia, nhaTroDangChon.MaNT);
 
-                groupDSPhong.Controls.Clear();
+                groupDSPhong1.Controls.Clear();
                 int ucXPosition = 19;
                 int ucYPosition = 19;
                 int kt = 0;
@@ -575,7 +580,7 @@ namespace GUI
 
                     ucXPosition += uCPhong.Width + 19;
                     kt++;
-                    groupDSPhong.Controls.Add(uCPhong);
+                    groupDSPhong1.Controls.Add(uCPhong);
                 }
             }
         }
@@ -601,10 +606,10 @@ namespace GUI
             txtMaPhong.Text = "";
             txtTenKhachTro.Text = "";
             txtTraCuuSoLuongNguoi.Text = "";
-            LoadPhongByNhaTro(nhaTroDangChon.MaNT);
             cboGia.SelectedIndex = 0;
             cboTrangThai.SelectedIndex = 0;
             dtpNgayChonPhong.Value = DateTime.Now;
+            LoadPhongByNhaTro(nhaTroDangChon.MaNT);
         }
 
         private DateTime? KtDateTime = null;
@@ -622,7 +627,7 @@ namespace GUI
 
             List<PhongDTO> lstPhong = phongBUL.LocPhongTrongTheoNgay(ngayChon, nhaTroDangChon.MaNT);
 
-            groupDSPhong.Controls.Clear();
+            groupDSPhong1.Controls.Clear();
             int ucXPosition = 19;
             int ucYPosition = 19;
             int kt = 0;
@@ -653,7 +658,7 @@ namespace GUI
 
                 ucXPosition += uCPhong.Width + 19;
                 kt++;
-                groupDSPhong.Controls.Add(uCPhong);
+                groupDSPhong1.Controls.Add(uCPhong);
             }
         }
 

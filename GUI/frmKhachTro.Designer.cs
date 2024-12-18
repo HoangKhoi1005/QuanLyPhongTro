@@ -32,7 +32,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.txtTraCuu = new Guna.UI2.WinForms.Guna2TextBox();
             this.guna2GroupBox2 = new Guna.UI2.WinForms.Guna2GroupBox();
             this.dgvKhachTro = new Guna.UI2.WinForms.Guna2DataGridView();
             this.MAKT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -46,7 +45,6 @@
             this.ANH = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MOTA = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DAXOA = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             this.btnXoaKhachTro = new FontAwesome.Sharp.IconButton();
             this.btnLuuKhachTro = new FontAwesome.Sharp.IconButton();
             this.btnThemKhachTro = new FontAwesome.Sharp.IconButton();
@@ -72,38 +70,13 @@
             this.txtMaKT = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSuaKhachTro = new FontAwesome.Sharp.IconButton();
+            this.txtTraCuu = new Guna.UI2.WinForms.Guna2TextBox();
+            this.btnTraCuu = new Guna.UI2.WinForms.Guna2Button();
             this.guna2GroupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKhachTro)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ptbKhachTro)).BeginInit();
             this.SuspendLayout();
-            // 
-            // txtTraCuu
-            // 
-            this.txtTraCuu.BackColor = System.Drawing.Color.Transparent;
-            this.txtTraCuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.txtTraCuu.BorderRadius = 5;
-            this.txtTraCuu.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
-            this.txtTraCuu.BorderThickness = 2;
-            this.txtTraCuu.Cursor = System.Windows.Forms.Cursors.IBeam;
-            this.txtTraCuu.DefaultText = "";
-            this.txtTraCuu.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
-            this.txtTraCuu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
-            this.txtTraCuu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTraCuu.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
-            this.txtTraCuu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTraCuu.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.txtTraCuu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
-            this.txtTraCuu.Location = new System.Drawing.Point(42, 13);
-            this.txtTraCuu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.txtTraCuu.Name = "txtTraCuu";
-            this.txtTraCuu.PasswordChar = '\0';
-            this.txtTraCuu.PlaceholderForeColor = System.Drawing.Color.DarkGray;
-            this.txtTraCuu.PlaceholderText = "Nhập vào khách trọ muốn tìm";
-            this.txtTraCuu.SelectedText = "";
-            this.txtTraCuu.Size = new System.Drawing.Size(269, 43);
-            this.txtTraCuu.TabIndex = 60;
-            this.txtTraCuu.TextChanged += new System.EventHandler(this.txtTraCuu_TextChanged);
             // 
             // guna2GroupBox2
             // 
@@ -196,6 +169,7 @@
             this.dgvKhachTro.ThemeStyle.RowsStyle.Height = 50;
             this.dgvKhachTro.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvKhachTro.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvKhachTro.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKhachTro_CellClick);
             // 
             // MAKT
             // 
@@ -279,34 +253,6 @@
             this.DAXOA.MinimumWidth = 6;
             this.DAXOA.Name = "DAXOA";
             // 
-            // btnTraCuu
-            // 
-            this.btnTraCuu.BackColor = System.Drawing.Color.Transparent;
-            this.btnTraCuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.BorderRadius = 5;
-            this.btnTraCuu.BorderThickness = 2;
-            this.btnTraCuu.CheckedState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuu.CustomBorderColor = System.Drawing.Color.White;
-            this.btnTraCuu.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnTraCuu.DisabledState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuu.FillColor = System.Drawing.Color.White;
-            this.btnTraCuu.FocusedColor = System.Drawing.Color.White;
-            this.btnTraCuu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnTraCuu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            this.btnTraCuu.HoverState.ForeColor = System.Drawing.Color.White;
-            this.btnTraCuu.Location = new System.Drawing.Point(317, 13);
-            this.btnTraCuu.Name = "btnTraCuu";
-            this.btnTraCuu.PressedColor = System.Drawing.Color.Blue;
-            this.btnTraCuu.Size = new System.Drawing.Size(109, 43);
-            this.btnTraCuu.TabIndex = 61;
-            this.btnTraCuu.Text = "Tra cứu";
-            this.btnTraCuu.Click += new System.EventHandler(this.btnTraCuu_Click);
-            // 
             // btnXoaKhachTro
             // 
             this.btnXoaKhachTro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -337,6 +283,7 @@
             // 
             this.btnLuuKhachTro.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLuuKhachTro.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(46)))), ((int)(((byte)(109)))), ((int)(((byte)(164)))));
+            this.btnLuuKhachTro.Enabled = false;
             this.btnLuuKhachTro.FlatAppearance.BorderSize = 0;
             this.btnLuuKhachTro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLuuKhachTro.Font = new System.Drawing.Font("Segoe UI", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -408,7 +355,7 @@
             this.groupBox1.Controls.Add(this.txtMaKT);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
-            this.groupBox1.Location = new System.Drawing.Point(29, 63);
+            this.groupBox1.Location = new System.Drawing.Point(29, 12);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1586, 323);
             this.groupBox1.TabIndex = 47;
@@ -639,17 +586,70 @@
             this.btnSuaKhachTro.UseVisualStyleBackColor = false;
             this.btnSuaKhachTro.Click += new System.EventHandler(this.btnSuaKhachTro_Click);
             // 
+            // txtTraCuu
+            // 
+            this.txtTraCuu.BackColor = System.Drawing.Color.Transparent;
+            this.txtTraCuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.txtTraCuu.BorderRadius = 5;
+            this.txtTraCuu.BorderStyle = System.Drawing.Drawing2D.DashStyle.Custom;
+            this.txtTraCuu.BorderThickness = 2;
+            this.txtTraCuu.Cursor = System.Windows.Forms.Cursors.IBeam;
+            this.txtTraCuu.DefaultText = "";
+            this.txtTraCuu.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(208)))), ((int)(((byte)(208)))));
+            this.txtTraCuu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(226)))), ((int)(((byte)(226)))), ((int)(((byte)(226)))));
+            this.txtTraCuu.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuu.DisabledState.PlaceholderForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(138)))), ((int)(((byte)(138)))), ((int)(((byte)(138)))));
+            this.txtTraCuu.FocusedState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuu.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.txtTraCuu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(94)))), ((int)(((byte)(148)))), ((int)(((byte)(255)))));
+            this.txtTraCuu.Location = new System.Drawing.Point(29, 354);
+            this.txtTraCuu.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtTraCuu.Name = "txtTraCuu";
+            this.txtTraCuu.PasswordChar = '\0';
+            this.txtTraCuu.PlaceholderForeColor = System.Drawing.Color.DarkGray;
+            this.txtTraCuu.PlaceholderText = "Nhập vào khách trọ muốn tìm";
+            this.txtTraCuu.SelectedText = "";
+            this.txtTraCuu.Size = new System.Drawing.Size(269, 43);
+            this.txtTraCuu.TabIndex = 66;
+            // 
+            // btnTraCuu
+            // 
+            this.btnTraCuu.BackColor = System.Drawing.Color.Transparent;
+            this.btnTraCuu.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.BorderRadius = 5;
+            this.btnTraCuu.BorderThickness = 2;
+            this.btnTraCuu.CheckedState.ForeColor = System.Drawing.Color.White;
+            this.btnTraCuu.CustomBorderColor = System.Drawing.Color.White;
+            this.btnTraCuu.DisabledState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.DisabledState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnTraCuu.DisabledState.ForeColor = System.Drawing.Color.White;
+            this.btnTraCuu.FillColor = System.Drawing.Color.White;
+            this.btnTraCuu.FocusedColor = System.Drawing.Color.White;
+            this.btnTraCuu.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnTraCuu.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.HoverState.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.HoverState.CustomBorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.HoverState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            this.btnTraCuu.HoverState.ForeColor = System.Drawing.Color.White;
+            this.btnTraCuu.Location = new System.Drawing.Point(304, 354);
+            this.btnTraCuu.Name = "btnTraCuu";
+            this.btnTraCuu.PressedColor = System.Drawing.Color.Blue;
+            this.btnTraCuu.Size = new System.Drawing.Size(109, 43);
+            this.btnTraCuu.TabIndex = 67;
+            this.btnTraCuu.Text = "Tra cứu";
+            // 
             // frmKhachTro
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1654, 901);
+            this.Controls.Add(this.txtTraCuu);
+            this.Controls.Add(this.btnTraCuu);
             this.Controls.Add(this.btnSuaKhachTro);
             this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.txtTraCuu);
             this.Controls.Add(this.guna2GroupBox2);
             this.Controls.Add(this.btnXoaKhachTro);
-            this.Controls.Add(this.btnTraCuu);
             this.Controls.Add(this.btnLuuKhachTro);
             this.Controls.Add(this.btnThemKhachTro);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
@@ -667,12 +667,9 @@
         }
 
         #endregion
-
-        private Guna.UI2.WinForms.Guna2TextBox txtTraCuu;
         private Guna.UI2.WinForms.Guna2GroupBox guna2GroupBox2;
         public Guna.UI2.WinForms.Guna2DataGridView dgvKhachTro;
         private FontAwesome.Sharp.IconButton btnXoaKhachTro;
-        private Guna.UI2.WinForms.Guna2Button btnTraCuu;
         private FontAwesome.Sharp.IconButton btnLuuKhachTro;
         private FontAwesome.Sharp.IconButton btnThemKhachTro;
         private System.Windows.Forms.DataGridViewTextBoxColumn MAKT;
@@ -708,5 +705,7 @@
         private System.Windows.Forms.TextBox txtMaKT;
         private System.Windows.Forms.Label label1;
         private FontAwesome.Sharp.IconButton btnSuaKhachTro;
+        private Guna.UI2.WinForms.Guna2TextBox txtTraCuu;
+        private Guna.UI2.WinForms.Guna2Button btnTraCuu;
     }
 }

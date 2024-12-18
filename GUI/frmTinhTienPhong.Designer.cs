@@ -50,7 +50,7 @@
             this.btnInHoaDon = new Guna.UI2.WinForms.Guna2Button();
             this.btnThemNT = new Guna.UI2.WinForms.Guna2Button();
             this.btnThanhToan = new Guna.UI2.WinForms.Guna2Button();
-            this.btnXoaNT = new Guna.UI2.WinForms.Guna2Button();
+            this.btnXoaHD = new Guna.UI2.WinForms.Guna2Button();
             this.btnHuyTimKiem = new Guna.UI2.WinForms.Guna2Button();
             this.txtTraCuuMaPhong = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -352,25 +352,26 @@
             this.btnThanhToan.Text = "Thanh toán";
             this.btnThanhToan.Click += new System.EventHandler(this.btnThanhToan_Click);
             // 
-            // btnXoaNT
+            // btnXoaHD
             // 
-            this.btnXoaNT.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(159)))), ((int)(((byte)(133)))));
-            this.btnXoaNT.BorderRadius = 4;
-            this.btnXoaNT.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
-            this.btnXoaNT.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
-            this.btnXoaNT.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
-            this.btnXoaNT.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
-            this.btnXoaNT.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
-            this.btnXoaNT.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnXoaNT.ForeColor = System.Drawing.Color.White;
-            this.btnXoaNT.Image = global::GUI.Properties.Resources.Delete;
-            this.btnXoaNT.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
-            this.btnXoaNT.Location = new System.Drawing.Point(1574, 63);
-            this.btnXoaNT.Name = "btnXoaNT";
-            this.btnXoaNT.Padding = new System.Windows.Forms.Padding(17, 0, 0, 0);
-            this.btnXoaNT.Size = new System.Drawing.Size(86, 48);
-            this.btnXoaNT.TabIndex = 19;
-            this.btnXoaNT.Text = "Xóa";
+            this.btnXoaHD.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(22)))), ((int)(((byte)(159)))), ((int)(((byte)(133)))));
+            this.btnXoaHD.BorderRadius = 4;
+            this.btnXoaHD.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.btnXoaHD.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.btnXoaHD.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.btnXoaHD.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.btnXoaHD.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(83)))), ((int)(((byte)(79)))));
+            this.btnXoaHD.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnXoaHD.ForeColor = System.Drawing.Color.White;
+            this.btnXoaHD.Image = global::GUI.Properties.Resources.Delete;
+            this.btnXoaHD.ImageAlign = System.Windows.Forms.HorizontalAlignment.Left;
+            this.btnXoaHD.Location = new System.Drawing.Point(1574, 63);
+            this.btnXoaHD.Name = "btnXoaHD";
+            this.btnXoaHD.Padding = new System.Windows.Forms.Padding(17, 0, 0, 0);
+            this.btnXoaHD.Size = new System.Drawing.Size(86, 48);
+            this.btnXoaHD.TabIndex = 19;
+            this.btnXoaHD.Text = "Xóa";
+            this.btnXoaHD.Click += new System.EventHandler(this.btnXoaHD_Click);
             // 
             // btnHuyTimKiem
             // 
@@ -456,7 +457,7 @@
             this.Controls.Add(this.dtpThangNam);
             this.Controls.Add(this.btnThemNT);
             this.Controls.Add(this.btnThanhToan);
-            this.Controls.Add(this.btnXoaNT);
+            this.Controls.Add(this.btnXoaHD);
             this.Name = "frmTinhTienPhong";
             this.Text = "Tính tiền phòng";
             this.Load += new System.EventHandler(this.frmTinhTienPhong_Load);
@@ -471,7 +472,7 @@
 
         private Guna.UI2.WinForms.Guna2Button btnThemNT;
         private Guna.UI2.WinForms.Guna2Button btnThanhToan;
-        private Guna.UI2.WinForms.Guna2Button btnXoaNT;
+        private Guna.UI2.WinForms.Guna2Button btnXoaHD;
         private Guna.UI2.WinForms.Guna2DateTimePicker dtpThangNam;
         private System.Windows.Forms.Label txtThangNam;
         private System.Windows.Forms.Label label6;

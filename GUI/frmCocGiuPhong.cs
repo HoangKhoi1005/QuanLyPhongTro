@@ -18,6 +18,7 @@ namespace GUI
         public frmCocGiuPhong()
         {
             InitializeComponent();
+            dgvPhieuDat.Columns[6].DefaultCellStyle.Format = "N0";
         }
 
         private void frmCocGiuPhong_Load(object sender, EventArgs e)
@@ -45,6 +46,15 @@ namespace GUI
             {
                 MessageBox.Show("Vui lòng chọn một phiếu để xuất.");
             }
+        }
+
+        private void btnTraCuu_Click(object sender, EventArgs e)
+        {
+            string maPhong = txtTraCuuMaPhong.Text;
+            string tenKhachHang = txtTraCuuHoTen.Text;
+            string maPhieuDat = txtTraCuuMaPhieu.Text;
+
+            dgvPhieuDat.DataSource = phieuDatPhongBUL.TraCuuPhieuDat(maPhong, tenKhachHang, maPhieuDat);
         }
     }
 }

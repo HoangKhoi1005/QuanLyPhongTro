@@ -269,6 +269,7 @@ namespace GUI
 
             crpInHoaDon crpInHoaDon = new crpInHoaDon();
             crpInHoaDon.SetDataSource(hoaDonBUL.LayHoaDonTheoMaHD(maHD));
+            SetDatabaseLogon(crpInHoaDon);
 
             crpInHoaDon.SetParameterValue("MaPT", maPT);
             crpInHoaDon.SetParameterValue("NgayLap", ngayLapHoaDon);
@@ -325,6 +326,41 @@ namespace GUI
             //nằm giữ và full màn hình
             frmInHoaDon.WindowState = FormWindowState.Maximized;
             frmInHoaDon.ShowDialog();
+        }
+
+        private void btnXoaHD_Click(object sender, EventArgs e)
+        {
+            if (dgvHoaDon.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Vui lòng chọn hóa đơn cần xóa", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            string maHD = dgvHoaDon.SelectedRows[0].Cells["MAHD"].Value.ToString();
+            string maPT = dgvHoaDon.SelectedRows[0].Cells["MAPT"].Value.ToString();
+            decimal tongTien = Convert.ToDecimal(dgvHoaDon.SelectedRows[0].Cells["TONGTIEN"].Value);
+            decimal tienDaThanhToan = Convert.ToDecimal(dgvHoaDon.SelectedRows[0].Cells["TIENDATHANHTOAN"].Value);
+            int congNo = (int)(tongTien - tienDaThanhToan);
+
+            if (congNo > 0)
+            {
+                MessageBox.Show("Không thể xóa hóa đơn còn nợ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            DialogResult dialogResult = MessageBox.Show("Bạn có chắc chắn muốn xóa hóa đơn này?", "Xác nhận", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (dialogResult == DialogResult.Yes)
+            {
+                if (hoaDonBUL.XoaHoaDon(maHD))
+                {
+                    MessageBox.Show("Xóa hóa đơn thành công", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LoadDataGirdViewHoaDon();
+                }
+                else
+                {
+                    MessageBox.Show("Xóa hóa đơn thất bại", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
     }
 }

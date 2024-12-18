@@ -19,6 +19,7 @@ namespace GUI
         {
             InitializeComponent();
             LoadData();
+            dgvHopDong.Columns[6].DefaultCellStyle.Format = "N0";
         }
 
         public void LoadData()

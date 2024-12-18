@@ -58,8 +58,7 @@ namespace GUI
 
         private void frmThongKeDoanhThuTheoThang_Load(object sender, EventArgs e)
         {
-            var doanhThuList = DoanhThuBUL.LayDoanhThuTheoThang();
-            loadChartDoanhThu(doanhThuList);
+
         }
     }
 }

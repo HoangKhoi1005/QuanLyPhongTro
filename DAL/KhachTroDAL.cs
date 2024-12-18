@@ -207,7 +207,7 @@ namespace DAL
 
         public bool ThemKhachTro(KhachTroDTO khachTro)
         {
-            string sql = "INSERT INTO KHACHTRO VALUES('" + khachTro.MaKT + "', N'" + khachTro.HoTen + "', '" + khachTro.CCCD + "', '" + khachTro.SoDT + "', N'" + khachTro.DiaChi + "', '" + khachTro.Email + "', '" + khachTro.NgaySinh + "', N'" + khachTro.GioiTinh + "', N'" + khachTro.Anh + "', N'" + khachTro.MoTa + "', 0)";
+            string sql = "INSERT INTO KHACHTRO VALUES('" + khachTro.MaKT + "', N'" + khachTro.HoTen + "', N'" + khachTro.DiaChi + "', '" + khachTro.SoDT + "', '" + khachTro.CCCD + "', '" + khachTro.Email + "', '" + khachTro.NgaySinh + "', N'" + khachTro.GioiTinh + "', N'" + khachTro.Anh + "', N'" + khachTro.MoTa + "', 0)";
             return db.ExecuteNonQuery(sql) > 0;
         }
 

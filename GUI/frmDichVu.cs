@@ -20,8 +20,24 @@ namespace GUI
         public frmDichVu()
         {
             InitializeComponent();
+            dgvDichVu.Columns[2].DefaultCellStyle.Format = "N0";
+            dgvDichVu.DataError += dgvDichVu_DataError;
         }
-        
+
+        private void dgvDichVu_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            if (e.Exception is FormatException)
+            {
+                MessageBox.Show("Dữ liệu nhập không hợp lệ!",
+                                "Lỗi dữ liệu", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                e.ThrowException = false;
+            }
+            else
+            {
+                e.ThrowException = true;
+            }
+        }
+
         public void loadDichVu()
         {
             var dvList = dichVuBUL.loadDichVu();
@@ -182,6 +198,18 @@ namespace GUI
             }
             else
                 return;
+        }
+
+        private void dgvDichVu_CellValidating(object sender, DataGridViewCellValidatingEventArgs e)
+        {
+            if (dgvDichVu.Columns[e.ColumnIndex].Name == "DONGIA")
+            {
+                if (!decimal.TryParse(e.FormattedValue.ToString(), out decimal donGia))
+                {
+                    MessageBox.Show("Đơn giá bắt buộc phải là số hợp lệ.", "Lỗi nhập liệu", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    e.Cancel = true;
+                }
+            }
         }
     }
 }
