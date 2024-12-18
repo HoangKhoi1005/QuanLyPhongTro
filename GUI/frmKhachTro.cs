@@ -344,5 +344,10 @@ namespace GUI
         {
             dataBinding();
         }
+
+        private void btnTraCuu_Click_1(object sender, EventArgs e)
+        {
+
+        }
     }
 }

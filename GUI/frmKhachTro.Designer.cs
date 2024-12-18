@@ -638,6 +638,7 @@
             this.btnTraCuu.Size = new System.Drawing.Size(109, 43);
             this.btnTraCuu.TabIndex = 67;
             this.btnTraCuu.Text = "Tra cứu";
+            this.btnTraCuu.Click += new System.EventHandler(this.btnTraCuu_Click_1);
             // 
             // frmKhachTro
             // 

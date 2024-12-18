@@ -720,7 +720,7 @@ namespace GUI
                     hoaDonDTO.TongTien = hoaDonBUL.TinhTienHoaDonKhiTraPhong(DateTime.Now, phong.MaPT);
                     hoaDonDTO.TienDaThanhToan = 0;
                     hoaDonDTO.MaQL = "QL001";
-                    hoaDonDTO.DaXoa = true;
+                    hoaDonDTO.DaXoa = false;
                     hoaDonBUL.ThemHoaDon(hoaDonDTO);
 
                     HopDongDTO hopDong = hopDongBUL.LayHopDongTheoMaPhong(phong.MaPT);

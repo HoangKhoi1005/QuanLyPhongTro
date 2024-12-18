@@ -677,7 +677,7 @@ namespace DAL
 
         public bool KiemTraPhongDaCoHoaDonTrongThang(string maPT, DateTime now)
         {
-            string sql = "SELECT COUNT(*) FROM HOADON WHERE DAXOA = 1 AND MAPT = '" + maPT + "' AND MONTH(NGAYLAP) = " + now.Month + " AND YEAR(NGAYLAP) = " + now.Year ;
+            string sql = "SELECT COUNT(*) FROM HOADON WHERE DAXOA = 0 AND MAPT = '" + maPT + "' AND MONTH(NGAYLAP) = " + now.Month + " AND YEAR(NGAYLAP) = " + now.Year ;
             return (int)conn.ExecuteScalar(sql) > 0;
         }
 
