@@ -125,5 +125,23 @@ namespace DAL
                 return dt;
             }
         }
+
+        public DataTable TraCuuPhieuDat(string maPhong, string tenKhachHang, string maPhieuDat)
+        {
+            string sql = "SELECT PD.MAPDP, PD.MaPT, QL.HOTENNV, KT.HoTen, PD.NGAYLAPPHIEU, PD.NGAYDUKIENNHANPHONG, PD.TIENDATPHONG, PD.MoTa FROM PHIEUDATPHONG PD, PhongTro PT, QuanLy QL , KhachTro KT WHERE PD.MaPT = PT.MaPT AND PD.MaKT = KT.MaKT AND QL.MaQL = PD.MaQL";
+            if (!string.IsNullOrEmpty(maPhong))
+            {
+                sql += " AND PD.MaPT = '" + maPhong + "'";
+            }
+            if (!string.IsNullOrEmpty(tenKhachHang))
+            {
+                sql += " AND KT.HoTen LIKE N'%" + tenKhachHang + "%'";
+            }
+            if (!string.IsNullOrEmpty(maPhieuDat))
+            {
+                sql += " AND PD.MAPDP = '" + maPhieuDat + "'";
+            }
+            return db.GetDataTable(sql);
+        }
     }
 }

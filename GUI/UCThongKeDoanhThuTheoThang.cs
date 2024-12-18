@@ -19,6 +19,7 @@ namespace GUI
         public UCThongKeDoanhThuTheoThang()
         {
             InitializeComponent();
+            dtpNam.Value = DateTime.Now;
         }
 
         private void loadChartDoanhThu(List<DoanhThuDTO> doanhThuList)

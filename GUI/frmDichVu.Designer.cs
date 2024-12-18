@@ -176,6 +176,7 @@
             this.dgvDichVu.ThemeStyle.RowsStyle.Height = 50;
             this.dgvDichVu.ThemeStyle.RowsStyle.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.dgvDichVu.ThemeStyle.RowsStyle.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            this.dgvDichVu.CellValidating += new System.Windows.Forms.DataGridViewCellValidatingEventHandler(this.dgvDichVu_CellValidating);
             // 
             // MADV
             // 

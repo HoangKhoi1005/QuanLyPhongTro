@@ -29,6 +29,7 @@ namespace GUI
             DateTimePicker.Visible = false;
             DateTimePicker.Format = DateTimePickerFormat.Custom;
             DateTimePicker.TextChanged += new EventHandler(DateTimePicker_TextChanged);
+            dgvPhatSinh.Columns[3].DefaultCellStyle.Format = "N0";
         }
 
         private void DateTimePicker_TextChanged(object sender, EventArgs e)
@@ -235,7 +236,21 @@ namespace GUI
 
         private void btnTraCuu_Click(object sender, EventArgs e)
         {
-
+            if (txtTraCuu.Text == "")
+            {
+                loadTienPhatSinh();
+            }
+            else
+            {
+                var phatSinhList = phatSinhBUL.loadPhatSinh().Where(ps => ps.MaPS.ToString().Contains(txtTraCuu.Text) ||
+                                                                                     ps.MaPT.Contains(txtTraCuu.Text) ||
+                                                                                     ps.NgayThang.ToString().Contains(txtTraCuu.Text) ||
+                                                                                     ps.SoTien.ToString().Contains(txtTraCuu.Text) ||
+                                                                                     ps.MoTa.Contains(txtTraCuu.Text) ||
+                                                                                     ps.LoaiPS.Contains(txtTraCuu.Text)).ToList();
+                phatSinhBindingList = new BindingList<PhatSinhDTO>(phatSinhList);
+                dgvPhatSinh.DataSource = phatSinhBindingList;
+            }
         }
 
         private void dgvPhatSinh_Scroll(object sender, ScrollEventArgs e)

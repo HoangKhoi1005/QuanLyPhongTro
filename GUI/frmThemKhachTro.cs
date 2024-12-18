@@ -210,6 +210,18 @@ namespace GUI
                 MessageBox.Show("Ngày sinh không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            string email = txtEmail.Text;
+            if (!email.Contains("@") || !email.Contains(".com") || email.Contains(" "))
+            {
+                MessageBox.Show("Email không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            string cccd = txtCCCD.Text;
+            if (cccd.Length != 12 || !cccd.All(char.IsDigit))
+            {
+                MessageBox.Show("CCCD không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
 

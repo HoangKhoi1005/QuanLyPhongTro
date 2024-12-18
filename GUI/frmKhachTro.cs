@@ -74,6 +74,7 @@ namespace GUI
             dtpNgaySinh.DataBindings.Add("Text", dgvKhachTro.DataSource, "NGAYSINH");
             txtMoTa.DataBindings.Clear();
             txtMoTa.DataBindings.Add("Text", dgvKhachTro.DataSource, "MOTA");
+            ptbKhachTro.DataBindings.Clear();
             ptbKhachTro.DataBindings.Add("Image", dgvKhachTro.DataSource, "ANH", true, DataSourceUpdateMode.Never);
             ptbKhachTro.DataBindings[0].Format += (s, e) =>
             {
@@ -136,6 +137,18 @@ namespace GUI
                 MessageBox.Show("Ngày sinh không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+            string email = txtEmail.Text;
+            if (!email.Contains("@") || !email.Contains(".com") || email.Contains(" "))
+            {
+                MessageBox.Show("Email không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            string cccd = txtCCCD.Text;
+            if (cccd.Length != 12 || !cccd.All(char.IsDigit))
+            {
+                MessageBox.Show("CCCD không hợp lệ", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
             return true;
         }
 
@@ -171,6 +184,7 @@ namespace GUI
 
         private void btnThemKhachTro_Click(object sender, EventArgs e)
         {
+            btnLuuKhachTro.Enabled = true;
             txtMaKT.Clear();
             txtMaKT.Enabled = true;
             txtTenKT.Clear();
@@ -289,6 +303,7 @@ namespace GUI
         {
             txtMaKT.Enabled = false;
             ptbKhachTro.Enabled = true;
+            btnLuuKhachTro.Enabled = true;
         }
 
         private void btnXoaKhachTro_Click(object sender, EventArgs e)
@@ -323,6 +338,11 @@ namespace GUI
                 }
             }
             loadKhachTro();
+        }
+
+        private void dgvKhachTro_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            dataBinding();
         }
     }
 }

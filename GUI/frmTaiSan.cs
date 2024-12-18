@@ -19,7 +19,7 @@ namespace GUI
         public frmTaiSan()
         {
             InitializeComponent();
-            
+            dgvTaiSan.Columns[3].DefaultCellStyle.Format = "N0";
         }
 
         Form overlayPanel;

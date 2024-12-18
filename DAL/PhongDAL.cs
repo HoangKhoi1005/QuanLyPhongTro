@@ -174,11 +174,11 @@ namespace DAL
                 string sql = "SELECT DISTINCT PHONGTRO.MAPT, PHONGTRO.MANT, PHONGTRO.MATT, PHONGTRO.TENPHONG, " +
                              "PHONGTRO.DONGIA, PHONGTRO.CHIEUDAI, PHONGTRO.CHIEURONG, PHONGTRO.SOLUONGNGUOITD, " +
                              "PHONGTRO.MOTA, PHONGTRO.ANH " +
-                             "FROM PHONGTRO, HOPDONG, KHACHTRO_HOPDONG, KHACHTRO " +
-                             "WHERE PHONGTRO.MAPT = HOPDONG.MAPT " +
-                             "AND HOPDONG.MAHOPDONG = KHACHTRO_HOPDONG.MAHOPDONG " +
-                             "AND KHACHTRO_HOPDONG.MAKT = KHACHTRO.MAKT " +
-                             "AND PHONGTRO.DAXOA = 0 " +
+                             "FROM PHONGTRO " +
+                             "LEFT JOIN HOPDONG ON PHONGTRO.MAPT = HOPDONG.MAPT " +
+                             "LEFT JOIN KHACHTRO_HOPDONG ON HOPDONG.MAHOPDONG = KHACHTRO_HOPDONG.MAHOPDONG " +
+                             "LEFT JOIN KHACHTRO ON KHACHTRO_HOPDONG.MAKT = KHACHTRO.MAKT " +
+                             "WHERE PHONGTRO.DAXOA = 0 " +
                              "AND PHONGTRO.MANT = '" + maNT + "'";
 
                 if (!string.IsNullOrEmpty(maPhong) || !string.IsNullOrEmpty(tenKhachTro) || soLuongNguoiO != -1)

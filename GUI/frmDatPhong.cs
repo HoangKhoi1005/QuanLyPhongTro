@@ -33,7 +33,7 @@ namespace GUI
             txtTenKT.Text = khachTro.HoTen;
             txtTenNL.Text = "QL001";
             txtMaPhieuDat.Text = PhieuDatPhongBUL.PhatSinhMaPhieuDatPhong();
-            txtTienCoc.Text = phong.DonGia.ToString();
+            txtTienCoc.Text = string.Format("{0:#,##0}", phong.DonGia);
         }
 
         private void btnLapPhieuDat_Click(object sender, EventArgs e)
@@ -44,9 +44,11 @@ namespace GUI
                 return;
             }
 
-            if (txtTienCoc.Text.All(char.IsDigit) == false)
+            string tienCocText = txtTienCoc.Text.Replace(",", "");
+
+            if (!tienCocText.All(char.IsDigit))
             {
-                MessageBox.Show("Tiền đặt phòng phải là số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Tiền cọc phải là số", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 

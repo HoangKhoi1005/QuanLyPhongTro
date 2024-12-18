@@ -34,7 +34,7 @@ namespace DAL
 
         public List<HoaDonDTO> LayDanhSachHoaDon()
         {
-            string sql = "SELECT * FROM HOADON WHERE MONTH(NgayLap) = MONTH(GETDATE()) AND YEAR(NgayLap) = YEAR(GETDATE())";
+            string sql = "SELECT * FROM HOADON WHERE MONTH(NgayLap) = MONTH(GETDATE()) AND YEAR(NgayLap) = YEAR(GETDATE()) AND DAXOA = 0";
             var reader = db.ExecuteQuery(sql);
             var danhSachHoaDon = new List<HoaDonDTO>();
 
@@ -189,7 +189,7 @@ namespace DAL
         public object LayDanhSachHoaDonTheoThang(DateTime value, string trangThaiThanhToan)
         {
             string sql = "SELECT * FROM HOADON WHERE MONTH(NgayThanhToan) = " + value.Month +
-                         " AND YEAR(NgayThanhToan) = " + value.Year;
+                         " AND DAXOA = 0 AND YEAR(NgayThanhToan) = " + value.Year;
 
             if (trangThaiThanhToan == "Đã thanh toán")
             {
@@ -227,7 +227,7 @@ namespace DAL
             string sql = "SELECT HD.* FROM HOADON HD JOIN PHONGTRO PT ON HD.MaPT = PT.MaPT " +
                          "WHERE MONTH(HD.NgayThanhToan) = " + value.Month +
                          " AND YEAR(HD.NgayThanhToan) = " + value.Year +
-                         " AND PT.MaNT = '" + maNT + "'";
+                         "AND HD.DAXOA = 0 AND PT.MaNT = '" + maNT + "'";
 
             if (trangThaiThanhToan == "Đã thanh toán")
             {
@@ -276,7 +276,7 @@ namespace DAL
         {
             string sql = "SELECT * FROM HOADON WHERE MaPT LIKE '%" + maPT + "%'" +
                          " AND MONTH(NgayThanhToan) = " + value.Month +
-                         " AND YEAR(NgayThanhToan) = " + value.Year;
+                         "AND DAXOA = 0 AND YEAR(NgayThanhToan) = " + value.Year;
 
             if (trangThaiThanhToan == "Đã thanh toán")
             {
@@ -456,8 +456,13 @@ namespace DAL
         public decimal TongTienTrongThang(DateTime value)
         {
             string sql = "SELECT ISNULL(SUM(TongTien), 0) FROM HOADON WHERE MONTH(NgayThanhToan) = " + value.Month + " AND YEAR(NgayThanhToan) = " + value.Year;
-            return Convert.ToDecimal(db.ExecuteScalar(sql)); // Sử dụng decimal để đảm bảo tính chính xác
+            return Convert.ToDecimal(db.ExecuteScalar(sql));
         }
 
+        public bool XoaHoaDon(string maHD)
+        {
+            string sql = "UPDATE HOADON SET DaXoa = 1 WHERE MaHD = '" + maHD + "'";
+            return db.ExecuteNonQuery(sql) > 0;
+        }
     }
 }

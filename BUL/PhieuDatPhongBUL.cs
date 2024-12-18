@@ -86,5 +86,10 @@ namespace BUL
 
             return contractDict;
         }
+
+        public DataTable TraCuuPhieuDat(string maPhong, string tenKhachHang, string maPhieuDat)
+        {
+            return PhieuDatPhongDAL.TraCuuPhieuDat(maPhong, tenKhachHang, maPhieuDat);
+        }
     }
 }
