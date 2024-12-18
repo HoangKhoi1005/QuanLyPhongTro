@@ -611,6 +611,7 @@
             this.txtTraCuu.SelectedText = "";
             this.txtTraCuu.Size = new System.Drawing.Size(269, 43);
             this.txtTraCuu.TabIndex = 66;
+            this.txtTraCuu.TextChanged += new System.EventHandler(this.txtTraCuu_TextChanged_1);
             // 
             // btnTraCuu
             // 
